@@ -249,22 +249,16 @@
 
     </style>
     <script>
-        function check() {
-            var name = document.getElementById("username");
-            var pwd = document.getElementById("password");
-            // alert(name.value+"=="+pwd.value);
-            if (name.value == "" || pwd.value == "") {
-                // alert("账号或密码不能为空！");
-            } else {
-                // alert(name.value+"=="+pwd.value);
-                // var login=document.getElementById("casLoginForm");
-                // alert(login.innerText);
-                // login.action("encryptWeb/Student/stuHome.jsp");
-                // login.redirect("encryptWeb/Student/stuHome.jsp");
-                // window.location.href='404.jsp';
-                // setTimeout("javascript:location.href='404.jsp'", 5000);
-                // window.location="https://www.baidu.com/";
+        function checkForm() {
+            if(!$("#stuid").val()){
+                alert("学号不能为空!");
+                return false;
             }
+            if(!$("#stupwd").val()){
+                alert("密码不能为空！");
+                return false;
+            }
+            return true;
         }
     </script>
 </head>
@@ -272,8 +266,7 @@
 <div style="position:absolute;bottom:0px;width: 100%;height: 100%">
     <div class="span5 logo" style="width: 100%;background-color: #002a80;">
         <a class="logo-img" href="home.jsp" title="responsive template"
-           style="margin-left: 10px;margin-top: 3px;margin-bottom: 3px;"><img src="images/myimg/hitwh_logo.png"
-                                                                              lt="哈工大威海校徽"/></a>
+           style="margin-left: 10px;margin-top: 3px;margin-bottom: 3px;"><img src="images/myimg/hitwh_logo.png" alt="哈工大威海校徽"/></a>
     </div>
     <div>
         <img src="images/myimg/hit_silde3.jpg" width="100%" height="85%">
@@ -289,30 +282,28 @@
     <div class="clearfloat"></div>
     <div class="auth_tab_content">
         <div tabid="01" class="auth_tab_content_item">
-            <form id="casLoginForm" class="fm-v clearfix amp-login-form" role="form" method="post"
-                  action="encryptWeb/student/stuHome.jsp">
+            <small>${msgStudentLogin}</small>
+            <form class="fm-v clearfix amp-login-form" role="form" method="post"
+                  action="${pageContext.request.contextPath}/studentServlet" onsubmit="return checkForm()">
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
-                    <input id="username" name="username" placeholder="用户名" class="auth_input" type="text" value=""/>
-                    <span id="usernameError" style="display:none;" class="auth_error">请输入用户名</span>
+                    <input id="stuid" name="stuid" placeholder="学号" class="auth_input" type="text"/>
                 </p>
 
                 <p>
                     <i class="auth_icon auth_icon_pwd"></i>
-                    <input id="password" name="password" placeholder="密码" class="auth_input" type="password"
+                    <input id="stupwd" name="stupwd" placeholder="密码" class="auth_input" type="password"
                            value="" autocomplete="off"/>
-                    <span id="passwordError" style="display:none;" class="auth_error">请输入密码</span>
                 </p>
 
                 <p id="cpatchaDiv"></p>
                 <p>
-                    <label onmousedown=""> <input type="checkbox" name="rememberMe" id="rememberMe"/> 一周内免登录</label>
+                    <br/>
+                    <%--<label onmousedown=""> <input type="checkbox" name="rememberMe" id="rememberMe"/> 一周内免登录</label>--%>
                 </p>
 
                 <p>
-                    <%--<button type="submit" class="auth_login_btn primary full_width">登录--%>
-                    <%--</button>--%>
-                    <input type="submit" value="登录" onclick="check()" class="auth_login_btn primary full_width"/>
+                    <input type="submit" value="登录" class="auth_login_btn primary full_width"/>
                 </p>
                 <div style="text-align: right">
                     <a id="getBackPasswordMainPage" href="apply.jsp" class="auth_login_forgetp">

@@ -380,7 +380,7 @@
         <footer>
             <hr>
 
-            <p align="right">© 2014 <a href="http://www.hitwh.edu.cn" target="_blank">哈工大（威海）</a></p>
+            <p align="right">© 2014 <a href="../../index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划</a></p>
         </footer>
     </div>
 </div>

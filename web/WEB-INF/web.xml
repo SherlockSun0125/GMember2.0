@@ -12,6 +12,7 @@
         <servlet-name>testServlet</servlet-name>
         <url-pattern>/testServlet</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>adminServlet</servlet-name>
         <servlet-class>cn.edu.hitwh.gmember.servlet.AdminServlet</servlet-class>
@@ -21,4 +22,30 @@
         <url-pattern>/adminServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>studentServlet</servlet-name>
+        <servlet-class>cn.edu.hitwh.gmember.servlet.StudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>studentServlet</servlet-name>
+        <url-pattern>/studentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>teacherServlet</servlet-name>
+        <servlet-class>cn.edu.hitwh.gmember.servlet.TeacherServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherServlet</servlet-name>
+        <url-pattern>/teacherServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employeeServlet</servlet-name>
+        <servlet-class>cn.edu.hitwh.gmember.servlet.EmployeeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employeeServlet</servlet-name>
+        <url-pattern>/employeeServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

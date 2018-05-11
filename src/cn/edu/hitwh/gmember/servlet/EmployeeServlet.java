@@ -11,23 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class AdminServlet extends HttpServlet {
+public class EmployeeServlet extends HttpServlet {
     private IAdminService IAdminService =new AdminServiceImp();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String adminid=req.getParameter("adminid");
         String adminpwd=req.getParameter("adminpwd");
+        System.out.println("+++++++++++++++++++"+adminid);
+        System.out.println("+++++++++++++++++++"+adminpwd);
+        HttpSession session=req.getSession();
         Admin admin=new Admin();
         admin.setAdmin_id(adminid);
         admin.setAdmin_password(adminpwd);
-        Admin adminSql= IAdminService.login(admin);
-        if (adminSql!=null){
-            req.getSession().setAttribute("msgAdminLogin","");
+        Admin adminLogin= IAdminService.login(admin);
+        if (adminLogin!=null){
             resp.sendRedirect(req.getContextPath()+"/encryptWeb/admin");
-            req.getSession().setAttribute("Admin",adminSql);
+
         }else{
-            req.getSession().setAttribute("msgAdminLogin","账号或密码错误！");
+            req.setAttribute("msg","账号或密码错误！");
             resp.sendRedirect(req.getContextPath()+"/adminLogin.jsp");
         }
     }

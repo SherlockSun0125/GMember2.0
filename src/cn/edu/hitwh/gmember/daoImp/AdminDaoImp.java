@@ -1,5 +1,6 @@
-package cn.edu.hitwh.gmember.dao;
+package cn.edu.hitwh.gmember.daoImp;
 
+import cn.edu.hitwh.gmember.dao.IAdminDao;
 import cn.edu.hitwh.gmember.mapper.AdminMapper;
 import cn.edu.hitwh.gmember.pojo.Admin;
 import org.apache.ibatis.io.Resources;
@@ -10,8 +11,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.Reader;
 
-public class AdminDao {
-    public Admin findAdmin(String admin_name,String admin_pwd){
+public class AdminDaoImp implements IAdminDao{
+    @Override
+    public Admin findAdmin(String admin_name, String admin_pwd) {
         String resource = "MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;

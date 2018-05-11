@@ -68,18 +68,18 @@
             </span>
     </a>
 </div>
-
 <div class="dialog" style="padding-top:60px;padding-bottom: 60px">
     <div class="panel panel-default">
         <p class="panel-heading no-collapse" align="center">登录</p>
         <div class="panel-body">
             <div>
-                <label><small>${msg}</small></label>
+                <label><small id="msg">${msgAdminLogin}</small></label>
             </div>
-            <form action="${pageContext.request.contextPath}/adminServlet" method="post" onclick="checkForm()">
-                <input type="hidden" name="method" value="adminLogin" />
+            <form action="${pageContext.request.contextPath}/adminServlet" method="post" onsubmit="return checkForm()">
+            <%--<form action="<c:url value="/adminServlet"/> " method="post" onclick="return checkForm()">--%>
+                <%--<input type="hidden" name="method" value="adminLogin" />--%>
                 <div class="form-group">
-                    <label for="adminid" >账号</label>
+                    <label for="adminid">账号</label>
                     <input type="text" class="form-control span12"  name="adminid" id="adminid">
                 </div>
                 <div class="form-group">

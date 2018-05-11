@@ -290,6 +290,19 @@
 
 
     </style>
+    <script>
+        function checkForm() {
+            if(!$("#teaid").val()){
+                alert("账号不能为空！")
+                return false;
+            }
+            if(!$("#teapwd").val()){
+                alert("密码不能为空！")
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
 <div style="position:absolute;bottom:0px;width: 100%;height: 100%">
@@ -311,18 +324,17 @@
     <div class="clearfloat"></div>
     <div class="auth_tab_content">
         <div tabid="01" class="auth_tab_content_item">
-            <form id="casLoginForm" class="fm-v clearfix amp-login-form" role="form" action="encryptWeb/teacher/teaHome.jsp" method="post">
+            <small>${msgTeacherLogin}</small>
+            <form id="casLoginForm" class="fm-v clearfix amp-login-form" role="form" action="${pageContext.request.contextPath}/teacherServlet" method="post" onsubmit="return checkForm()">
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
-                    <input id="username" name="username" placeholder="用户名" class="auth_input" type="text" value=""/>
-                    <span id="usernameError" style="display:none;" class="auth_error">请输入用户名</span>
+                    <input id="teaid" name="teaid" placeholder="工号" class="auth_input" type="text" value=""/>
                 </p>
 
                 <p>
                     <i class="auth_icon auth_icon_pwd"></i>
-                    <input id="password" name="password" placeholder="密码" class="auth_input" type="password"
+                    <input id="teapwd" name="teapwd" placeholder="密码" class="auth_input" type="password"
                            value="" autocomplete="off"/>
-                    <span id="passwordError" style="display:none;" class="auth_error">请输入密码</span>
                 </p>
 
                 <p id="cpatchaDiv">
@@ -330,12 +342,12 @@
                 </p>
 
                 <p>
-                    <label onmousedown=""><input type="checkbox" name="rememberMe" id="rememberMe"/> 一周内免登录</label>
+                    <br/>
+                    <%--<label onmousedown=""><input type="checkbox" name="rememberMe" id="rememberMe"/> 一周内免登录</label>--%>
                 </p>
 
                 <p>
-                    <button type="submit" class="auth_login_btn primary full_width">登录
-                    </button>
+                    <input type="submit" class="auth_login_btn primary full_width" value="登录"/>
                 </p>
                 <div><br></div>
                 <div>
@@ -351,13 +363,6 @@
                 <div>
                     <small>温馨提示：个人应妥善保管个人帐号密码，不能随意告诉他人，由帐号密码管理不善造成的不良后果由个人负责。</small>
                 </div>
-
-                <input type="hidden" name="lt"
-                       value="LT-4941804-d9Jd5HW2ebP3di1UrRwGTSrjgB9iQe1523453839894-VAct-cas"/>
-                <input type="hidden" name="dllt" value="userNamePasswordLogin"/>
-                <input type="hidden" name="execution" value="e2s1"/>
-                <input type="hidden" name="_eventId" value="submit"/>
-                <input type="hidden" name="rmShown" value="1">
             </form>
         </div>
     </div>
