@@ -287,7 +287,7 @@
                   action="${pageContext.request.contextPath}/studentServlet" onsubmit="return checkForm()">
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
-                    <input id="stuid" name="stuid" placeholder="学号" class="auth_input" type="text"/>
+                    <input id="stuid" name="stuid" placeholder="账号" class="auth_input" type="text"/>
                 </p>
 
                 <p>

@@ -328,7 +328,7 @@
             <form id="casLoginForm" class="fm-v clearfix amp-login-form" role="form" action="${pageContext.request.contextPath}/teacherServlet" method="post" onsubmit="return checkForm()">
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
-                    <input id="teaid" name="teaid" placeholder="工号" class="auth_input" type="text" value=""/>
+                    <input id="teaid" name="teaid" placeholder="账号" class="auth_input" type="text" value=""/>
                 </p>
 
                 <p>

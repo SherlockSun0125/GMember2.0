@@ -75,9 +75,9 @@
             <div>
                 <label><small id="msg">${msgAdminLogin}</small></label>
             </div>
-            <form action="${pageContext.request.contextPath}/adminServlet" method="post" onsubmit="return checkForm()">
+            <form action="${pageContext.request.contextPath}/adminServlet" onsubmit="return checkForm()">
             <%--<form action="<c:url value="/adminServlet"/> " method="post" onclick="return checkForm()">--%>
-                <%--<input type="hidden" name="method" value="adminLogin" />--%>
+                <input type="hidden" name="method" value="adminLogin" />
                 <div class="form-group">
                     <label for="adminid">账号</label>
                     <input type="text" class="form-control span12"  name="adminid" id="adminid">

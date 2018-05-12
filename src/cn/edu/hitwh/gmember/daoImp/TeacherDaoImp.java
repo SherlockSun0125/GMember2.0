@@ -1,9 +1,7 @@
 package cn.edu.hitwh.gmember.daoImp;
 
 import cn.edu.hitwh.gmember.dao.ITeacherDao;
-import cn.edu.hitwh.gmember.mapper.AdminMapper;
 import cn.edu.hitwh.gmember.mapper.TeacherMapper;
-import cn.edu.hitwh.gmember.pojo.Admin;
 import cn.edu.hitwh.gmember.pojo.Teacher;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

@@ -264,13 +264,25 @@
 
 
     </style>
+    <script>
+        function checkForm() {
+            if(!$("#empid").val()){
+                alert("账号不能为空！");
+                return false;
+            }
+            if(!$("#emppwd").val()){
+                alert("密码不能为空！");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
 <div style="position:absolute;bottom:0px;width: 100%;height: 100%">
     <div class="span5 logo" style="width: 100%;background-color: #002a80;">
         <a class="logo-img" href="home.jsp" title="responsive template"
-           style="margin-left: 10px;margin-top: 3px;margin-bottom: 3px;"><img src="images/myimg/hitwh_logo.png"
-                                                                              alt="哈工大威海校徽"/></a>
+           style="margin-left: 10px;margin-top: 3px;margin-bottom: 3px;"><img src="images/myimg/hitwh_logo.png" alt="哈工大威海校徽"/></a>
     </div>
     <div>
         <img src="images/myimg/hit_silde3.jpg" width="100%" height="85%">
@@ -286,31 +298,30 @@
     <div class="clearfloat"></div>
     <div class="auth_tab_content">
         <div tabid="01" class="auth_tab_content_item">
-            <form id="casLoginForm" class="fm-v clearfix amp-login-form" role="form" action=" " method="post">
+            <small>${msgEmployeeLogin}</small>
+            <form id="casLoginForm" class="fm-v clearfix amp-login-form" role="form" action="${pageContext.request.contextPath}/employeeServlet" method="post" onsubmit="return checkForm()">
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
-                    <input id="username" name="username" placeholder="用户名" class="auth_input" type="text" value=""/>
-                    <span id="usernameError" style="display:none;" class="auth_error">请输入用户名</span>
+                    <input id="empid" name="empid" placeholder="账号" class="auth_input" type="text" value=""/>
                 </p>
 
                 <p>
                     <i class="auth_icon auth_icon_pwd"></i>
-                    <input id="password" name="password" placeholder="密码" class="auth_input" type="password"
+                    <input id="emppwd" name="emppwd" placeholder="密码" class="auth_input" type="password"
                            value="" autocomplete="off"/>
-                    <span id="passwordError" style="display:none;" class="auth_error">请输入密码</span>
                 </p>
 
                 <p id="cpatchaDiv">
 
                 </p>
                 <p>
-                    <label onmousedown="">   <input type="checkbox" name="rememberMe" id="rememberMe"/> 一周内免登录</label>
+                    <br/>
+                    <%--<label onmousedown="">   <input type="checkbox" name="rememberMe" id="rememberMe"/> 一周内免登录</label>--%>
                 </p>
 
 
                 <p>
-                    <button type="submit" class="auth_login_btn primary full_width">登录
-                    </button>
+                    <input type="submit" class="auth_login_btn primary full_width" value="登录"/>
                 </p>
                 <a id="getBackPasswordMainPage" href="" class="auth_login_forgetp">
                     <%--<small>登录遇到问题？绑定邮箱/手机？找回/修改密码？二次认证设置？</small>--%>

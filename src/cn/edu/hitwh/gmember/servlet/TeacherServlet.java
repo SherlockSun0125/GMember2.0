@@ -1,17 +1,13 @@
 package cn.edu.hitwh.gmember.servlet;
 
-import cn.edu.hitwh.gmember.pojo.Admin;
 import cn.edu.hitwh.gmember.pojo.Teacher;
-import cn.edu.hitwh.gmember.service.IAdminService;
 import cn.edu.hitwh.gmember.service.ITeacherService;
-import cn.edu.hitwh.gmember.serviceImp.AdminServiceImp;
 import cn.edu.hitwh.gmember.serviceImp.TeacherServiceImp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class TeacherServlet extends HttpServlet {
@@ -33,7 +29,7 @@ public class TeacherServlet extends HttpServlet {
             req.getSession().setAttribute("Teacher",teacherLogin);
             resp.sendRedirect(req.getContextPath()+"/encryptWeb/teacher");
         }else{
-            req.getSession().setAttribute("msgTeacherLogin","账号或密码错误！");
+            req.getSession().setAttribute("msgTeacherLogin","账号或密码错误！请重新输入！");
             resp.sendRedirect(req.getContextPath()+"/teacherLogin.jsp");
         }
     }
