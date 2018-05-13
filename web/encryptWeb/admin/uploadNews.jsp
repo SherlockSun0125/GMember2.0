@@ -105,7 +105,8 @@
         <li><a href="adminHome.jsp" class="nav-header" target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
-        <li><a href="teacherM.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
+        <li><a href="teacherM.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a>
+        </li>
 
         <%--学生管理--%>
         <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
@@ -183,25 +184,35 @@
 
 <%--中间部分--%>
 <div class="content">
-    <div class="main-content">
-       <div>
-           <!-- 加载编辑器的容器 -->
-           <script id="container" name="content" type="text/plain">
-        这里写你的初始化内容
-    </script>
-           <!-- 配置文件 -->
-           <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
-           <!-- 编辑器源码文件 -->
-           <script type="text/javascript" src="ueditor/ueditor.all.js"></script>
-           <!-- 实例化编辑器 -->
-           <script type="text/javascript">
-               var ue = UE.getEditor('container');
-           </script>
-       </div>
+    <div class="main-content" style="margin-top: 10px;">
+        <%--下左一--%>
+        <div class="row">
+            <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
+                <div class="panel panel-default" style="background-color: #EEEEEE">
+                    <div class="panel-heading no-collapse"
+                         style="text-align: center;font-size: 1.5em;font-weight: bold">上传新闻
+                    </div>
+                    <div style="margin: 10px">
+                        <!-- 加载编辑器的容器 -->
+                        <!--container里写你的初始化内容-->
+                        <script id="container" name="content" type="text/plain">
+
+                        </script>
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="ueditor/ueditor.all.js"></script>
+                        <!-- 实例化编辑器 -->
+                        <script type="text/javascript">
+                            var ue = UE.getEditor('container');
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer>
             <hr>
-
             <p align="right">© 2014 <a href="../../index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划</a></p>
         </footer>
     </div>

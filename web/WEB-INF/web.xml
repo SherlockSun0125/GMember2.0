@@ -18,6 +18,7 @@
     <servlet>
         <servlet-name>adminServlet</servlet-name>
         <servlet-class>cn.edu.hitwh.gmember.servlet.AdminServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>adminServlet</servlet-name>

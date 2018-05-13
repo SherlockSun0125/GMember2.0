@@ -40,13 +40,13 @@
 			'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
             'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
 			'paragraph', 'fontfamily', 'fontsize', '|',
-            'indent','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|'],
-            ['link', 'unlink','anchor','|',
+            'indent','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+            'link', 'unlink','anchor','|',
 			'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
             'simpleupload', 'insertimage','attachment', 'map','insertcode','pagebreak', 'template', 'background', '|',
             'horizontal', 'date', 'time', 'spechars','|',
             'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-            'print', 'preview', 'searchreplace','help'
+            'print', 'preview', 'searchreplace'
         ]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
@@ -66,7 +66,7 @@
         //,zIndex : 900     //编辑器层级的基数,默认是900
 
         //针对getAllHtml方法，会在对应的head标签中增加该编码设置。
-        //,charset:"utf-8"
+        ,charset:"utf-8"
 
         //若实例化编辑器的页面手动修改的domain，此处需要设置为true
         //,customDomain:false
@@ -92,16 +92,16 @@
         //,indentValue:'2em'
 
         //,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
-        //,initialFrameHeight:320  //初始化编辑器高度,默认320
+        ,initialFrameHeight:500  //初始化编辑器高度,默认320
 
         //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
         //,autoClearEmptyNode : true //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）
 
-        //启用自动保存
-        //,enableAutoSave: true
-        //自动保存间隔时间， 单位ms
-        //,saveInterval: 500
+        // 启用自动保存
+        ,enableAutoSave: true
+        // 自动保存间隔时间， 单位ms ,间隔2分钟自动保存
+        ,saveInterval: 1000*60*2
 
         //,fullscreen : false //是否开启初始化时即全屏，默认关闭
 
@@ -146,7 +146,7 @@
 
         //insertorderedlist
         //有序列表的下拉配置,值留空时支持多语言自动识别，若配置值，则以此值为准
-        //,'insertorderedlist':{
+        // ,'insertorderedlist':{
         //      //自定的样式
         //        'num':'1,2,3...',
         //        'num1':'1),2),3)...',
@@ -160,17 +160,17 @@
         //     'lower-roman' : '' ,    //'i,ii,iii...'
         //     'upper-alpha' : '' , lang   //'A,B,C'
         //     'upper-roman' : ''      //'I,II,III...'
-        //}
+        // }
 
         //insertunorderedlist
         //无序列表的下拉配置，值留空时支持多语言自动识别，若配置值，则以此值为准
-        //,insertunorderedlist : { //自定的样式
-        //    'dash' :'— 破折号', //-破折号
-        //    'dot':' 。 小圆圈', //系统自带
-        //    'circle' : '',  // '○ 小圆圈'
-        //    'disc' : '',    // '● 小圆点'
-        //    'square' : ''   //'■ 小方块'
-        //}
+        ,insertunorderedlist : { //自定的样式
+           'dash' :'— 破折号', //-破折号
+           'dot':' 。 小圆圈', //系统自带
+           'circle' : '○ 小圆圈',  // '○ 小圆圈'
+           'disc' : '● 小圆',    // '● 小圆点'
+           'square' : '■ 小方块'   //'■ 小方块'
+        }
         //,listDefaultPaddingLeft : '30'//默认的左边缩进的基数倍
         //,listiconpath : 'http://bs.baidu.com/listicon/'//自定义标号的路径
         //,maxListLevel : 3 //限制可以tab的级数, 设置-1为不限制
@@ -179,39 +179,39 @@
 
         //fontfamily
         //字体设置 label留空支持多语言自动切换，若配置，则以配置值为准
-        //,'fontfamily':[
-        //    { label:'',name:'songti',val:'宋体,SimSun'},
-        //    { label:'',name:'kaiti',val:'楷体,楷体_GB2312, SimKai'},
-        //    { label:'',name:'yahei',val:'微软雅黑,Microsoft YaHei'},
-        //    { label:'',name:'heiti',val:'黑体, SimHei'},
-        //    { label:'',name:'lishu',val:'隶书, SimLi'},
-        //    { label:'',name:'andaleMono',val:'andale mono'},
-        //    { label:'',name:'arial',val:'arial, helvetica,sans-serif'},
-        //    { label:'',name:'arialBlack',val:'arial black,avant garde'},
-        //    { label:'',name:'comicSansMs',val:'comic sans ms'},
-        //    { label:'',name:'impact',val:'impact,chicago'},
-        //    { label:'',name:'timesNewRoman',val:'times new roman'}
-        //]
+        ,'fontfamily':[
+           { label:'',name:'songti',val:'宋体,SimSun'},
+           { label:'',name:'kaiti',val:'楷体,楷体_GB2312, SimKai'},
+           { label:'',name:'yahei',val:'微软雅黑,Microsoft YaHei'},
+           { label:'',name:'heiti',val:'黑体, SimHei'},
+           { label:'',name:'lishu',val:'隶书, SimLi'},
+           { label:'',name:'andaleMono',val:'andale mono'},
+           { label:'',name:'arial',val:'arial, helvetica,sans-serif'},
+           { label:'',name:'arialBlack',val:'arial black,avant garde'},
+           { label:'',name:'comicSansMs',val:'comic sans ms'},
+           { label:'',name:'impact',val:'impact,chicago'},
+           { label:'',name:'timesNewRoman',val:'times new roman'}
+        ]
 
         //fontsize
         //字号
-        //,'fontsize':[10, 11, 12, 14, 16, 18, 20, 24, 36]
+        ,'fontsize':[10, 11, 12, 14, 16, 18, 20, 24, 36]
 
         //paragraph
         //段落格式 值留空时支持多语言自动识别，若配置，则以配置值为准
-        //,'paragraph':{'p':'', 'h1':'', 'h2':'', 'h3':'', 'h4':'', 'h5':'', 'h6':''}
+        ,'paragraph':{'p':'', 'h1':'', 'h2':'', 'h3':'', 'h4':'', 'h5':'', 'h6':''}
 
         //rowspacingtop
         //段间距 值和显示的名字相同
-        //,'rowspacingtop':['5', '10', '15', '20', '25']
+        ,'rowspacingtop':['5', '10', '15', '20', '25']
 
         //rowspacingBottom
         //段间距 值和显示的名字相同
-        //,'rowspacingbottom':['5', '10', '15', '20', '25']
+        ,'rowspacingbottom':['5', '10', '15', '20', '25']
 
         //lineheight
         //行内间距 值和显示的名字相同
-        //,'lineheight':['1', '1.5','1.75','2', '3', '4', '5']
+        ,'lineheight':['1', '1.5','1.75','2', '3', '4', '5']
 
         //customstyle
         //自定义样式，不支持国际化，此处配置值即可最后显示值
@@ -252,40 +252,40 @@
         //,elementPathEnabled : true
 
         //wordCount
-        //,wordCount:true          //是否开启字数统计
-        //,maximumWords:10000       //允许的最大字符数
+        ,wordCount:true          //是否开启字数统计
+        ,maximumWords:10000       //允许的最大字符数
         //字数统计提示，{#count}代表当前字数，{#leave}代表还可以输入多少字符数,留空支持多语言自动切换，否则按此配置显示
-        //,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
+        ,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
         //超出字数限制提示  留空支持多语言自动切换，否则按此配置显示
-        //,wordOverFlowMsg:''    //<span style="color:red;">你输入的字符个数已经超出最大允许值，服务器可能会拒绝保存！</span>
+        ,wordOverFlowMsg:''    //<span style="color:red;">你输入的字符个数已经超出最大允许值，服务器可能会拒绝保存！</span>
 
         //tab
         //点击tab键时移动的距离,tabSize倍数，tabNode什么字符做为单位
-        //,tabSize:4
-        //,tabNode:'&nbsp;'
+        ,tabSize:4
+        ,tabNode:'&nbsp;'
 
         //removeFormat
         //清除格式时可以删除的标签和属性
         //removeForamtTags标签
-        //,removeFormatTags:'b,big,code,del,dfn,em,font,i,ins,kbd,q,samp,small,span,strike,strong,sub,sup,tt,u,var'
+        ,removeFormatTags:'b,big,code,del,dfn,em,font,i,ins,kbd,q,samp,small,span,strike,strong,sub,sup,tt,u,var'
         //removeFormatAttributes属性
-        //,removeFormatAttributes:'class,style,lang,width,height,align,hspace,valign'
+        ,removeFormatAttributes:'class,style,lang,width,height,align,hspace,valign'
 
         //undo
         //可以最多回退的次数,默认20
-        //,maxUndoCount:20
+        ,maxUndoCount:20
         //当输入的字符数超过该值时，保存一次现场
-        //,maxInputCount:1
+        ,maxInputCount:1
 
         //autoHeightEnabled
         // 是否自动长高,默认true
-        //,autoHeightEnabled:true
+        ,autoHeightEnabled:true
 
         //scaleEnabled
         //是否可以拉伸长高,默认true(当开启时，自动长高失效)
         //,scaleEnabled:false
-        //,minFrameWidth:800    //编辑器拖动时最小宽度,默认800
-        //,minFrameHeight:220  //编辑器拖动时最小高度,默认220
+        ,minFrameWidth:800    //编辑器拖动时最小宽度,默认800
+        ,minFrameHeight:500  //编辑器拖动时最小高度,默认220
 
         //autoFloatEnabled
         //是否保持toolbar的位置不动,默认true
@@ -300,27 +300,27 @@
 
         //pageBreakTag
         //分页标识符,默认是_ueditor_page_break_tag_
-        //,pageBreakTag:'_ueditor_page_break_tag_'
+        ,pageBreakTag:'_ueditor_page_break_tag_'
 
         //autotypeset
         //自动排版参数
-        //,autotypeset: {
-        //    mergeEmptyline: true,           //合并空行
-        //    removeClass: true,              //去掉冗余的class
-        //    removeEmptyline: false,         //去掉空行
-        //    textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
-        //    imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
-        //    pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
-        //    clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
-        //    clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
-        //    removeEmptyNode: false,         // 去掉空节点
-        //    //可以去掉的标签
-        //    removeTagNames: {标签名字:1},
-        //    indent: false,                  // 行首缩进
-        //    indentValue : '2em',            //行首缩进的大小
-        //    bdc2sb: false,
-        //    tobdc: false
-        //}
+        ,autotypeset: {
+           mergeEmptyline: true,           //合并空行
+           removeClass: true,              //去掉冗余的class
+           removeEmptyline: false,         //去掉空行
+           textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+           imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+           pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
+           clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
+           clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
+           removeEmptyNode: false,         // 去掉空节点
+           //可以去掉的标签
+           removeTagNames: {标签名字:1},
+           indent: false,                  // 行首缩进
+           indentValue : '2em',            //行首缩进的大小
+           bdc2sb: false,
+           tobdc: false
+        }
 
         //tableDragable
         //表格是否可以拖拽
