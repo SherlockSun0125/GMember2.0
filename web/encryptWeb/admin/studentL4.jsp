@@ -183,7 +183,7 @@
 <%--中间部分--%>
 <div class="content">
     <div class="main-content">
-        <button href="" style="padding:2px 10px;border-radius: 8px " class="btn-success">增加教师</button>
+        <button href="" style="padding:2px 10px;border-radius: 8px " class="btn-success">增加学生</button>
         <br/>
         <br/>
         <%--下一--%>
@@ -191,8 +191,8 @@
             <%--下左一--%>
             <div class="col-sm-12 col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading no-collapse">教师管理
-                        <span class="label label-warning">教师数量：10</span>
+                    <div class="panel-heading no-collapse">学生管理
+                        <span class="label label-warning">学生数量：10</span>
                     </div>
                     <table class="table table-bordered table-striped">
                         <thead>

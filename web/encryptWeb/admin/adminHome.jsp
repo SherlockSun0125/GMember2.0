@@ -158,7 +158,7 @@
                 <li><a href=""><span class="fa fa-caret-right"></span> 校园资讯</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 教学科研</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 专题新闻</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 上传新闻</a></li>
+                <li><a href="uploadNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
             </ul>
         </li>
 
