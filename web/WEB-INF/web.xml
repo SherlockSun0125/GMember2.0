@@ -51,4 +51,13 @@
         <servlet-name>employeeServlet</servlet-name>
         <url-pattern>/employeeServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>newsServlet</servlet-name>
+        <servlet-class>cn.edu.hitwh.gmember.servlet.NewsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>newsServlet</servlet-name>
+        <url-pattern>/newsServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

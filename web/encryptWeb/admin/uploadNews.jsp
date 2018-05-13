@@ -59,6 +59,23 @@
         });
     </script>
 
+    <script>
+        function checkForm() {
+            if(!$("#title").val()){
+                alert("新闻标题不能为空！");
+                return false;
+            }
+            if(!$("#author").val()){
+                alert("新闻发布者不能为空！");
+                return false;
+            }
+            if(!$("#container").val()){
+                alert("新闻内容不能为空！");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body class="theme-blue">
@@ -192,12 +209,41 @@
                     <div class="panel-heading no-collapse"
                          style="text-align: center;font-size: 1.5em;font-weight: bold">上传新闻
                     </div>
-                    <div style="margin: 10px">
-                        <!-- 加载编辑器的容器 -->
-                        <!--container里写你的初始化内容-->
-                        <script id="container" name="content" type="text/plain">
+                    <div style="margin: 10px" class="newsform">
+                        <form action="${pageContext.request.contextPath}/newsServlet" method="post" >
+                            <input  type="hidden" name="method" value="addNews">
+                            <div class="form-group" style="width:10%;">
+                                <span style="color: red">*&nbsp;</span><label for="type">所属板块</label>
+                                <div style="width:20em;display: inline-block">
+                                    <select class="form-control" name="newstype" id="type">
+                                        <option value="news1" selected="selected">综合要闻</option>
+                                        <option value="news2">校园资讯</option>
+                                        <option value="news3">教学科研</option>
+                                        <option value="news4">专题新闻</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="width: 35%">
+                                <span style="color: red">*&nbsp;</span><label for="title">新闻标题</label>
+                                <input type="text" class="form-control" id="title" placeholder="新闻标题">
+                            </div>
 
-                        </script>
+                            <div class="form-group" style="width: 35%">
+                                <span><span style="color: red">*&nbsp;</span><label for="author">发布人</label></span>
+                                <input type="text" class="form-control" id="author" placeholder="发布人姓名" >
+                            </div>
+
+                            <div class="form-group">
+                                <!-- 加载编辑器的容器 -->
+                                <!--container里写你的初始化内容-->
+                                <span><span style="color: red">*&nbsp;</span><label for="title">新闻内容</label></span>
+                                <script id="container" name="content" type="text/plain"></script>
+                            </div>
+
+                            <div class="form-control">
+                                <input type="submit" value="上传新闻">
+                            </div>
+                        </form>
                         <!-- 配置文件 -->
                         <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
                         <!-- 编辑器源码文件 -->

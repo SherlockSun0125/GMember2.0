@@ -5,6 +5,7 @@ import java.util.Date;
 public class News {
     private String news_id;
     private Date news_time=new Date();
+    private String publisher;
     private String author_id;
     private String news_title;
     private String news_content;
@@ -18,9 +19,10 @@ public class News {
 
     public News(){}
 
-    public News(String news_id, Date news_time, String author_id, String news_title, String news_content, int news_section_id, int news_readtimes, String news_pic1, String news_pic2, String news_pic3, String news_pic4, String news_pic5) {
+    public News(String news_id, Date news_time, String publisher, String author_id, String news_title, String news_content, int news_section_id, int news_readtimes, String news_pic1, String news_pic2, String news_pic3, String news_pic4, String news_pic5) {
         this.news_id = news_id;
         this.news_time = news_time;
+        this.publisher = publisher;
         this.author_id = author_id;
         this.news_title = news_title;
         this.news_content = news_content;
@@ -44,6 +46,8 @@ public class News {
     public void setAuthor_id(String author_id) {
         this.author_id = author_id;
     }
+
+    public void setPublisher(String publisher) { this.publisher = publisher; }
 
     public void setNews_title(String news_title) {
         this.news_title = news_title;
@@ -88,6 +92,8 @@ public class News {
     public Date getNews_time() {
         return news_time;
     }
+
+    public String getPublisher() { return publisher; }
 
     public String getAuthor_id() {
         return author_id;
@@ -134,6 +140,7 @@ public class News {
         return "News{" +
                 "news_id='" + news_id + '\'' +
                 ", news_time=" + news_time +
+                ", publisher='" + publisher + '\'' +
                 ", author_id='" + author_id + '\'' +
                 ", news_title='" + news_title + '\'' +
                 ", news_content='" + news_content + '\'' +
