@@ -282,9 +282,9 @@
     <div class="clearfloat"></div>
     <div class="auth_tab_content">
         <div tabid="01" class="auth_tab_content_item">
-            <small>${msgStudentLogin}</small>
             <form class="fm-v clearfix amp-login-form" role="form" method="post"
                   action="${pageContext.request.contextPath}/studentServlet" onsubmit="return checkForm()">
+                <input type="hidden" name="method" value="studentLogin"/>
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
                     <input id="stuid" name="stuid" placeholder="账号" class="auth_input" type="text"/>
@@ -299,7 +299,8 @@
                 <p id="cpatchaDiv"></p>
                 <p>
                     <br/>
-                    <%--<label onmousedown=""> <input type="checkbox" name="rememberMe" id="rememberMe"/> 一周内免登录</label>--%>
+                    <small>${msgStudentLogin}</small>
+                <%--<label onmousedown=""> <input type="checkbox" name="rememberMe" id="rememberMe"/> 一周内免登录</label>--%>
                 </p>
 
                 <p>

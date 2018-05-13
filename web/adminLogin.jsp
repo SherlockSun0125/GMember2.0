@@ -72,12 +72,8 @@
     <div class="panel panel-default">
         <p class="panel-heading no-collapse" align="center">登录</p>
         <div class="panel-body">
-            <div>
-                <label><small id="msg">${msgAdminLogin}</small></label>
-            </div>
-            <form action="${pageContext.request.contextPath}/adminServlet" onsubmit="return checkForm()">
-            <%--<form action="<c:url value="/adminServlet"/> " method="post" onclick="return checkForm()">--%>
-                <input type="hidden" name="method" value="adminLogin" />
+            <form action="${pageContext.request.contextPath}/adminServlet" onsubmit="return checkForm()" method="post">
+                <input type="hidden" name="method" value="adminLogin"/>
                 <div class="form-group">
                     <label for="adminid">账号</label>
                     <input type="text" class="form-control span12"  name="adminid" id="adminid">
@@ -85,6 +81,9 @@
                 <div class="form-group">
                     <label for="adminpwd">密码</label>
                     <input type="password" class="form-controlspan12 form-control"  name="adminpwd" id="adminpwd">
+                </div>
+                <div>
+                    <label><small id="msg">${msgAdminLogin}</small></label>
                 </div>
                 <div class="clearfix form-group">
                     <input type="submit" class="btn btn-primary pull-right" value="登录">

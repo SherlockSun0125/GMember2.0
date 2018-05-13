@@ -3,16 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-        <servlet>
-            <servlet-name>testServlet</servlet-name>
-            <servlet-class>cn.edu.hitwh.gmember.servlet.TestServlet</servlet-class>
-            <load-on-startup>1</load-on-startup>
-        </servlet>
-    <servlet-mapping>
-        <servlet-name>testServlet</servlet-name>
-        <url-pattern>/testServlet</url-pattern>
-    </servlet-mapping>
 
+    <!-- 处理全站请求编码，默认是utf-8 -->
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>cn.itcast.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!--定义servlet-->
     <servlet>
         <servlet-name>adminServlet</servlet-name>
         <servlet-class>cn.edu.hitwh.gmember.servlet.AdminServlet</servlet-class>
