@@ -25,5 +25,6 @@
         <mapper resource="mybatisMapper/teacherMapper.xml"/>
         <mapper resource="mybatisMapper/employeeMapper.xml"/>
         <mapper resource="mybatisMapper/newsMapper.xml"/>
+        <mapper resource="mybatisMapper/noticeMapper.xml"/>
     </mappers>
 </configuration>

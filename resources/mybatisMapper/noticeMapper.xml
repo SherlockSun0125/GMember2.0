@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.hitwh.gmember.mapper.NoticeMapper">
+    <insert id="addNotice" parameterType="cn.edu.hitwh.gmember.pojo.Notice"
+    useGeneratedKeys="true" keyProperty="noti_id">
+      INSERT INTO notice(noti_title, noti_time, publisher, author_id, noti_content, noti_section_id, noti_readtimes)
+        VALUES (#{noti_title},#{noti_time},#{publisher},#{author_id},#{noti_content},#{noti_section_id},#{noti_readtimes})
+    </insert>
+</mapper>

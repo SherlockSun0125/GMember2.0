@@ -61,11 +61,11 @@
 
     <script>
         function checkForm() {
-            if (!$("#newsTitle").val()) {
+            if (!$("#noticeTitle").val()) {
                 alert("新闻标题不能为空！");
                 return false;
             }
-            if (!$("#newsAuthor").val()) {
+            if (!$("#noticeAuthor").val()) {
                 alert("新闻发布者不能为空！");
                 return false;
             }
@@ -175,12 +175,12 @@
             </a>
         </li>
         <li>
-            <ul class="legal-menu nav nav-list collapse in">
+            <ul class="legal-menu nav nav-list collapse">
                 <li><a href=""><span class="fa fa-caret-right"></span> 综合要闻</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 校园资讯</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 教学科研</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 专题新闻</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 上传新闻</a></li>
+                <li><a href="addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
             </ul>
         </li>
 
@@ -191,15 +191,13 @@
             </a>
         </li>
         <li>
-            <ul class="accounts-menu nav nav-list collapse">
+            <ul class="accounts-menu nav nav-list collapse in">
                 <li><a href=""><span class="fa fa-caret-right"></span> 通知公告</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 院系通知</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 学术科研</a></li>
-                <li><a href="addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href=""><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
-
-        <%--<li><a href="faq.html" class="nav-header"><i class="fa fa-fw fa-comment"></i> Faq</a></li>--%>
     </ul>
 </div>
 
@@ -214,38 +212,37 @@
                          style="text-align: center;font-size: 1.5em;font-weight: bold">上传新闻
                     </div>
                     <div style="margin: 10px" class="newsform">
-                        <form action="${pageContext.request.contextPath}/newsServlet" method="post" onsubmit="return checkForm()">
-                            <input  type="hidden" name="method" value="addNews">
+                        <form action="${pageContext.request.contextPath}/noticeServlet" method="post" onsubmit="return checkForm()">
+                            <input  type="hidden" name="method" value="addNotice">
                             <div class="form-group" style="width:10%;">
                                 <span style="color: red">*&nbsp;</span><label for="type">所属版块</label>
                                 <div style="width:20em;display: inline-block">
-                                    <select class="form-control" name="newstype" id="type">
-                                        <option value="news1" selected="selected">综合要闻</option>
-                                        <option value="news2">校园资讯</option>
-                                        <option value="news3">教学科研</option>
-                                        <option value="news4">专题新闻</option>
+                                    <select class="form-control" name="noticetype" id="type">
+                                        <option value="notice1" selected="selected">通知公告</option>
+                                        <option value="notice2">院系通知</option>
+                                        <option value="notice3">学术科研</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group" style="width: 35%">
-                                <span style="color: red">*&nbsp;</span><label for="newsTitle">新闻标题</label>
-                                <input type="text" class="form-control" name="newsTitle" id="newsTitle" placeholder="新闻标题">
+                                <span style="color: red">*&nbsp;</span><label for="noticeTitle">通知标题</label>
+                                <input type="text" class="form-control" name="noticeTitle" id="noticeTitle" placeholder="通知标题">
                             </div>
 
                             <div class="form-group" style="width: 35%">
-                                <span><span style="color: red">*&nbsp;</span><label for="newsAuthor">发布人</label></span>
-                                <input type="text" class="form-control" name="news" id="newsAuthor" placeholder="发布人姓名">
+                                <span><span style="color: red">*&nbsp;</span><label for="noticeAuthor">发布人</label></span>
+                                <input type="text" class="form-control" name="noticeAuthor" id="noticeAuthor" placeholder="发布人姓名">
                             </div>
 
                             <div class="form-group">
                                 <!-- 加载编辑器的容器 -->
                                 <!--container里写你的初始化内容-->
-                                <span><span style="color: red">*&nbsp;</span><label for="container">新闻内容</label></span>
+                                <span><span style="color: red">*&nbsp;</span><label for="container">通知内容</label></span>
                                 <script id="container" name="content" type="text/plain"></script>
                             </div>
                             <dic>
-                                <small style="float: left;margin-left: 30px;margin-top: 20px">${msgAddNews}</small>
-                                <input type="submit" class="btn btn-success" style="float: right;margin-right: 30px;margin-top: 20px" value="上传新闻">
+                                <small style="float: left;margin-left: 30px;margin-top: 20px">${msgAddNotice}</small>
+                                <input type="submit" class="btn btn-success" style="float: right;margin-right: 30px;margin-top: 20px" value="上传公告">
                             </dic>
                         </form>
                         <!-- 配置文件 -->

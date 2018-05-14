@@ -173,7 +173,7 @@
                 <li><a href=""><span class="fa fa-caret-right"></span> 通知公告</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 院系通知</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 学术科研</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 

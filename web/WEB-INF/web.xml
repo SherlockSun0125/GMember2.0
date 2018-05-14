@@ -60,4 +60,14 @@
         <servlet-name>newsServlet</servlet-name>
         <url-pattern>/newsServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>noticeServlet</servlet-name>
+        <servlet-class>cn.edu.hitwh.gmember.servlet.NoticeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>noticeServlet</servlet-name>
+        <url-pattern>/noticeServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
