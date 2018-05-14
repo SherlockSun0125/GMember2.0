@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=utf-8" %>
+<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -61,16 +61,20 @@
 
     <script>
         function checkForm() {
-            if(!$("#title").val()){
+            if (!$("#title").val()) {
                 alert("新闻标题不能为空！");
                 return false;
             }
-            if(!$("#author").val()){
+            if (!$("#author").val()) {
                 alert("新闻发布者不能为空！");
                 return false;
             }
-            if(!$("#container").val()){
-                alert("新闻内容不能为空！");
+            // if (!$("#container").val()) {
+            //     alert("新闻内容不能为空！");
+            //     return false;
+            // }
+            if (!editor.getContent().value()) {
+                alert("新闻内容不能为空!!!！");
                 return false;
             }
             return true;
@@ -210,7 +214,7 @@
                          style="text-align: center;font-size: 1.5em;font-weight: bold">上传新闻
                     </div>
                     <div style="margin: 10px" class="newsform">
-                        <form action="${pageContext.request.contextPath}/newsServlet" method="post" >
+                        <form action="${pageContext.request.contextPath}/newsServlet" method="post" onsubmit="return checkForm()">
                             <input  type="hidden" name="method" value="addNews">
                             <div class="form-group" style="width:10%;">
                                 <span style="color: red">*&nbsp;</span><label for="type">所属板块</label>
@@ -230,7 +234,7 @@
 
                             <div class="form-group" style="width: 35%">
                                 <span><span style="color: red">*&nbsp;</span><label for="author">发布人</label></span>
-                                <input type="text" class="form-control" id="author" placeholder="发布人姓名" >
+                                <input type="text" class="form-control" id="author" placeholder="发布人姓名">
                             </div>
 
                             <div class="form-group">
@@ -239,10 +243,10 @@
                                 <span><span style="color: red">*&nbsp;</span><label for="title">新闻内容</label></span>
                                 <script id="container" name="content" type="text/plain"></script>
                             </div>
-
-                            <div class="form-control">
-                                <input type="submit" value="上传新闻">
-                            </div>
+                            <dic>
+                                <small style="float: left;margin-left: 30px">${MsgAddNews}</small>
+                                <input type="submit" class="btn btn-success" style="float: right;margin-right: 30px;margin-top: 20px" value="上传新闻">
+                            </dic>
                         </form>
                         <!-- 配置文件 -->
                         <script type="text/javascript" src="ueditor/ueditor.config.js"></script>

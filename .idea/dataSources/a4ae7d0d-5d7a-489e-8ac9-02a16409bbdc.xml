@@ -1175,16 +1175,16 @@ course_num</ColNames>
     </foreign-key>
     <column id="282" parent="235" name="news_id">
       <Position>1</Position>
-      <DataType>char(32)|0</DataType>
+      <DataType>int(32)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="283" parent="235" name="news_time">
       <Position>2</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>char(32)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
     <column id="284" parent="235" name="publisher">
       <Position>3</Position>

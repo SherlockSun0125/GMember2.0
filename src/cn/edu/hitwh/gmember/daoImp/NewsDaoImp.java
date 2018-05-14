@@ -14,19 +14,25 @@ import java.io.Reader;
 public class NewsDaoImp implements INewsDao {
 
     @Override
-    public void addNews(News news) {
+    public Integer addNews(News news) {
         String resource = "MyBatisConfig.xml";
         Reader reader=null;
-        SqlSession session;
+        SqlSession session=null;
+        Integer newsid=null;
         try {
             reader= Resources.getResourceAsReader(resource);
+
+            SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+            session = sqlSessionFactory.openSession();
+            NewsMapper newsMapper=session.getMapper(NewsMapper.class);
+            newsid=newsMapper.addNews(news);
+            session.commit();
         }catch (IOException e){
+            session.rollback();
             e.printStackTrace();
+        }finally {
+            session.close();
         }
-        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
-        session = sqlSessionFactory.openSession();
-        NewsMapper newsMapper=session.getMapper(NewsMapper.class);
-        newsMapper.addNews(news);
-        session.close();
+        return newsid;
     }
 }

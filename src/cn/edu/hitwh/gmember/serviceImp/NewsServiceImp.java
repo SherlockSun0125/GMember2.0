@@ -7,9 +7,10 @@ import cn.edu.hitwh.gmember.service.INewsService;
 
 public class NewsServiceImp implements INewsService {
     INewsDao newsDao=new NewsDaoImp();
-    public void addNews(News news) {
+    public Integer addNews(News news) {
         try{
-            newsDao.addNews(news);
+            Integer newsid=newsDao.addNews(news);
+            return newsid;
         }catch (Exception e){
             throw new RuntimeException(e);
         }

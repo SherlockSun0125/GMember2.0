@@ -3,10 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hitwh.gmember.mapper.NewsMapper">
-    <insert id="findAdmin" parameterType="cn.edu.hitwh.gmember.pojo.News">
-        INSERT INTO
-            news(news_id, news_time, publisher, author_id, news_title, new_content, news_section_id, new_readtimes)
-        VALUES
-            (#{news_id},#{news_time},#{publicsher},#{author_id},#{news_title},#{news_content},#{news_section_id},#{news_readtimes})
+    <insert id="addNews" parameterType="cn.edu.hitwh.gmember.pojo.News"
+    useGeneratedKeys="true" keyProperty="news_id">
+        INSERT INTO news(news_id,news_time, publisher, author_id, news_title, new_content, news_section_id, new_readtimes)
+        VALUES (#{news_id},#{news_time},#{publisher},#{author_id},#{news_title},#{news_content},#{news_section_id},#{news_readtimes})
     </insert>
 </mapper>

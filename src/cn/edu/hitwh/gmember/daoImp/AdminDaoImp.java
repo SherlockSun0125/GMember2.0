@@ -16,18 +16,21 @@ public class AdminDaoImp implements IAdminDao{
     public Admin findAdmin(String admin_name, String admin_pwd) {
         String resource = "MyBatisConfig.xml";
         Reader reader=null;
-        SqlSession session;
+        SqlSession session=null;
+        Admin admin=null;
         try {
-            reader= Resources.getResourceAsReader(resource);
+            reader = Resources.getResourceAsReader(resource);
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+            session = sqlSessionFactory.openSession();
+            AdminMapper adminMapper = session.getMapper(AdminMapper.class);
+            admin = adminMapper.findAdmin(admin_name, admin_pwd);
+//        System.out.println("id为"+id+"的教师信息为"+teacher.toString());
+            session.commit();
         }catch (IOException e){
             e.printStackTrace();
+        }finally {
+            session.close();
         }
-        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
-        session = sqlSessionFactory.openSession();
-        AdminMapper adminMapper=session.getMapper(AdminMapper.class);
-        Admin admin=adminMapper.findAdmin(admin_name,admin_pwd);
-//        System.out.println("id为"+id+"的教师信息为"+teacher.toString());
-        session.close();
         return admin;
     }
 }
