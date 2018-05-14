@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=utf-8" %>
+<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -59,6 +59,27 @@
         });
     </script>
 
+    <script>
+        function checkForm() {
+            if (!$("#newsTitle").val()) {
+                alert("新闻标题不能为空！");
+                return false;
+            }
+            if (!$("#newsAuthor").val()) {
+                alert("新闻发布者不能为空！");
+                return false;
+            }
+            // if (!$("#container").val()) {
+            //     alert("新闻内容不能为空！");
+            //     return false;
+            // }
+            if (!editor.getContent().value()) {
+                alert("新闻内容不能为空!!!！");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body class="theme-blue">
@@ -105,18 +126,19 @@
         <li><a href="adminHome.jsp" class="nav-header" target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
-        <li><a href="teacherM.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
+        <li><a href="teacherM.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a>
+        </li>
 
         <%--学生管理--%>
         <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
-            <ul class="dashboard-menu nav nav-list collapse in"><!--"class=in"的时候展开-->
-                <li><a href="studentL0.jsp"><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
-                <li><a href="studentL1.jsp"><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
-                <li><a href="studentL2.jsp"><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
-                <li><a href="studentL3.jsp"><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>
-                <li><a href="studentL4.jsp"><span class="fa fa-caret-right"></span> 就业推荐阶段</a></li>
+            <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
+                <li><a href=""><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
+                <li><a href=""><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
+                <li><a href=""><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
+                <li><a href=""><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>
+                <li><a href=""><span class="fa fa-caret-right"></span> 就业推荐阶段</a></li>
                 <%--<li><a href="calendar.html"><span class="fa fa-caret-right"></span> Calendar</a></li>--%>
             </ul>
         </li>
@@ -153,13 +175,12 @@
             </a>
         </li>
         <li>
-            <ul class="legal-menu nav nav-list collapse">
+            <ul class="legal-menu nav nav-list collapse in">
                 <li><a href=""><span class="fa fa-caret-right"></span> 综合要闻</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 校园资讯</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 教学科研</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 专题新闻</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 上传新闻</a></li>
-                </li>
             </ul>
         </li>
 
@@ -174,188 +195,37 @@
                 <li><a href=""><span class="fa fa-caret-right"></span> 通知公告</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 院系通知</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 学术科研</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 
+        <%--<li><a href="faq.html" class="nav-header"><i class="fa fa-fw fa-comment"></i> Faq</a></li>--%>
     </ul>
 </div>
 
 <%--中间部分--%>
 <div class="content">
-    <div class="main-content">
-        <button href="" style="padding:2px 10px;border-radius: 8px " class="btn-success">增加教师</button>
-        <br/>
-        <br/>
-        <%--下一--%>
+    <div class="main-content" style="margin-top: 10px;">
+        <%--下左一--%>
         <div class="row">
-            <%--下左一--%>
-            <div class="col-sm-12 col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading no-collapse">教师管理
-                        <span class="label label-warning">教师数量：10</span>
+            <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
+                <div class="panel panel-default" style="background-color: #EEEEEE">
+                    <div class="panel-heading no-collapse"
+                         style="text-align: center;font-size: 1.5em;font-weight: bold">新闻标题
                     </div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>工号</th>
-                            <th>姓名</th>
-                            <th>手机号</th>
-                            <th>邮箱</th>
-                            <th>密码</th>
-                            <th>性别</th>
-                            <th>年龄</th>
-                            <th>院系</th>
-                            <th>
-                                操作
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1223</td>
-                            <td>张三</td>
-                            <td>17862700888</td>
-                            <td>123@163.com</td>
-                            <td>123456</td>
-                            <td>男</td>
-                            <td>40</td>
-                            <td>计算机科学与技术学院</td>
-                            <td>
-                                <a>修改</a>
-                                <a>删除</a>
-                            </td>
-                        </tr>
-                        <tr>
+                    <div style="margin: 10px;height: 500px;" class="newsform">
+                        <div class="infomation" style="background-color: red;width: 100%;height: 30px">
 
-                        </tr>
-                        <tr>
+                        </div>
 
-                        </tr>
-                        <tr>
-
-                        </tr>
-                        <tr>
-
-                        </tr>
-                        <tr>
-
-                        </tr>
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
             </div>
-            <%--下右一--%>
-            <%--<div class="col-sm-6 col-md-6">--%>
-                <%--<div class="panel panel-default">--%>
-                    <%--<a href="#widget1container" class="panel-heading" data-toggle="collapse">其他信息 </a>--%>
-                    <%--<div id="widget1container" class="panel-body collapse in">--%>
-                        <%--<h2>Here's a Tip</h2>--%>
-                        <%--<p>This template was developed with <a href="http://middlemanapp.com/"--%>
-                                                               <%--target="_blank">Middleman</a> and includes .erb layouts--%>
-                            <%--and views.</p>--%>
-                        <%--<p>All of the views you see here (sign in, sign up, users, etc) are already split up so you--%>
-                            <%--don't have to waste your time doing it yourself!</p>--%>
-                        <%--<p>The layout.erb file includes the header, footer, and side navigation and all of the views are--%>
-                            <%--broken out into their own files.</p>--%>
-                        <%--<p>If you aren't using Ruby, there is also a set of plain HTML files for each page, just like--%>
-                            <%--you would expect.</p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </div>
-
-        <%--<div class="row">--%>
-            <%--<div class="col-sm-6 col-md-6">--%>
-                <%--<div class="panel panel-default">--%>
-                    <%--s  <div clas="panel-heading no-collapse">--%>
-                <%--<span class="panel-icon pull-right">--%>
-                    <%--<a href="#" class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i--%>
-                            <%--class="fa fa-refresh"></i></a>--%>
-                <%--</span>--%>
-                        <%--Needed to Close--%>
-                    <%--</div>--%>
-                    <%--<table class="table list">--%>
-                        <%--<tbody>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--<a href="#"><p class="title">Care Hospital</p></a>--%>
-                                <%--<p class="info">Sales Rating: 86%</p>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p>Date: 7/19/2012</p>--%>
-                                <%--<a href="#">View Transaction</a>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$20,500</p>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--<a href="#"><p class="title">Custom Eyesight</p></a>--%>
-                                <%--<p class="info">Sales Rating: 58%</p>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p>Date: 7/19/2012</p>--%>
-                                <%--<a href="#">View Transaction</a>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$12,600</p>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--<a href="#"><p class="title">Clear Dental</p></a>--%>
-                                <%--<p class="info">Sales Rating: 76%</p>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p>Date: 7/19/2012</p>--%>
-                                <%--<a href="#">View Transaction</a>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$2,500</p>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--<a href="#"><p class="title">Safe Insurance</p></a>--%>
-                                <%--<p class="info">Sales Rating: 82%</p>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p>Date: 7/19/2012</p>--%>
-                                <%--<a href="#">View Transaction</a>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$22,400</p>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-
-                        <%--</tbody>--%>
-                    <%--</table>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="col-sm-6 col-md-6">--%>
-                <%--<div class="panel panel-default">--%>
-                    <%--<a href="#widget2container" class="panel-heading" data-toggle="collapse">Collapsible </a>--%>
-                    <%--<div id="widget2container" class="panel-body collapse in">--%>
-                        <%--<h2>Built with Less</h2>--%>
-                        <%--<p>The CSS is built with Less. There is a compiled version included if you prefer plain CSS.</p>--%>
-                        <%--<p>Fava bean jícama seakale beetroot courgette shallot amaranth pea garbanzo carrot radicchio--%>
-                            <%--peanut leek pea sprouts arugula brussels sprout green bean. Spring onion broccoli chicory--%>
-                            <%--shallot winter purslane pumpkin gumbo cabbage squash beet greens lettuce celery. Gram--%>
-                            <%--zucchini swiss chard mustard burdock radish brussels sprout groundnut. Asparagus horseradish--%>
-                            <%--beet greens broccoli brussels.</p>--%>
-                        <%--<p><a class="btn btn-primary">Learn more »</a></p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-
 
         <footer>
             <hr>
-
-            <p align="right">© 2014 <a href="http://www.hitwh.edu.cn" target="_blank">哈工大（威海）</a></p>
+            <p align="right">© 2014 <a href="../../index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划</a></p>
         </footer>
     </div>
 </div>

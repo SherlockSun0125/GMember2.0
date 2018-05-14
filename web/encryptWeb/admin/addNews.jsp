@@ -211,7 +211,7 @@
             <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
                 <div class="panel panel-default" style="background-color: #EEEEEE">
                     <div class="panel-heading no-collapse"
-                         style="text-align: center;font-size: 1.5em;font-weight: bold">上传新闻
+                         style="text-align: center;font-size: 1.5em;font-weight: bold">发布新闻
                     </div>
                     <div style="margin: 10px" class="newsform">
                         <form action="${pageContext.request.contextPath}/newsServlet" method="post" onsubmit="return checkForm()">
@@ -219,11 +219,11 @@
                             <div class="form-group" style="width:10%;">
                                 <span style="color: red">*&nbsp;</span><label for="type">所属版块</label>
                                 <div style="width:20em;display: inline-block">
-                                    <select class="form-control" name="newstype" id="type">
-                                        <option value="news1" selected="selected">综合要闻</option>
-                                        <option value="news2">校园资讯</option>
-                                        <option value="news3">教学科研</option>
-                                        <option value="news4">专题新闻</option>
+                                    <select class="form-control" name="newsSction" id="type">
+                                        <option value="1" selected="selected">综合要闻</option>
+                                        <option value="2">校园资讯</option>
+                                        <option value="3">教学科研</option>
+                                        <option value="4">专题新闻</option>
                                     </select>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@
 
                             <div class="form-group" style="width: 35%">
                                 <span><span style="color: red">*&nbsp;</span><label for="newsAuthor">发布人</label></span>
-                                <input type="text" class="form-control" name="news" id="newsAuthor" placeholder="发布人姓名">
+                                <input type="text" class="form-control" name="newsAuthor" id="newsAuthor" placeholder="发布人姓名">
                             </div>
 
                             <div class="form-group">

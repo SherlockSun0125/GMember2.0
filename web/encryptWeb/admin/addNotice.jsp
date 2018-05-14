@@ -209,18 +209,18 @@
             <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
                 <div class="panel panel-default" style="background-color: #EEEEEE">
                     <div class="panel-heading no-collapse"
-                         style="text-align: center;font-size: 1.5em;font-weight: bold">上传新闻
+                         style="text-align: center;font-size: 1.5em;font-weight: bold">发布公告
                     </div>
-                    <div style="margin: 10px" class="newsform">
+                    <div style="margin: 10px" class="noticeform">
                         <form action="${pageContext.request.contextPath}/noticeServlet" method="post" onsubmit="return checkForm()">
                             <input  type="hidden" name="method" value="addNotice">
                             <div class="form-group" style="width:10%;">
                                 <span style="color: red">*&nbsp;</span><label for="type">所属版块</label>
                                 <div style="width:20em;display: inline-block">
-                                    <select class="form-control" name="noticetype" id="type">
-                                        <option value="notice1" selected="selected">通知公告</option>
-                                        <option value="notice2">院系通知</option>
-                                        <option value="notice3">学术科研</option>
+                                    <select class="form-control" name="noticeSection" id="type">
+                                        <option value="1" selected="selected">通知公告</option>
+                                        <option value="2">院系通知</option>
+                                        <option value="3">学术科研</option>
                                     </select>
                                 </div>
                             </div>

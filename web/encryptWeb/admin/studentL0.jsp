@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
@@ -196,6 +197,9 @@
                         <span class="label label-warning">学生数量：10</span>
                     </div>
                     <table class="table table-bordered table-striped">
+                        <c:choose>
+                            <c:when test=""></c:when>
+                        </c:choose>
                         <thead>
                         <tr>
                             <th>工号</th>

@@ -47,7 +47,10 @@ public class NoticeServlet extends BaseServlet {
         notice.setNoti_readtimes(0);
         System.out.println("readtimes:"+notice.getNoti_readtimes());
 //      版块id
-        notice.setNoti_section_id(1);
+        String section=req.getParameter("noticeSection");
+        System.out.println("=====输出的信息是什么？"+section);
+        notice.setNoti_section_id(Integer.parseInt(section));
+        System.out.println("=====Integer.parseInt(section)输出的信息是什么？"+section);
         System.out.println("section:"+notice.getNoti_section_id());
 
         System.out.println("notice.toString()="+notice.toString());

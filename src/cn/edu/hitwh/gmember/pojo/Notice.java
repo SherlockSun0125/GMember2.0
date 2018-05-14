@@ -11,15 +11,10 @@ public class Notice {
     private String noti_content;
     private int noti_section_id;
     private int noti_readtimes;
-    private String noti_pic1;
-    private String noti_pic2;
-    private String noti_pic3;
-    private String noti_pic4;
-    private String noti_pic5;
 
     public Notice()  {}
 
-    public Notice(String noti_id, String noti_title, String noti_time, String publisher, String author_id, String noti_content, int noti_section_id, int noti_readtimes, String noti_pic1, String noti_pic2, String noti_pic3, String noti_pic4, String noti_pic5) {
+    public Notice(String noti_id, String noti_title, String noti_time, String publisher, String author_id, String noti_content, int noti_section_id, int noti_readtimes) {
         this.noti_id = noti_id;
         this.noti_title = noti_title;
         this.noti_time = noti_time;
@@ -28,11 +23,6 @@ public class Notice {
         this.noti_content = noti_content;
         this.noti_section_id = noti_section_id;
         this.noti_readtimes = noti_readtimes;
-        this.noti_pic1 = noti_pic1;
-        this.noti_pic2 = noti_pic2;
-        this.noti_pic3 = noti_pic3;
-        this.noti_pic4 = noti_pic4;
-        this.noti_pic5 = noti_pic5;
     }
 
     public String getNoti_id() {
@@ -67,26 +57,6 @@ public class Notice {
         return noti_readtimes;
     }
 
-    public String getNoti_pic1() {
-        return noti_pic1;
-    }
-
-    public String getNoti_pic2() {
-        return noti_pic2;
-    }
-
-    public String getNoti_pic3() {
-        return noti_pic3;
-    }
-
-    public String getNoti_pic4() {
-        return noti_pic4;
-    }
-
-    public String getNoti_pic5() {
-        return noti_pic5;
-    }
-
     public void setNoti_id(String noti_id) {
         this.noti_id = noti_id;
     }
@@ -119,26 +89,6 @@ public class Notice {
         this.noti_readtimes = noti_readtimes;
     }
 
-    public void setNoti_pic1(String noti_pic1) {
-        this.noti_pic1 = noti_pic1;
-    }
-
-    public void setNoti_pic2(String noti_pic2) {
-        this.noti_pic2 = noti_pic2;
-    }
-
-    public void setNoti_pic3(String noti_pic3) {
-        this.noti_pic3 = noti_pic3;
-    }
-
-    public void setNoti_pic4(String noti_pic4) {
-        this.noti_pic4 = noti_pic4;
-    }
-
-    public void setNoti_pic5(String noti_pic5) {
-        this.noti_pic5 = noti_pic5;
-    }
-
     @Override
     public String toString() {
         return "Notice{" +
@@ -150,11 +100,6 @@ public class Notice {
                 ", noti_content='" + noti_content + '\'' +
                 ", noti_section_id=" + noti_section_id +
                 ", noti_readtimes=" + noti_readtimes +
-                ", noti_pic1='" + noti_pic1 + '\'' +
-                ", noti_pic2='" + noti_pic2 + '\'' +
-                ", noti_pic3='" + noti_pic3 + '\'' +
-                ", noti_pic4='" + noti_pic4 + '\'' +
-                ", noti_pic5='" + noti_pic5 + '\'' +
                 '}';
     }
 }

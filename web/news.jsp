@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
@@ -131,54 +132,18 @@
         <div class="row" style="padding-left: 50px">
             <div class="span2 bs-docs-sidebar" style="background-color: #f7f7f9;">
                 <ul class="nav nav-list bs-docs-sidenav">
-                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="news.jsp"><i class="icon-chevron-right"></i> 综合要闻</a></li>
-                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="news.jsp"><i class="icon-chevron-right"></i> 校园资讯</a></li>
-                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="news.jsp"><i class="icon-chevron-right"></i> 教学科研</a></li>
-                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="news.jsp"><i class="icon-chevron-right"></i> 专题新闻</a></li>
+                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="/newsServlet?method=findNewsByType&sectionid=1"><i class="icon-chevron-right"></i> 综合要闻</a></li>
+                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="/newsServlet?method=findNewsByType&sectionid=2"><i class="icon-chevron-right"></i> 校园资讯</a></li>
+                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="/newsServlet?method=findNewsByType&sectionid=3"><i class="icon-chevron-right"></i> 教学科研</a></li>
+                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="/newsServlet?method=findNewsByType&sectionid=4"><i class="icon-chevron-right"></i> 专题新闻</a></li>
                 </ul>
             </div>
             <div class="span9">
                 <div  style="margin-left: 0px">
                     <ul class="nav nav-list">
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span style="display:inline-block;float:right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li id=""><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float:right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li id="bottom_none"><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display: inline-block;float:right;color:#000000">[ 2018-04-08 ]</span></a></li>
+                        <c:forEach items="${pb.beanList}" var="news">
+                            <li><a href="${pageContext.request.contextPath}/newsServlet"><i class="icon-caret-right"></i>${news.news_title}<span style="display:inline-block;float:right;color: #000000">${news.news_time}</span> </a></li>
+                        </c:forEach>
                     </ul>
                     <div class="fenye">
                         <div class="fanye_left">共 108 条新闻 当前为：1/6页 每页 20 条</div>

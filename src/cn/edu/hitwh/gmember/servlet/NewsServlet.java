@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
+import cn.edu.hitwh.gmember.tools.PageBean;
 
 public class NewsServlet extends BaseServlet {
     private INewsService newsService=new NewsServiceImp();
@@ -44,14 +45,16 @@ public class NewsServlet extends BaseServlet {
         news.setNews_readtimes(0);
         System.out.println("readtimes:"+news.getNews_readtimes());
 //      版块id
-        news.setNews_section_id(1);
+        String section=req.getParameter("newsSction");
+        System.out.println("=====输出的信息是什么？"+section);
+        news.setNews_section_id(Integer.parseInt(section));
+        System.out.println("=====Integer.parseInt(section)输出的信息是什么？"+section);
         System.out.println("section:"+news.getNews_section_id());
 
         System.out.println("news.toString()="+news.toString());
 
         Integer newsid=newsService.addNews(news);
 
-//        Integer newsid=1001;
         System.out.println("news.toString()="+news.toString());
 
         if (newsid==null) {
@@ -66,5 +69,38 @@ public class NewsServlet extends BaseServlet {
             System.out.println("非null主键newsid.toString()："+newsid.toString());
         }
         return "r:/encryptWeb/admin/addNews.jsp";
+    }
+
+    public String findNewsByType(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int currentPage=getCurrentPage(req);
+        String url=getUrl(req);
+        int sectionid=Integer.parseInt(req.getParameter("sectionid"));
+//        PageBean<News> pb=
+    return "f:news.jsp";
+    }
+
+    //得到当前页
+    private int getCurrentPage(HttpServletRequest req){
+        int currentPage=1;
+        String param=req.getParameter("currentPage");
+        if(param!=null && param.trim().isEmpty()){
+            try{
+                currentPage=Integer.parseInt(param);
+            }catch (RuntimeException e){
+                e.printStackTrace();
+            }
+        }
+        return currentPage;
+    }
+
+    //获取URL
+    private String getUrl(HttpServletRequest req){
+        String url=req.getRequestURI()+"?"+req.getQueryString();
+        //如果URL中存在currentPage参数，截取掉
+        int index=url.lastIndexOf("&currentPage=");
+        if(index!=-1){
+            url=url.substring(0,index);
+        }
+        return url;
     }
 }
