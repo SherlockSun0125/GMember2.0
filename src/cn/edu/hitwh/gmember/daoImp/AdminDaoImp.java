@@ -20,17 +20,14 @@ public class AdminDaoImp implements IAdminDao{
         Admin admin=null;
         try {
             reader = Resources.getResourceAsReader(resource);
-            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-            session = sqlSessionFactory.openSession();
-            AdminMapper adminMapper = session.getMapper(AdminMapper.class);
-            admin = adminMapper.findAdmin(admin_name, admin_pwd);
-//        System.out.println("id为"+id+"的教师信息为"+teacher.toString());
-            session.commit();
         }catch (IOException e){
             e.printStackTrace();
-        }finally {
-            session.close();
         }
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        session = sqlSessionFactory.openSession();
+        AdminMapper adminMapper = session.getMapper(AdminMapper.class);
+        admin = adminMapper.findAdmin(admin_name, admin_pwd);
+        session.close();
         return admin;
     }
 }

@@ -4,6 +4,9 @@ import cn.edu.hitwh.gmember.dao.INewsDao;
 import cn.edu.hitwh.gmember.daoImp.NewsDaoImp;
 import cn.edu.hitwh.gmember.pojo.News;
 import cn.edu.hitwh.gmember.service.INewsService;
+import cn.edu.hitwh.gmember.tools.PageBean;
+
+import java.sql.SQLException;
 
 public class NewsServiceImp implements INewsService {
     INewsDao newsDao=new NewsDaoImp();
@@ -15,4 +18,14 @@ public class NewsServiceImp implements INewsService {
             throw new RuntimeException(e);
         }
     }
+
+    public PageBean<News> findNewsBySection(int sectionid, int currentPage) {
+        try {
+            return newsDao.findNewsBySection(sectionid, currentPage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

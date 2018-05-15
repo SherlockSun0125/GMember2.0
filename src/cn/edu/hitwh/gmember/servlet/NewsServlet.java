@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.print.Book;
 import java.io.IOException;
 import java.util.Date;
 import cn.edu.hitwh.gmember.tools.PageBean;
@@ -72,11 +73,20 @@ public class NewsServlet extends BaseServlet {
     }
 
     public String findNewsByType(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int currentPage=getCurrentPage(req);
+//        int currentPage=getCurrentPage(req);
+        int currentPage=1;
         String url=getUrl(req);
         int sectionid=Integer.parseInt(req.getParameter("sectionid"));
-//        PageBean<News> pb=
-    return "f:news.jsp";
+        System.out.println("版块ID为："+sectionid);
+        System.out.println("当前页码为："+currentPage);
+        PageBean<News> pb = newsService.findNewsBySection(sectionid, currentPage);
+        pb.setUrl(url);
+        req.setAttribute("pb", pb);
+        System.out.println("版块url为："+url);
+        for (News news:pb.getBeanList()){
+            System.out.println("pb的list为："+news.getNews_id());
+        }
+        return "f:news.jsp";
     }
 
     //得到当前页

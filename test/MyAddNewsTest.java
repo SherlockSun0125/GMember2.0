@@ -1,6 +1,4 @@
-import cn.edu.hitwh.gmember.mapper.AdminMapper;
 import cn.edu.hitwh.gmember.mapper.NewsMapper;
-import cn.edu.hitwh.gmember.pojo.Admin;
 import cn.edu.hitwh.gmember.pojo.News;
 import cn.edu.hitwh.gmember.tools.DateTools;
 import org.apache.ibatis.io.Resources;
@@ -12,7 +10,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Date;
 
-public class MybatisTest {
+public class MyAddNewsTest {
     public static void main(String[] args){
         String resource = "MyBatisConfig.xml";
         Reader reader=null;

@@ -3,9 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hitwh.gmember.mapper.NewsMapper">
+    <resultMap id="newsMap" type="cn.edu.hitwh.gmember.pojo.News">
+        <id property="news_id" column="news_Id"></id>
+        <result property="news_time" column="news_time"></result>
+        <result property="publisher" column="publisher"></result>
+        <result property="author_id" column="author_id"></result>
+        <result property="news_title" column="news_title"></result>
+        <result property="news_section_id" column="news_section_id"></result>
+        <result property="news_readtimes" column="news_readtimes"></result>
+    </resultMap>
     <insert id="addNews" parameterType="cn.edu.hitwh.gmember.pojo.News"
     useGeneratedKeys="true" keyProperty="news_id">
         INSERT INTO news(news_time, publisher, author_id, news_title, new_content, news_section_id, new_readtimes)
         VALUES (#{news_time},#{publisher},#{author_id},#{news_title},#{news_content},#{news_section_id},#{news_readtimes})
     </insert>
+
+    <select id="countNewsBySection" parameterType="int" resultType="int">
+        SELECT count(*) FROM news WHERE news_section_id=#{news_section_id}
+    </select>
+
+    <select id="countAllNews" resultType="int">
+        SELECT count(*) FROM news;
+    </select>
+
+    <select id="findNewsBySection" resultMap="newsMap">
+        SELECT * FROM news WHERE news_section_id=#{news_section_id} ORDER BY news_id LIMIT #{from},#{pageSize};
+    </select>
 </mapper>
