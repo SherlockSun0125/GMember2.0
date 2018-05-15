@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
@@ -54,36 +55,8 @@
         .listContent li span {
             float: right;
         }
-
-        /*分页*/
-        .fenye {
-            border-top: solid 1px #6d7f91;
-            margin-top: 8px;
-            padding-top: 10px;
-
-        }
-
-        .fanye_left {
-            float: left;
-        }
-
-        .fanye_right {
-            float: right;
-        }
-
-        .fanye_right a {
-            margin: 0 2px;
-            font-size: 12px;
-            color: #4c657e;
-            text-decoration: none;
-            font-family: "宋体";
-        }
-
-        .fanye_input {
-            width: 40px;
-            height: 13px;
-        }
     </style>
+    <link rel="stylesheet" type="text/css" href="pager/pager.css">
 </head>
 
 <body>
@@ -102,9 +75,9 @@
                     <ul>
                         <li><a href="home.jsp"><span class="name">主页</span></a>
                         </li>
-                        <li><a href="news.jsp"><span class="name">新闻中心</span></a>
+                        <li><a href="${pageContext.request.contextPath}/newsServlet?method=findAllNews"><span class="name">新闻中心</span></a>
                         </li>
-                        <li class="current"><a href="notice.jsp"><span class="name">通知公告</span></a>
+                        <li class="current"><a href="${pageContext.request.contextPath}/noticeServlet?method=findAllNotices"><span class="name">通知公告</span></a>
                         </li>
                         <li><a href="enterprise.jsp"><span class="name">合作企业</span></a>
                         </li>
@@ -135,63 +108,24 @@
         <div class="row" style="padding-left: 50px">
             <div class="span2 bs-docs-sidebar" style="" >
                 <ul class="nav nav-list bs-docs-sidenav" style="background-color: #f7f7f9">
-                    <li style="border-bottom: 1px #3c3c3c dashed"><a href="#"><i class="icon-chevron-right"></i> 通知公告</a></li>
-                    <li style="border-bottom: 1px #3c3c3c dashed"><a href="#"><i class="icon-chevron-right"></i> 院系通知</a></li>
-                    <li style="border-bottom: 1px #3c3c3c dashed"><a href="#"><i class="icon-chevron-right"></i> 学术科研</a></li>
+                    <li style="border-bottom: 1px #3c3c3c dashed"><a href="${pageContext.request.contextPath}/noticeServlet?method=findNoticesBySection&sectionid=1"><i class="icon-chevron-right"></i> 通知公告</a></li>
+                    <li style="border-bottom: 1px #3c3c3c dashed"><a href="${pageContext.request.contextPath}/noticeServlet?method=findNoticesBySection&sectionid=2"><i class="icon-chevron-right"></i> 院系通知</a></li>
+                    <li style="border-bottom: 1px #3c3c3c dashed"><a href="${pageContext.request.contextPath}/noticeServlet?method=findNoticesBySection&sectionid=3"><i class="icon-chevron-right"></i> 学术科研</a></li>
                 </ul>
             </div>
+
             <div class="span9">
-                <div class="span9 bs-docs-slidebar" style="margin-left: 0px">
-                    <ul class="nav nav-list bs-docs-sidenav">
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li id="test"><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display:inline-block;float: right;color: #000000">[ 2018-04-08 ]</span> </a></li>
-                        <li id="bottom_none"><a href="#"><i class="icon-caret-right"></i>新闻标题<span
-                                style="display: inline-block;float: right;color:#000000">[ 2018-04-08 ]</span></a></li>
-                    </ul>
-                    <div class="fenye">
-                        <div class="fanye_left">共 108 条新闻 当前为：1/6页 每页 20 条</div>
-                        <div class="fanye_right">跳到第
-                            <input name="" type="text" class="fanye_input">
-                            页 <span style="margin:0 15px;"><a href="#">&lt;&lt;</a> <a href="#">&lt;</a> <a href="#">&gt;</a> <a
-                                    href="#">&gt;&gt; </a></span>
-                            <input name="" type="image" src="images/go_button.png" style="height: 20px">
-                        </div>
+                <div  style="margin-left: 0px">
+                    <div style="margin-bottom: 10px">
+                        <ul class="nav nav-list">
+                            <c:forEach items="${pb.beanList}" var="notice">
+                                <li><a href="#"><i class="icon-caret-right"></i>${notice.noti_id}/${notice.noti_title}<span style="display:inline-block;float: right;color: #000000">${notice.noti_time}</span> </a></li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+
+                    <div style="float:left; width: 100%; text-align: center;" >
+                        <%@include file="pager/pager.jsp"%>
                     </div>
                 </div>
             </div>

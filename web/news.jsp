@@ -73,9 +73,9 @@
                     <ul>
                         <li><a href="home.jsp"><span class="name">主页</span></a>
                         </li>
-                        <li class="current"><a href="./news.jsp"><span class="name">新闻中心</span></a>
+                        <li class="current"><a href="${pageContext.request.contextPath}/newsServlet?method=findAllNews"><span class="name">新闻中心</span></a>
                         </li>
-                        <li><a href="notice.jsp"><span class="name">通知公告</span></a>
+                        <li><a href="${pageContext.request.contextPath}/noticeServlet?method=findAllNotices"><span class="name">通知公告</span></a>
                         </li>
                         <li><a href="enterprise.jsp"><span class="name">合作企业</span></a>
                         </li>
@@ -117,13 +117,13 @@
                     <div style="margin-bottom: 10px">
                         <ul class="nav nav-list">
                             <c:forEach items="${pb.beanList}" var="news">
-                                <li><a href="${pageContext.request.contextPath}/newsServlet"><i class="icon-caret-right"></i>${news.news_title}<span style="display:inline-block;float:right;color: #000000">${news.news_time}</span> </a></li>
+                                <li><a href="${pageContext.request.contextPath}/newsServlet"><i class="icon-caret-right"></i>${news.news_id}/${news.news_title}<span style="display:inline-block;float:right;color: #000000">${news.news_time}</span> </a></li>
                             </c:forEach>
                         </ul>
                     </div>
 
                     <div style="float:left; width: 100%; text-align: center;" >
-                        <%@include file="test/pager.jsp"%>
+                        <%@include file="pager/pager.jsp"%>
                     </div>
                 </div>
             </div>

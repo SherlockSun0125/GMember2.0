@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hitwh.gmember.mapper.NewsMapper">
     <resultMap id="newsMap" type="cn.edu.hitwh.gmember.pojo.News">
-        <id property="news_id" column="news_Id"></id>
+        <id property="news_id" column="news_id"></id>
         <result property="news_time" column="news_time"></result>
         <result property="publisher" column="publisher"></result>
         <result property="author_id" column="author_id"></result>
@@ -14,7 +14,7 @@
     </resultMap>
     <insert id="addNews" parameterType="cn.edu.hitwh.gmember.pojo.News"
     useGeneratedKeys="true" keyProperty="news_id">
-        INSERT INTO news(news_time, publisher, author_id, news_title, new_content, news_section_id, new_readtimes)
+        INSERT INTO news(news_time, publisher, author_id, news_title, news_content, news_section_id, news_readtimes)
         VALUES (#{news_time},#{publisher},#{author_id},#{news_title},#{news_content},#{news_section_id},#{news_readtimes})
     </insert>
 

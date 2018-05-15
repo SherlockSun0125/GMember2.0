@@ -95,18 +95,18 @@ public class NewsServlet extends BaseServlet {
     //找到所有新闻
     public String findAllNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage=getCurrentPage(req);
-        System.out.println("当前页码为："+currentPage);
+//        System.out.println("当前页码为："+currentPage);
         String url=getUrl(req);
         PageBean<News> pb =newsService.findAllNews(currentPage);
-        System.out.println("刚返回的时候的pb.toString()为："+pb.toString());
+//        System.out.println("刚返回的时候的pb.toString()为："+pb.toString());
         pb.setUrl(url);
         pb.setTotalPages(pb.getTotalPages());
         req.setAttribute("pb", pb);
-        System.out.println("版块url为："+url);
-        System.out.println("加上url之后的pb.toString()为："+pb.toString());
-        for (News news:pb.getBeanList()){
-            System.out.println("pb的list为："+news.getNews_id()+news.getNews_title());
-        }
+//        System.out.println("版块url为："+url);
+//        System.out.println("加上url之后的pb.toString()为："+pb.toString());
+//        for (News news:pb.getBeanList()){
+//            System.out.println("pb的list为："+news.getNews_id()+news.getNews_title());
+//        }
         return "f:news.jsp";
     }
 

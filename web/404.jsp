@@ -46,9 +46,9 @@
                     <ul>
                         <li><a href="home.jsp"><span class="name">主页</span></a>
                         </li>
-                        <li><a href="news.jsp"><span class="name">新闻中心</span></a>
+                        <li><a href="${pageContext.request.contextPath}/newsServlet?method=findAllNews"><span class="name">新闻中心</span></a>
                         </li>
-                        <li><a href="notice.jsp"><span class="name">通知公告</span></a>
+                        <li><a href="${pageContext.request.contextPath}/noticeServlet?method=findAllNotices"><span class="name">通知公告</span></a>
                         </li>
                         <li><a href="enterprise.jsp"><span class="name">合作企业</span></a>
                         </li>

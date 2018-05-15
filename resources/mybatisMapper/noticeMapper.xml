@@ -3,9 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hitwh.gmember.mapper.NoticeMapper">
+    <resultMap id="noticeMap" type="cn.edu.hitwh.gmember.pojo.Notice">
+        <id property="noti_id" column="noti_id"></id>
+        <result property="noti_time" column="noti_time"></result>
+        <result property="publisher" column="publisher"></result>
+        <result property="author_id" column="author_id"></result>
+        <result property="noti_title" column="noti_title"></result>
+        <result property="noti_section_id" column="noti_section_id"></result>
+        <result property="noti_readtimes" column="noti_readtimes"></result>
+    </resultMap>
     <insert id="addNotice" parameterType="cn.edu.hitwh.gmember.pojo.Notice"
     useGeneratedKeys="true" keyProperty="noti_id">
       INSERT INTO notice(noti_title, noti_time, publisher, author_id, noti_content, noti_section_id, noti_readtimes)
         VALUES (#{noti_title},#{noti_time},#{publisher},#{author_id},#{noti_content},#{noti_section_id},#{noti_readtimes})
     </insert>
+
+    <select id="countNoticesBySection" parameterType="int" resultType="int">
+        SELECT count(*) FROM notice WHERE noti_section_id=#{noti_section_id}
+    </select>
+
+    <select id="countAllNotices" resultType="int">
+        SELECT count(*) FROM notice;
+    </select>
+
+    <select id="findNoticesBySection" resultMap="noticeMap">
+        SELECT * FROM notice WHERE noti_section_id=#{noti_section_id} ORDER BY noti_id DESC LIMIT #{from},#{pageSize};
+    </select>
+
+    <select id="findAllNotices" resultMap="noticeMap">
+        SELECT * FROM notice ORDER BY noti_id DESC LIMIT #{from},#{pageSize};
+    </select>
 </mapper>
