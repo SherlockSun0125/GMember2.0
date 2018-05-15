@@ -84,7 +84,7 @@ public class NoticeServlet extends BaseServlet {
         pageBean.setUrl(url);
         pageBean.setTotalPages(pageBean.getTotalPages());
         req.setAttribute("pb",pageBean);
-        return "f:notice.jsp";
+        return "f:/notice.jsp";
     }
 
     public String findNoticesBySection(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -96,7 +96,7 @@ public class NoticeServlet extends BaseServlet {
         pageBean.setUrl(url);
         pageBean.setTotalPages(pageBean.getTotalPages());
         req.setAttribute("pb",pageBean);
-        return "f:notice.jsp";
+        return "f:/notice.jsp";
     }
 
 

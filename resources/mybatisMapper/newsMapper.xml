@@ -33,4 +33,8 @@
     <select id="findAllNews" resultMap="newsMap">
         SELECT * FROM news ORDER BY news_id DESC LIMIT #{from},#{pageSize};
     </select>
+
+    <select id="findNewsById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.News">
+        SELECT * FROM news WHERE news_id=#{news_id}
+    </select>
 </mapper>

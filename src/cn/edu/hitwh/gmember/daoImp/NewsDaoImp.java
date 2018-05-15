@@ -116,4 +116,25 @@ public class NewsDaoImp implements INewsDao {
         session.close();
         return pageBean;
     }
+
+//  通过id查找news
+    public News findNewsById(int news_id) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        News news=new News();
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        NewsMapper newsMapper=session.getMapper(NewsMapper.class);
+        news=newsMapper.findNewsById(news_id);
+        session.close();
+        return news;
+    }
+
+
 }

@@ -11,4 +11,5 @@ public interface NewsMapper {
     public Integer countNewsBySection(int news_section_id);
     public Integer countAllNews();
     public List<News> findAllNews(@Param("from") int from,@Param("pageSize")int pageSize);
+    public News findNewsById(int news_id);
 }

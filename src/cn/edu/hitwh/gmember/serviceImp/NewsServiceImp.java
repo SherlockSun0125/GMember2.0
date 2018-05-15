@@ -36,5 +36,12 @@ public class NewsServiceImp implements INewsService {
         }
     }
 
-
+    @Override
+    public News findNewsById(int news_id) {
+        try{
+            return newsDao.findNewsById(news_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

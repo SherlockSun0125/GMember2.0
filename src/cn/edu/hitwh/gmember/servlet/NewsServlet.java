@@ -89,7 +89,7 @@ public class NewsServlet extends BaseServlet {
         for (News news:pb.getBeanList()){
             System.out.println("pb的list为："+news.getNews_title());
         }
-        return "f:news.jsp";
+        return "f:/news.jsp";
     }
 
     //找到所有新闻
@@ -107,7 +107,14 @@ public class NewsServlet extends BaseServlet {
 //        for (News news:pb.getBeanList()){
 //            System.out.println("pb的list为："+news.getNews_id()+news.getNews_title());
 //        }
-        return "f:news.jsp";
+        return "f:/news.jsp";
+    }
+
+    public String findNewsById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int news_id=Integer.parseInt(req.getParameter("newsid"));
+        News news=newsService.findNewsById(news_id);
+        req.setAttribute("news",news);
+        return "f:/newsDetail.jsp";
     }
 
     //得到当前页
