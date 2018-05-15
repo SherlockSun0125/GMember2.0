@@ -27,6 +27,10 @@
     </select>
 
     <select id="findNewsBySection" resultMap="newsMap">
-        SELECT * FROM news WHERE news_section_id=#{news_section_id} ORDER BY news_id LIMIT #{from},#{pageSize};
+        SELECT * FROM news WHERE news_section_id=#{news_section_id} ORDER BY news_id DESC LIMIT #{from},#{pageSize};
+    </select>
+
+    <select id="findAllNews" resultMap="newsMap">
+        SELECT * FROM news ORDER BY news_id DESC LIMIT #{from},#{pageSize};
     </select>
 </mapper>

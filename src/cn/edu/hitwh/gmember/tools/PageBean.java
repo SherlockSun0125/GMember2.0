@@ -8,14 +8,35 @@ public class PageBean<T> {
     private int pageSize;//page size,每页记录数
     private String url;//请求的路径和参数,例如:/BookServlet?method=findXXX&cid=1&bname=2
     private List<T> beanList;
+    private int totalPages;
 
     public int getTotalPages(){//获得总页数
         int tp=totalRecods/pageSize;
         return totalRecods%pageSize==0?tp:tp+1;
     }
 
-    public void setPageCode(int pageCode) {
-        this.currentPage = pageCode;
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public int getTotalRecods() {
+        return totalRecods;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public List<T> getBeanList() {
+        return beanList;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 
     public void setTotalRecods(int totalRecods) {
@@ -34,23 +55,19 @@ public class PageBean<T> {
         this.beanList = beanList;
     }
 
-    public int getPageCode() {
-        return currentPage;
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
     }
 
-    public int getTotalRecods() {
-        return totalRecods;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public List<T> getBeanList() {
-        return beanList;
+    @Override
+    public String toString() {
+        return "PageBean{" +
+                "currentPage=" + currentPage +
+                ", totalRecods=" + totalRecods +
+                ", pageSize=" + pageSize +
+                ", url='" + url + '\'' +
+                ", beanList=" + beanList +
+                ", totalPages=" + totalPages +
+                '}';
     }
 }

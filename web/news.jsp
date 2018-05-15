@@ -1,11 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html; charset=utf-8" %>
+<%@page contentType="text/html; charset=utf-8"%>
+
 <html>
 <head>
     <title>新闻中心</title>
     <meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;"/>
-    <!--<link rel="shortcut icon" href="images/favicon.ico" />-->
-    <link rel="shortcut icon" href="images/favicon.ico"/>
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/apple-touch-icon-114-precomposed.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72-precomposed.png"/>
@@ -54,32 +53,8 @@
         .listContent li span{
             float:right;
         }
-
-        /*分页*/
-        .fenye{
-            border-top: solid 1px #6d7f91;
-            margin-top:8px;
-            padding-top:10px;
-
-        }
-        .fanye_left{
-            float:left;
-        }
-        .fanye_right{
-            float:right;
-        }
-        .fanye_right a{
-            margin:0 2px;
-            font-size:12px;
-            color:#4c657e;
-            text-decoration: none;
-            font-family:"宋体";
-        }
-        .fanye_input{
-            width:40px;
-            height:13px;
-        }
     </style>
+    <link type="text/css" rel="stylesheet" href="pager/pager.css">
 </head>
 
 <body>
@@ -127,42 +102,34 @@
 <!--container-->
 <section id="container">
     <div class="container">
-        <!-- Docs nav
-        ================================================== -->
+
         <div class="row" style="padding-left: 50px">
             <div class="span2 bs-docs-sidebar" style="background-color: #f7f7f9;">
                 <ul class="nav nav-list bs-docs-sidenav">
-                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="/newsServlet?method=findNewsByType&sectionid=1"><i class="icon-chevron-right"></i> 综合要闻</a></li>
-                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="/newsServlet?method=findNewsByType&sectionid=2"><i class="icon-chevron-right"></i> 校园资讯</a></li>
-                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="/newsServlet?method=findNewsByType&sectionid=3"><i class="icon-chevron-right"></i> 教学科研</a></li>
-                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="/newsServlet?method=findNewsByType&sectionid=4"><i class="icon-chevron-right"></i> 专题新闻</a></li>
+                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="${pageContext.request.contextPath}/newsServlet?method=findNewsByType&sectionid=1"><i class="icon-chevron-right"></i> 综合要闻</a></li>
+                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="${pageContext.request.contextPath}/newsServlet?method=findNewsByType&sectionid=2"><i class="icon-chevron-right"></i> 校园资讯</a></li>
+                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="${pageContext.request.contextPath}/newsServlet?method=findNewsByType&sectionid=3"><i class="icon-chevron-right"></i> 教学科研</a></li>
+                    <li style="border-bottom: #3c3c3c 1px dashed"><a href="${pageContext.request.contextPath}/newsServlet?method=findNewsByType&sectionid=4"><i class="icon-chevron-right"></i> 专题新闻</a></li>
                 </ul>
             </div>
             <div class="span9">
                 <div  style="margin-left: 0px">
-                    <ul class="nav nav-list">
-                        <c:forEach items="${pb.beanList}" var="news">
-                            <li><a href="${pageContext.request.contextPath}/newsServlet"><i class="icon-caret-right"></i>${news.news_title}<span style="display:inline-block;float:right;color: #000000">${news.news_time}</span> </a></li>
-                        </c:forEach>
-                    </ul>
-                    <div class="fenye">
-                        <div class="fanye_left">共 108 条新闻 当前为：1/6页 每页 20 条</div>
-                        <div class="fanye_right">
-                            <span style="margin:0 15px;"><a href="#">&lt;&lt;</a> <a href="#">&lt;</a> <a
-                                    href="#">&gt;</a> <a href="#">&gt;&gt; </a></span>
-                            跳到第
-                            <input name="" type="text" class="fanye_input">
-                            页
-                            <input name="" type="image" src="images/go_button.png"
-                                   style="height: 20px;vertical-align: middle;">
-                        </div>
+                    <div style="margin-bottom: 10px">
+                        <ul class="nav nav-list">
+                            <c:forEach items="${pb.beanList}" var="news">
+                                <li><a href="${pageContext.request.contextPath}/newsServlet"><i class="icon-caret-right"></i>${news.news_title}<span style="display:inline-block;float:right;color: #000000">${news.news_time}</span> </a></li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+
+                    <div style="float:left; width: 100%; text-align: center;" >
+                        <%@include file="test/pager.jsp"%>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <!-- 最下方 -->
 <footer id="footer">
@@ -183,5 +150,7 @@
         </p>
     </div>
 </section>
+
+
 </body>
 </html>

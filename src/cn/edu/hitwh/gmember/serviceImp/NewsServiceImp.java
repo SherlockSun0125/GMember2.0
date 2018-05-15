@@ -27,5 +27,14 @@ public class NewsServiceImp implements INewsService {
         }
     }
 
+    @Override
+    public PageBean<News> findAllNews(int currentPage) {
+        try {
+            return newsDao.findAllNews(currentPage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

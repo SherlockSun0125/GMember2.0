@@ -10,62 +10,37 @@
 	line-height: 35px;
 	margin-right: 15px;
 }
-
-.nBtn {
-	border: 1px solid #c1c1c1;
-	text-align:center;
-	background-color: #FFFFFF;
-	color: #555555;
-	padding: 4px 8px 3px 8px;
-	text-decoration: none;
-}
-
-.sBtn {
-	text-align:center;
-	padding: 4px 8px 3px 8px;
-	text-decoration: none;
-	border: 1px solid #F75A00;
-	background-color: #FE7C2C;
+.spanBtnSelect {
+	border: 1px solid #F75A00; 
 	color: #FFFFFF;
+	background-color: #FE7C2C; 
+	text-align:center; 
+	padding: 4px 8px 3px 8px;
+	text-decoration: none;
 }
-
 .aBtn {
-	border: 1px solid #c1c1c1;
+	border: 1px solid #c1c1c1; 
 	text-align:center; 
 	background-color: #FFFFFF; 
 	color: #555555;
 	padding: 4px 8px 3px 8px;
 	text-decoration: none;
 }
-
-.nodeBtn {
-	border:none;
-	text-align:center;
-	color: #555555;
+.spanBtnDisabled {
+	border: 1px solid #c1c1c1;
+	text-align:center; 
+	background-color: #FFFFFF; 
+	color: #c1c1c1;
 	padding: 4px 8px 3px 8px;
-	text-decoration: none;
+	font-weight: 900;
+}
+.spanApostrophe {
+	font-family: Arial;
 }
 .aBtn:HOVER {
 	border: 1px solid #F75A00;
 	background-color: #FE7C2C; 
 	color: #FFFFFF;
-}
-
-.nBtn:HOVER {
-	border: 1px solid #c1c1c1;
-	text-align:center;
-	background-color: #FFFFFF;
-	color: #555555;
-	padding: 4px 8px 3px 8px;
-	text-decoration: none;
-}
-
-.nodeBtn:HOVER {
-	border:none;
-	text-align:center;
-	color: #555555;
-	padding: 4px 8px 3px 8px;
-	text-decoration: none;
 }
 
 .inputPagecode {

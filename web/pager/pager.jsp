@@ -15,7 +15,6 @@
 	}
 </script>
 
-
 <div class="divBody">
 	<div class="divContent">
 		<%--上一页 --%>
@@ -30,9 +29,9 @@
 		</c:choose>
 
 		<c:choose>
-			<c:when test="${pb.getPageCount() <= 6 }">
+			<c:when test="${pb.getTotalPages() <= 6 }">
 				<c:set var="begin" value="1" />
-				<c:set var="end" value="${pb.getPageCount()}" />
+				<c:set var="end" value="${pb.getTotalPages()}" />
 			</c:when>
 			<c:otherwise>
 				<c:set var="begin" value="${pb.currentPage-2 }" />
@@ -41,9 +40,9 @@
 					<c:set var="begin" value="1" />
 					<c:set var="end" value="6" />
 				</c:if>
-				<c:if test="${end > pb.getPageCount() }">
-					<c:set var="begin" value="${pb.getPageCount()-5 }" />
-					<c:set var="end" value="${pb.getPageCount() }" />
+				<c:if test="${end > pb.getTotalPages() }">
+					<c:set var="begin" value="${pb.getTotalPages()-5 }" />
+					<c:set var="end" value="${pb.getTotalPages() }" />
 				</c:if>
 			</c:otherwise>
 		</c:choose>
@@ -62,12 +61,12 @@
 		</c:forEach>
 
 		<%-- 显示点点点 --%>
-		<c:if test="${end < pb.getPageCount()}">
+		<c:if test="${end < pb.getTotalPages()}">
 		<span class="spanApostrophe">...</span>
 		</c:if>
 		<%--下一页 --%>
 		<c:choose>
-			<c:when test="${pb.currentPage eq pb.getPageCount()}">
+			<c:when test="${pb.currentPage eq pb.getTotalPages()}">
 				<span class="spanBtnDisabled">下一页</span>
 			</c:when>
 			<c:otherwise>
@@ -79,7 +78,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 		<%-- 共N页 到M页 --%>
-		<span>共${pb.getPageCount()}页</span> <span>到</span> <input type="text"
+		<span>共${pb.getTotalPages()}页</span> <span>到</span> <input type="text"
 			class="inputPageCode" id="pageCode" value="${pb.currentPage}" /> <span>页</span>
 		<a href="javascript:_go();" class="aSubmit">确定</a>
 	</div>
