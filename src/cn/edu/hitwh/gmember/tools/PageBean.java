@@ -4,23 +4,23 @@ import java.util.List;
 
 public class PageBean<T> {
     private int currentPage;//page current,当前页码
-    private int totalRecods;//total record,总记录数
+    private int totalRecords;//total record,总记录数
     private int pageSize;//page size,每页记录数
     private String url;//请求的路径和参数,例如:/BookServlet?method=findXXX&cid=1&bname=2
     private List<T> beanList;
     private int totalPages;
 
     public int getTotalPages(){//获得总页数
-        int tp=totalRecods/pageSize;
-        return totalRecods%pageSize==0?tp:tp+1;
+        int tp=totalRecords/pageSize;
+        return totalRecords%pageSize==0?tp:tp+1;
     }
 
     public int getCurrentPage() {
         return currentPage;
     }
 
-    public int getTotalRecods() {
-        return totalRecods;
+    public int getTotalRecords() {
+        return totalRecords;
     }
 
     public int getPageSize() {
@@ -39,8 +39,8 @@ public class PageBean<T> {
         this.currentPage = currentPage;
     }
 
-    public void setTotalRecods(int totalRecods) {
-        this.totalRecods = totalRecods;
+    public void setTotalRecords(int totalRecords) {
+        this.totalRecords = totalRecords;
     }
 
     public void setPageSize(int pageSize) {
@@ -63,7 +63,7 @@ public class PageBean<T> {
     public String toString() {
         return "PageBean{" +
                 "currentPage=" + currentPage +
-                ", totalRecods=" + totalRecods +
+                ", totalRecords=" + totalRecords +
                 ", pageSize=" + pageSize +
                 ", url='" + url + '\'' +
                 ", beanList=" + beanList +

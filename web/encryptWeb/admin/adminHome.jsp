@@ -1,20 +1,21 @@
-<%@page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
     <title>管理员</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
-    <script src="lib/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $(".knob").knob();
         });
     </script>
-    <link rel="stylesheet" type="text/css" href="../../css/theme.css">
-    <link rel="stylesheet" type="text/css" href="../../css/premium.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/premium.css">
     <script type="text/javascript">
         $(function () {
             var match = document.cookie.match(new RegExp('color=([^;]+)'));
@@ -49,7 +50,7 @@
             $('#main-menu').append(uls.clone());
         });
     </script>
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
         $(function () {
@@ -67,9 +68,9 @@
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
 
-        <a class="" href="adminHome.jsp">
+        <a class="" href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp">
             <span class="navbar-brand" style="padding-top: 2px;height: 45px">
-                <img src="../../images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
+                <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
             </span>
         </a>
     </div>
@@ -90,7 +91,7 @@
                     <%--<li><a href="./">用户</a></li>--%>
                     <li><a href="./">安全</a></li>
                     <li class="divider"></li>
-                    <li><a tabindex="-1" href="../../adminLogin.jsp">退出</a></li>
+                    <li><a tabindex="-1" href="${pageContext.request.contextPath}/adminLogin.jsp">退出</a></li>
                 </ul>
             </li>
         </ul>
@@ -380,7 +381,7 @@
         <footer>
             <hr>
 
-            <p align="right">© 2014 <a href="../../index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划</a></p>
+            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划</a></p>
         </footer>
     </div>
 </div>

@@ -9,12 +9,12 @@
     <meta name="author" content="paul">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
-    <script src="encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
-    <link rel="stylesheet" type="text/css" href="css/premium.css">
-    <script src="encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/premium.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
         $(function () {
@@ -64,7 +64,7 @@
 <div class="navbar navbar-default" role="navigation">
     <a class="" href="home.jsp">
             <span class="navbar-brand" style="padding-top: 2px;height: 45px">
-                <img src="images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
+                <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
             </span>
     </a>
 </div>

@@ -60,7 +60,7 @@ public class NoticeDaoImp implements INoticeDao {
         int from=(currentPage - 1) * pageSize;// 当前页首行记录的下标
         List<Notice> NoticeList= NoticeMapper.findNoticesBySection(sectionid, from,pageSize);
         pageBean.setBeanList(NoticeList);
-        pageBean.setTotalRecods(totalRecords);
+        pageBean.setTotalRecords(totalRecords);
         pageBean.setCurrentPage(currentPage);
         pageBean.setPageSize(pageSize);
         System.out.println("---------------------------------------");
@@ -95,7 +95,7 @@ public class NoticeDaoImp implements INoticeDao {
 //        将获取的新闻list存入pageBean
         pageBean.setBeanList(NoticeList);
 //        将总的新闻数存入pageBean
-        pageBean.setTotalRecods(totalRecords);
+        pageBean.setTotalRecords(totalRecords);
 //        将当前页码存入pageBean
         pageBean.setCurrentPage(currentPage);
 //        将页面新闻数存入pageBean

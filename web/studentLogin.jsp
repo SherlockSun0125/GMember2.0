@@ -3,11 +3,11 @@
 <head>
     <title>学生用户登陆</title>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
     <!-- 引入Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
     <style>
         .bottom {
             width: 100%;
@@ -74,7 +74,7 @@
         }
 
         .auth_icon_user {
-            background: url("images/myimg/icons.png") 6px -73px no-repeat;
+            background: url("/images/myimg/icons.png") 6px -73px no-repeat;
         }
 
         .auth_icon_pwd {
@@ -265,11 +265,11 @@
 <body>
 <div style="position:absolute;bottom:0px;width: 100%;height: 100%">
     <div class="span5 logo" style="width: 100%;background-color: #002a80;">
-        <a class="logo-img" href="home.jsp" title="responsive template"
-           style="margin-left: 10px;margin-top: 3px;margin-bottom: 3px;"><img src="images/myimg/hitwh_logo.png" alt="哈工大威海校徽"/></a>
+        <a class="logo-img" href="${pageContext.request.contextPath}/home.jsp" title="responsive template"
+           style="margin-left: 10px;margin-top: 3px;margin-bottom: 3px;"><img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" alt="哈工大威海校徽"/></a>
     </div>
     <div>
-        <img src="images/myimg/hit_silde3.jpg" width="100%" height="85%">
+        <img src="${pageContext.request.contextPath}/images/myimg/hit_silde3.jpg" width="100%" height="85%">
     </div>
 </div>
 
@@ -344,7 +344,7 @@
         <div class="container">
             <p align="center">
                 山东省威海市环翠区文化西路2号&nbsp;&nbsp;&nbsp;&nbsp;邮政编码：264209&nbsp;&nbsp;&nbsp;&nbsp;哈尔滨工业大学（威海）版权所有 |
-                <a class="my_a_link" href="adminLogin.jsp" style="color: #1a1a1a">登陆</a>
+                <a class="my_a_link" href="${pageContext.request.contextPath}/adminLogin.jsp" style="color: #1a1a1a">登陆</a>
             </p>
         </div>
     </section>

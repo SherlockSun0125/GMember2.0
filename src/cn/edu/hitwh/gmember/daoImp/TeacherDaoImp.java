@@ -51,11 +51,15 @@ public class TeacherDaoImp implements ITeacherDao{
         //获得教师信息
         TeacherMapper teacherMapper=session.getMapper(TeacherMapper.class);
         List<Teacher> teachers=teacherMapper.findAllTeachers();
+        for(int i=0;i<teachers.size();i++){
+            System.out.println("来自dao层的问候(取出的数据)："+teachers.get(i));
+        }
+
         //获得总教师人数
         totalTeachers=teacherMapper.countAllTeachers();
 
         teacherPageBean.setBeanList(teachers);
-        teacherPageBean.setTotalRecods(totalTeachers);
+        teacherPageBean.setTotalRecords(totalTeachers);
         return teacherPageBean;
     }
 }

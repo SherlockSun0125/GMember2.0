@@ -63,7 +63,7 @@ public class NewsDaoImp implements INewsDao {
         }
         System.out.println("-----------------------------------");
         pageBean.setBeanList(newsList);
-        pageBean.setTotalRecods(totalRecords);
+        pageBean.setTotalRecords(totalRecords);
         pageBean.setCurrentPage(currentPage);
         pageBean.setPageSize(pageSize);
 
@@ -103,7 +103,7 @@ public class NewsDaoImp implements INewsDao {
 //        将获取的新闻list存入pageBean
         pageBean.setBeanList(newsList);
 //        将总的新闻数存入pageBean
-        pageBean.setTotalRecods(totalRecords);
+        pageBean.setTotalRecords(totalRecords);
 //        将当前页码存入pageBean
         pageBean.setCurrentPage(currentPage);
 //        将页面新闻数存入pageBean

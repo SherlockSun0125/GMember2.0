@@ -62,15 +62,15 @@ public class NewsServlet extends BaseServlet {
         System.out.println("news.toString()="+news.toString());
 
         if (newsid==null) {
-            System.out.println("null主键newsid.intValue()："+newsid.intValue());
-            System.out.println("null主键newsid："+newsid);
-            System.out.println("null主键newsid.toString()："+newsid.toString());
+//            System.out.println("null主键newsid.intValue()："+newsid.intValue());
+//            System.out.println("null主键newsid："+newsid);
+//            System.out.println("null主键newsid.toString()："+newsid.toString());
             session.setAttribute("msgAddNews", "新闻发布失败，请重新发布！");
         }else{
             session.setAttribute("msgAddNews", "新闻发布成功！");
-            System.out.println("非null主键newsid.intValue()："+newsid.intValue());
-            System.out.println("非null主键newsid："+newsid);
-            System.out.println("非null主键newsid.toString()："+newsid.toString());
+//            System.out.println("非null主键newsid.intValue()："+newsid.intValue());
+//            System.out.println("非null主键newsid："+newsid);
+//            System.out.println("非null主键newsid.toString()："+newsid.toString());
         }
         return "r:/encryptWeb/admin/addNews.jsp";
     }

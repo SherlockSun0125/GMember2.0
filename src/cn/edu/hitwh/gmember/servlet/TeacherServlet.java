@@ -33,19 +33,21 @@ public class TeacherServlet extends BaseServlet {
         }else{
             req.getSession().setAttribute("msgTeacherLogin","账号或密码错误！请重新输入！");
 //            resp.sendRedirect(req.getContextPath()+"/teacherLogin.jsp");
-            return "/teacherLogin.jsp";
+            return "r:/teacherLogin.jsp";
         }
     }
 
 
     public String findAllTeachers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
-        PageBean<Teacher> pb=teacherService.findAllTeachers();
+        PageBean<Teacher> pageBean=teacherService.findAllTeachers();
 //        int currentPage=getCurrentPage(req);
-        pb.setUrl(url);
-        req.setAttribute("pb",pb);
-
-        return "/encryptWeb/admin/teacherList.jsp";
+        for(int i=0;i<pageBean.getBeanList().size();i++){
+            System.out.println("来自servlet层的问候(取出的数据)："+pageBean.getBeanList().get(i));
+        }
+        pageBean.setUrl(url);
+        req.setAttribute("pb",pageBean);
+        return "f:/encryptWeb/admin/teacherList.jsp";
     }
 
 
