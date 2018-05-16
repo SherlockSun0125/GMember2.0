@@ -328,7 +328,7 @@
                 <input type="hidden" name="method" value="teacherLogin"/>
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
-                    <input id="teaid" name="teaid" placeholder="账号" class="auth_input" type="text" value=""/>
+                    <input id="teanum" name="teanum" placeholder="账号" class="auth_input" type="text" value=""/>
                 </p>
 
                 <p>

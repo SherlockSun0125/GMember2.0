@@ -4,16 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hitwh.gmember.mapper.StudentMapper">
     <select id="findStudent" resultType="cn.edu.hitwh.gmember.pojo.Student">
-        SELECT * from student WHERE stu_id=#{stu_id} AND stu_pwd=#{stu_pwd}
+        SELECT * from student WHERE stu_num=#{stu_num} AND stu_pwd=#{stu_pwd}
     </select>
     <select id="findStuById" parameterType="String" resultType="cn.edu.hitwh.gmember.pojo.Student">
-        <![CDATA[ SELECT * from student WHERE stu_id=#{id} ]]>
+        SELECT * from student WHERE stu_id=#{id}
     </select>
 
     <select id="selectAll" resultType="cn.edu.hitwh.gmember.pojo.Student">
-        <![CDATA[
-        SELECT *
-        FROM student
-        ]]>
+        SELECT * FROM student
     </select>
 </mapper>

@@ -11,7 +11,7 @@ public class TeacherServiceImp implements ITeacherService {
     @Override
     public Teacher login(Teacher teacher) {
         try{
-            return teacherDao.findTeacher(teacher.getTea_id(),teacher.getTea_pwd());
+            return teacherDao.findTeacher(teacher.getTea_num(),teacher.getTea_pwd());
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -21,6 +21,42 @@ public class TeacherServiceImp implements ITeacherService {
     public PageBean<Teacher> findAllTeachers() {
         try{
             return teacherDao.findAllTeachers();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteTeacher(int tea_id) {
+        try {
+            teacherDao.deleteTeacher(tea_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Integer addTeacher(Teacher teacher) {
+        try {
+            return teacherDao.addTeacher(teacher);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateTeacher(Teacher teacher) {
+        try {
+            teacherDao.updateTeacher(teacher);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Teacher findTeacherById(int tea_id) {
+        try{
+            return teacherDao.findTeacherById(tea_id);
         }catch (Exception e){
             throw new RuntimeException(e);
         }

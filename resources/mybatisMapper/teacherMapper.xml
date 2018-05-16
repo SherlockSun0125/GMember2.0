@@ -6,16 +6,18 @@
     <resultMap id="teacherMap" type="cn.edu.hitwh.gmember.pojo.Teacher">
         <!-- id：映射主键  column：字段名  property：pojo类属性名 -->
         <id column="tea_id" property="tea_id"></id>
+        <result column="tea_num" property="tea_num"></result>
         <result column="tea_name" property="tea_name"></result>
         <result column="tea_pwd" property="tea_pwd"></result>
-        <result column="tea_sex" property="tea_age"></result>
+        <result column="tea_sex" property="tea_sex"></result>
+        <result column="tea_age" property="tea_age"></result>
         <result column="dep_id" property="dep_id"></result>
         <result column="tea_phone" property="tea_phone"></result>
         <result column="tea_mail" property="tea_mail"></result>
     </resultMap>
 
     <select id="findTeacher" resultType="cn.edu.hitwh.gmember.pojo.Teacher">
-        SELECT * FROM teacher WHERE tea_id=#{id} AND tea_pwd=#{pwd}
+        SELECT * FROM teacher WHERE tea_num=#{num} AND tea_pwd=#{pwd}
     </select>
 
     <select id="findTeaById" parameterType="String" resultType="cn.edu.hitwh.gmember.pojo.Teacher">
@@ -28,5 +30,25 @@
 
     <select id="countAllTeachers" resultType="int">
         SELECT COUNT(*) FROM teacher
+    </select>
+
+    <delete id="deleteTeacher" parameterType="int">
+        DELETE FROM teacher WHERE tea_id=#{tea_id}
+    </delete>
+
+    <insert id="addTeacher" parameterType="cn.edu.hitwh.gmember.pojo.Teacher" useGeneratedKeys="true"
+     keyProperty="tea_id">
+        INSERT INTO teacher(tea_num, tea_name, tea_sex, tea_age, dep_id, tea_phone, tea_mail, tea_pwd)
+        VALUES (#{tea_num},#{tea_name},#{tea_sex},#{tea_age},#{dep_id},#{tea_phone},#{tea_mail},#{tea_pwd})
+    </insert>
+
+    <update id="updateTeacher" parameterType="cn.edu.hitwh.gmember.pojo.Teacher">
+        UPDATE teacher set tea_num=#{tea.tea_num},tea_name=#{tea.tea_name},tea_sex=#{tea.tea_sex},tea_age=#{tea.tea_age},
+        dep_id=#{tea.dep_id},tea_phone=#{tea.tea_phone},tea_mail=#{tea.tea_mail},tea_pwd=#{tea.tea_pwd}
+        WHERE tea_id=#{tea.tea_id}
+    </update>
+
+    <select id="findTeacherById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.Teacher">
+        SELECT * FROM teacher WHERE tea_id=#{tea_id}
     </select>
 </mapper>

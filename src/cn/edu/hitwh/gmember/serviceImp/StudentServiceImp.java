@@ -10,7 +10,7 @@ public class StudentServiceImp implements IStudentService {
     @Override
     public Student login(Student student) {
         try{
-            return studentDao.findStudent(student.getStu_id(),student.getStu_pwd());
+            return studentDao.findStudent(student.getStu_num(),student.getStu_pwd());
         }catch (Exception e){
             throw new RuntimeException(e);
         }

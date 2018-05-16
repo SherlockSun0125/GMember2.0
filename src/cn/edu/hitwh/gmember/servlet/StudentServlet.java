@@ -16,23 +16,23 @@ public class StudentServlet extends BaseServlet {
     private IStudentService studentService=new StudentServiceImp();
 
     public String studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("request.getRequestURI()="+request.getRequestURI());
-        System.out.println("request.getRequestURL()="+request.getRequestURI());
-        System.out.println("request.getMethod()="+request.getMethod());
-        System.out.println("request.getSession()="+request.getSession());
-        System.out.println("request.getContextPath()="+request.getContextPath());
-        System.out.println("request.getContextPath()="+request.getParameterNames());
-        String stuid=request.getParameter("stuid");
+//        System.out.println("request.getRequestURI()="+request.getRequestURI());
+//        System.out.println("request.getRequestURL()="+request.getRequestURI());
+//        System.out.println("request.getMethod()="+request.getMethod());
+//        System.out.println("request.getSession()="+request.getSession());
+//        System.out.println("request.getContextPath()="+request.getContextPath());
+//        System.out.println("request.getContextPath()="+request.getParameterNames());
+        String stunum=request.getParameter("stunum");
         String stupwd=request.getParameter("stupwd");
-        System.out.println("==="+stuid+"====="+stupwd);
+        System.out.println("==="+stunum+"====="+stupwd);
         Student student=new Student();
-        student.setStu_id(stuid);
+        student.setStu_num(stunum);
         student.setStu_pwd(stupwd);
         Student studentSql=studentService.login(student);
         if (studentSql==null){
             request.getSession().setAttribute("msgStudentLogin","账号或密码错误！请重新输入！");
 //            response.sendRedirect(request.getContextPath()+"/studentLogin.jsp");
-            return "/studentLogin.jsp";
+            return "f:/studentLogin.jsp";
         }else{
             request.getSession().setAttribute("msgStudentLogin","");
             request.getSession().setAttribute("Student",studentSql);

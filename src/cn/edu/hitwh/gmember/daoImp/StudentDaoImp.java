@@ -13,7 +13,7 @@ import java.io.Reader;
 
 public class StudentDaoImp implements IStudentDao{
     @Override
-    public Student findStudent(String stu_id, String stu_pwd) {
+    public Student findStudent(String stu_num, String stu_pwd) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
@@ -25,7 +25,7 @@ public class StudentDaoImp implements IStudentDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
         StudentMapper studentMapper=session.getMapper(StudentMapper.class);
-        Student student=studentMapper.findStudent(stu_id,stu_pwd);
+        Student student=studentMapper.findStudent(stu_num,stu_pwd);
         session.close();
         return student;
     }

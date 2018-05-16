@@ -29,7 +29,7 @@ public class AdminServlet extends BaseServlet {
         } else {
             req.getSession().setAttribute("msgAdminLogin", "账号或密码错误！请重新输入！");
 //            resp.sendRedirect(req.getContextPath()+"/adminLogin.jsp");
-            return "/adminLogin.jsp";
+            return "f:/adminLogin.jsp";
         }
     }
 }

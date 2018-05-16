@@ -67,7 +67,6 @@
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-
         <a class="" href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp">
             <span class="navbar-brand" style="padding-top: 2px;height: 45px">
                 <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
@@ -103,7 +102,7 @@
 <div class="sidebar-nav">
     <ul>
         <%--网站数据--%>
-        <li><a href="adminHome.jsp" class="nav-header" target="_self"><i
+        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header" target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
         <li><a href="teacherList.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
@@ -198,6 +197,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
+                            <th>编号</th>
                             <th>工号</th>
                             <th>姓名</th>
                             <th>手机号</th>
@@ -212,8 +212,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="pb.beanList" var="tea">
+                            <c:set var="count" value="0"></c:set>
+                            <c:forEach items="${pb.beanList}" var="tea">
                                 <tr>
+                                    <td>${count=count+1}</td>
                                     <td>${tea.tea_id}</td>
                                     <td>${tea.tea_name}</td>
                                     <td>${tea.tea_phone}</td>
@@ -232,30 +234,12 @@
                     </table>
                 </div>
             </div>
-            <%--下右一--%>
-            <%--<div class="col-sm-6 col-md-6">--%>
-                <%--<div class="panel panel-default">--%>
-                    <%--<a href="#widget1container" class="panel-heading" data-toggle="collapse">其他信息 </a>--%>
-                    <%--<div id="widget1container" class="panel-body collapse in">--%>
-                        <%--<h2>Here's a Tip</h2>--%>
-                        <%--<p>This template was developed with <a href="http://middlemanapp.com/"--%>
-                                                               <%--target="_blank">Middleman</a> and includes .erb layouts--%>
-                            <%--and views.</p>--%>
-                        <%--<p>All of the views you see here (sign in, sign up, users, etc) are already split up so you--%>
-                            <%--don't have to waste your time doing it yourself!</p>--%>
-                        <%--<p>The layout.erb file includes the header, footer, and side navigation and all of the views are--%>
-                            <%--broken out into their own files.</p>--%>
-                        <%--<p>If you aren't using Ruby, there is also a set of plain HTML files for each page, just like--%>
-                            <%--you would expect.</p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </div>
 
-        <footer>
+        <footer style="position: absolute;bottom: 0;width: 100%">
             <hr>
 
-            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划</a></p>
+            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
         </footer>
     </div>
 </div>

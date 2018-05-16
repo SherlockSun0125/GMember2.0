@@ -287,7 +287,7 @@
                 <input type="hidden" name="method" value="studentLogin"/>
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
-                    <input id="stuid" name="stuid" placeholder="账号" class="auth_input" type="text"/>
+                    <input id="stunum" name="stunum" placeholder="账号" class="auth_input" type="text"/>
                 </p>
 
                 <p>
