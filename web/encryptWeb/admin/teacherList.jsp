@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
@@ -105,7 +106,7 @@
         <li><a href="adminHome.jsp" class="nav-header" target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
-        <li><a href="teacherM.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
+        <li><a href="teacherList.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
 
         <%--学生管理--%>
         <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
@@ -192,7 +193,7 @@
             <div class="col-sm-12 col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading no-collapse">教师管理
-                        <span class="label label-warning">教师数量：10</span>
+                        <span class="label label-warning">教师数量：${pb.totalRecords}</span>
                     </div>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -211,35 +212,22 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="pb.beanList" var="tea">
                         <tr>
-                            <td>1223</td>
-                            <td>张三</td>
-                            <td>17862700888</td>
-                            <td>123@163.com</td>
-                            <td>123456</td>
-                            <td>男</td>
-                            <td>40</td>
-                            <td>计算机科学与技术学院</td>
+                            <td>${tea.tea_id}</td>
+                            <td>${tea.tea_name}</td>
+                            <td>${tea.tea_phone}</td>
+                            <td>${tea.tea_mail}</td>
+                            <td>${tea.tea_pwd}</td>
+                            <td>${tea.tea_sex}</td>
+                            <td>${tea.tea_age}</td>
+                            <td>${tea.dep_id}</td>
                             <td>
                                 <a>修改</a>
                                 <a>删除</a>
                             </td>
                         </tr>
-                        <tr>
-
-                        </tr>
-                        <tr>
-
-                        </tr>
-                        <tr>
-
-                        </tr>
-                        <tr>
-
-                        </tr>
-                        <tr>
-
-                        </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

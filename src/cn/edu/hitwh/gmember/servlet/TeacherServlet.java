@@ -3,6 +3,7 @@ package cn.edu.hitwh.gmember.servlet;
 import cn.edu.hitwh.gmember.pojo.Teacher;
 import cn.edu.hitwh.gmember.service.ITeacherService;
 import cn.edu.hitwh.gmember.serviceImp.TeacherServiceImp;
+import cn.edu.hitwh.gmember.tools.PageBean;
 import cn.itcast.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -34,5 +35,44 @@ public class TeacherServlet extends BaseServlet {
 //            resp.sendRedirect(req.getContextPath()+"/teacherLogin.jsp");
             return "/teacherLogin.jsp";
         }
+    }
+
+
+    public String findAllTeachers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String url=getUrl(req);
+        PageBean<Teacher> pb=teacherService.findAllTeachers();
+//        int currentPage=getCurrentPage(req);
+        pb.setUrl(url);
+        req.setAttribute("pb",pb);
+
+        return "/encryptWeb/admin/teacherList.jsp";
+    }
+
+
+    //得到当前页
+    private int getCurrentPage(HttpServletRequest req){
+        int currentPage=1;
+        String param=req.getParameter("currentPage");
+        System.out.println("转换前的currentPage=param+"+param);
+        if(param!=null && !param.trim().isEmpty()){
+            try{
+                currentPage=Integer.parseInt(param);
+                System.out.println("转换后的currentPage="+currentPage);
+            }catch (RuntimeException e){
+                e.printStackTrace();
+            }
+        }
+        return currentPage;
+    }
+
+    //获取URL
+    private String getUrl(HttpServletRequest req){
+        String url=req.getRequestURI()+"?"+req.getQueryString();
+        //如果URL中存在currentPage参数，截取掉
+        int index=url.lastIndexOf("&currentPage=");
+        if(index!=-1){
+            url=url.substring(0,index);
+        }
+        return url;
     }
 }
