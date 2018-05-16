@@ -34,4 +34,13 @@ public class NoticeServiceImp implements INoticeService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Notice findNoticeById(int noticeid) {
+        try {
+            return noticeDao.findNoticeById(noticeid);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

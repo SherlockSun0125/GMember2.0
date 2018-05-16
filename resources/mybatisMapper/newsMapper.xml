@@ -39,7 +39,7 @@
         SELECT * FROM news WHERE news_id=#{news_id}
     </select>
 
-    <update id="updateReadtimes" parameterType="int">
+    <update id="updateReadtimes">
         UPDATE news SET news_readtimes=${news_readtimes} WHERE news_id=${news_id}
     </update>
 </mapper>

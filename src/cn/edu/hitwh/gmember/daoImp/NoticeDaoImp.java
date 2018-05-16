@@ -109,4 +109,34 @@ public class NoticeDaoImp implements INoticeDao {
         session.close();
         return pageBean;
     }
+
+    @Override
+    public Notice findNoticeById(int noticeid) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        Notice notice=new Notice();
+        int readtimes;
+        try {
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        NoticeMapper noticeMapper=session.getMapper(NoticeMapper.class);
+        notice=noticeMapper.findNoticeById(noticeid);
+        try{
+            readtimes=notice.getNoti_readtimes();
+            noticeMapper.undateReadtimes(noticeid,readtimes+1);
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            notice=noticeMapper.findNoticeById(noticeid);
+            session.close();
+        }
+        return notice;
+    }
 }

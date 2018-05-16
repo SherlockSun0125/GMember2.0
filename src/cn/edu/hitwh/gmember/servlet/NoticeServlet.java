@@ -36,6 +36,7 @@ public class NoticeServlet extends BaseServlet {
 //        设置发布人
         notice.setPublisher(req.getParameter("noticeAuthor"));
 //        System.out.println("publisher:"+notice.getPublisher());
+        notice.setNoti_source(req.getParameter("noticeSource"));
 //      设置作者
         Admin admin= (Admin) session.getAttribute("Admin");
         notice.setAuthor_id(admin.getAdmin_id());
@@ -72,7 +73,7 @@ public class NoticeServlet extends BaseServlet {
 //            System.out.println("非null主键noticeid："+noticeid);
 //            System.out.println("非null主键noticeid.toString()："+noticeid.toString());
         }
-        return "f:/encryptWeb/admin/addNotice.jsp";
+        return "r:/encryptWeb/admin/addNotice.jsp";
     }
 
 
@@ -99,6 +100,13 @@ public class NoticeServlet extends BaseServlet {
         return "f:/notice.jsp";
     }
 
+    public String findNoticeById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Notice noti=new Notice();
+        int noticeid=Integer.parseInt(req.getParameter("noticeid"));
+        noti=noticeService.findNoticeById(noticeid);
+        req.setAttribute("noti",noti);
+        return "f:/noticeDetail.jsp";
+    }
 
 
 

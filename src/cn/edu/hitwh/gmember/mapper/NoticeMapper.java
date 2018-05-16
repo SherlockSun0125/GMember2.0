@@ -11,4 +11,6 @@ public interface NoticeMapper {
     public Integer countNoticesBySection(int notice_section_id);
     public Integer countAllNotices();
     public List<Notice> findAllNotices(@Param("from") int from,@Param("pageSize")int pageSize);
+    public Notice findNoticeById(int notice_id);
+    public void undateReadtimes(@Param("noti_id")int noti_id,@Param("noti_readtimes")int noti_readtimes);
 }

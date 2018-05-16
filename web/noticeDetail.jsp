@@ -2,7 +2,7 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
-    <title>通知公告</title>
+    <title>${noti.noti_title}</title>
     <meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;"/>
     <!--<link rel="shortcut icon" href="images/favicon.ico" />-->
     <link rel="shortcut icon" href="images/favicon.ico"/>
@@ -114,18 +114,17 @@
                 </ul>
             </div>
 
-            <div class="span9">
-                <div  style="margin-left: 0px">
-                    <div style="margin-bottom: 10px">
-                        <ul class="nav nav-list">
-                            <c:forEach items="${pb.beanList}" var="noti">
-                                <li><a href="${pageContext.request.contextPath}/noticeServlet?method=findNoticeById&noticeid=${noti.noti_id}"><i class="icon-caret-right"></i>${noti.noti_id}/${noti.noti_title}<span style="display:inline-block;float: right;color: #000000">${noti.noti_time}</span> </a></li>
-                            </c:forEach>
-                        </ul>
+            <div class="span9" style="border: 1px solid lightgrey">
+                <div  style="margin-left: 0px;padding: 10px">
+                    <div class="title" style="text-align: center;">
+                        <h3 style="font-weight: bold;color:#2a6496;font-family: 华文宋体">${noti.noti_title}</h3>
                     </div>
-
-                    <div style="float:left; width: 100%; text-align: center;" >
-                        <%@include file="pager/pager.jsp"%>
+                    <%--<hr/>--%>
+                    <div class="time_publisher" style="text-align: center;background-color: lightgrey">
+                        <small>［ 发布人：<span>${noti.publisher}</span> 来源：<span>${noti.noti_source}</span> 浏览：<span>${noti.noti_readtimes}</span> 录入时间：<span>${noti.noti_time}</span> ］ </small>
+                    </div>
+                    <div class="news" style="margin:10px 0;">
+                        ${noti.noti_content}
                     </div>
                 </div>
             </div>

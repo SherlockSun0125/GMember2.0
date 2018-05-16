@@ -234,6 +234,11 @@
                                 <input type="text" class="form-control" name="noticeAuthor" id="noticeAuthor" placeholder="发布人姓名">
                             </div>
 
+                            <div class="form-group" style="width: 35%">
+                                <span><span style="color: red">*&nbsp;</span><label for="noticeSource">来源</label></span>
+                                <input type="text" class="form-control" name="noticeSource" id="noticeSource" placeholder="公告来源">
+                            </div>
+
                             <div class="form-group">
                                 <!-- 加载编辑器的容器 -->
                                 <!--container里写你的初始化内容-->

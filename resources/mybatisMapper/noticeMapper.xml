@@ -33,4 +33,12 @@
     <select id="findAllNotices" resultMap="noticeMap">
         SELECT * FROM notice ORDER BY noti_id DESC LIMIT #{from},#{pageSize};
     </select>
+
+    <select id="findNoticeById" resultType="cn.edu.hitwh.gmember.pojo.Notice" parameterType="int">
+        SELECT * FROM notice WHERE noti_id=#{noti_id}
+    </select>
+
+    <update id="undateReadtimes">
+        UPDATE notice SET noti_readtimes=#{noti_readtimes} WHERE noti_id=#{noti_id}
+    </update>
 </mapper>
