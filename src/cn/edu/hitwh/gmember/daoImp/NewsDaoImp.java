@@ -131,8 +131,21 @@ public class NewsDaoImp implements INewsDao {
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
         NewsMapper newsMapper=session.getMapper(NewsMapper.class);
+        //先更新浏览次数的值
+//        newsMapper.updateReadtimes(news_id);
+        //再取数据
         news=newsMapper.findNewsById(news_id);
-        session.close();
+        int readtimes=news.getNews_readtimes();
+        try {
+            newsMapper.updateReadtimes(news_id, readtimes + 1);
+            session.commit();
+        }catch (Exception e) {
+            session.rollback();
+            e.printStackTrace();
+        } finally {
+            news=newsMapper.findNewsById(news_id);
+            session.close();
+        }
         return news;
     }
 

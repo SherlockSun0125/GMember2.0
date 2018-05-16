@@ -132,25 +132,26 @@
 </section>
 
 <!-- 最下方 -->
-<footer id="footer">
-    <div class="container" align="center">
-        友情链接：
-        <a href="http://www.hit.edu.cn/">哈工大（本部）</a>&nbsp;
-        <a href="http://www.hitwh.edu.cn/">哈工大（威海）</a>&nbsp;
-        <a href="http://www.hitsz.edu.cn/index.html">哈工大（深圳）</a>&nbsp;
-    </div>
-</footer>
+<%--<div style="position: absolute;bottom: 0px;width: 100%">--%>
+    <footer id="footer">
+        <div class="container" align="center">
+            友情链接：
+            <a href="http://www.hit.edu.cn/">哈工大（本部）</a>&nbsp;
+            <a href="http://www.hitwh.edu.cn/">哈工大（威海）</a>&nbsp;
+            <a href="http://www.hitsz.edu.cn/index.html">哈工大（深圳）</a>&nbsp;
+        </div>
+    </footer>
 
-<!--footer menu-->
-<section id="footer-menu">
-    <div class="container">
-        <p align="center">
-            山东省威海市环翠区文化西路2号&nbsp;&nbsp;&nbsp;&nbsp;邮政编码：264209&nbsp;&nbsp;&nbsp;&nbsp;哈尔滨工业大学（威海）版权所有 |
-            <a class="my_a_link" href="adminLogin.jsp" style="color: #1a1a1a">登陆</a>
-        </p>
-    </div>
-</section>
-
+    <!--footer menu-->
+    <section id="footer-menu">
+        <div class="container">
+            <p align="center">
+                山东省威海市环翠区文化西路2号&nbsp;&nbsp;&nbsp;&nbsp;邮政编码：264209&nbsp;&nbsp;&nbsp;&nbsp;哈尔滨工业大学（威海）版权所有 |
+                <a class="my_a_link" href="adminLogin.jsp" style="color: #1a1a1a">登陆</a>
+            </p>
+        </div>
+    </section>
+<%--</div>--%>
 
 </body>
 </html>

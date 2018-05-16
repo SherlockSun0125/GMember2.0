@@ -9,10 +9,11 @@ public class News {
     private String news_content;
     private int news_section_id;
     private int news_readtimes;
+    private String news_source;
 
     public News(){}
 
-    public News(Integer news_id, String news_time, String publisher, String author_id, String news_title, String news_content, int news_section_id, int news_readtimes) {
+    public News(Integer news_id, String news_time, String publisher, String author_id, String news_title, String news_content, int news_section_id, int news_readtimes, String news_source) {
         this.news_id = news_id;
         this.news_time = news_time;
         this.publisher = publisher;
@@ -21,38 +22,7 @@ public class News {
         this.news_content = news_content;
         this.news_section_id = news_section_id;
         this.news_readtimes = news_readtimes;
-    }
-
-    public Integer getNews_id() {
-        return news_id;
-    }
-
-    public String getNews_time() {
-        return news_time;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public String getAuthor_id() {
-        return author_id;
-    }
-
-    public String getNews_title() {
-        return news_title;
-    }
-
-    public String getNews_content() {
-        return news_content;
-    }
-
-    public int getNews_section_id() {
-        return news_section_id;
-    }
-
-    public int getNews_readtimes() {
-        return news_readtimes;
+        this.news_source = news_source;
     }
 
     public void setNews_id(Integer news_id) {
@@ -87,6 +57,46 @@ public class News {
         this.news_readtimes = news_readtimes;
     }
 
+    public void setNews_source(String news_source) {
+        this.news_source = news_source;
+    }
+
+    public Integer getNews_id() {
+        return news_id;
+    }
+
+    public String getNews_time() {
+        return news_time;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getAuthor_id() {
+        return author_id;
+    }
+
+    public String getNews_title() {
+        return news_title;
+    }
+
+    public String getNews_content() {
+        return news_content;
+    }
+
+    public int getNews_section_id() {
+        return news_section_id;
+    }
+
+    public int getNews_readtimes() {
+        return news_readtimes;
+    }
+
+    public String getNews_source() {
+        return news_source;
+    }
+
     @Override
     public String toString() {
         return "News{" +
@@ -98,6 +108,7 @@ public class News {
                 ", news_content='" + news_content + '\'' +
                 ", news_section_id=" + news_section_id +
                 ", news_readtimes=" + news_readtimes +
+                ", news_source='" + news_source + '\'' +
                 '}';
     }
 }

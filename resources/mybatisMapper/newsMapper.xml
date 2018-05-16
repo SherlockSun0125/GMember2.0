@@ -11,11 +11,12 @@
         <result property="news_title" column="news_title"></result>
         <result property="news_section_id" column="news_section_id"></result>
         <result property="news_readtimes" column="news_readtimes"></result>
+        <result property="news_source" column="news_source"></result>
     </resultMap>
     <insert id="addNews" parameterType="cn.edu.hitwh.gmember.pojo.News"
     useGeneratedKeys="true" keyProperty="news_id">
-        INSERT INTO news(news_time, publisher, author_id, news_title, news_content, news_section_id, news_readtimes)
-        VALUES (#{news_time},#{publisher},#{author_id},#{news_title},#{news_content},#{news_section_id},#{news_readtimes})
+        INSERT INTO news(news_time, publisher, author_id, news_title, news_content, news_section_id, news_readtimes,news_source)
+        VALUES (#{news_time},#{publisher},#{author_id},#{news_title},#{news_content},#{news_section_id},#{news_readtimes},#{news_source})
     </insert>
 
     <select id="countNewsBySection" parameterType="int" resultType="int">
@@ -37,4 +38,8 @@
     <select id="findNewsById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.News">
         SELECT * FROM news WHERE news_id=#{news_id}
     </select>
+
+    <update id="updateReadtimes" parameterType="int">
+        UPDATE news SET news_readtimes=${news_readtimes} WHERE news_id=${news_id}
+    </update>
 </mapper>

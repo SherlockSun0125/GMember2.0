@@ -34,6 +34,9 @@ public class NewsServlet extends BaseServlet {
 //        设置发布人
         news.setPublisher(req.getParameter("newsAuthor"));
         System.out.println("publisher:"+news.getPublisher());
+//        设置新闻来源
+        news.setNews_source(req.getParameter("newsSource"));
+
 //      设置作者
         Admin admin= (Admin) session.getAttribute("Admin");
         news.setAuthor_id(admin.getAdmin_id());
