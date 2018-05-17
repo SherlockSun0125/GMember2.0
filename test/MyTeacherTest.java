@@ -34,6 +34,7 @@ public class MyTeacherTest {
 
         System.out.println(teacher.toString());
         teacherDao.updateTeacher(teacher);
+
 //        Integer teaid=teacherDao.addTeacher(teacher);
 
 //        System.out.println("teaid="+teaid);

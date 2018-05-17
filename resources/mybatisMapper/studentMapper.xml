@@ -3,14 +3,54 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hitwh.gmember.mapper.StudentMapper">
+    <resultMap id="studentMap" type="cn.edu.hitwh.gmember.pojo.Student">
+        <!-- id：映射主键  column：字段名  property：pojo类属性名 -->
+        <id column="stu_id" property="stu_id"></id>
+        <result column="stu_num" property="stu_num"></result>
+        <result column="stu_name" property="stu_name"></result>
+        <result column="stu_pwd" property="stu_pwd"></result>
+        <result column="stu_sex" property="stu_sex"></result>
+        <result column="stu_age" property="stu_age"></result>
+        <result column="stu_phone" property="stu_phone"></result>
+        <result column="stu_mail" property="stu_mail"></result>
+        <result column="dep_id" property="dep_id"></result>
+        <result column="emp_id" property="emp_id"></result>
+        <result column="stu_level_id" property="stu_level_id"></result>
+        <result column="stu_note" property="stu_note"></result>
+    </resultMap>
     <select id="findStudent" resultType="cn.edu.hitwh.gmember.pojo.Student">
         SELECT * from student WHERE stu_num=#{stu_num} AND stu_pwd=#{stu_pwd}
     </select>
-    <select id="findStuById" parameterType="String" resultType="cn.edu.hitwh.gmember.pojo.Student">
-        SELECT * from student WHERE stu_id=#{id}
+    <select id="findStudentById" parameterType="String" resultType="cn.edu.hitwh.gmember.pojo.Student">
+        SELECT * from student WHERE stu_id=#{stu_id}
     </select>
 
-    <select id="selectAll" resultType="cn.edu.hitwh.gmember.pojo.Student">
+    <select id="findAllStudents" resultMap="studentMap">
         SELECT * FROM student
     </select>
+
+    <select id="findStudentsByLevel" resultMap="studentMap">
+        SELECT * FROM student WHERE stu_level_id=#{stu_level_id}
+    </select>
+
+    <select id="countAllStudents" resultType="int">
+        SELECT COUNT(*) FROM student
+    </select>
+
+    <delete id="deleteStudent" parameterType="int">
+        DELETE FROM student WHERE stu_id=#{stu_id}
+    </delete>
+
+    <insert id="addStudent" parameterType="cn.edu.hitwh.gmember.pojo.Student" useGeneratedKeys="true" keyProperty="stu_id">
+        INSERT INTO student(stu_num,stu_name, stu_pwd, stu_sex, stu_age, stu_phone, stu_mail,dep_id,stu_level_id,stu_note)
+                VALUES(#{stu.stu_num},#{stu.stu_name},#{stu.stu_pwd},#{stu.stu_sex},#{stu.stu_age},#{stu.stu_phone},#{stu.stu_mail},#{stu.dep_id},#{stu.stu_level_id},#{stu.stu_note})
+    </insert>
+
+    <!--管理员用，更新除企业导师、id-->
+    <update id="updateStudent" parameterType="cn.edu.hitwh.gmember.pojo.Student">
+        UPDATE gmember.student set stu_num=#{stu.stu_num},stu_name=#{stu.stu_name},stu_sex=#{stu.stu_sex},stu_age=#{stu.stu_age},
+            dep_id=#{stu.dep_id},stu_phone=#{stu.stu_phone},stu_mail=#{stu.stu_mail},stu_pwd=#{stu.stu_pwd},stu_note=#{stu.stu_note},
+            stu_level_id=#{stu.stu_level_id}
+        WHERE stu_id=#{stu.stu_id}
+    </update>
 </mapper>

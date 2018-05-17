@@ -1,7 +1,5 @@
 package cn.edu.hitwh.gmember.pojo;
 
-import java.util.Date;
-
 public class Student {
     private int stu_id;
     private String stu_num;
@@ -9,28 +7,28 @@ public class Student {
     private String stu_pwd;
     private String stu_sex;
     private int stu_age;
+    private int emp_id;
     private int dep_id;
-    private Date stu_entrol_time=new Date();
     private String stu_phone;
     private String stu_mail;
     private int stu_level_id;
-    private String emp_id;
+    private String stu_note;
 
     public Student(){}
 
-    public Student(int stu_id, String stu_num, String stu_name, String stu_pwd, String stu_sex, int stu_age, int dep_id, Date stu_entrol_time, String stu_phone, String stu_mail, int stu_level_id, String emp_id) {
+    public Student(int stu_id, String stu_num, String stu_name, String stu_pwd, String stu_sex, int stu_age, int emp_id, int dep_id, String stu_phone, String stu_mail, int stu_level_id, String stu_note) {
         this.stu_id = stu_id;
         this.stu_num = stu_num;
         this.stu_name = stu_name;
         this.stu_pwd = stu_pwd;
         this.stu_sex = stu_sex;
         this.stu_age = stu_age;
+        this.emp_id = emp_id;
         this.dep_id = dep_id;
-        this.stu_entrol_time = stu_entrol_time;
         this.stu_phone = stu_phone;
         this.stu_mail = stu_mail;
         this.stu_level_id = stu_level_id;
-        this.emp_id = emp_id;
+        this.stu_note = stu_note;
     }
 
     public int getStu_id() {
@@ -57,12 +55,12 @@ public class Student {
         return stu_age;
     }
 
-    public int getDep_id() {
-        return dep_id;
+    public int getEmp_id() {
+        return emp_id;
     }
 
-    public Date getStu_entrol_time() {
-        return stu_entrol_time;
+    public int getDep_id() {
+        return dep_id;
     }
 
     public String getStu_phone() {
@@ -77,8 +75,8 @@ public class Student {
         return stu_level_id;
     }
 
-    public String getEmp_id() {
-        return emp_id;
+    public String getStu_note() {
+        return stu_note;
     }
 
     public void setStu_id(int stu_id) {
@@ -105,12 +103,12 @@ public class Student {
         this.stu_age = stu_age;
     }
 
-    public void setDep_id(int dep_id) {
-        this.dep_id = dep_id;
+    public void setEmp_id(int emp_id) {
+        this.emp_id = emp_id;
     }
 
-    public void setStu_entrol_time(Date stu_entrol_time) {
-        this.stu_entrol_time = stu_entrol_time;
+    public void setDep_id(int dep_id) {
+        this.dep_id = dep_id;
     }
 
     public void setStu_phone(String stu_phone) {
@@ -125,8 +123,8 @@ public class Student {
         this.stu_level_id = stu_level_id;
     }
 
-    public void setEmp_id(String emp_id) {
-        this.emp_id = emp_id;
+    public void setStu_note(String stu_note) {
+        this.stu_note = stu_note;
     }
 
     @Override
@@ -138,12 +136,12 @@ public class Student {
                 ", stu_pwd='" + stu_pwd + '\'' +
                 ", stu_sex='" + stu_sex + '\'' +
                 ", stu_age=" + stu_age +
+                ", emp_id=" + emp_id +
                 ", dep_id=" + dep_id +
-                ", stu_entrol_time=" + stu_entrol_time +
                 ", stu_phone='" + stu_phone + '\'' +
                 ", stu_mail='" + stu_mail + '\'' +
                 ", stu_level_id=" + stu_level_id +
-                ", emp_id='" + emp_id + '\'' +
+                ", stu_note='" + stu_note + '\'' +
                 '}';
     }
 }

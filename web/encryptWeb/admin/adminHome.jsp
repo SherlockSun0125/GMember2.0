@@ -119,7 +119,7 @@
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
-                <li><a href="studentL0.jsp"><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/studentL0.jsp"><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
                 <li><a href="studentL1.jsp"><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
                 <li><a href="studentL2.jsp"><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
                 <li><a href="studentL3.jsp"><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>

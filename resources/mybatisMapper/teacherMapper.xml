@@ -20,10 +20,6 @@
         SELECT * FROM teacher WHERE tea_num=#{num} AND tea_pwd=#{pwd}
     </select>
 
-    <select id="findTeaById" parameterType="String" resultType="cn.edu.hitwh.gmember.pojo.Teacher">
-         SELECT * from teacher WHERE tea_id=#{tea_id}
-    </select>
-
     <select id="findAllTeachers" resultMap="teacherMap">
         SELECT * FROM teacher
     </select>
@@ -43,7 +39,7 @@
     </insert>
 
     <update id="updateTeacher" parameterType="cn.edu.hitwh.gmember.pojo.Teacher">
-        UPDATE teacher set tea_num=#{tea.tea_num},tea_name=#{tea.tea_name},tea_sex=#{tea.tea_sex},tea_age=#{tea.tea_age},
+        UPDATE gmember.teacher set tea_num=#{tea.tea_num},tea_name=#{tea.tea_name},tea_sex=#{tea.tea_sex},tea_age=#{tea.tea_age},
         dep_id=#{tea.dep_id},tea_phone=#{tea.tea_phone},tea_mail=#{tea.tea_mail},tea_pwd=#{tea.tea_pwd}
         WHERE tea_id=#{tea.tea_id}
     </update>

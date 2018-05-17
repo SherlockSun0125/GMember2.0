@@ -46,12 +46,13 @@ public class TeacherServlet extends BaseServlet {
     public String findAllTeachers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
         PageBean<Teacher> pageBean=teacherService.findAllTeachers();
-//        int currentPage=getCurrentPage(req);
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
         for(int i=0;i<pageBean.getBeanList().size();i++){
             System.out.println("来自servlet层的问候(取出的数据)："+pageBean.getBeanList().get(i));
         }
         pageBean.setUrl(url);
         req.setAttribute("pb",pageBean);
+        req.setAttribute("departmentPageBean",departmentPageBean);
         return "f:/encryptWeb/admin/teachers.jsp";
     }
 

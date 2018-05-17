@@ -43,7 +43,7 @@
         }
     </style>
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             var uls = $('.sidebar-nav > ul > *').clone();
             uls.addClass('visible-xs');
             $('#main-menu').append(uls.clone());
@@ -54,10 +54,8 @@
     <script src="${pageContext.request.contentType}/encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
-        $(function () {
-            $('.demo-cancel-click').click(function () {
-                return false;
-            });
+        $(function() {
+            $('.demo-cancel-click').click(function(){return false;});
         });
     </script>
 
@@ -80,7 +78,7 @@
             <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user padding-right-small"
-                          style="position:relative;top: 3px;"></span> Paul Suen
+                          style="position:relative;top: 3px;"></span> ${Admain.admin_name}
                     <i class="fa fa-caret-down"></i>
                 </a>
 
@@ -194,18 +192,18 @@
         </div>
         <table class="table">
             <thead>
-            <tr>
-                <th>id</th>
-                <th>工号</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>年龄</th>
-                <th>院系</th>
-                <th>手机号</th>
-                <th>邮箱</th>
-                <th>密码</th>
-                <th>谨慎操作</th>
-            </tr>
+                <tr>
+                    <th>id</th>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>院系</th>
+                    <th>手机号</th>
+                    <th>邮箱</th>
+                    <th>密码</th>
+                    <th>谨慎操作</th>
+                </tr>
             </thead>
             <tbody>
             <%--<c:set var="num" value="0"></c:set>--%>
@@ -216,15 +214,7 @@
                     <td>${tea.tea_name}</td>
                     <td>${tea.tea_sex}</td>
                     <td>${tea.tea_age}</td>
-                    <td>
-                        <c:forEach items="${departmentPageBean.beanList}" var="dep">
-                            <c:choose>
-                                <c:when test="${tea.dep_id eq dep.dep_id}">
-                                    ${dep.dep_name}
-                                </c:when>
-                            </c:choose>
-                        </c:forEach>
-                    </td>
+                    <td>${tea.dep_id}</td>
                     <td>${tea.tea_phone}</td>
                     <td>${tea.tea_mail}</td>
                     <td>${tea.tea_pwd}</td>
@@ -232,9 +222,8 @@
                         <a href="${pageContext.request.contextPath}/teacherServlet?method=findTeacherById&teacherid=${tea.tea_id}"><i
                                 class="fa fa-pencil"></i></a>
                         &nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/teacherServlet?method=deleteTeacher&teacherid=${tea.tea_id}&teachername=${tea.tea_name}"
-                           role="button"><i class="fa fa-trash-o"></i></a>
-                            <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
+                        <a href="${pageContext.request.contextPath}/teacherServlet?method=deleteTeacher&teacherid=${tea.tea_id}&teachername=${tea.tea_name}" role="button"><i class="fa fa-trash-o"></i></a>
+                        <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
                     </td>
                 </tr>
             </c:forEach>
