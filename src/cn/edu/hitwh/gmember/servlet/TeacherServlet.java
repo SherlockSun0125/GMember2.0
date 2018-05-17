@@ -143,7 +143,6 @@ public class TeacherServlet extends BaseServlet {
         Teacher newTeacher=new Teacher();
         String url=getUrl(req);
         System.out.println("网页url="+url);
-
 //        工号
         String teanum=req.getParameter("teanum");
         newTeacher.setTea_num(teanum);

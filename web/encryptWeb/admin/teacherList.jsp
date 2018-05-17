@@ -236,10 +236,10 @@
             </div>
         </div>
 
-        <footer style="position: absolute;bottom: 0;width: 100%">
+        <footer>
             <hr>
 
-            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
+            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
         </footer>
     </div>
 </div>

@@ -58,31 +58,34 @@
 
     <script type="text/javascript">
         function checkForm() {
-            if(!$("#teanum").val()){
-                alert("工号不能为空!");
+            if (!$("#stunum").val()) {
+                alert("学号不能为空!");
                 return false;
             }
-            if(!$("#teaname").val()){
+            if (!$("#stuname").val()) {
                 alert("姓名不能为空!");
                 return false;
             }
-            if(!$("#teasex").val()){
+            if (!$("#stusex").val()) {
                 alert("性别不能为空!");
                 return false;
             }
-            if(!$("#teaage").val()){
+            if (!$("#stuage").val()) {
                 alert("年龄不能为空!");
                 return false;
             }
-            if(!$("#teaphone").val()){
+            if (!$("#stuphone").val()) {
                 alert("手机号不能为空!");
                 return false;
             }
-            if(!$("#teamail").val()){
+            if (!$("#stumail").val()) {
                 alert("邮箱不能为空!");
                 return false;
             }
-            return true;
+            if (!$("#stupwd").val()) {
+                alert("密码不能为空!");
+                return false;
+            }
         }
     </script>
 
@@ -130,20 +133,21 @@
                target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
-        <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/teacherList.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a>
+        <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/teacherList.jsp" class="nav-header"><i
+                class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a>
         </li>
 
         <%--学生管理--%>
-        <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents"
+               data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
-            <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/studentL0.jsp"><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
-                <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/studentL1.jsp"><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
-                <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/studentL2.jsp"><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
-                <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/studentL3.jsp"><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>
-                <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/studentL4.jsp"><span class="fa fa-caret-right"></span> 就业推荐阶段</a></li>
-                <%--<li><a href="calendar.html"><span class="fa fa-caret-right"></span> Calendar</a></li>--%>
+            <ul class="dashboard-menu nav nav-list collapse in"><!--"class=in"的时候展开-->
+                <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span
+                                class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
+                </c:forEach>
             </ul>
         </li>
 
@@ -206,81 +210,113 @@
 
         <ul class="nav nav-tabs">
             <li class="active"><a href="#home" data-toggle="tab">基本资料</a></li>
-            <%--<li><a href="#profile" data-toggle="tab">更改密码</a></li>--%>
+            <li><a href="#profile" data-toggle="tab">更改密码</a></li>
         </ul>
 
         <div class="row">
             <div class="col-md-4">
                 <br>
-                <form action="${pageContext.request.contextPath}/teacherServlet?method=addTeacher" method="post" onsubmit="return checkForm()">
+                <form action="${pageContext.request.contextPath}/studentServlet?method=updateStudent&studentid=${stu.stu_id}"
+                      method="post" onsubmit="return checkForm()">
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane active in" id="home">
-                            <div id="tab" >
+                            <div id="tab">
                                 <div class="form-group">
-                                    <label for="teanum">工号</label>
-                                    <input type="text" name="teanum" id="teanum" class="form-control">
+                                    <label for="stunum">学号</label>
+                                    <input type="text" name="stunum" id="stunum" value="${stu.stu_num}"
+                                           class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="teaname">姓名</label>
-                                    <input type="text" name="teaname" id="teaname" class="form-control">
+                                    <label for="stuname">姓名</label>
+                                    <input type="text" name="stuname" id="stuname" value="${stu.stu_name}"
+                                           class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="teasex">性别</label>
-                                    <input type="text" name="teasex" id="teasex" placeholder="男/女" class="form-control">
+                                    <label for="stusex">性别</label>
+                                    <input type="text" name="stusex" id="stusex" value="${stu.stu_sex}"
+                                           class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="teaage">年龄</label>
-                                    <input type="text" name="teaage" id="teaage" class="form-control">
+                                    <label for="stuage">年龄</label>
+                                    <input type="text" name="stuage" id="stuage" value="${stu.stu_age}"
+                                           class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="depid">院系</label>
                                     <select name="depid" id="depid" class="form-control">
-                                        <%--pb是院系的pageBean--%>
-                                            <c:forEach items="${departmentPageBean.beanList}" var="department">
-                                                <option value="${department.dep_id}">${department.dep_name} </option>
-                                            </c:forEach>
+                                        <c:forEach items="${departmentPageBean.beanList}" var="department">
+                                            <c:choose>
+                                                <c:when test="${department.dep_id eq stu.dep_id}">
+                                                    <option value="${department.dep_id}"
+                                                            selected="selected">${department.dep_name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${department.dep_id}">${department.dep_name} </option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="stulevelid">院系</label>
+                                    <select name="stulevelid" id="stulevelid" class="form-control">
+                                        <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
+                                            <c:choose>
+                                                <c:when test="${stulevel.stu_level_id eq stu.stu_level_id}">
+                                                    <option value="${stulevel.stu_level_id}"
+                                                            selected="selected">${stulevel.stu_level_name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${stulevel.stu_level_id}">${stulevel.stu_level_name} </option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="teaphone">手机号</label><small>(密码默认为手机号)</small>
-                                    <input type="text" id="teaphone" name="teaphone" class="form-control">
+                                    <label for="stuphone">手机号</label>
+                                    <input type="text" id="stuphone" name="stuphone" value="${stu.stu_phone}"
+                                           class="form-control">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="teamail">邮箱</label>
-                                    <input type="text" id="teamail" name="teamail" class="form-control">
+                                    <label for="stumail">邮箱</label>
+                                    <input type="text" id="stumail" name="stumail" value="${stu.stu_mail}"
+                                           class="form-control">
                                 </div>
 
-                                <%--<div class="form-group">--%>
-                                    <%--<label>Address</label>--%>
-                                    <%--<textarea value="Smith" rows="3" class="form-control">内容</textarea>--%>
-                                <%--</div>--%>
+                                <div class="form-group">
+                                    <label for="stunote">备注</label>
+                                    <textarea name="stunote" id="stunote" rows="3" class="form-control" style="text-align: left">${stu.stu_note}</textarea>
+                                </div>
+
                             </div>
                         </div>
 
-                        <%--<div class="tab-pane fade" id="profile">--%>
+                        <div class="tab-pane fade" id="profile">
 
-                            <%--<div id="tab2">--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>输入新密码</label>--%>
-                                    <%--<input type="password" class="form-control" id="teapwd" name="teapwd" value="${tea.tea_pwd}">--%>
+                            <div id="tab2">
+                                <div class="form-group">
+                                    <label for="stupwd">输入新密码</label>
+                                    <input type="password" class="form-control" id="stupwd" name="stupwd"
+                                           value="${stu.stu_pwd}">
+                                </div>
+                                <%--<div>--%>
+                                <%--<button class="btn btn-primary">更新密码</button>--%>
                                 <%--</div>--%>
-                                <%--&lt;%&ndash;<div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<button class="btn btn-primary">更新密码</button>&ndash;%&gt;--%>
-                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="btn-toolbar list-toolbar">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>&nbsp;增加</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 更新</button>
                         <%--<a href="#myModal" data-toggle="modal" class="btn btn-danger">Delete</a>--%>
                     </div>
                 </form>
 
-                <small>${msgAddTeacher}</small>
+                <small>${msgUpdateStudent}</small>
             </div>
         </div>
 

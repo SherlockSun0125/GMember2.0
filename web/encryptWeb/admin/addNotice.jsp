@@ -192,10 +192,10 @@
                             <div class="form-group" style="width:10%;">
                                 <span style="color: red">*&nbsp;</span><label for="type">所属版块</label>
                                 <div style="width:20em;display: inline-block">
-                                    <select class="form-control" name="noticeSection" id="type">
-                                        <option value="1" selected="selected">通知公告</option>
-                                        <option value="2">院系通知</option>
-                                        <option value="3">学术科研</option>
+                                    <select class="form-control" name="newsSction" id="type">
+                                        <c:forEach items="${noticeSectionPageBean.beanList}" var="noticesections">
+                                            <option value="${noticesections.notice_section_id}">${noticesections.notice_section_name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -238,9 +238,9 @@
             </div>
         </div>
 
-        <footer style="position: absolute;bottom: 0;width: 100%">
+        <footer>
             <hr>
-            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
+            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
         </footer>
     </div>
 </div>

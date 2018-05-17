@@ -11,4 +11,5 @@ public interface IStudentService {
     public void deleteStudent(int stu_id);
     public Integer addStudent(Student student);
     public void updateStudent(Student student);
+    public Student findStudentById(int stu_id);
 }

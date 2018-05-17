@@ -1,8 +1,11 @@
 package cn.edu.hitwh.gmember.servlet;
 
 import cn.edu.hitwh.gmember.pojo.Admin;
+import cn.edu.hitwh.gmember.pojo.Department;
 import cn.edu.hitwh.gmember.pojo.News;
+import cn.edu.hitwh.gmember.service.IDepartmentService;
 import cn.edu.hitwh.gmember.service.INewsService;
+import cn.edu.hitwh.gmember.serviceImp.DepartmentServiceImp;
 import cn.edu.hitwh.gmember.serviceImp.NewsServiceImp;
 import cn.edu.hitwh.gmember.tools.DateTools;
 import cn.itcast.servlet.BaseServlet;
@@ -19,6 +22,7 @@ import cn.edu.hitwh.gmember.tools.PageBean;
 public class NewsServlet extends BaseServlet {
     private INewsService newsService=new NewsServiceImp();
     private DateTools dateTools=new DateTools();
+    IDepartmentService departmentService=new DepartmentServiceImp();
 
     public String addNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("调用addNews方法！");
@@ -111,6 +115,18 @@ public class NewsServlet extends BaseServlet {
 //            System.out.println("pb的list为："+news.getNews_id()+news.getNews_title());
 //        }
         return "f:/news.jsp";
+    }
+
+    public String adminFindAllNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int currentPage=getCurrentPage(req);
+//        System.out.println("当前页码为："+currentPage);
+        String url=getUrl(req);
+        PageBean<News> pb =newsService.findAllNews(currentPage);
+//        System.out.println("刚返回的时候的pb.toString()为："+pb.toString());
+        pb.setUrl(url);
+        pb.setTotalPages(pb.getTotalPages());
+        req.setAttribute("pb", pb);
+        return "f:/encryptWeb/admin/news.jsp";
     }
 
     public String findNewsById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

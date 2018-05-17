@@ -21,7 +21,7 @@
     <select id="findStudent" resultType="cn.edu.hitwh.gmember.pojo.Student">
         SELECT * from student WHERE stu_num=#{stu_num} AND stu_pwd=#{stu_pwd}
     </select>
-    <select id="findStudentById" parameterType="String" resultType="cn.edu.hitwh.gmember.pojo.Student">
+    <select id="findStudentById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.Student">
         SELECT * from student WHERE stu_id=#{stu_id}
     </select>
 

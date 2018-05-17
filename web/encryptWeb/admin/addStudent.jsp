@@ -58,27 +58,35 @@
 
     <script type="text/javascript">
         function checkForm() {
-            if(!$("#teanum").val()){
-                alert("工号不能为空!");
+            if(!$("#stunum").val()){
+                alert("学号不能为空!");
                 return false;
             }
-            if(!$("#teaname").val()){
+            if(!$("#stuname").val()){
                 alert("姓名不能为空!");
                 return false;
             }
-            if(!$("#teasex").val()){
+            if(!$("#stusex").val()){
                 alert("性别不能为空!");
                 return false;
             }
-            if(!$("#teaage").val()){
+            if(!$("#stuage").val()){
                 alert("年龄不能为空!");
                 return false;
             }
-            if(!$("#teaphone").val()){
+            if(!$("#depid").val()){
+                alert("院系不能为空!");
+                return false;
+            }
+            if(!$("#stulevelid").val()){
+                alert("阶段不能为空!");
+                return false;
+            }
+            if(!$("#stuphone").val()){
                 alert("手机号不能为空!");
                 return false;
             }
-            if(!$("#teamail").val()){
+            if(!$("#stumail").val()){
                 alert("邮箱不能为空!");
                 return false;
             }
@@ -130,7 +138,7 @@
                target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
-        <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/teacherList.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a>
+        <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/stucherList.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a>
         </li>
 
         <%--学生管理--%>
@@ -212,25 +220,25 @@
         <div class="row">
             <div class="col-md-4">
                 <br>
-                <form action="${pageContext.request.contextPath}/teacherServlet?method=addTeacher" method="post" onsubmit="return checkForm()">
+                <form action="${pageContext.request.contextPath}/studentServlet?method=addStudent" method="post" onsubmit="return checkForm()">
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane active in" id="home">
                             <div id="tab" >
                                 <div class="form-group">
-                                    <label for="teanum">工号</label>
-                                    <input type="text" name="teanum" id="teanum" class="form-control">
+                                    <label for="stunum">学号</label>
+                                    <input type="text" name="stunum" id="stunum" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="teaname">姓名</label>
-                                    <input type="text" name="teaname" id="teaname" class="form-control">
+                                    <label for="stuname">姓名</label>
+                                    <input type="text" name="stuname" id="stuname" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="teasex">性别</label>
-                                    <input type="text" name="teasex" id="teasex" placeholder="男/女" class="form-control">
+                                    <label for="stusex">性别</label>
+                                    <input type="text" name="stusex" id="stusex" placeholder="男/女" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="teaage">年龄</label>
-                                    <input type="text" name="teaage" id="teaage" class="form-control">
+                                    <label for="stuage">年龄</label>
+                                    <input type="text" name="stuage" id="stuage" class="form-control">
                                 </div>
 
                                 <div class="form-group">
@@ -244,34 +252,31 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="teaphone">手机号</label><small>(密码默认为手机号)</small>
-                                    <input type="text" id="teaphone" name="teaphone" class="form-control">
+                                    <label for="stulevelid">阶段</label>
+                                    <select name="stulevelid" id="stulevelid" class="form-control">
+                                        <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
+                                           <option value="${stulevel.stu_level_id}">${stulevel.stu_level_name} </option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="teamail">邮箱</label>
-                                    <input type="text" id="teamail" name="teamail" class="form-control">
+                                    <label for="stuphone">手机号</label><small>(密码默认为手机号)</small>
+                                    <input type="text" id="stuphone" name="stuphone" class="form-control">
                                 </div>
 
-                                <%--<div class="form-group">--%>
-                                    <%--<label>Address</label>--%>
-                                    <%--<textarea value="Smith" rows="3" class="form-control">内容</textarea>--%>
-                                <%--</div>--%>
+                                <div class="form-group">
+                                    <label for="stumail">邮箱</label>
+                                    <input type="text" id="stumail" name="stumail" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stunote">备注</label>
+                                    <textarea name="stunote" id="stunote" rows="3" class="form-control"></textarea>
+                                </div>
                             </div>
                         </div>
 
-                        <%--<div class="tab-pane fade" id="profile">--%>
-
-                            <%--<div id="tab2">--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>输入新密码</label>--%>
-                                    <%--<input type="password" class="form-control" id="teapwd" name="teapwd" value="${tea.tea_pwd}">--%>
-                                <%--</div>--%>
-                                <%--&lt;%&ndash;<div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<button class="btn btn-primary">更新密码</button>&ndash;%&gt;--%>
-                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
                     </div>
 
                     <div class="btn-toolbar list-toolbar">
@@ -280,7 +285,7 @@
                     </div>
                 </form>
 
-                <small>${msgAddTeacher}</small>
+                <small>${msgAddStudent}</small>
             </div>
         </div>
 

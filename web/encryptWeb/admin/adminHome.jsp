@@ -115,12 +115,13 @@
                 class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
 
         <%--学生管理--%>
-        <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <%--<li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">--%>
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
                 <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
-                    <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/studentL0.jsp"><span class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
                 </c:forEach>
             </ul>
         </li>
@@ -140,7 +141,7 @@
 
         <%--新闻中心--%>
         <li>
-            <a href="#" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-legal"></i>&nbsp;&nbsp;新闻中心<i class="fa fa-collapse"></i>
             </a>
         </li>
@@ -149,7 +150,7 @@
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
                     <li><a href=""><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
-                <li><a href="addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
             </ul>
         </li>
 
@@ -368,10 +369,10 @@
         <%--</div>--%>
 
 
-        <footer style="position: absolute;bottom: 0;width: 100%">
+        <footer>
             <hr>
 
-            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
+            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
             </p>
         </footer>
     </div>

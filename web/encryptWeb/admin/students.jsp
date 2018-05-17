@@ -43,7 +43,7 @@
         }
     </style>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             var uls = $('.sidebar-nav > ul > *').clone();
             uls.addClass('visible-xs');
             $('#main-menu').append(uls.clone());
@@ -54,8 +54,10 @@
     <script src="${pageContext.request.contentType}/encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
-        $(function() {
-            $('.demo-cancel-click').click(function(){return false;});
+        $(function () {
+            $('.demo-cancel-click').click(function () {
+                return false;
+            });
         });
     </script>
 
@@ -109,16 +111,16 @@
         </li>
 
         <%--学生管理--%>
-        <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents"
+               data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
-            <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
-                <li><a href="studentL0.jsp"><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
-                <li><a href="studentL1.jsp"><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
-                <li><a href="studentL2.jsp"><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
-                <li><a href="studentL3.jsp"><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>
-                <li><a href="studentL4.jsp"><span class="fa fa-caret-right"></span> 就业推荐阶段</a></li>
-                <%--<li><a href="calendar.html"><span class="fa fa-caret-right"></span> Calendar</a></li>--%>
+            <ul class="dashboard-menu nav nav-list collapse in"><!--"class=in"的时候展开-->
+                <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span
+                                class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
+                </c:forEach>
             </ul>
         </li>
 
@@ -184,52 +186,66 @@
 <div class="content">
     <div class="main-content">
         <div class="btn-toolbar list-toolbar">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/teacherServlet?method=toAddTeacher"><i
-                    class="fa fa-plus"></i>增加教师</a>
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/studentServlet?method=toAddStudent"><i class="fa fa-plus"></i>增加学生</a>
             <button class="btn btn-default">导入</button>
             <button class="btn btn-default">导出</button>
             <div class="btn-group"></div>
         </div>
         <table class="table">
             <thead>
-                <tr>
-                    <th>id</th>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>性别</th>
-                    <th>年龄</th>
-                    <th>院系</th>
-                    <th>手机号</th>
-                    <th>邮箱</th>
-                    <th>密码</th>
-                    <th>谨慎操作</th>
-                </tr>
+            <tr>
+                <th>id</th>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>院系</th>
+                <th>导师</th>
+                <th>阶段</th>
+                <th>手机号</th>
+                <th>邮箱</th>
+                <th>备注</th>
+                <th>密码</th>
+                <th>谨慎操作</th>
+            </tr>
             </thead>
             <tbody>
             <%--<c:set var="num" value="0"></c:set>--%>
-            <c:forEach items="${pb.beanList}" var="tea">
+            <c:forEach items="${pb.beanList}" var="stu">
                 <tr>
-                    <td>${tea.tea_id}</td>
-                    <td>${tea.tea_num}</td>
-                    <td>${tea.tea_name}</td>
-                    <td>${tea.tea_sex}</td>
-                    <td>${tea.tea_age}</td>
-                    <td>${tea.dep_id}</td>
-                    <td>${tea.tea_phone}</td>
-                    <td>${tea.tea_mail}</td>
-                    <td>${tea.tea_pwd}</td>
+                    <td>${stu.stu_id}</td>
+                    <td>${stu.stu_num}</td>
+                    <td>${stu.stu_name}</td>
+                    <td>${stu.stu_sex}</td>
+                    <td>${stu.stu_age}</td>
+                    <td>
+                        <c:forEach items="${departmentPageBean.beanList}" var="dep">
+                            <c:choose>
+                                <c:when test="${stu.dep_id eq dep.dep_id}">
+                                    ${dep.dep_name}
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </td>
+                    <td>${stu.emp_id}</td>
+                    <td>${stu.stu_level_id}</td>
+                    <td>${stu.stu_phone}</td>
+                    <td>${stu.stu_mail}</td>
+                    <td>${stu.stu_note}</td>
+                    <td>${stu.stu_pwd}</td>
                     <td style="text-align: center">
-                        <a href="${pageContext.request.contextPath}/teacherServlet?method=findTeacherById&teacherid=${tea.tea_id}"><i
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentById&studentid=${stu.stu_id}"><i
                                 class="fa fa-pencil"></i></a>
                         &nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/teacherServlet?method=deleteTeacher&teacherid=${tea.tea_id}&teachername=${tea.tea_name}" role="button"><i class="fa fa-trash-o"></i></a>
-                        <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=deleteStudent&studentid=${stu.stu_id}&studentname=${stu.stu_name}&levelid=${stu.stu_level_id}"
+                           role="button"><i class="fa fa-trash-o"></i></a>
+                            <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-        <small>${msgDeleteTeacher}</small>
+        <small>${msgDeleteStudent}</small>
 
         <%--<ul class="pagination">--%>
         <%--<li><a href="#">&laquo;</a></li>--%>
@@ -270,9 +286,10 @@
         </div>
 
 
-        <footer style="position: absolute;bottom: 0;width: 100%">
+        <%--<footer style="position: absolute;bottom: 0;width: 100%">--%>
+        <footer>
             <hr>
-            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
+            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
             </p>
         </footer>
     </div>

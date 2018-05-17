@@ -185,31 +185,63 @@
 
 <%--中间部分--%>
 <div class="content">
-    <div class="main-content" style="margin-top: 10px;">
-        <%--下左一--%>
-        <div class="row">
-            <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
-                <div class="panel panel-default" style="background-color: #EEEEEE">
-                    <div class="panel-heading no-collapse"
-                         style="text-align: center;font-size: 1.5em;font-weight: bold">新闻标题
-                    </div>
-                    <div style="margin: 10px;height: 500px;" class="newsform">
-                        <div class="infomation" style="background-color: red;width: 100%;height: 30px">
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+    <div class="main-content">
+        <div class="btn-toolbar list-toolbar">
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/newsServlet?toAddNews"><i
+                    class="fa fa-plus"></i>上传新闻</a>
+            <button class="btn btn-default">导出列表</button>
+            <div class="btn-group"></div>
         </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>标题</th>
+                <th>板块</th>
+                <th>浏览次数</th>
+                <th>时间</th>
+                <th>谨慎操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%--<c:set var="num" value="0"></c:set>--%>
+            <c:forEach items="${pb.beanList}" var="news">
+                <tr>
+                    <td>${news.news_id}</td>
+                    <td>${news.news_num}</td>
+                    <td>
+                        <c:forEach items="${departmentPageBean.beanList}" var="dep">
+                            <c:choose>
+                                <c:when test="${stu.dep_id eq dep.dep_id}">
+                                    ${dep.dep_name}
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </td>
+                    <td>${news.news_readtimes}</td>
+                    <td>${news.news_time}</td>
 
-            <footer style="position: absolute;bottom: 0;width: 100%">
-                <hr>
+                    <td style="text-align: center">
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentById&studentid=${stu.stu_id}"><i
+                                class="fa fa-pencil"></i></a>
+                        &nbsp;&nbsp;
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=deleteStudent&studentid=${stu.stu_id}&studentname=${stu.stu_name}&levelid=${stu.stu_level_id}"
+                           role="button"><i class="fa fa-trash-o"></i></a>
+                            <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+        <small>${msgDeleteNews}</small>
 
-                <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
-            </footer>
+        <%--<footer style="position: absolute;bottom: 0;width: 100%">--%>
+        <footer>
+            <hr>
+            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
+            </p>
+        </footer>
     </div>
 </div>
-
 </body>
 </html>

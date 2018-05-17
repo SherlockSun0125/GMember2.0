@@ -70,4 +70,13 @@ public class StudentServiceImp implements IStudentService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Student findStudentById(int stu_id) {
+        try{
+            return studentDao.findStudentById(stu_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }
