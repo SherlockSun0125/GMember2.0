@@ -119,12 +119,9 @@
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/studentL0.jsp"><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
-                <li><a href="studentL1.jsp"><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
-                <li><a href="studentL2.jsp"><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
-                <li><a href="studentL3.jsp"><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>
-                <li><a href="studentL4.jsp"><span class="fa fa-caret-right"></span> 就业推荐阶段</a></li>
-                <%--<li><a href="calendar.html"><span class="fa fa-caret-right"></span> Calendar</a></li>--%>
+                <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
+                    <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/studentL0.jsp"><span class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
+                </c:forEach>
             </ul>
         </li>
         <li data-popover="true" data-placement="right">
@@ -134,20 +131,9 @@
         </li>
         <li>
             <ul class="premium-menu nav nav-list collapse">
-                <li><a href=""><span class="fa fa-caret-right"></span> 国际化大型软件公司</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 游戏外包公司</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 数字游戏公司</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 嵌入式公司</a>
-                </li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 电子商务公司</a>
-                </li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 互联网公司</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 其他行业</a></li>
-                <%--<li><a href="premium-users.html"><span class="fa fa-caret-right"></span> Enhanced Users List</a></li>--%>
-                <%--<li><a href="premium-media.html"><span class="fa fa-caret-right"></span> Enhanced Media</a></li>--%>
-                <%--<li><a href="premium-invoice.html"><span class="fa fa-caret-right"></span> Invoice</a></li>--%>
-                <%--<li><a href="premium-build.html"><span class="fa fa-caret-right"></span> Advanced Tools</a></li>--%>
-                <%--<li><a href="premium-colors.html"><span class="fa fa-caret-right"></span> Additional Color Themes</a>--%>
+                <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
+                    <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
+                </c:forEach>
                 </li>
             </ul>
         </li>
@@ -160,10 +146,9 @@
         </li>
         <li>
             <ul class="legal-menu nav nav-list collapse">
-                <li><a href=""><span class="fa fa-caret-right"></span> 综合要闻</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 校园资讯</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 教学科研</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 专题新闻</a></li>
+                <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
+                    <li><a href=""><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
+                </c:forEach>
                 <li><a href="addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
             </ul>
         </li>
@@ -176,9 +161,9 @@
         </li>
         <li>
             <ul class="accounts-menu nav nav-list collapse">
-                <li><a href=""><span class="fa fa-caret-right"></span> 通知公告</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 院系通知</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 学术科研</a></li>
+                <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
+                    <li><a href=""><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                </c:forEach>
                 <li><a href="addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
