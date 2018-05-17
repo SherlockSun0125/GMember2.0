@@ -83,7 +83,7 @@
                 return false;
             }
             if(!$("#teapwd").val()){
-                alert("学号不能为空!");
+                alert("密码不能为空!");
                 return false;
             }
         }
@@ -220,24 +220,24 @@
                         <div class="tab-pane active in" id="home">
                             <div id="tab" >
                                 <div class="form-group">
-                                    <label>工号</label>
+                                    <label for="teanum">工号</label>
                                     <input type="text" name="teanum" id="teanum" value="${tea.tea_num}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>姓名</label>
+                                    <label for="teaname">姓名</label>
                                     <input type="text" name="teaname" id="teaname" value="${tea.tea_name}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>性别</label>
+                                    <label for="teasex">性别</label>
                                     <input type="text" name="teasex" id="teasex" value="${tea.tea_sex}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>年龄</label>
+                                    <label for="teaage">年龄</label>
                                     <input type="text" name="teaage" id="teaage" value="${tea.tea_age}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>院系</label>
+                                    <label for="depid">院系</label>
                                     <select name="depid" id="depid" class="form-control">
                                         <%--pb是院系的pageBean--%>
                                             <c:forEach items="${departmentPageBean.beanList}" var="department">
@@ -254,12 +254,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>手机号</label>
+                                    <label for="teaphone">手机号</label>
                                     <input type="text" id="teaphone" name="teaphone" value="${tea.tea_phone}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>邮箱</label>
+                                    <label for="teamail">邮箱</label>
                                     <input type="text" id="teamail" name="teamail" value="${tea.tea_mail}" class="form-control">
                                 </div>
 
@@ -275,7 +275,7 @@
 
                             <div id="tab2">
                                 <div class="form-group">
-                                    <label>输入新密码</label>
+                                    <label for="teapwd">输入新密码</label>
                                     <input type="password" class="form-control" id="teapwd" name="teapwd" value="${tea.tea_pwd}">
                                 </div>
                                 <%--<div>--%>

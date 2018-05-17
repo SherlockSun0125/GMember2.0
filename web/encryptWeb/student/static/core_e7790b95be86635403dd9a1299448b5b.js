@@ -25392,7 +25392,7 @@ I$("63edfd80c86e6ed5f35f48e5c1638a46", function () {
     };
     d.yP = function (e) {
         var t = {};
-        if ("ask" == this.Ix) t.commentVo = this.CP; else if ("note" == this.Ix) t.noteCommentVo = this.CP; else if ("analysis" == this.Ix) t.analysisCmtVo = this.CP;
+        if ("ask" == this.Ix) t.commentVo = this.CP; else if ("admin‘ styles" == this.Ix) t.noteCommentVo = this.CP; else if ("analysis" == this.Ix) t.analysisCmtVo = this.CP;
         r.$K.im({reportData: t})
     };
     d.zP = function (e, t) {
@@ -25420,7 +25420,7 @@ I$("63edfd80c86e6ed5f35f48e5c1638a46", function () {
         r.gm.im({title: "确认删除", message: "你确定要删除此条评论吗？", okFunc: this.tF.ca(this), cancelFunc: i.ca(this)})
     };
     d.tF = function () {
-        if ("ask" == this.Ix) this.AP.aP(this.CP.id, this.CP.targetId); else if ("note" == this.Ix) this.AP.gP(this.CP.id, this.CP.targetId); else if ("analysis" == this.Ix) this.AP.aP(this.CP.id, this.CP.targetId)
+        if ("ask" == this.Ix) this.AP.aP(this.CP.id, this.CP.targetId); else if ("admin‘ styles" == this.Ix) this.AP.gP(this.CP.id, this.CP.targetId); else if ("analysis" == this.Ix) this.AP.aP(this.CP.id, this.CP.targetId)
     };
     d.BP = function () {
         if (this.DP) this.DP(this.CP);
@@ -25448,7 +25448,7 @@ I$("b3a57d8ecd633b0ff6c6762fe21991f9", function () {
         }
         if (this.GP.noteCmt) {
             e.noteId = this.GP.noteCmt.noteId;
-            t = "note"
+            t = "admin‘ styles"
         }
         if (this.GP.analysisCmt) {
             e.analysisId = this.GP.analysisCmt.analysisId;

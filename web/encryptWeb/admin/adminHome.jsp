@@ -5,10 +5,14 @@
     <meta charset="utf-8">
     <title>管理员</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js"
+            type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js"
+            type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $(".knob").knob();
@@ -70,7 +74,8 @@
 
         <a class="" href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp">
             <span class="navbar-brand" style="padding-top: 2px;height: 45px">
-                <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
+                <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px"
+                     style="padding-top: 0;padding-bottom: 0">
             </span>
         </a>
     </div>
@@ -106,22 +111,22 @@
         <li><a href="adminHome.jsp" class="nav-header" target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
-        <li><a href="${pageContext.request.contextPath}/teacherServlet?method=findAllTeachers" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
+        <li><a href="${pageContext.request.contextPath}/teacherServlet?method=findAllTeachers" class="nav-header"><i
+                class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
 
         <%--学生管理--%>
-        <li><a href="" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
-                <li><a href=""><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 就业推荐阶段</a></li>
+                <li><a href="studentL0.jsp"><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
+                <li><a href="studentL1.jsp"><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
+                <li><a href="studentL2.jsp"><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
+                <li><a href="studentL3.jsp"><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>
+                <li><a href="studentL4.jsp"><span class="fa fa-caret-right"></span> 就业推荐阶段</a></li>
                 <%--<li><a href="calendar.html"><span class="fa fa-caret-right"></span> Calendar</a></li>--%>
             </ul>
         </li>
-
         <li data-popover="true" data-placement="right">
             <a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
@@ -273,115 +278,116 @@
             </div>
             <%--下右一--%>
             <%--<div class="col-sm-6 col-md-6">--%>
-                <%--<div class="panel panel-default">--%>
-                    <%--<a href="#widget1container" class="panel-heading" data-toggle="collapse">其他信息 </a>--%>
-                    <%--<div id="widget1container" class="panel-body collapse in">--%>
-                        <%--<h2>Here's a Tip</h2>--%>
-                        <%--<p>This template was developed with <a href="http://middlemanapp.com/"--%>
-                                                               <%--target="_blank">Middleman</a> and includes .erb layouts--%>
-                            <%--and views.</p>--%>
-                        <%--<p>All of the views you see here (sign in, sign up, users, etc) are already split up so you--%>
-                            <%--don't have to waste your time doing it yourself!</p>--%>
-                        <%--<p>The layout.erb file includes the header, footer, and side navigation and all of the views are--%>
-                            <%--broken out into their own files.</p>--%>
-                        <%--<p>If you aren't using Ruby, there is also a set of plain HTML files for each page, just like--%>
-                            <%--you would expect.</p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+            <%--<div class="panel panel-default">--%>
+            <%--<a href="#widget1container" class="panel-heading" data-toggle="collapse">其他信息 </a>--%>
+            <%--<div id="widget1container" class="panel-body collapse in">--%>
+            <%--<h2>Here's a Tip</h2>--%>
+            <%--<p>This template was developed with <a href="http://middlemanapp.com/"--%>
+            <%--target="_blank">Middleman</a> and includes .erb layouts--%>
+            <%--and views.</p>--%>
+            <%--<p>All of the views you see here (sign in, sign up, users, etc) are already split up so you--%>
+            <%--don't have to waste your time doing it yourself!</p>--%>
+            <%--<p>The layout.erb file includes the header, footer, and side navigation and all of the views are--%>
+            <%--broken out into their own files.</p>--%>
+            <%--<p>If you aren't using Ruby, there is also a set of plain HTML files for each page, just like--%>
+            <%--you would expect.</p>--%>
+            <%--</div>--%>
+            <%--</div>--%>
             <%--</div>--%>
         </div>
 
         <%--<div class="row">--%>
-            <%--<div class="col-sm-6 col-md-6">--%>
-                <%--<div class="panel panel-default">--%>
-                    <%--s  <div clas="panel-heading no-collapse">--%>
-                <%--<span class="panel-icon pull-right">--%>
-                    <%--<a href="#" class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i--%>
-                            <%--class="fa fa-refresh"></i></a>--%>
-                <%--</span>--%>
-                        <%--Needed to Close--%>
-                    <%--</div>--%>
-                    <%--<table class="table list">--%>
-                        <%--<tbody>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--<a href="#"><p class="title">Care Hospital</p></a>--%>
-                                <%--<p class="info">Sales Rating: 86%</p>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p>Date: 7/19/2012</p>--%>
-                                <%--<a href="#">View Transaction</a>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$20,500</p>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--<a href="#"><p class="title">Custom Eyesight</p></a>--%>
-                                <%--<p class="info">Sales Rating: 58%</p>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p>Date: 7/19/2012</p>--%>
-                                <%--<a href="#">View Transaction</a>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$12,600</p>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--<a href="#"><p class="title">Clear Dental</p></a>--%>
-                                <%--<p class="info">Sales Rating: 76%</p>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p>Date: 7/19/2012</p>--%>
-                                <%--<a href="#">View Transaction</a>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$2,500</p>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--<a href="#"><p class="title">Safe Insurance</p></a>--%>
-                                <%--<p class="info">Sales Rating: 82%</p>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p>Date: 7/19/2012</p>--%>
-                                <%--<a href="#">View Transaction</a>--%>
-                            <%--</td>--%>
-                            <%--<td>--%>
-                                <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$22,400</p>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
+        <%--<div class="col-sm-6 col-md-6">--%>
+        <%--<div class="panel panel-default">--%>
+        <%--s  <div clas="panel-heading no-collapse">--%>
+        <%--<span class="panel-icon pull-right">--%>
+        <%--<a href="#" class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i--%>
+        <%--class="fa fa-refresh"></i></a>--%>
+        <%--</span>--%>
+        <%--Needed to Close--%>
+        <%--</div>--%>
+        <%--<table class="table list">--%>
+        <%--<tbody>--%>
+        <%--<tr>--%>
+        <%--<td>--%>
+        <%--<a href="#"><p class="title">Care Hospital</p></a>--%>
+        <%--<p class="info">Sales Rating: 86%</p>--%>
+        <%--</td>--%>
+        <%--<td>--%>
+        <%--<p>Date: 7/19/2012</p>--%>
+        <%--<a href="#">View Transaction</a>--%>
+        <%--</td>--%>
+        <%--<td>--%>
+        <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$20,500</p>--%>
+        <%--</td>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+        <%--<td>--%>
+        <%--<a href="#"><p class="title">Custom Eyesight</p></a>--%>
+        <%--<p class="info">Sales Rating: 58%</p>--%>
+        <%--</td>--%>
+        <%--<td>--%>
+        <%--<p>Date: 7/19/2012</p>--%>
+        <%--<a href="#">View Transaction</a>--%>
+        <%--</td>--%>
+        <%--<td>--%>
+        <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$12,600</p>--%>
+        <%--</td>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+        <%--<td>--%>
+        <%--<a href="#"><p class="title">Clear Dental</p></a>--%>
+        <%--<p class="info">Sales Rating: 76%</p>--%>
+        <%--</td>--%>
+        <%--<td>--%>
+        <%--<p>Date: 7/19/2012</p>--%>
+        <%--<a href="#">View Transaction</a>--%>
+        <%--</td>--%>
+        <%--<td>--%>
+        <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$2,500</p>--%>
+        <%--</td>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+        <%--<td>--%>
+        <%--<a href="#"><p class="title">Safe Insurance</p></a>--%>
+        <%--<p class="info">Sales Rating: 82%</p>--%>
+        <%--</td>--%>
+        <%--<td>--%>
+        <%--<p>Date: 7/19/2012</p>--%>
+        <%--<a href="#">View Transaction</a>--%>
+        <%--</td>--%>
+        <%--<td>--%>
+        <%--<p class="text-danger h3 pull-right" style="margin-top: 12px;">$22,400</p>--%>
+        <%--</td>--%>
+        <%--</tr>--%>
 
-                        <%--</tbody>--%>
-                    <%--</table>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="col-sm-6 col-md-6">--%>
-                <%--<div class="panel panel-default">--%>
-                    <%--<a href="#widget2container" class="panel-heading" data-toggle="collapse">Collapsible </a>--%>
-                    <%--<div id="widget2container" class="panel-body collapse in">--%>
-                        <%--<h2>Built with Less</h2>--%>
-                        <%--<p>The CSS is built with Less. There is a compiled version included if you prefer plain CSS.</p>--%>
-                        <%--<p>Fava bean jícama seakale beetroot courgette shallot amaranth pea garbanzo carrot radicchio--%>
-                            <%--peanut leek pea sprouts arugula brussels sprout green bean. Spring onion broccoli chicory--%>
-                            <%--shallot winter purslane pumpkin gumbo cabbage squash beet greens lettuce celery. Gram--%>
-                            <%--zucchini swiss chard mustard burdock radish brussels sprout groundnut. Asparagus horseradish--%>
-                            <%--beet greens broccoli brussels.</p>--%>
-                        <%--<p><a class="btn btn-primary">Learn more »</a></p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
+        <%--</tbody>--%>
+        <%--</table>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="col-sm-6 col-md-6">--%>
+        <%--<div class="panel panel-default">--%>
+        <%--<a href="#widget2container" class="panel-heading" data-toggle="collapse">Collapsible </a>--%>
+        <%--<div id="widget2container" class="panel-body collapse in">--%>
+        <%--<h2>Built with Less</h2>--%>
+        <%--<p>The CSS is built with Less. There is a compiled version included if you prefer plain CSS.</p>--%>
+        <%--<p>Fava bean jícama seakale beetroot courgette shallot amaranth pea garbanzo carrot radicchio--%>
+        <%--peanut leek pea sprouts arugula brussels sprout green bean. Spring onion broccoli chicory--%>
+        <%--shallot winter purslane pumpkin gumbo cabbage squash beet greens lettuce celery. Gram--%>
+        <%--zucchini swiss chard mustard burdock radish brussels sprout groundnut. Asparagus horseradish--%>
+        <%--beet greens broccoli brussels.</p>--%>
+        <%--<p><a class="btn btn-primary">Learn more »</a></p>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
         <%--</div>--%>
 
 
         <footer style="position: absolute;bottom: 0;width: 100%">
             <hr>
 
-            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
+            <p align="right">© 2014 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
+            </p>
         </footer>
     </div>
 </div>
