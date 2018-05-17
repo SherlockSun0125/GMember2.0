@@ -27,7 +27,7 @@ public class AdminServlet extends BaseServlet {
             req.getSession().setAttribute("Admin", adminSql);
             return "r:/encryptWeb/admin/index.jsp";
         } else {
-            req.getSession().setAttribute("msgAdminLogin", "账号或密码错误！请重新输入！");
+            req.setAttribute("msgAdminLogin", "账号或密码错误！请重新输入！");
 //            resp.sendRedirect(req.getContextPath()+"/adminLogin.jsp");
             return "f:/adminLogin.jsp";
         }

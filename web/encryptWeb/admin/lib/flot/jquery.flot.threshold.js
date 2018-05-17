@@ -34,7 +34,7 @@ events.
                 return;
             
             var ps = datapoints.pointsize, i, x, y, p, prevp,
-                thresholded = $.extend({}, s); // note: shallow copy
+                thresholded = $.extend({}, s); // admin‘ styles: shallow copy
 
             thresholded.datapoints = { points: [], pointsize: ps };
             thresholded.label = null;

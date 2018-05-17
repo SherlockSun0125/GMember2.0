@@ -55,6 +55,40 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+        function checkForm() {
+            if(!$("#teanum").val()){
+                alert("学号不能为空!");
+                return false;
+            }
+            if(!$("#teaname").val()){
+                alert("姓名不能为空!");
+                return false;
+            }
+            if(!$("#teasex").val()){
+                alert("性别不能为空!");
+                return false;
+            }
+            if(!$("#teaage").val()){
+                alert("年龄不能为空!");
+                return false;
+            }
+            if(!$("#teaphone").val()){
+                alert("手机号不能为空!");
+                return false;
+            }
+            if(!$("#teamail").val()){
+                alert("邮箱不能为空!");
+                return false;
+            }
+            if(!$("#teapwd").val()){
+                alert("学号不能为空!");
+                return false;
+            }
+        }
+    </script>
+
 </head>
 <body class=" theme-blue">
 <!--头部-->
@@ -88,7 +122,6 @@
                 </ul>
             </li>
         </ul>
-
     </div>
 </div>
 
@@ -133,11 +166,6 @@
                 </li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 互联网公司</a></li>
                 <li><a href=""><span class="fa fa-caret-right"></span> 其他行业</a></li>
-                <%--<li><a href="premium-users.html"><span class="fa fa-caret-right"></span> Enhanced Users List</a></li>--%>
-                <%--<li><a href="premium-media.html"><span class="fa fa-caret-right"></span> Enhanced Media</a></li>--%>
-                <%--<li><a href="premium-invoice.html"><span class="fa fa-caret-right"></span> Invoice</a></li>--%>
-                <%--<li><a href="premium-build.html"><span class="fa fa-caret-right"></span> Advanced Tools</a></li>--%>
-                <%--<li><a href="premium-colors.html"><span class="fa fa-caret-right"></span> Additional Color Themes</a>--%>
                 </li>
             </ul>
         </li>
@@ -187,30 +215,30 @@
         <div class="row">
             <div class="col-md-4">
                 <br>
-                <form href="#">
+                <form action="${pageContext.request.contextPath}/teacherServlet?method=updateTeacher&teacherid=${tea.tea_id}" method="post" onsubmit="return checkForm()">
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane active in" id="home">
-                            <form id="tab">
+                            <div id="tab" >
                                 <div class="form-group">
                                     <label>工号</label>
-                                    <input type="text" value="${tea.tea_num}" class="form-control">
+                                    <input type="text" name="teanum" id="teanum" value="${tea.tea_num}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>姓名</label>
-                                    <input type="text" value="${tea.tea_name}" class="form-control">
+                                    <input type="text" name="teaname" id="teaname" value="${tea.tea_name}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>性别</label>
-                                    <input type="text" value="${tea.tea_sex}" class="form-control">
+                                    <input type="text" name="teasex" id="teasex" value="${tea.tea_sex}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>年龄</label>
-                                    <input type="text" value="${tea.tea_age}" class="form-control">
+                                    <input type="text" name="teaage" id="teaage" value="${tea.tea_age}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label>院系</label>
-                                    <select name="DropDownTimezone" id="DropDownTimezone" class="form-control">
+                                    <select name="depid" id="depid" class="form-control">
                                         <%--pb是院系的pageBean--%>
                                             <c:forEach items="${departmentPageBean.beanList}" var="department">
                                                 <c:choose>
@@ -227,12 +255,12 @@
 
                                 <div class="form-group">
                                     <label>手机号</label>
-                                    <input type="text" value="${tea.tea_phone}" class="form-control">
+                                    <input type="text" id="teaphone" name="teaphone" value="${tea.tea_phone}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label>邮箱</label>
-                                    <input type="text" value="${tea.tea_mail}" class="form-control">
+                                    <input type="text" id="teamail" name="teamail" value="${tea.tea_mail}" class="form-control">
                                 </div>
 
                                 <%--<div class="form-group">--%>
@@ -240,28 +268,30 @@
                                     <%--<textarea value="Smith" rows="3" class="form-control">内容</textarea>--%>
                                 <%--</div>--%>
 
-                            </form>
+                            </div>
                         </div>
 
                         <div class="tab-pane fade" id="profile">
 
-                            <form id="tab2">
+                            <div id="tab2">
                                 <div class="form-group">
                                     <label>输入新密码</label>
-                                    <input type="password" class="form-control" value="${tea.tea_pwd}">
+                                    <input type="password" class="form-control" id="teapwd" name="teapwd" value="${tea.tea_pwd}">
                                 </div>
                                 <%--<div>--%>
                                     <%--<button class="btn btn-primary">更新密码</button>--%>
                                 <%--</div>--%>
-                            </form>
+                            </div>
                         </div>
                     </div>
 
                     <div class="btn-toolbar list-toolbar">
-                        <button class="btn btn-primary"><i class="fa fa-save"></i> 更新</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 更新</button>
                         <%--<a href="#myModal" data-toggle="modal" class="btn btn-danger">Delete</a>--%>
                     </div>
                 </form>
+
+                <small>${msgUpdateTeacher}</small>
             </div>
         </div>
 

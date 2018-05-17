@@ -389,7 +389,7 @@ if (XRegExp) {
                                 // - Backreference 10, if 10 or more capturing groups exist
                                 // - Backreference 1 followed by "0", if 1-9 capturing groups exist
                                 // - Otherwise, it's the string "$10"
-                                // Also note:
+                                // Also admin‘ styles:
                                 // - Backreferences cannot be more than two digits (enforced by `replacementToken`)
                                 // - "$01" is equivalent to "$1" if a capturing group exists, otherwise it's the string "$01"
                                 // - There is no "$0" token ("$&" is the entire match)

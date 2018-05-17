@@ -30,11 +30,11 @@ public class StudentServlet extends BaseServlet {
         student.setStu_pwd(stupwd);
         Student studentSql=studentService.login(student);
         if (studentSql==null){
-            request.getSession().setAttribute("msgStudentLogin","账号或密码错误！请重新输入！");
+            request.setAttribute("msgStudentLogin","账号或密码错误！请重新输入！");
 //            response.sendRedirect(request.getContextPath()+"/studentLogin.jsp");
             return "f:/studentLogin.jsp";
         }else{
-            request.getSession().setAttribute("msgStudentLogin","");
+            request.setAttribute("msgStudentLogin","");
             request.getSession().setAttribute("Student",studentSql);
 //            response.sendRedirect(request.getContextPath()+"/encryptWeb/student/index.jsp");
             return "r:/encryptWeb/student/index.jsp";

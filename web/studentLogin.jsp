@@ -250,7 +250,7 @@
     </style>
     <script>
         function checkForm() {
-            if(!$("#stuid").val()){
+            if(!$("#stunum").val()){
                 alert("学号不能为空!");
                 return false;
             }

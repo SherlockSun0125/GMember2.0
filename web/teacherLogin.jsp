@@ -292,7 +292,7 @@
     </style>
     <script>
         function checkForm() {
-            if(!$("#teaid").val()){
+            if(!$("#teanum").val()){
                 alert("账号不能为空！")
                 return false;
             }
