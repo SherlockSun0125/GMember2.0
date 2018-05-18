@@ -23,8 +23,6 @@ public class TeacherServlet extends BaseServlet {
     public String teacherLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String teanum=req.getParameter("teaid");
         String teapwd=req.getParameter("teapwd");
-        System.out.println("+++++++++++++++++++"+teanum);
-        System.out.println("+++++++++++++++++++"+teapwd);
         Teacher teacher=new Teacher();
         teacher.setTea_num(teanum);
         teacher.setTea_pwd(teapwd);
@@ -45,26 +43,27 @@ public class TeacherServlet extends BaseServlet {
 
     public String findAllTeachers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
-        PageBean<Teacher> pageBean=teacherService.findAllTeachers();
-        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
-        for(int i=0;i<pageBean.getBeanList().size();i++){
-            System.out.println("来自servlet层的问候(取出的数据)："+pageBean.getBeanList().get(i));
-        }
+        int currentPage=getCurrentPage(req);
+        PageBean<Teacher> pageBean=teacherService.findAllTeachers(currentPage);
+//        for(int i=0;i<pageBean.getBeanList().size();i++){
+//            System.out.println("来自servlet层的问候(取出的数据)："+pageBean.getBeanList().get(i));
+//        }
+        pageBean.setCurrentPage(currentPage);
         pageBean.setUrl(url);
         req.setAttribute("pb",pageBean);
-        req.setAttribute("departmentPageBean",departmentPageBean);
         return "f:/encryptWeb/admin/teachers.jsp";
     }
 
     public String deleteTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
+        int currentPage=getCurrentPage(req);
         System.out.println("网页url="+url);
         int teacherid=Integer.parseInt(req.getParameter("teacherid"));
         String teachername=req.getParameter("teachername");
-        System.out.println("教师id="+teacherid);
-        System.out.println("教师name="+teachername);
         teacherService.deleteTeacher(teacherid);
-        PageBean<Teacher> pageBean=teacherService.findAllTeachers();
+        PageBean<Teacher> pageBean=teacherService.findAllTeachers(currentPage);
+        pageBean.setCurrentPage(currentPage);
+        pageBean.setUrl(url);
         req.setAttribute("pb",pageBean);
         req.setAttribute("msgDeleteTeacher",teachername+"老师已从系统删除。");
         return "f:/encryptWeb/admin/teachers.jsp";

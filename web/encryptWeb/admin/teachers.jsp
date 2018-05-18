@@ -60,7 +60,7 @@
             });
         });
     </script>
-
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pager/adminPager.css">
 
 </head>
 <body class=" theme-blue">
@@ -158,9 +158,9 @@
         <li>
             <ul class="accounts-menu nav nav-list collapse">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
-                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticeBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 
@@ -225,6 +225,9 @@
             </c:forEach>
             </tbody>
         </table>
+        <div style="float:left; width: 100%; text-align: center;" >
+            <%@include file="/pager/pager.jsp"%>
+        </div>
         <small>${msgDeleteTeacher}</small>
 
         <%--<ul class="pagination">--%>

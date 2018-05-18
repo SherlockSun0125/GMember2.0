@@ -21,7 +21,7 @@
     </select>
 
     <select id="findAllTeachers" resultMap="teacherMap">
-        SELECT * FROM teacher
+        SELECT * FROM teacher ORDER BY tea_id DESC LIMIT #{from},#{pageSize}
     </select>
 
     <select id="countAllTeachers" resultType="int">

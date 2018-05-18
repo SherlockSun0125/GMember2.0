@@ -18,9 +18,9 @@ public class TeacherServiceImp implements ITeacherService {
     }
 
     @Override
-    public PageBean<Teacher> findAllTeachers() {
+    public PageBean<Teacher> findAllTeachers(int currentPage) {
         try{
-            return teacherDao.findAllTeachers();
+            return teacherDao.findAllTeachers(currentPage);
         }catch (Exception e){
             throw new RuntimeException(e);
         }

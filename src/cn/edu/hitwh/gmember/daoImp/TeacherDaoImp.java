@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
+import static cn.edu.hitwh.gmember.tools.PageConstants.TEACHER_PAGE_SIZE;
+
 public class TeacherDaoImp implements ITeacherDao{
     public Teacher findTeacher(String teanum,String teapwd) {
         String resource="MyBatisConfig.xml";
@@ -34,11 +36,12 @@ public class TeacherDaoImp implements ITeacherDao{
     }
 
     @Override
-    public PageBean<Teacher> findAllTeachers() {
+    public PageBean<Teacher> findAllTeachers(int currentPage) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
         PageBean<Teacher> teacherPageBean=new PageBean<Teacher>();
+        int pageSize=TEACHER_PAGE_SIZE;
         int totalTeachers;
         try{
             reader=Resources.getResourceAsReader(resource);
@@ -50,15 +53,20 @@ public class TeacherDaoImp implements ITeacherDao{
 
         //获得教师信息
         TeacherMapper teacherMapper=session.getMapper(TeacherMapper.class);
-        List<Teacher> teachers=teacherMapper.findAllTeachers();
-        for(int i=0;i<teachers.size();i++){
-            System.out.println("来自dao层的问候(取出的数据)："+teachers.get(i));
-        }
+//        for(int i=0;i<teachers.size();i++){
+//            System.out.println("来自dao层的问候(取出的数据)："+teachers.get(i));
+//        }
         //获得总教师人数
         totalTeachers=teacherMapper.countAllTeachers();
+        int from=(currentPage-1)*pageSize;
+
+        List<Teacher> teachers=teacherMapper.findAllTeachers(from,pageSize);
 
         teacherPageBean.setBeanList(teachers);
         teacherPageBean.setTotalRecords(totalTeachers);
+        teacherPageBean.setPageSize(pageSize);
+        teacherPageBean.setCurrentPage(currentPage);
+        teacherPageBean.setTotalPages(teacherPageBean.getTotalPages());
         return teacherPageBean;
     }
 

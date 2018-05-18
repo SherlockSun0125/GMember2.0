@@ -219,7 +219,7 @@
                     </tr>
                     <tr>
                         <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">备<br/>注
-                        <td colspan="7" style="border: 3px solid #EEEEEE">${stu.stu_note}</td>
+                        <td colspan="7" style="border: 3px solid #EEEEEE;text-align: left">${stu.stu_note}</td>
                     </tr>
                 </tbody>
             </table>
