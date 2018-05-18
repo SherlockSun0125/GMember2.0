@@ -93,13 +93,14 @@ public class StudentServlet extends BaseServlet {
         int studentid=Integer.parseInt(req.getParameter("studentid"));
         String studentname=req.getParameter("studentname");
         studentService.deleteStudent(studentid);
-        Integer levelid=getLevelid(req);
+//        Integer levelid=getLevelid(req);
         PageBean<Student> pageBean=new PageBean<Student>();
-        if (levelid==null) {
-            pageBean= studentService.findAllStudents();
-        }else{
-            pageBean=studentService.findStudentsByLevel(levelid);
-        }
+//        if (levelid==null) {
+//            pageBean= studentService.findAllStudents();
+//        }else{
+//            pageBean=studentService.findStudentsByLevel(levelid);
+//        }
+        pageBean= studentService.findAllStudents();
         req.setAttribute("pb",pageBean);
         req.setAttribute("msgDeleteStudent",studentname+"同学已从系统删除。");
         return "f:/encryptWeb/admin/students.jsp";

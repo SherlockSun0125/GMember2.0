@@ -9,6 +9,7 @@
         <result property="publisher" column="publisher"></result>
         <result property="author_id" column="author_id"></result>
         <result property="news_title" column="news_title"></result>
+        <result property="news_content" column="news_content"></result>
         <result property="news_section_id" column="news_section_id"></result>
         <result property="news_readtimes" column="news_readtimes"></result>
         <result property="news_source" column="news_source"></result>
@@ -40,6 +41,15 @@
     </select>
 
     <update id="updateReadtimes">
-        UPDATE news SET news_readtimes=${news_readtimes} WHERE news_id=${news_id}
+        UPDATE news SET news_readtimes=#{news_readtimes} WHERE news_id=#{news_id}
     </update>
+
+    <update id="updateNews" parameterType="cn.edu.hitwh.gmember.pojo.News">
+        UPDATE news SET news_id=#{news_id},news_time=#{news_time},publisher=#{publisher},author_id=#{author_id},news_content=#{news_content},news_title=#{news_title},news_section_id=#{news_section_id},news_source=#{news_source}
+        WHERE news_id=#{news_id}
+    </update>
+
+    <delete id="deleteNews" parameterType="int">
+        DELETE FROM news WHERE news_id=#{news_id}
+    </delete>
 </mapper>

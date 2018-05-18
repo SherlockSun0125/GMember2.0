@@ -79,7 +79,7 @@
      <%--共N页 到M页 --%>
     <span>共${pb.totalPages}页</span>
     <span>到</span>
-    <input type="text" class="inputPageCode" id="pageCode" value="${pb.currentPage}"/>
+    <input type="text" style="height: 20px" class="inputPageCode" id="pageCode" value="${pb.currentPage}"/>
     <span>页</span>
     <a href="javascript:_go();" class="aSubmit">确定</a>
   </div>

@@ -44,4 +44,22 @@ public class NewsServiceImp implements INewsService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void updateNews(News news) {
+        try{
+            newsDao.updateNews(news);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteNews(int news_id) {
+        try{
+            newsDao.deleteNews(news_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

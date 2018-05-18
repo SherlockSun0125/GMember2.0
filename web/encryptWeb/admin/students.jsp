@@ -237,7 +237,7 @@
                         <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentById&studentid=${stu.stu_id}"><i
                                 class="fa fa-pencil"></i></a>
                         &nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/studentServlet?method=deleteStudent&studentid=${stu.stu_id}&studentname=${stu.stu_name}&levelid=${stu.stu_level_id}"
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=deleteStudent&studentid=${stu.stu_id}&studentname=${stu.stu_name}"
                            role="button"><i class="fa fa-trash-o"></i></a>
                             <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
                     </td>

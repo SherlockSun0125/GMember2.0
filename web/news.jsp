@@ -99,7 +99,7 @@
                     </div>
 
                     <div style="float:left; width: 100%; text-align: center;" >
-                        <%@include file="pager/pager.jsp"%>
+                        <%@include file="/pager/pager.jsp"%>
                     </div>
                 </div>
             </div>

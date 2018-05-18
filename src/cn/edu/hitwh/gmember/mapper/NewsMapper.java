@@ -13,4 +13,6 @@ public interface NewsMapper {
     public List<News> findAllNews(@Param("from") int from,@Param("pageSize")int pageSize);
     public News findNewsById(int news_id);
     public void updateReadtimes(@Param("news_id") int news_id,@Param("news_readtimes") int news_readtimes);
+    public void updateNews(News news);
+    public void deleteNews(int news_id);
 }

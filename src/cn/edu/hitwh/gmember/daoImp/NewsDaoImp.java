@@ -149,5 +149,54 @@ public class NewsDaoImp implements INewsDao {
         return news;
     }
 
+    @Override
+    public void updateNews(News news) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        NewsMapper newsMapper=session.getMapper(NewsMapper.class);
 
+        try {
+            System.out.println("dao层获取到的新闻信息为："+news.toString());
+            newsMapper.updateNews(news);
+            session.commit();
+        }catch (Exception e) {
+            session.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void deleteNews(int news_id) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        NewsMapper newsMapper=session.getMapper(NewsMapper.class);
+
+        try {
+            newsMapper.deleteNews(news_id);
+            session.commit();
+        }catch (Exception e) {
+            session.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 }

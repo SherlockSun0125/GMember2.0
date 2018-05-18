@@ -1,8 +1,6 @@
 package cn.edu.hitwh.gmember.servlet;
 
-import cn.edu.hitwh.gmember.pojo.Admin;
-import cn.edu.hitwh.gmember.pojo.Department;
-import cn.edu.hitwh.gmember.pojo.News;
+import cn.edu.hitwh.gmember.pojo.*;
 import cn.edu.hitwh.gmember.service.IDepartmentService;
 import cn.edu.hitwh.gmember.service.INewsService;
 import cn.edu.hitwh.gmember.serviceImp.DepartmentServiceImp;
@@ -83,38 +81,42 @@ public class NewsServlet extends BaseServlet {
     public String findNewsByType(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("========================================================");
         int currentPage=getCurrentPage(req);
-        System.out.println("返回的currentPage="+currentPage);
         String url=getUrl(req);
         int sectionid=Integer.parseInt(req.getParameter("sectionid"));
-        System.out.println("版块ID为："+sectionid);
-        System.out.println("当前页码为："+currentPage);
         PageBean<News> pb = newsService.findNewsBySection(sectionid, currentPage);
         pb.setUrl(url);
         req.setAttribute("pb", pb);
-        System.out.println("版块url为："+url);
-        System.out.println(pb.getTotalPages());
-        for (News news:pb.getBeanList()){
-            System.out.println("pb的list为："+news.getNews_title());
-        }
         return "f:/news.jsp";
     }
 
     //找到所有新闻
     public String findAllNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage=getCurrentPage(req);
-//        System.out.println("当前页码为："+currentPage);
         String url=getUrl(req);
         PageBean<News> pb =newsService.findAllNews(currentPage);
-//        System.out.println("刚返回的时候的pb.toString()为："+pb.toString());
         pb.setUrl(url);
         pb.setTotalPages(pb.getTotalPages());
         req.setAttribute("pb", pb);
-//        System.out.println("版块url为："+url);
-//        System.out.println("加上url之后的pb.toString()为："+pb.toString());
-//        for (News news:pb.getBeanList()){
-//            System.out.println("pb的list为："+news.getNews_id()+news.getNews_title());
-//        }
         return "f:/news.jsp";
+    }
+
+    public String findNewsById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int news_id=Integer.parseInt(req.getParameter("newsid"));
+        News news=newsService.findNewsById(news_id);
+        req.setAttribute("news",news);
+        return "f:/newsDetail.jsp";
+    }
+
+
+
+    public String adminFindNewsBySection(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int currentPage=getCurrentPage(req);
+        String url=getUrl(req);
+        int sectionid=Integer.parseInt(req.getParameter("sectionid"));
+        PageBean<News> pb = newsService.findNewsBySection(sectionid, currentPage);
+        pb.setUrl(url);
+        req.setAttribute("pb", pb);
+        return "f:/encryptWeb/admin/news.jsp";
     }
 
     public String adminFindAllNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -129,11 +131,86 @@ public class NewsServlet extends BaseServlet {
         return "f:/encryptWeb/admin/news.jsp";
     }
 
-    public String findNewsById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String toUpdateNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int news_id=Integer.parseInt(req.getParameter("newsid"));
         News news=newsService.findNewsById(news_id);
         req.setAttribute("news",news);
-        return "f:/newsDetail.jsp";
+        return "f:/encryptWeb/admin/newsProfile.jsp";
+    }
+
+    public String updateNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        News newNews=new News();
+        String url=getUrl(req);
+        System.out.println("网页url="+url);
+
+//      新闻id--
+        int newsid=Integer.parseInt(req.getParameter("newsid"));
+//        System.out.println("新闻id="+newsid);
+        newNews.setNews_id(newsid);
+
+        Date date=new Date();
+        String newstime=dateTools.date2Str(date);
+        newNews.setNews_time(newstime);
+//        System.out.println("新闻time="+newstime);
+//        发布人--
+        String publisher=req.getParameter("publisher");
+        newNews.setPublisher(publisher);
+//        System.out.println("新闻publisher="+publisher);
+//        作者id--
+//        int authorid=Integer.parseInt(req.getParameter("adminid"));
+        Admin admin= (Admin) req.getSession().getAttribute("Admin");
+        String authorid=admin.getAdmin_id();
+        newNews.setAuthor_id(authorid);
+//        System.out.println("新闻authorid="+authorid);
+
+//        标题--
+        String newstitle=req.getParameter("newstitle");
+        newNews.setNews_title(newstitle);
+//        System.out.println("新闻title="+newstitle);
+//        内容--
+        String newscontent=req.getParameter("content");
+        newNews.setNews_content(newscontent);
+//        System.out.println("新闻newContent="+newscontent);
+//        板块id--
+        int secctionid=Integer.parseInt(req.getParameter("secctionid"));
+        newNews.setNews_section_id(secctionid);
+//        System.out.println("新闻secctionid="+secctionid);
+//       浏览次数重置为0
+        int readtimes=0;
+        newNews.setNews_readtimes(readtimes);
+//        System.out.println("新闻readtimes="+readtimes);
+//        来源--
+        String newssource=req.getParameter("newssource");
+        newNews.setNews_source(newssource);
+//        System.out.println("新闻newssource="+newssource);
+
+//        更新数据库
+        newsService.updateNews(newNews);
+
+//        重新获取信息并返回详情页
+        News news=newsService.findNewsById(newsid);
+        req.setAttribute("news",news);
+        req.setAttribute("msgUpdateNews","新闻更新成功！");
+
+        return "f:/encryptWeb/admin/newsProfile.jsp";
+    }
+
+    public String deleteNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String url=getUrl(req);
+        int currentPage=getCurrentPage(req);
+        System.out.println("网页url="+url);
+        int newsid=Integer.parseInt(req.getParameter("newsid"));
+        String newstitile=req.getParameter("newstitile");
+        newsService.deleteNews(newsid);
+        PageBean<News> pageBean=new PageBean<News>();
+        pageBean= newsService.findAllNews(currentPage);
+        pageBean.setUrl(url);
+        pageBean.setCurrentPage(currentPage);
+        pageBean.setTotalPages(pageBean.getTotalPages());
+        req.setAttribute("pb",pageBean);
+        req.setAttribute("msgDeleteStudent","新闻\""+newstitile+"\"已从系统删除。");
+
+        return "f:/encryptWeb/admin/news.jsp";
     }
 
     //得到当前页
