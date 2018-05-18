@@ -17,6 +17,9 @@
         <result column="emp_id" property="emp_id"></result>
         <result column="stu_level_id" property="stu_level_id"></result>
         <result column="stu_note" property="stu_note"></result>
+        <result column="stu_english" property="stu_englisht"></result>
+        <result column="stu_major" property="stu_major"></result>
+        <result column="stu_grade_id" property="stu_grade_id"></result>
     </resultMap>
     <select id="findStudent" resultType="cn.edu.hitwh.gmember.pojo.Student">
         SELECT * from student WHERE stu_num=#{stu_num} AND stu_pwd=#{stu_pwd}

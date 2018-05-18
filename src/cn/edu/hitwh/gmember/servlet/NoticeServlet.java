@@ -80,6 +80,7 @@ public class NoticeServlet extends BaseServlet {
     }
 
 
+    //前台通知用
     public String findAllNotices(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage=getCurrentPage(req);
         String url=getUrl(req);
@@ -88,9 +89,10 @@ public class NoticeServlet extends BaseServlet {
         pageBean.setUrl(url);
         pageBean.setTotalPages(pageBean.getTotalPages());
         req.setAttribute("pb",pageBean);
-        return "f:/notices.jsp";
+        return "f:/notice.jsp";
     }
 
+    //前台
     public String findNoticesBySection(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage=getCurrentPage(req);
         String url=getUrl(req);
@@ -100,9 +102,10 @@ public class NoticeServlet extends BaseServlet {
         pageBean.setUrl(url);
         pageBean.setTotalPages(pageBean.getTotalPages());
         req.setAttribute("pb",pageBean);
-        return "f:/notices.jsp";
+        return "f:/notice.jsp";
     }
 
+    //前台
     public String findNoticeById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Notice noti=new Notice();
         int noticeid=Integer.parseInt(req.getParameter("noticeid"));

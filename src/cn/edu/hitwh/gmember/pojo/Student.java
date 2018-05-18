@@ -13,10 +13,13 @@ public class Student {
     private String stu_mail;
     private int stu_level_id;
     private String stu_note;
+    private String stu_major;
+    private String stu_english;
+    private int stu_grade_id;
 
     public Student(){}
 
-    public Student(int stu_id, String stu_num, String stu_name, String stu_pwd, String stu_sex, int stu_age, int emp_id, int dep_id, String stu_phone, String stu_mail, int stu_level_id, String stu_note) {
+    public Student(int stu_id, String stu_num, String stu_name, String stu_pwd, String stu_sex, int stu_age, int emp_id, int dep_id, String stu_phone, String stu_mail, int stu_level_id, String stu_note, String stu_major, String stu_english, int stu_grade_id) {
         this.stu_id = stu_id;
         this.stu_num = stu_num;
         this.stu_name = stu_name;
@@ -29,6 +32,9 @@ public class Student {
         this.stu_mail = stu_mail;
         this.stu_level_id = stu_level_id;
         this.stu_note = stu_note;
+        this.stu_major = stu_major;
+        this.stu_english = stu_english;
+        this.stu_grade_id = stu_grade_id;
     }
 
     public int getStu_id() {
@@ -79,6 +85,18 @@ public class Student {
         return stu_note;
     }
 
+    public String getStu_major() {
+        return stu_major;
+    }
+
+    public String getStu_english() {
+        return stu_english;
+    }
+
+    public int getStu_grade_id() {
+        return stu_grade_id;
+    }
+
     public void setStu_id(int stu_id) {
         this.stu_id = stu_id;
     }
@@ -127,6 +145,18 @@ public class Student {
         this.stu_note = stu_note;
     }
 
+    public void setStu_major(String stu_major) {
+        this.stu_major = stu_major;
+    }
+
+    public void setStu_english(String stu_english) {
+        this.stu_english = stu_english;
+    }
+
+    public void setStu_grade_id(int stu_grade_id) {
+        this.stu_grade_id = stu_grade_id;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -142,6 +172,9 @@ public class Student {
                 ", stu_mail='" + stu_mail + '\'' +
                 ", stu_level_id=" + stu_level_id +
                 ", stu_note='" + stu_note + '\'' +
+                ", stu_major='" + stu_major + '\'' +
+                ", stu_english='" + stu_english + '\'' +
+                ", stu_grade_id=" + stu_grade_id +
                 '}';
     }
 }

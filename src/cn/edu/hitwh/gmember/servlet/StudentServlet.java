@@ -3,9 +3,11 @@ package cn.edu.hitwh.gmember.servlet;
 import cn.edu.hitwh.gmember.pojo.*;
 import cn.edu.hitwh.gmember.service.IDepartmentService;
 import cn.edu.hitwh.gmember.service.IStudentService;
+import cn.edu.hitwh.gmember.service.IStugradeService;
 import cn.edu.hitwh.gmember.service.IStulevelService;
 import cn.edu.hitwh.gmember.serviceImp.DepartmentServiceImp;
 import cn.edu.hitwh.gmember.serviceImp.StudentServiceImp;
+import cn.edu.hitwh.gmember.serviceImp.StugradeServiceImp;
 import cn.edu.hitwh.gmember.serviceImp.StulevelServiceImp;
 import cn.edu.hitwh.gmember.tools.PageBean;
 import cn.itcast.servlet.BaseServlet;
@@ -21,6 +23,7 @@ public class StudentServlet extends BaseServlet {
     private IStudentService studentService = new StudentServiceImp();
     private IDepartmentService departmentService=new DepartmentServiceImp();
     private IStulevelService stulevelService=new StulevelServiceImp();
+    private IStugradeService stugradeService=new StugradeServiceImp();
 
 //    学生登录
     public String studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,17 +49,27 @@ public class StudentServlet extends BaseServlet {
         }
     }
 
+    //申请时获得院系列表和名次列表
+    public String toApply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
+        req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("stugradePageBean",stugradePageBean);
+        return "r:/apply.jsp";
+    }
 
 //    后台找到所有学生
     public String findAllStudents(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage=getCurrentPage(req);
         String url=getUrl(req);
         PageBean<Student> pageBean=studentService.findAllStudents(currentPage);
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
 
         pageBean.setUrl(url);
         pageBean.setCurrentPage(currentPage);
         pageBean.setTotalPages(pageBean.getTotalPages());
         req.setAttribute("pb",pageBean);
+        req.setAttribute("departmentPageBean",departmentPageBean);
         return "f:/encryptWeb/admin/students.jsp";
     }
 

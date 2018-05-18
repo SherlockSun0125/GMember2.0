@@ -24,4 +24,13 @@ public class AdminServiceImp implements IAdminService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void updateAdminPwd(String admin_id,String admin_pwd) {
+        try{
+            adminDao.updateAdminPwd(admin_id,admin_pwd);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

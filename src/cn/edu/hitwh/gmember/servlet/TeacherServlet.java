@@ -45,11 +45,10 @@ public class TeacherServlet extends BaseServlet {
         String url=getUrl(req);
         int currentPage=getCurrentPage(req);
         PageBean<Teacher> pageBean=teacherService.findAllTeachers(currentPage);
-//        for(int i=0;i<pageBean.getBeanList().size();i++){
-//            System.out.println("来自servlet层的问候(取出的数据)："+pageBean.getBeanList().get(i));
-//        }
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
         pageBean.setCurrentPage(currentPage);
         pageBean.setUrl(url);
+        req.setAttribute("departmentPageBean",departmentPageBean);
         req.setAttribute("pb",pageBean);
         return "f:/encryptWeb/admin/teachers.jsp";
     }

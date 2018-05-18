@@ -28,6 +28,7 @@
         <mapper resource="mybatisMapper/noticeMapper.xml"/>
         <mapper resource="mybatisMapper/departmentMapper.xml"/>
         <mapper resource="mybatisMapper/stulevelMapper.xml"/>
+        <mapper resource="mybatisMapper/stugradeMapper.xml"/>
         <mapper resource="mybatisMapper/comtypeMapper.xml"/>
         <mapper resource="mybatisMapper/newssectionMapper.xml"/>
         <mapper resource="mybatisMapper/noticesectionMapper.xml"/>

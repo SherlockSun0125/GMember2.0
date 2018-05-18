@@ -91,6 +91,7 @@
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
+
         <a class="" href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp">
             <span class="navbar-brand" style="padding-top: 2px;height: 45px">
                 <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px"
@@ -109,16 +110,14 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="./">我的账户</a></li>
-                    <li class="divider"></li>
                     <li class="dropdown-header">管理面板</li>
-                    <%--<li><a href="./">用户</a></li>--%>
-                    <li><a href="./">安全</a></li>
+                    <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminProfile.jsp">账号安全</a></li>
                     <li class="divider"></li>
-                    <li><a tabindex="-1" href="${pageContext.request.contextPath}/adminLogin.jsp">退出</a></li>
+                    <li><a tabindex="-1" href="${pageContext.request.contextPath}/adminLogin.jsp">安全退出</a></li>
                 </ul>
             </li>
         </ul>
+
     </div>
 </div>
 

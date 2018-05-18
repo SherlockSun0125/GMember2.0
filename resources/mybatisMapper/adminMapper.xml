@@ -10,4 +10,8 @@
     <select id="findAdminNameById" resultType="String" parameterType="String">
         SELECT  admin_name FROM admin WHERE admin_id=#{admin_id}
     </select>
+
+    <update id="updateAdminPwd">
+        UPDATE admin SET admin_pwd=#{admin_pwd} WHERE admin_id=#{admin_id}
+    </update>
 </mapper>

@@ -307,7 +307,7 @@
                     <input type="submit" value="登录" class="auth_login_btn primary full_width"/>
                 </p>
                 <div style="text-align: right">
-                    <a id="getBackPasswordMainPage" href="apply.jsp" class="auth_login_forgetp">
+                    <a id="getBackPasswordMainPage" href="${pageContext.request.contextPath}/studentServlet?method=toApply" class="auth_login_forgetp">
                         <small>尚未加入？点击申请</small>
                     </a>
                     <br/>
@@ -326,13 +326,6 @@
                 <div>
                     <small>温馨提示：个人应妥善保管个人帐号密码，不能随意告诉他人，由帐号密码管理不善造成的不良后果由个人负责。</small>
                 </div>
-
-                <input type="hidden" name="lt"
-                       value="LT-4941804-d9Jd5HW2ebP3di1UrRwGTSrjgB9iQe1523453839894-VAct-cas"/>
-                <input type="hidden" name="dllt" value="userNamePasswordLogin"/>
-                <input type="hidden" name="execution" value="e2s1"/>
-                <input type="hidden" name="_eventId" value="submit"/>
-                <input type="hidden" name="rmShown" value="1">
             </form>
         </div>
     </div>

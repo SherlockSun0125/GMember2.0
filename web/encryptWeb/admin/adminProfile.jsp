@@ -1,19 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>管理员</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".knob").knob();
-        });
-    </script>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js"
+            type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/theme.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/premium.css">
     <script type="text/javascript">
@@ -59,20 +55,19 @@
             });
         });
     </script>
-    <link href="${pageContext.request.contextPath}/pager/adminPager.css" rel="stylesheet" type="text/css">
 
-    <style type="text/css">
-        .tname{
-            width: 7em;
-            font-weight: bold;
+    <script type="text/javascript">
+        function checkForm() {
+            if ($("#adminpwd1").val() != $("#adminpwd2").val()) {
+                alert("两次输入的密码不同，请重新输入!");
+                return false;
+            }
+            return true;
         }
-        table, th, td{
-            border: 3px solid #EEEEEE;
-        }
-    </style>
+    </script>
+
 </head>
-
-<body class="theme-blue">
+<body class=" theme-blue">
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
@@ -110,20 +105,24 @@
 <div class="sidebar-nav">
     <ul>
         <%--网站数据--%>
-        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header" target="_self"><i
+        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header"
+               target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
         <li><a href="${pageContext.request.contextPath}/teacherServlet?method=findAllTeachers" class="nav-header"><i
                 class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
 
         <%--学生管理--%>
-        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents"
+               data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
             <%--<li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">--%>
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
-            <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
+            <ul class="dashboard-menu nav nav-list collapse in"><!--"class=in"的时候展开-->
                 <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
-                    <li><a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span
+                                class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
                 </c:forEach>
             </ul>
         </li>
@@ -143,31 +142,39 @@
 
         <%--新闻中心--%>
         <li>
-            <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu"
+               class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-legal"></i>&nbsp;&nbsp;新闻中心<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="legal-menu nav nav-list collapse">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
-                    <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span
+                                class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span
+                        class="fa fa-caret-right"></span> 上传新闻</a></li>
             </ul>
         </li>
 
         <%--通知公告--%>
         <li>
-            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices"
+               data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-comment"></i>&nbsp;&nbsp;通知公告<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
-            <ul class="accounts-menu nav nav-list collapse in">
+            <ul class="accounts-menu nav nav-list collapse">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
-                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span
+                                class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span
+                        class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 
@@ -175,56 +182,37 @@
     </ul>
 </div>
 
-<%--中间部分--%>
 <div class="content">
     <div class="main-content">
-        <div class="btn-toolbar list-toolbar">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/noticeServlet?method=toUpdateNotice&notiid=${noti.noti_id}">
-                <i class="fa fa-pencil"></i>&nbsp;修改公告</a>
-            <button class="btn btn-default">导出新闻</button>
-            <div class="btn-group"></div>
-        </div>
-        <div>
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="tname" style="border: 3px solid #EEEEEE">公告标题</td>
-                        <td colspan="5" style="border: 3px solid #EEEEEE">${noti.noti_title}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname" style="border: 3px solid #EEEEEE">发布者</td>
-                        <td>${noti.publisher}</td>
-                        <td  class="tname" style="border: 3px solid #EEEEEE">管理员姓名</td>
-                        <td style="border: 3px solid #EEEEEE">
-                            ${noti.author_id}
-                        </td>
-                        <td class="tname" style="border: 3px solid #EEEEEE">新闻来源</td>
-                        <td style="border: 3px solid #EEEEEE">${noti.noti_source}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname" style="border: 3px solid #EEEEEE">时间</td>
-                        <td style="border: 3px solid #EEEEEE">${noti.noti_time}</td>
-                        <td class="tname" style="border: 3px solid #EEEEEE">版块</td>
-                        <td style="border: 3px solid #EEEEEE">
-                            <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSection">
-                                <c:choose>
-                                    <c:when test="${noti.noti_section_id eq noticeSection.notice_section_id}">
-                                    ${noticeSection.notice_section_name}
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
-                        </td>
-                        <td class="tname" style="border: 3px solid #EEEEEE">阅读次数</td>
-                        <td style="border: 3px solid #EEEEEE">${noti.noti_readtimes}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">公<br/>告<br/>内<br/>容</td>
-                        <td colspan="5" style="border: 3px solid #EEEEEE">${noti.noti_content}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
+        <ul class="nav nav-tabs">
+            <%--<li><a href="#home" data-toggle="tab">基本资料</a></li>--%>
+            <li class="active"><a href="#profile" data-toggle="tab">更改密码</a></li>
+        </ul>
+
+        <div class="row">
+            <div class="col-md-4">
+                <br>
+                <form action="${pageContext.request.contextPath}/adminServlet?method=updateAdminPwd&adminid=${Admin.admin_id}"
+                      method="post" onsubmit="return checkForm()">
+                    <div class="form-group">
+                        <label for="adminpwd1">输入新密码</label>
+                        <input type="password" class="form-control" id="adminpwd1" name="adminpwd1"
+                               value="${Admin.admin_id}">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminpwd2">再次输入新密码</label>
+                        <input type="password" class="form-control" id="adminpwd2" name="adminpwd2">
+                    </div>
+                    <div class="btn-toolbar list-toolbar">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 更新</button>
+                        <%--<a href="#myModal" data-toggle="modal" class="btn btn-danger">Delete</a>--%>
+                    </div>
+                </form>
+
+                <small>${msgUpdateAdmin}</small>
+            </div>
+        </div>
 
         <footer>
             <hr>

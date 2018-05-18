@@ -62,14 +62,14 @@
 
 </head>
 <body class="theme-blue">
-
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
 
-        <a class="" href="adminHome.jsp">
+        <a class="" href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp">
             <span class="navbar-brand" style="padding-top: 2px;height: 45px">
-                <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
+                <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px"
+                     style="padding-top: 0;padding-bottom: 0">
             </span>
         </a>
     </div>
@@ -79,18 +79,15 @@
             <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user padding-right-small"
-                          style="position:relative;top: 3px;"></span> Paul Suen
+                          style="position:relative;top: 3px;"></span>${Admin.admin_name}
                     <i class="fa fa-caret-down"></i>
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="./">我的账户</a></li>
-                    <li class="divider"></li>
                     <li class="dropdown-header">管理面板</li>
-                    <%--<li><a href="./">用户</a></li>--%>
-                    <li><a href="./">安全</a></li>
+                    <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminProfile.jsp">账号安全</a></li>
                     <li class="divider"></li>
-                    <li><a tabindex="-1" href="${pageContext.request.contextPath}/adminLogin.jsp">退出</a></li>
+                    <li><a tabindex="-1" href="${pageContext.request.contextPath}/adminLogin.jsp">安全退出</a></li>
                 </ul>
             </li>
         </ul>

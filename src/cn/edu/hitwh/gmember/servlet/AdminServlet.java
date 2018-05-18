@@ -47,4 +47,15 @@ public class AdminServlet extends BaseServlet {
             return "f:/adminLogin.jsp";
         }
     }
+
+//    更新密码
+    public String updateAdminPwd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String adminpwd1=req.getParameter("adminpwd1");
+        String adminid=req.getParameter("adminid");
+
+        adminService.updateAdminPwd(adminid,adminpwd1);
+        req.setAttribute("msgUpdateAdmin","管理员密码更新成功");
+
+        return "f:encryptWeb/admin/adminProfile.jsp";
+    }
 }

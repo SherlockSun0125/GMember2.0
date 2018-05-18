@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: chong
@@ -8,13 +9,14 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>申请</title>
+    <title>项目申请</title>
     <meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;"/>
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.request.contextPath}/images/apple-touch-icon-144-precomposed.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/images/apple-touch-icon-114-precomposed.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/images/apple-touch-icon-72-precomposed.png"/>
     <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/images/apple-touch-icon-57-precomposed.png"/>
     <link href="${pageContext.request.contextPath}/css/bootstrap-2.min.css" type="text/css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/style.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/prettyPhoto.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/font-icomoon.css" type="text/css" rel="stylesheet"/>
@@ -35,6 +37,39 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/ajax-mail.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+        tr {
+            height: 30px;
+            /*background-color: red;*/
+            margin: 0 5px;
+        }
+        .td1 {
+            text-align: right;
+            padding-right: 2em;
+            width: 8em;
+            /*background-color: red;*/
+        }
+        .td2 {
+            height: 50px;
+        }
+        .td2 > .input-text {
+            height: 30px;
+            width: 250px;
+            border-radius: 20px;
+        }
+        #departments {
+            width: 250px;
+        }
+        #stugrade {
+            width: 250px;
+        }
+        em{
+            font-weight: bold;
+            color: #cc3333;
+            padding-right: 5px;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,7 +101,6 @@
                                 <li><a href="${pageContext.request.contextPath}/employeeLogin.jsp" target="_blank">企业用户登录</a></li>
                             </ul>
                         </li>
-                        <%--<li><a href="download.jsp"><span class="name">下载中心</span></a></li>--%>
                         <li><a href="${pageContext.request.contextPath}/about1.jsp"><span class="name">计划介绍</span></a></li>
                     </ul>
                 </nav>
@@ -82,79 +116,79 @@
 <!--container-->
 <section id="container">
     <div class="container">
-        <div class="row" style="padding-left: 30px;text-align: center">
+        <div class="row" style="padding-left: 80px;text-align: center">
             <form class="form-actions" style="text-align: center">
 
                 <table style="margin-left:35%;">
                     <thead style="text-align: left">
-                    <small style="color: dimgray;text-align: left;">请认真填写申请人资料</small>
+                        <small style="color: dimgray;text-align: left;">请认真填写申请人资料</small><br/>
                     </thead>
                     <tr>
-                        <td class="td1"><label for="sname"><em>*</em>姓名</label></td>
-                        <td class="td2"><input type="text" id="sname" class="input-text" style="border-radius: 9px"/>
+                        <td class="td1"><label for="stuname"><em>*</em>姓名</label></td>
+                        <td class="td2"><input type="text" id="stuname" name="stuname" class="input-text form-control" style="border-radius: 9px"/>
                         </td>
                     </tr>
                     <tr>
-                        <td class="td1"><label for="sno"><em>*</em>学号</label></td>
-                        <td class="td2"><input type="text" id="sno" class="input-text" style="border-radius: 9px;"></td>
+                        <td class="td1"><label for="stunum"><em>*</em>学号</label></td>
+                        <td class="td2"><input type="text" id="stunum" name="stunum" class="input-text form-control" style="border-radius: 9px;"></td>
                     </tr>
                     <tr>
-                        <td class="td1"><em>*</em>性别</td>
-                        <td class="td2"><input type="radio" name="sex" class="" id="men">男&nbsp;&nbsp;
-                            <input type="radio" name="sex" class="" id="women">女
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td1"><label for="speciality"><em>*</em>专业</label></td>
+                        <td class="td1"><em>*</em><label>性别</label></td>
                         <td class="td2">
-                            <select id="speciality">
-                                <option value="speciality-0">计算机科学与技术</option>
-                                <option value="speciality-1">软件工程</option>
-                                <option value="speciality-2">信息安全</option>
+                            <input type="radio" name="sex" value="boy" id="men">男&nbsp;&nbsp;
+                            <input type="radio" name="sex" value="girl" id="women">女
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1"><label><em>*</em>院系</label></td>
+                        <td class="td2">
+                            <select name="studepid"  id="departments">
+                                <c:forEach items="${departmentPageBean.beanList}" var="departments">
+                                    <option value="${departments.dep_id}">${departments.dep_name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <td class="td1"><label for="srank"><em>*</em>专业排名</label></td>
+                        <td class="td1"><label for="stumajor"><em>*</em>专业</label></td>
+                        <td class="td2"><input type="text" id="stumajor" name="stumajor" class="input-text form-control" style="border-radius: 9px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="td1"><label for="stugrade"><em>*</em>专业排名</label></td>
                         <td class="td2">
-                            <select id="srank">
-                                <option value="rank-0">前2%</option>
-                                <option value="rank-1">前5%</option>
-                                <option value="rank-2">前10%</option>
-                                <option value="rank-3">前20%</option>
-                                <option value="rank-4">前30%</option>
-                                <option value="rank-2">前40%</option>
-                                <option value="rank-3">前50%</option>
-                                <option value="rank-4">其他</option>
+                            <select id="stugrade">
+                                <c:forEach items="${stugradePageBean.beanList}" var="stugrade">
+                                    <option value="${stugrade.stu_grade_id}">${stugrade.stu_grade_name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <td class="td1"><label for="slanguage"><em>*</em>外语水平</label></td>
+                        <td class="td1"><label for="stuenglish"><em>*</em>外语水平</label></td>
                         <td class="td2">
-                            <input type="text" id="slanguage" class="input-text">
+                            <input type="text" id="stuenglish" class="input-text">
                         </td>
                     </tr>
                     <tr>
-                        <td class="td1"><label for="sphone"><em>*</em>手机号</label></td>
-                        <td class="td2"><input type="text" class="input-text" id="sphone"></td>
+                        <td class="td1"><label for="stuphone"><em>*</em>手机号</label></td>
+                        <td class="td2"><input type="text" class="input-text" id="stuphone"></td>
                     </tr>
                     <tr>
-                        <td class="td1"><label for="smail"><em>*</em>邮箱</label></td>
-                        <td class="td2"><input type="email" class="input-text" id="smail"></td>
+                        <td class="td1"><label for="stumail"><em>*</em>邮箱</label></td>
+                        <td class="td2"><input type="email" class="input-text" id="stumail"></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="right">
-                            <label for="sgrade" style="text-align: left">&nbsp;&nbsp;所获奖项及项目概况</label>
-                            <textarea id="sgrade" style="width: 100%;height: 100px"></textarea>
+                        <td colspan="2" align="right" style="text-align: left">
+                            <label for="stunote">&nbsp;&nbsp;备注（所获奖项及项目概况）</label>
+                            <textarea id="stunote" style="width: 100%;height: 100px"></textarea>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="td1"><label>上传附件</label></td>
-                        <td class="td2">
-                            <input type="file">
-                        </td>
-                    </tr>
+                    <%--<tr>--%>
+                        <%--<td class="td1"><label>上传附件</label></td>--%>
+                        <%--<td class="td2">--%>
+                            <%--<input type="file">--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
                     <tr></tr>
                     <tr align="center">
                         <td colspan="2">

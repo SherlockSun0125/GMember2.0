@@ -48,4 +48,28 @@ public class AdminDaoImp implements IAdminDao{
         session.close();
         return admin_name;
     }
+
+    @Override
+    public void updateAdminPwd(String admin_id,String admin_pwd) {
+        String resource = "MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session=null;
+        try {
+            reader = Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        session = sqlSessionFactory.openSession();
+        AdminMapper adminMapper = session.getMapper(AdminMapper.class);
+        try{
+            adminMapper.updateAdminPwd(admin_id,admin_pwd);
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
 }
