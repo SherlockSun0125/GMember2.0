@@ -126,27 +126,23 @@
 <div class="sidebar-nav">
     <ul>
         <%--网站数据--%>
-        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header"
-               target="_self"><i
+        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header" target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
-        <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/teacherList.jsp" class="nav-header"><i class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a>
-        </li>
+        <li><a href="${pageContext.request.contextPath}/teacherServlet?method=findAllTeachers" class="nav-header"><i
+                class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
 
         <%--学生管理--%>
-        <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+            <%--<li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">--%>
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/studentL0.jsp"><span class="fa fa-caret-right"></span> 学生遴选阶段</a></li>
-                <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/studentL1.jsp"><span class="fa fa-caret-right"></span> 工程学习阶段</a></li>
-                <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/studentL2.jsp"><span class="fa fa-caret-right"></span> 校企合作阶段</a></li>
-                <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/studentL3.jsp"><span class="fa fa-caret-right"></span> 毕业设计阶段</a></li>
-                <li><a href=""${pageContext.request.contextPath}/encryptWeb/admin/studentL4.jsp"><span class="fa fa-caret-right"></span> 就业推荐阶段</a></li>
-                <%--<li><a href="calendar.html"><span class="fa fa-caret-right"></span> Calendar</a></li>--%>
+                <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
+                    <li><a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
+                </c:forEach>
             </ul>
         </li>
-
         <li data-popover="true" data-placement="right">
             <a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
@@ -154,50 +150,44 @@
         </li>
         <li>
             <ul class="premium-menu nav nav-list collapse">
-                <li><a href=""><span class="fa fa-caret-right"></span> 国际化大型软件公司</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 游戏外包公司</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 数字游戏公司</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 嵌入式公司</a>
-                </li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 电子商务公司</a>
-                </li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 互联网公司</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 其他行业</a></li>
+                <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
+                    <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
+                </c:forEach>
                 </li>
             </ul>
         </li>
 
         <%--新闻中心--%>
         <li>
-            <a href="#" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-legal"></i>&nbsp;&nbsp;新闻中心<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="legal-menu nav nav-list collapse">
-                <li><a href=""><span class="fa fa-caret-right"></span> 综合要闻</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 校园资讯</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 教学科研</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 专题新闻</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 上传新闻</a></li>
+                <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
+                    <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
+                </c:forEach>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
             </ul>
         </li>
 
         <%--通知公告--%>
         <li>
-            <a href="#" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-comment"></i>&nbsp;&nbsp;通知公告<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="accounts-menu nav nav-list collapse">
-                <li><a href=""><span class="fa fa-caret-right"></span> 通知公告</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 院系通知</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 学术科研</a></li>
-                <li><a href=""><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
+                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                </c:forEach>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 
+        <%--<li><a href="faq.html" class="nav-header"><i class="fa fa-fw fa-comment"></i> Faq</a></li>--%>
     </ul>
 </div>
 

@@ -41,4 +41,13 @@
     <update id="undateReadtimes">
         UPDATE notice SET noti_readtimes=#{noti_readtimes} WHERE noti_id=#{noti_id}
     </update>
+
+    <delete id="deleteNotice" parameterType="int">
+        DELETE FROM notice WHERE noti_id=#{noti_id}
+    </delete>
+
+    <update id="updateNotice" parameterType="cn.edu.hitwh.gmember.pojo.Notice">
+        UPDATE notice SET noti_id=#{noti_id},noti_time=#{noti_time},publisher=#{publisher},author_id=#{author_id},noti_content=#{noti_content},noti_title=#{noti_title},noti_section_id=#{noti_section_id},noti_source=#{noti_source}
+        WHERE noti_id=#{noti_id}
+    </update>
 </mapper>

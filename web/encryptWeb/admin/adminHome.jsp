@@ -108,7 +108,7 @@
 <div class="sidebar-nav">
     <ul>
         <%--网站数据--%>
-        <li><a href="adminHome.jsp" class="nav-header" target="_self"><i
+        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header" target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
         <li><a href="${pageContext.request.contextPath}/teacherServlet?method=findAllTeachers" class="nav-header"><i
@@ -148,7 +148,7 @@
         <li>
             <ul class="legal-menu nav nav-list collapse">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
-                    <li><a href=""><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
                 <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
             </ul>
@@ -156,16 +156,16 @@
 
         <%--通知公告--%>
         <li>
-            <a href="#" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-comment"></i>&nbsp;&nbsp;通知公告<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="accounts-menu nav nav-list collapse">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
-                    <li><a href=""><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
-                <li><a href="addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 

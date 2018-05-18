@@ -59,22 +59,14 @@
             });
         });
     </script>
-    <link href="${pageContext.request.contextPath}/pager/adminPager.css" rel="stylesheet" type="text/css">
 
-    <style type="text/css">
-        .tname{
-            width: 7em;
-            font-weight: bold;
-        }
-    </style>
 </head>
-
 <body class="theme-blue">
 
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-
+        <%--网站数据--%>
         <a class="" href="adminHome.jsp">
             <span class="navbar-brand" style="padding-top: 2px;height: 45px">
                 <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
@@ -148,7 +140,7 @@
             </a>
         </li>
         <li>
-            <ul class="legal-menu nav nav-list collapse in">
+            <ul class="legal-menu nav nav-list collapse">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
                     <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
@@ -163,7 +155,7 @@
             </a>
         </li>
         <li>
-            <ul class="accounts-menu nav nav-list collapse">
+            <ul class="accounts-menu nav nav-list collapse in">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
                     <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
@@ -177,88 +169,78 @@
 
 <%--中间部分--%>
 <div class="content">
-    <div class="main-content">
-        <div class="btn-toolbar list-toolbar">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}">
-                <i class="fa fa-pencil"></i>&nbsp;修改新闻</a>
-            <button class="btn btn-default">导出新闻</button>
-            <div class="btn-group"></div>
+    <div class="main-content" style="margin-top: 10px;">
+        <%--下左一--%>
+        <div class="row">
+            <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
+                <div class="panel panel-default" style="background-color: #EEEEEE">
+                    <div class="panel-heading no-collapse"
+                         style="text-align: center;font-size: 1.5em;font-weight: bold">发布新闻
+                    </div>
+                    <div style="margin: 10px" class="notiform">
+                        <form action="${pageContext.request.contextPath}/noticeServlet?method=updateNotice&notiid=${noti.noti_id}" method="post" onsubmit="return checkForm()">
+                            <div class="form-group" style="width:10%;">
+                                <span style="color: red">*&nbsp;</span><label for="type">所属版块</label>
+                                <div style="width:20em;display: inline-block">
+                                    <select class="form-control" name="secctionid" id="type">
+                                        <c:forEach items="${noticeSectionPageBean.beanList}" var="notisection">
+                                            <c:choose>
+                                                <c:when test="${notisection.notice_section_id eq noti.noti_section_id}">
+                                                    <option value="${notisection.notice_section_id}" selected="selected">${notisection.notice_section_name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${notisection.notice_section_id}">${notisection.notice_section_name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="width: 35%">
+                                <span style="color: red">*&nbsp;</span><label for="notititle">新闻标题</label>
+                                <input type="text" class="form-control" name="notititle" id="notititle" value="${noti.noti_title}">
+                            </div>
+
+                            <div class="form-group" style="width: 35%">
+                                <span><span style="color: red">*&nbsp;</span><label for="publisher">发布人</label></span>
+                                <input type="text" class="form-control" name="publisher" id="publisher" value="${noti.publisher}">
+                            </div>
+
+                            <div class="form-group" style="width: 35%">
+                                <span><span style="color: red">*&nbsp;</span><label for="notisource">来源</label></span>
+                                <input type="text" class="form-control" name="notisource" id="notisource" value="${noti.noti_source}">
+                            </div>
+
+                            <div class="form-group">
+                                <!-- 加载编辑器的容器 -->
+                                <!--container里写你的初始化内容-->
+                                <span><span style="color: red">*&nbsp;</span><label for="container">新闻内容</label></span>
+                                <script id="container" name="content" type="text/plain">${noti.noti_content}</script>
+                            </div>
+                            <dic>
+                                <small style="float: left;margin-left: 30px;margin-top: 20px">${msgUpdateNotice}</small>
+                                <input type="submit" class="btn btn-success" style="float: right;margin-right: 30px;margin-top: 20px" value="更新公告">
+                            </dic>
+                        </form>
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="${pageContext.request.contextPath}/encryptWeb/admin/ueditor/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="${pageContext.request.contextPath}/encryptWeb/admin/ueditor/ueditor.all.js"></script>
+                        <!-- 实例化编辑器 -->
+                        <script type="text/javascript">
+                            var ue = UE.getEditor('container');
+                        </script>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="tname" style="border: 3px solid #EEEEEE">新闻标题</td>
-                        <td colspan="5" style="border: 3px solid #EEEEEE">${news.news_title}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname" style="border: 3px solid #EEEEEE">发布者</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.publisher}</td>
-                        <td  class="tname" style="border: 3px solid #EEEEEE">管理员姓名</td>
-                        <td  style="border: 3px solid #EEEEEE">
-                            ${news.author_id}
-                        </td>
-                        <td class="tname"  style="border: 3px solid #EEEEEE">新闻来源</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.news_source}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname"  style="border: 3px solid #EEEEEE">时间</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.news_time}</td>
-                        <td class="tname" style="border: 3px solid #EEEEEE">版块</td>
-                        <td style="border: 3px solid #EEEEEE">
-                            <c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">
-                                <c:choose>
-                                    <c:when test="${news.news_section_id eq newsSection.news_section_id}">
-                                    ${newsSection.news_section_name}
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
-                        </td>
-                        <td class="tname" style="border: 3px solid #EEEEEE">阅读次数</td>
-                        <td style="border: 3px solid #EEEEEE">${news.news_readtimes}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">新<br/>闻<br/>内<br/>容</td>
-                        <td colspan="5"  style="border: 3px solid #EEEEEE">${news.news_content}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <%--<c:forEach items="${pb.beanList}" var="news">--%>
-            <%--<tr>--%>
-                <%--<td>${news.news_id}</td>--%>
-                <%--<td><a href="${pageContext.request.contextPath}/newsServlet">${news.news_title}</a></td>--%>
-                <%--<td>--%>
-                    <%--<c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">--%>
-                        <%--<c:choose>--%>
-                            <%--<c:when test="${news.news_section_id eq newsSection.news_section_id}">--%>
-                                <%--${newsSection.news_section_name}--%>
-                            <%--</c:when>--%>
-                        <%--</c:choose>--%>
-                    <%--</c:forEach>--%>
-                <%--</td>--%>
-                <%--<td>${news.news_readtimes}</td>--%>
-                <%--<td>${news.news_time}</td>--%>
-
-                <%--<td style="text-align: center">--%>
-                    <%--<a href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}"><i--%>
-                            <%--class="fa fa-pencil"></i></a>--%>
-                    <%--&nbsp;&nbsp;--%>
-                    <%--<a href="${pageContext.request.contextPath}/newsServlet?method=deleteNews&newsid=${news.news_id}&newstitle=${news.news_title}"--%>
-                       <%--role="button"><i class="fa fa-trash-o"></i></a>--%>
-                        <%--&lt;%&ndash;<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>&ndash;%&gt;--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-        <%--</c:forEach>--%>
-
 
         <footer>
             <hr>
-            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
-            </p>
+            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
         </footer>
     </div>
 </div>
+
 </body>
 </html>

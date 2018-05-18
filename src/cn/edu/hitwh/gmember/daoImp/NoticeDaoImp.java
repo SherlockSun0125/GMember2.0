@@ -1,6 +1,7 @@
 package cn.edu.hitwh.gmember.daoImp;
 
 import cn.edu.hitwh.gmember.dao.INoticeDao;
+import cn.edu.hitwh.gmember.mapper.NewsMapper;
 import cn.edu.hitwh.gmember.mapper.NoticeMapper;
 import cn.edu.hitwh.gmember.pojo.Notice;
 import cn.edu.hitwh.gmember.tools.PageBean;
@@ -138,5 +139,58 @@ public class NoticeDaoImp implements INoticeDao {
             session.close();
         }
         return notice;
+    }
+
+    @Override
+    public void updateNotice(Notice notice) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        NoticeMapper noticeMapper=session.getMapper(NoticeMapper.class);
+
+
+        try {
+            System.out.println("dao层获取到的新闻信息为："+notice.toString());
+            noticeMapper.updateNotice(notice);
+            session.commit();
+        }catch (Exception e) {
+            session.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void deleteNotice(int noti_id) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        NoticeMapper noticeMapper=session.getMapper(NoticeMapper.class);
+
+
+        try {
+            noticeMapper.deleteNotice(noti_id);
+            session.commit();
+        }catch (Exception e) {
+            session.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 }

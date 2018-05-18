@@ -151,16 +151,16 @@
 
         <%--通知公告--%>
         <li>
-            <a href="#" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-comment"></i>&nbsp;&nbsp;通知公告<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="accounts-menu nav nav-list collapse">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
-                    <li><a href=""><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
-                <li><a href="addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 
@@ -173,28 +173,28 @@
     <div class="main-content">
         <div class="btn-toolbar list-toolbar">
             <a class="btn btn-primary" href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><i
-                    class="fa fa-plus"></i>上传新闻</a>
+                    class="fa fa-plus"></i>&nbsp;发布新闻</a>
             <button class="btn btn-default">导出列表</button>
             <div class="btn-group"></div>
         </div>
         <table class="table">
             <thead>
             <tr>
-                <th>id</th>
-                <th>标题</th>
-                <th>板块</th>
-                <th>浏览次数</th>
-                <th>时间</th>
-                <th>谨慎操作</th>
+                <th style="text-align: center">id</th>
+                <th style="text-align: center">标题</th>
+                <th style="text-align: center">版块</th>
+                <th style="text-align: center">浏览次数</th>
+                <th style="text-align: center">时间</th>
+                <th style="text-align: center">谨慎操作</th>
             </tr>
             </thead>
             <tbody>
             <%--<c:set var="num" value="0"></c:set>--%>
             <c:forEach items="${pb.beanList}" var="news">
                 <tr>
-                    <td>${news.news_id}</td>
-                    <td><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsById&newsid=${news.news_id}">${news.news_title}</a></td>
-                    <td>
+                    <td style="text-align: center">${news.news_id}</td>
+                    <td ><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsById&newsid=${news.news_id}">${news.news_title}</a></td>
+                    <td style="text-align: center">
                         <c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">
                             <c:choose>
                                 <c:when test="${news.news_section_id eq newsSection.news_section_id}">
@@ -203,8 +203,8 @@
                             </c:choose>
                         </c:forEach>
                     </td>
-                    <td>${news.news_readtimes}</td>
-                    <td>${news.news_time}</td>
+                    <td style="text-align: center">${news.news_readtimes}</td>
+                    <td style="text-align: center">${news.news_time}</td>
 
                     <td style="text-align: center">
                         <a href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}"><i

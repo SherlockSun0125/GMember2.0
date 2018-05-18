@@ -66,6 +66,9 @@
             width: 7em;
             font-weight: bold;
         }
+        table, th, td{
+            border: 3px solid #EEEEEE;
+        }
     </style>
 </head>
 
@@ -148,7 +151,7 @@
             </a>
         </li>
         <li>
-            <ul class="legal-menu nav nav-list collapse in">
+            <ul class="legal-menu nav nav-list collapse">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
                     <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
@@ -163,7 +166,7 @@
             </a>
         </li>
         <li>
-            <ul class="accounts-menu nav nav-list collapse">
+            <ul class="accounts-menu nav nav-list collapse in">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
                     <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
@@ -179,8 +182,8 @@
 <div class="content">
     <div class="main-content">
         <div class="btn-toolbar list-toolbar">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}">
-                <i class="fa fa-pencil"></i>&nbsp;修改新闻</a>
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/noticeServlet?method=toUpdateNotice&notiid=${noti.noti_id}">
+                <i class="fa fa-pencil"></i>&nbsp;修改公告</a>
             <button class="btn btn-default">导出新闻</button>
             <div class="btn-group"></div>
         </div>
@@ -188,69 +191,42 @@
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <td class="tname" style="border: 3px solid #EEEEEE">新闻标题</td>
-                        <td colspan="5" style="border: 3px solid #EEEEEE">${news.news_title}</td>
+                        <td class="tname" style="border: 3px solid #EEEEEE">公告标题</td>
+                        <td colspan="5" style="border: 3px solid #EEEEEE">${noti.noti_title}</td>
                     </tr>
                     <tr>
                         <td class="tname" style="border: 3px solid #EEEEEE">发布者</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.publisher}</td>
+                        <td>${noti.publisher}</td>
                         <td  class="tname" style="border: 3px solid #EEEEEE">管理员姓名</td>
-                        <td  style="border: 3px solid #EEEEEE">
-                            ${news.author_id}
+                        <td style="border: 3px solid #EEEEEE">
+                            ${noti.author_id}
                         </td>
-                        <td class="tname"  style="border: 3px solid #EEEEEE">新闻来源</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.news_source}</td>
+                        <td class="tname" style="border: 3px solid #EEEEEE">新闻来源</td>
+                        <td style="border: 3px solid #EEEEEE">${noti.noti_source}</td>
                     </tr>
                     <tr>
-                        <td class="tname"  style="border: 3px solid #EEEEEE">时间</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.news_time}</td>
+                        <td class="tname" style="border: 3px solid #EEEEEE">时间</td>
+                        <td style="border: 3px solid #EEEEEE">${noti.noti_time}</td>
                         <td class="tname" style="border: 3px solid #EEEEEE">版块</td>
                         <td style="border: 3px solid #EEEEEE">
-                            <c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">
+                            <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSection">
                                 <c:choose>
-                                    <c:when test="${news.news_section_id eq newsSection.news_section_id}">
-                                    ${newsSection.news_section_name}
+                                    <c:when test="${noti.noti_section_id eq noticeSection.notice_section_id}">
+                                    ${noticeSection.notice_section_name}
                                     </c:when>
                                 </c:choose>
                             </c:forEach>
                         </td>
                         <td class="tname" style="border: 3px solid #EEEEEE">阅读次数</td>
-                        <td style="border: 3px solid #EEEEEE">${news.news_readtimes}</td>
+                        <td style="border: 3px solid #EEEEEE">${noti.noti_readtimes}</td>
                     </tr>
                     <tr>
-                        <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">新<br/>闻<br/>内<br/>容</td>
-                        <td colspan="5"  style="border: 3px solid #EEEEEE">${news.news_content}</td>
+                        <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">公<br/>告<br/>内<br/>容</td>
+                        <td colspan="5" style="border: 3px solid #EEEEEE">${noti.noti_content}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
-        <%--<c:forEach items="${pb.beanList}" var="news">--%>
-            <%--<tr>--%>
-                <%--<td>${news.news_id}</td>--%>
-                <%--<td><a href="${pageContext.request.contextPath}/newsServlet">${news.news_title}</a></td>--%>
-                <%--<td>--%>
-                    <%--<c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">--%>
-                        <%--<c:choose>--%>
-                            <%--<c:when test="${news.news_section_id eq newsSection.news_section_id}">--%>
-                                <%--${newsSection.news_section_name}--%>
-                            <%--</c:when>--%>
-                        <%--</c:choose>--%>
-                    <%--</c:forEach>--%>
-                <%--</td>--%>
-                <%--<td>${news.news_readtimes}</td>--%>
-                <%--<td>${news.news_time}</td>--%>
-
-                <%--<td style="text-align: center">--%>
-                    <%--<a href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}"><i--%>
-                            <%--class="fa fa-pencil"></i></a>--%>
-                    <%--&nbsp;&nbsp;--%>
-                    <%--<a href="${pageContext.request.contextPath}/newsServlet?method=deleteNews&newsid=${news.news_id}&newstitle=${news.news_title}"--%>
-                       <%--role="button"><i class="fa fa-trash-o"></i></a>--%>
-                        <%--&lt;%&ndash;<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>&ndash;%&gt;--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-        <%--</c:forEach>--%>
 
 
         <footer>

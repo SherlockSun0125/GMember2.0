@@ -3,7 +3,7 @@ package cn.edu.hitwh.gmember.pojo;
 import java.util.Date;
 
 public class Notice {
-    private String noti_id;
+    private int noti_id;
     private String noti_title;
     private String noti_time;
     private String publisher;
@@ -16,7 +16,7 @@ public class Notice {
 
     public Notice()  {}
 
-    public Notice(String noti_id, String noti_title, String noti_time, String publisher, String author_id, String noti_content, int noti_section_id, int noti_readtimes, String noti_source) {
+    public Notice(int noti_id, String noti_title, String noti_time, String publisher, String author_id, String noti_content, int noti_section_id, int noti_readtimes, String noti_source) {
         this.noti_id = noti_id;
         this.noti_title = noti_title;
         this.noti_time = noti_time;
@@ -28,7 +28,7 @@ public class Notice {
         this.noti_source = noti_source;
     }
 
-    public String getNoti_id() {
+    public int getNoti_id() {
         return noti_id;
     }
 
@@ -56,15 +56,15 @@ public class Notice {
         return noti_section_id;
     }
 
-    public String getNoti_source() {
-        return noti_source;
-    }
-
     public int getNoti_readtimes() {
         return noti_readtimes;
     }
 
-    public void setNoti_id(String noti_id) {
+    public String getNoti_source() {
+        return noti_source;
+    }
+
+    public void setNoti_id(int noti_id) {
         this.noti_id = noti_id;
     }
 
@@ -103,7 +103,7 @@ public class Notice {
     @Override
     public String toString() {
         return "Notice{" +
-                "noti_id='" + noti_id + '\'' +
+                "noti_id=" + noti_id +
                 ", noti_title='" + noti_title + '\'' +
                 ", noti_time='" + noti_time + '\'' +
                 ", publisher='" + publisher + '\'' +

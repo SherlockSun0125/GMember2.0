@@ -43,4 +43,22 @@ public class NoticeServiceImp implements INoticeService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void updateNotice(Notice notice) {
+        try {
+            noticeDao.updateNotice(notice);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteNotice(int noti_id) {
+        try {
+            noticeDao.deleteNotice(noti_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }
