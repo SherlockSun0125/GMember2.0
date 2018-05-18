@@ -18,18 +18,18 @@ public class StudentServiceImp implements IStudentService {
     }
 
     @Override
-    public PageBean<Student> findAllStudents() {
+    public PageBean<Student> findAllStudents(int currentPage) {
         try{
-            return studentDao.findAllStudents();
+            return studentDao.findAllStudents(currentPage);
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public PageBean<Student> findStudentsByLevel(int stu_level_id) {
+    public PageBean<Student> findStudentsByLevel(int stu_level_id,int currentPage) {
         try{
-            return studentDao.findStudentsByLevel(stu_level_id);
+            return studentDao.findStudentsByLevel(stu_level_id,currentPage);
         }catch (Exception e){
             throw new RuntimeException(e);
         }

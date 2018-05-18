@@ -20,7 +20,7 @@
     <%--上一页 --%>
     <c:choose>
         <c:when test="${pb.currentPage eq 1}"><a class="nBtn" style="color: lightgrey" disabled="disabled">上一页</a></c:when>
-        <c:otherwise><a href="${pb.url}&currentPage={pb.currentPage-1}" class="aBtn bold">上一页</a></c:otherwise>
+        <c:otherwise><a href="${pb.url}&currentPage=${pb.currentPage-1}" class="aBtn bold">上一页</a></c:otherwise>
     </c:choose>
 
     <%-- 计算begin和end --%>
@@ -69,7 +69,7 @@
     
      <%--下一页--%>
         <c:choose>
-            <c:when test="${pb.currentPage eq pb.totalPages}"><a class="nBtn" disabled="disabled">下一页</a></c:when>
+            <c:when test="${pb.currentPage eq pb.totalPages}"><a class="nBtn" disabled="disabled" style="color: lightgrey">下一页</a></c:when>
             <c:otherwise><a href="${pb.url}&currentPage=${pb.currentPage+1}" class="aBtn bold">下一页</a> </c:otherwise>
         </c:choose>
 

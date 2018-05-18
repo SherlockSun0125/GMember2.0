@@ -93,14 +93,9 @@ public class NewsDaoImp implements INewsDao {
         NewsMapper newsMapper = session.getMapper(NewsMapper.class);
         int totalRecords=newsMapper.countAllNews();
         int from=(currentPage - 1) * pageSize;// 当前页首行记录的下标
-        System.out.println("currentpage="+currentPage+";from="+from+";pageSize="+pageSize);
+//        System.out.println("currentpage="+currentPage+";from="+from+";pageSize="+pageSize);
         List<News> newsList= newsMapper.findAllNews(from,pageSize);
-//        for(News news:newsList){
-//            System.out.println("通过newsList获得id:"+news.getNews_id());
-//        }
-//        System.out.println("-----------------------------------");
 
-//        将获取的新闻list存入pageBean
         pageBean.setBeanList(newsList);
 //        将总的新闻数存入pageBean
         pageBean.setTotalRecords(totalRecords);

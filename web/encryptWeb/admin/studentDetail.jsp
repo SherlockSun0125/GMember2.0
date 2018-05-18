@@ -1,20 +1,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=utf-8" %>
-<html lang="en">
+<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
+<html>
 <head>
     <meta charset="utf-8">
     <title>管理员</title>
-
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".knob").knob();
+        });
+    </script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/theme.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/premium.css">
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js"
-            type="text/javascript"></script>
-
     <script type="text/javascript">
         $(function () {
             var match = document.cookie.match(new RegExp('color=([^;]+)'));
@@ -49,9 +50,7 @@
             $('#main-menu').append(uls.clone());
         });
     </script>
-
-
-    <script src="${pageContext.request.contentType}/encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
         $(function () {
@@ -62,15 +61,27 @@
     </script>
     <link href="${pageContext.request.contextPath}/pager/adminPager.css" rel="stylesheet" type="text/css">
 
+    <style type="text/css">
+        .tname{
+            width: 7em;
+            font-weight: bold;
+        }
+        table, th, td{
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
 </head>
-<body class=" theme-blue">
+
+<body class="theme-blue">
+
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-        <a class="" href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp">
+
+        <a class="" href="adminHome.jsp">
             <span class="navbar-brand" style="padding-top: 2px;height: 45px">
-                <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px"
-                     style="padding-top: 0;padding-bottom: 0">
+                <img src="${pageContext.request.contextPath}/images/myimg/hitwh_logo.png" height="45px" style="padding-top: 0;padding-bottom: 0">
             </span>
         </a>
     </div>
@@ -80,7 +91,7 @@
             <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user padding-right-small"
-                          style="position:relative;top: 3px;"></span> ${Admain.admin_name}
+                          style="position:relative;top: 3px;"></span> Paul Suen
                     <i class="fa fa-caret-down"></i>
                 </a>
 
@@ -168,101 +179,53 @@
     </ul>
 </div>
 
+<%--中间部分--%>
 <div class="content">
     <div class="main-content">
         <div class="btn-toolbar list-toolbar">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/studentServlet?method=toAddStudent"><i class="fa fa-plus"></i>增加学生</a>
-            <button class="btn btn-default">导入</button>
-            <button class="btn btn-default">导出</button>
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/sudentServlet?method=toUpdateStudent&studentid=${stu.stu_id}">
+                <i class="fa fa-pencil"></i>&nbsp;修改信息</a>
+            <button class="btn btn-default">导出信息</button>
             <div class="btn-group"></div>
         </div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>学号</th>
-                <th>姓名</th>
-                <th>院系</th>
-                <th>阶段</th>
-                <th>导师</th>
-                <th>谨慎操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%--<c:set var="num" value="0"></c:set>--%>
-            <c:forEach items="${pb.beanList}" var="stu">
-                <tr>
-                    <td>${stu.stu_id}</td>
-                    <td><a href="${pageContext.request.contextPath}/studentServlet?method=adminFindStudentById&studentid=${stu.stu_id}">${stu.stu_num}</a></td>
-                    <td>${stu.stu_name}</td>
-                    <td>
-                        <c:forEach items="${departmentPageBean.beanList}" var="dep">
-                            <c:choose>
-                                <c:when test="${stu.dep_id eq dep.dep_id}">
-                                    ${dep.dep_name}
-                                </c:when>
-                            </c:choose>
-                        </c:forEach>
-                    </td>
-                    <td>${stu.stu_level_id}</td>
-                    <td>${stu.emp_id}</td>
-                    <td style="text-align: center">
-                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentById&studentid=${stu.stu_id}"><i
-                                class="fa fa-pencil"></i></a>
-                        &nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/studentServlet?method=deleteStudent&studentid=${stu.stu_id}&studentname=${stu.stu_name}"
-                           role="button"><i class="fa fa-trash-o"></i></a>
-                            <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <div style="float:left; width: 100%; text-align: center;" >
-            <%@include file="/pager/pager.jsp"%>
-        </div>
-        <small>${msgDeleteStudent}</small>
-
-        <%--<ul class="pagination">--%>
-        <%--<li><a href="#">&laquo;</a></li>--%>
-        <%--<li><a href="#">1</a></li>--%>
-        <%--<li><a href="#">2</a></li>--%>
-        <%--<li><a href="#">3</a></li>--%>
-        <%--<li><a href="#">4</a></li>--%>
-        <%--<li><a href="#">5</a></li>--%>
-        <%--<li><a href="#">&raquo;</a></li>--%>
-        <%--</ul>--%>
-
-        <%--modal 为模态框--%>
-        <div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <form action="${pageContext.request.contextPath}/teacherServlet?method=deleteTeacher&teacherid=${tea.tea_id}">
-                    <div class="modal-content">
-                        <%--模态框头部--%>
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h3 id="myModalLabel">删除提醒</h3>
-                        </div>
-                        <%--模态框身体部分--%>
-                        <div class="modal-body">
-                            <p class="error-text"><i class="fa fa-warning modal-icon"></i>你确定删除该用户吗？
-                                <br>该操作不可逆。</p>
-                        </div>
-                        <%--模态框底部--%>
-                        <div class="modal-footer">
-                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">取消</button>
-                            <button class="btn btn-danger" type="submit">删除</button>
-                            <%--<button class="btn btn-danger" href="${pageContext.request.contextPath}/encryptWeb/admin/index.jsp">删除2</button>--%>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
+        <div>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="tname" style="border: 3px solid #EEEEEE">学号</td>
+                        <td colspan="2" style="border: 3px solid #EEEEEE">${stu.stu_num}</td>
+                        <td class="tname" style="border: 3px solid #EEEEEE">姓名</td>
+                        <td colspan="2" style="border: 3px solid #EEEEEE">${stu.stu_name}</td>
+                        <td class="tname" style="border: 3px solid #EEEEEE">院系</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">${stu.dep_id}</td>
+                    </tr>
+                    <tr>
+                        <td  class="tname" style="border: 3px solid #EEEEEE">阶段</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">
+                            ${stu.stu_level_id}
+                        </td>
+                        <td class="tname" style="border: 3px solid #EEEEEE">导师</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="5">${stu.emp_id}
+                            【后期实现如下格式：员工姓名（id=****,所属公司）,或者仅仅显示姓名，点击之后查看详细信息】
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tname" colspan="1" style="border: 3px solid #EEEEEE">性别</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">${stu.stu_sex}</td>
+                        <td class="tname" style="border: 3px solid #EEEEEE" colspan="1">年龄</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">${stu.stu_age}</td>
+                        <td class="tname" style="border: 3px solid #EEEEEE" colspan="1">密码</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">${stu.stu_pwd}</td>
+                    </tr>
+                    <tr>
+                        <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">备<br/>注
+                        <td colspan="7" style="border: 3px solid #EEEEEE">${stu.stu_note}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
 
-        <%--<footer style="position: absolute;bottom: 0;width: 100%">--%>
         <footer>
             <hr>
             <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>

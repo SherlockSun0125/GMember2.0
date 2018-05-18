@@ -1,9 +1,6 @@
 package cn.edu.hitwh.gmember.servlet;
 
-import cn.edu.hitwh.gmember.pojo.Department;
-import cn.edu.hitwh.gmember.pojo.StuLevel;
-import cn.edu.hitwh.gmember.pojo.Student;
-import cn.edu.hitwh.gmember.pojo.Teacher;
+import cn.edu.hitwh.gmember.pojo.*;
 import cn.edu.hitwh.gmember.service.IDepartmentService;
 import cn.edu.hitwh.gmember.service.IStudentService;
 import cn.edu.hitwh.gmember.service.IStulevelService;
@@ -25,6 +22,7 @@ public class StudentServlet extends BaseServlet {
     private IDepartmentService departmentService=new DepartmentServiceImp();
     private IStulevelService stulevelService=new StulevelServiceImp();
 
+//    学生登录
     public String studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String stunum = request.getParameter("stunum");
         String stupwd = request.getParameter("stupwd");
@@ -37,7 +35,10 @@ public class StudentServlet extends BaseServlet {
             request.setAttribute("msgStudentLogin", "账号或密码错误！请重新输入！");
 //            response.sendRedirect(request.getContextPath()+"/studentLogin.jsp");
             return "f:/studentLogin.jsp";
-        } else {
+        }else if(studentSql.getStu_level_id()==0){
+            request.setAttribute("msgStudentLogin", "您尚未通过遴选阶段！请耐心等待！");
+            return "f:/studentLogin.jsp";
+        }else {
             request.setAttribute("msgStudentLogin", "");
             request.getSession().setAttribute("Student", studentSql);
 //            response.sendRedirect(request.getContextPath()+"/encryptWeb/student/index.jsp");
@@ -46,61 +47,55 @@ public class StudentServlet extends BaseServlet {
     }
 
 
+//    后台找到所有学生
     public String findAllStudents(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int currentPage=getCurrentPage(req);
         String url=getUrl(req);
-        PageBean<Student> pageBean=studentService.findAllStudents();
-        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
-//        for(int i=0;i<pageBean.getBeanList().size();i++){
-//            System.out.println("来自servlet层的问候(取出的数据)："+pageBean.getBeanList().get(i));
-//        }
+        PageBean<Student> pageBean=studentService.findAllStudents(currentPage);
+
         pageBean.setUrl(url);
+        pageBean.setCurrentPage(currentPage);
+        pageBean.setTotalPages(pageBean.getTotalPages());
         req.setAttribute("pb",pageBean);
-        req.setAttribute("departmentPageBean",departmentPageBean);
         return "f:/encryptWeb/admin/students.jsp";
     }
+
 
     //中间转折一下获取id并找到该student的全部信息并转到studentProfile.jsp
     public String findStudentById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int stu_id=Integer.parseInt(req.getParameter("studentid"));
         Student stu=studentService.findStudentById(stu_id);
-        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
-        PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
         req.setAttribute("stu",stu);
-        req.setAttribute("departmentPageBean",departmentPageBean);
-        req.setAttribute("stuLevelPageBean",stuLevelPageBean);
 
         return "f:/encryptWeb/admin/studentProfile.jsp";
     }
 
-    //    public PageBean<Student> findStudentsByLevel(int stu_level_id);
+//    后台根据学生阶段获得学生列表
     public String findStudentsByLevel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
+        int currentPage=getCurrentPage(req);
         int levelid=Integer.parseInt(req.getParameter("levelid"));
-        PageBean<Student> pageBean=studentService.findStudentsByLevel(levelid);
+        PageBean<Student> pageBean=studentService.findStudentsByLevel(levelid,currentPage);
         PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
-        for(int i=0;i<pageBean.getBeanList().size();i++){
-            System.out.println("来自servlet层的问候(取出的数据)："+pageBean.getBeanList().get(i));
-        }
+
+        pageBean.setCurrentPage(currentPage);
+        pageBean.setTotalPages(pageBean.getTotalPages());
         pageBean.setUrl(url);
         req.setAttribute("pb",pageBean);
         req.setAttribute("departmentPageBean",departmentPageBean);
         return "f:/encryptWeb/admin/students.jsp";
     }
 
+//    删除学生
     public String deleteStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
+        int currentPage=getCurrentPage(req);
         System.out.println("网页url="+url);
         int studentid=Integer.parseInt(req.getParameter("studentid"));
         String studentname=req.getParameter("studentname");
         studentService.deleteStudent(studentid);
-//        Integer levelid=getLevelid(req);
         PageBean<Student> pageBean=new PageBean<Student>();
-//        if (levelid==null) {
-//            pageBean= studentService.findAllStudents();
-//        }else{
-//            pageBean=studentService.findStudentsByLevel(levelid);
-//        }
-        pageBean= studentService.findAllStudents();
+        pageBean= studentService.findAllStudents(currentPage);
         req.setAttribute("pb",pageBean);
         req.setAttribute("msgDeleteStudent",studentname+"同学已从系统删除。");
         return "f:/encryptWeb/admin/students.jsp";
@@ -113,6 +108,15 @@ public class StudentServlet extends BaseServlet {
         return "f:/encryptWeb/admin/addStudent.jsp";
     }
 
+    //后台显示学生资料用
+    public String adminFindStudentById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int stu_id=Integer.parseInt(req.getParameter("studentid"));
+        Student stu=studentService.findStudentById(stu_id);
+        req.setAttribute("stu",stu);
+        return "f:/encryptWeb/admin/studentDetail.jsp";
+    }
+
+//    增加学生
     public String addStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student newStudent=new Student();
         String url=getUrl(req);
@@ -177,6 +181,15 @@ public class StudentServlet extends BaseServlet {
         return "f:/encryptWeb/admin/addStudent.jsp";
     }
 
+    //用于从新闻详情页装置修改信息页，获取id
+    public String toUpdateNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int studentid=Integer.parseInt(req.getParameter("studentid"));
+        Student student=studentService.findStudentById(studentid);
+        req.setAttribute("stu",student);
+        return "f:/encryptWeb/admin/studentProfile.jsp";
+    }
+
+    //在studentProfile.jsp页面更新信息
     public String updateStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student newStudent=new Student();
         String url=getUrl(req);

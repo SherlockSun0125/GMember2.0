@@ -98,6 +98,7 @@ public class NewsServlet extends BaseServlet {
         String url=getUrl(req);
         PageBean<News> pb =newsService.findAllNews(currentPage);
         pb.setUrl(url);
+        pb.setCurrentPage(currentPage);
         pb.setTotalPages(pb.getTotalPages());
         req.setAttribute("pb", pb);
         return "f:/news.jsp";

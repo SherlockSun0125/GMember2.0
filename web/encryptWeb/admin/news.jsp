@@ -193,7 +193,7 @@
             <c:forEach items="${pb.beanList}" var="news">
                 <tr>
                     <td style="text-align: center">${news.news_id}</td>
-                    <td ><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsById&newsid=${news.news_id}">${news.news_title}</a></td>
+                    <td ><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindStudentById&newsid=${news.news_id}">${news.news_title}</a></td>
                     <td style="text-align: center">
                         <c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">
                             <c:choose>

@@ -26,15 +26,19 @@
     </select>
 
     <select id="findAllStudents" resultMap="studentMap">
-        SELECT * FROM student
+        SELECT * FROM student ORDER BY stu_id DESC LIMIT #{from},#{pageSize}
     </select>
 
     <select id="findStudentsByLevel" resultMap="studentMap">
-        SELECT * FROM student WHERE stu_level_id=#{stu_level_id}
+        SELECT * FROM student WHERE stu_level_id=#{stu_level_id} ORDER BY stu_id DESC LIMIT #{from},#{pageSize}
     </select>
 
     <select id="countAllStudents" resultType="int">
         SELECT COUNT(*) FROM student
+    </select>
+
+    <select id="countStudentsByLevel" resultType="int" parameterType="int">
+        SELECT count(*) FROM student WHERE stu_level_id=#{stu_level_id}
     </select>
 
     <delete id="deleteStudent" parameterType="int">

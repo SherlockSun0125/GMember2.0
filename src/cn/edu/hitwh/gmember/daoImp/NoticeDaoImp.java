@@ -64,11 +64,7 @@ public class NoticeDaoImp implements INoticeDao {
         pageBean.setTotalRecords(totalRecords);
         pageBean.setCurrentPage(currentPage);
         pageBean.setPageSize(pageSize);
-        System.out.println("---------------------------------------");
-        for(Notice Notice:pageBean.getBeanList()){
-            System.out.println("Dao层通过pageBean获得id:"+Notice.getNoti_id());
-        }
-        System.out.println("---------------------------------------");
+
         session.close();
         return pageBean;
     }
@@ -102,11 +98,6 @@ public class NoticeDaoImp implements INoticeDao {
 //        将页面新闻数存入pageBean
         pageBean.setPageSize(pageSize);
 
-        System.out.println("---------------------------------------");
-        for(Notice Notice:pageBean.getBeanList()){
-            System.out.println("Dao层通过pageBean获得id:"+Notice.getNoti_id());
-        }
-        System.out.println("---------------------------------------------");
         session.close();
         return pageBean;
     }
