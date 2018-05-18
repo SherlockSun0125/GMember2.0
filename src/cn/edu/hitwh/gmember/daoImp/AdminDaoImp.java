@@ -30,4 +30,22 @@ public class AdminDaoImp implements IAdminDao{
         session.close();
         return admin;
     }
+
+    @Override
+    public String findAdminNameById(String admin_id) {
+        String resource = "MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session=null;
+        try {
+            reader = Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        session = sqlSessionFactory.openSession();
+        AdminMapper adminMapper = session.getMapper(AdminMapper.class);
+        String admin_name=adminMapper.findAdminNameById(admin_id);
+        session.close();
+        return admin_name;
+    }
 }

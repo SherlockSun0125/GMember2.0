@@ -1,8 +1,10 @@
 package cn.edu.hitwh.gmember.servlet;
 
 import cn.edu.hitwh.gmember.pojo.*;
+import cn.edu.hitwh.gmember.service.IAdminService;
 import cn.edu.hitwh.gmember.service.IDepartmentService;
 import cn.edu.hitwh.gmember.service.INewsService;
+import cn.edu.hitwh.gmember.serviceImp.AdminServiceImp;
 import cn.edu.hitwh.gmember.serviceImp.DepartmentServiceImp;
 import cn.edu.hitwh.gmember.serviceImp.NewsServiceImp;
 import cn.edu.hitwh.gmember.tools.DateTools;
@@ -21,6 +23,7 @@ public class NewsServlet extends BaseServlet {
     private INewsService newsService=new NewsServiceImp();
     private DateTools dateTools=new DateTools();
     IDepartmentService departmentService=new DepartmentServiceImp();
+    IAdminService adminService=new AdminServiceImp();
 
     public String addNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("调用addNews方法！");
@@ -129,6 +132,15 @@ public class NewsServlet extends BaseServlet {
         pb.setTotalPages(pb.getTotalPages());
         req.setAttribute("pb", pb);
         return "f:/encryptWeb/admin/news.jsp";
+    }
+
+    public String adminFindNewsById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int news_id=Integer.parseInt(req.getParameter("newsid"));
+        News news=newsService.findNewsById(news_id);
+        String adminname=adminService.findAdminNameById(news.getAuthor_id());
+        news.setAuthor_id(adminname);
+        req.setAttribute("news",news);
+        return "f:/encryptWeb/admin/newsDetail.jsp";
     }
 
     public String toUpdateNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

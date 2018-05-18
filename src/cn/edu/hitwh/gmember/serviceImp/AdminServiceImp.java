@@ -15,4 +15,13 @@ public class AdminServiceImp implements IAdminService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public String findAdminNameById(String admin_id) {
+        try{
+            return adminDao.findAdminNameById(admin_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

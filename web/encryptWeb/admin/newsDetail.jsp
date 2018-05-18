@@ -60,6 +60,13 @@
         });
     </script>
     <link href="${pageContext.request.contextPath}/pager/adminPager.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+        .tname{
+            width: 7em;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body class="theme-blue">
@@ -172,58 +179,80 @@
 <div class="content">
     <div class="main-content">
         <div class="btn-toolbar list-toolbar">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><i
-                    class="fa fa-plus"></i>上传新闻</a>
-            <button class="btn btn-default">导出列表</button>
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}">
+                <i class="fa fa-pencil"></i>&nbsp;修改新闻</a>
+            <button class="btn btn-default">导出新闻</button>
             <div class="btn-group"></div>
         </div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>标题</th>
-                <th>板块</th>
-                <th>浏览次数</th>
-                <th>时间</th>
-                <th>谨慎操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%--<c:set var="num" value="0"></c:set>--%>
-            <c:forEach items="${pb.beanList}" var="news">
-                <tr>
-                    <td>${news.news_id}</td>
-                    <td><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsById&newsid=${news.news_id}">${news.news_title}</a></td>
-                    <td>
-                        <c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">
-                            <c:choose>
-                                <c:when test="${news.news_section_id eq newsSection.news_section_id}">
+        <div>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="tname">新闻标题</td>
+                        <td colspan="5">${news.news_title}</td>
+                    </tr>
+                    <tr>
+                        <td class="tname">发布者</td>
+                        <td>${news.publisher}</td>
+                        <td  class="tname">管理员姓名</td>
+                        <td>
+                            ${news.author_id}
+                        </td>
+                        <td class="tname">新闻来源</td>
+                        <td>${news.news_source}</td>
+                    </tr>
+                    <tr>
+                        <td class="tname">时间</td>
+                        <td>${news.news_time}</td>
+                        <td class="tname">版块</td>
+                        <td>
+                            <c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">
+                                <c:choose>
+                                    <c:when test="${news.news_section_id eq newsSection.news_section_id}">
                                     ${newsSection.news_section_name}
-                                </c:when>
-                            </c:choose>
-                        </c:forEach>
-                    </td>
-                    <td>${news.news_readtimes}</td>
-                    <td>${news.news_time}</td>
-
-                    <td style="text-align: center">
-                        <a href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}"><i
-                                class="fa fa-pencil"></i></a>
-                        &nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/newsServlet?method=deleteNews&newsid=${news.news_id}&newstitle=${news.news_title}"
-                           role="button"><i class="fa fa-trash-o"></i></a>
-                            <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <div style="float:left; width: 100%; text-align: center;" >
-            <%@include file="/pager/pager.jsp"%>
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                        </td>
+                        <td class="tname">阅读次数</td>
+                        <td>${news.news_readtimes}</td>
+                    </tr>
+                    <tr>
+                        <td class="tname" style="vertical-align: middle;text-align: center">新<br/>闻<br/>内<br/>容</td>
+                        <td colspan="5">${news.news_content}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <small>${msgDeleteNews}</small>
 
-        <%--<footer style="position: absolute;bottom: 0;width: 100%">--%>
+        <%--<c:forEach items="${pb.beanList}" var="news">--%>
+            <%--<tr>--%>
+                <%--<td>${news.news_id}</td>--%>
+                <%--<td><a href="${pageContext.request.contextPath}/newsServlet">${news.news_title}</a></td>--%>
+                <%--<td>--%>
+                    <%--<c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">--%>
+                        <%--<c:choose>--%>
+                            <%--<c:when test="${news.news_section_id eq newsSection.news_section_id}">--%>
+                                <%--${newsSection.news_section_name}--%>
+                            <%--</c:when>--%>
+                        <%--</c:choose>--%>
+                    <%--</c:forEach>--%>
+                <%--</td>--%>
+                <%--<td>${news.news_readtimes}</td>--%>
+                <%--<td>${news.news_time}</td>--%>
+
+                <%--<td style="text-align: center">--%>
+                    <%--<a href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}"><i--%>
+                            <%--class="fa fa-pencil"></i></a>--%>
+                    <%--&nbsp;&nbsp;--%>
+                    <%--<a href="${pageContext.request.contextPath}/newsServlet?method=deleteNews&newsid=${news.news_id}&newstitle=${news.news_title}"--%>
+                       <%--role="button"><i class="fa fa-trash-o"></i></a>--%>
+                        <%--&lt;%&ndash;<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>&ndash;%&gt;--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+        <%--</c:forEach>--%>
+
+
         <footer>
             <hr>
             <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>

@@ -6,4 +6,8 @@
     <select id="findAdmin" resultType="cn.edu.hitwh.gmember.pojo.Admin">
       SELECT * from admin where admin_id=#{admin_id} AND admin_pwd=#{admin_pwd}
     </select>
+
+    <select id="findAdminNameById" resultType="String" parameterType="String">
+        SELECT  admin_name FROM admin WHERE admin_id=#{admin_id}
+    </select>
 </mapper>
