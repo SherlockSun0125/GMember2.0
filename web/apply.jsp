@@ -70,6 +70,48 @@
             vertical-align: middle;
         }
     </style>
+    <script>
+        function checkForm() {
+            if(!$("#stunum").val()){
+                alert("学号不能为空！");
+                return false;
+            }
+            if(!$("#stuname").val()){
+                alert("姓名不能为空！");
+                return false;
+            }
+            if(!$("#stuage").val()){
+                alert("年龄不能为空！");
+                return false;
+            }
+            if(!$("#stumail").val()){
+                alert("邮箱不能为空！");
+                return false;
+            }
+
+            if(!$("#stuphone").val()){
+                alert("手机号不能为空！");
+                return false;
+            }
+            if(!$("#depid").val()){
+                alert("院系不能为空！");
+                return false;
+            }
+            if(!$("#stuenglish").val()){
+                alert("英语水平不能为空！");
+                return false;
+            }
+            if(!$("#stugrade").val()){
+                alert("成绩排名不能为空！");
+                return false;
+            }
+            if(!$("#stumajor").val()){
+                alert("成绩排名不能为空！");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -117,7 +159,7 @@
 <section id="container">
     <div class="container">
         <div class="row" style="padding-left: 80px;text-align: center">
-            <form class="form-actions" style="text-align: center">
+            <form class="form-actions" style="text-align: center" onsubmit="return checkForm()" action="${pageContext.request.contextPath}/studentServlet?method=apply" method="post">
 
                 <table style="margin-left:35%;">
                     <thead style="text-align: left">
@@ -133,16 +175,20 @@
                         <td class="td2"><input type="text" id="stunum" name="stunum" class="input-text form-control" style="border-radius: 9px;"></td>
                     </tr>
                     <tr>
+                        <td class="td1"><label for="stuage"><em>*</em>年龄</label></td>
+                        <td class="td2"><input type="text" id="stuage" name="stuage" class="input-text form-control" style="border-radius: 9px;"></td>
+                    </tr>
+                    <tr>
                         <td class="td1"><em>*</em><label>性别</label></td>
                         <td class="td2">
-                            <input type="radio" name="sex" value="boy" id="men">男&nbsp;&nbsp;
-                            <input type="radio" name="sex" value="girl" id="women">女
+                            <input type="radio" name="stusex" value="1" checked="checked">男&nbsp;&nbsp;
+                            <input type="radio" name="stusex" value="0">女
                         </td>
                     </tr>
                     <tr>
                         <td class="td1"><label><em>*</em>院系</label></td>
                         <td class="td2">
-                            <select name="studepid"  id="studepid">
+                            <select name="depid"  id="depid">
                                 <c:forEach items="${departmentPageBean.beanList}" var="departments">
                                     <option value="${departments.dep_id}">${departments.dep_name}</option>
                                 </c:forEach>
@@ -164,23 +210,23 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="td1"><label for="stuenglish"><em>*</em>外语水平</label></td>
+                        <td class="td1"><label for="stuenglish"><em>*</em>英语水平</label></td>
                         <td class="td2">
-                            <input type="text" id="stuenglish" class="input-text">
+                            <input type="text" id="stuenglish" class="input-text" name="stuenglish">
                         </td>
                     </tr>
                     <tr>
                         <td class="td1"><label for="stuphone"><em>*</em>手机号</label></td>
-                        <td class="td2"><input type="text" class="input-text" id="stuphone"></td>
+                        <td class="td2"><input type="text" class="input-text" id="stuphone" name="stuphone"></td>
                     </tr>
                     <tr>
                         <td class="td1"><label for="stumail"><em>*</em>邮箱</label></td>
-                        <td class="td2"><input type="email" class="input-text" id="stumail"></td>
+                        <td class="td2"><input type="email" class="input-text" id="stumail" name="stumail"></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="right" style="text-align: left">
                             <label for="stunote">&nbsp;&nbsp;备注（所获奖项及项目概况）</label>
-                            <textarea id="stunote" style="width: 100%;height: 100px"></textarea>
+                            <textarea id="stunote" style="width: 100%;height: 100px" name="stunote"></textarea>
                         </td>
                     </tr>
                     <%--<tr>--%>
@@ -197,6 +243,7 @@
                     </tr>
                 </table>
             </form>
+            <small>${msgApply}</small>
         </div>
     </div>
 </section>

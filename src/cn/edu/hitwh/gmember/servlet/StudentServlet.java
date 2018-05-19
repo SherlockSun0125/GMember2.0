@@ -54,7 +54,78 @@ public class StudentServlet extends BaseServlet {
         return "f:/apply.jsp";
     }
 
-//    后台找到所有学生
+//    除导师和教师之外的信息
+    public String apply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Student newStudent=new Student();
+        String url=getUrl(req);
+
+//        学号
+        String stunum=req.getParameter("stunum");
+        newStudent.setStu_num(stunum);
+//        姓名
+        String stuname=req.getParameter("stuname");
+        newStudent.setStu_name(stuname);
+//        性别
+        int stusex=Integer.parseInt(req.getParameter("stusex"));
+        System.out.println("性别是什么？"+stusex);
+        String sex;
+        if(stusex==0){
+            sex="女";
+        }else{
+            sex="男";
+        }
+        newStudent.setStu_sex(sex);
+//        年龄
+        int stuage=Integer.parseInt(req.getParameter("stuage"));
+        newStudent.setStu_age(stuage);
+
+//        院系
+        int depid=Integer.parseInt(req.getParameter("depid"));
+        newStudent.setDep_id(depid);
+
+        //专业
+        String stumajor=req.getParameter("stumajor");
+        newStudent.setStu_major(stumajor);
+
+        //获得英语成绩
+        String stuenglish=req.getParameter("stuenglish");
+        newStudent.setStu_english(stuenglish);
+
+        //获得成绩id
+        int stugradeid=Integer.parseInt(req.getParameter("stugrade"));
+        newStudent.setStu_grade_id(stugradeid);
+//        手机号
+        String stuphone=req.getParameter("stuphone");
+        newStudent.setStu_phone(stuphone);
+//        邮箱
+        String stumail=req.getParameter("stumail");
+        newStudent.setStu_mail(stumail);
+//        备注
+        String stunote=req.getParameter("stunote");
+        newStudent.setStu_note(stunote);
+//        密码初始化为手机号
+        String stupwd=stuphone;
+        newStudent.setStu_pwd(stupwd);
+
+//        插入数据库
+        Integer stuid=studentService.addStudent(newStudent);
+
+//        并返回增加页
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
+        req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("stuLevelPageBean",stuLevelPageBean);
+
+        if(stuid==null) {
+            req.setAttribute("msgApply","申请提交失败，请重新申请！");
+        }else{
+            req.setAttribute("msgApply","申请提交成功，请耐心等待！");
+        }
+
+        return "f:/apply.jsp";
+    }
+
+    //    后台找到所有学生
     public String findAllStudents(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage=getCurrentPage(req);
         String url=getUrl(req);
