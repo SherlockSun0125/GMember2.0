@@ -3,7 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hitwh.gmember.mapper.EmployeeMapper">
+    <resultMap id="employeeMap" type="cn.edu.hitwh.gmember.pojo.Employee">
+        <id property="emp_id" column="emp_id"></id>
+        <result property="emp_name" column="emp_name"></result>
+        <result property="emp_pwd" column="emp_pwd"></result>
+        <result property="emp_sex" column="emp_sex"></result>
+        <result property="emp_age" column="emp_age"></result>
+        <result property="emp_phone" column="emp_phone"></result>
+        <result property="emp_mail" column="emp_mail"></result>
+        <result property="com_id" column="com_id"></result>
+        <result property="emp_note" column="emp_note"></result>
+    </resultMap>
     <select id="findEmployee" resultType="cn.edu.hitwh.gmember.pojo.Employee">
         SELECT * FROM employee WHERE emp_id=#{id} AND emp_pwd=#{pwd}
+    </select>
+    <select id="findAllEmployeeDetail" resultMap="employeeMap">
+        SELECT * FROM employee
     </select>
 </mapper>

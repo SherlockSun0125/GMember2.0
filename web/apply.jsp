@@ -57,7 +57,7 @@
             width: 250px;
             border-radius: 20px;
         }
-        #departments {
+        #stugrade,#studepid {
             width: 250px;
         }
         #stugrade {
@@ -125,7 +125,7 @@
                     </thead>
                     <tr>
                         <td class="td1"><label for="stuname"><em>*</em>姓名</label></td>
-                        <td class="td2"><input type="text" id="stuname" name="stuname" class="input-text form-control" style="border-radius: 9px"/>
+                        <td class="td2"><input type="text" id="stuname" name="stuname" class="input-text form-control" style="border-radius:20px"/>
                         </td>
                     </tr>
                     <tr>
@@ -142,7 +142,7 @@
                     <tr>
                         <td class="td1"><label><em>*</em>院系</label></td>
                         <td class="td2">
-                            <select name="studepid"  id="departments">
+                            <select name="studepid"  id="studepid">
                                 <c:forEach items="${departmentPageBean.beanList}" var="departments">
                                     <option value="${departments.dep_id}">${departments.dep_name}</option>
                                 </c:forEach>
@@ -156,7 +156,7 @@
                     <tr>
                         <td class="td1"><label for="stugrade"><em>*</em>专业排名</label></td>
                         <td class="td2">
-                            <select id="stugrade">
+                            <select id="stugrade" name="stugrade">
                                 <c:forEach items="${stugradePageBean.beanList}" var="stugrade">
                                     <option value="${stugrade.stu_grade_id}">${stugrade.stu_grade_name}</option>
                                 </c:forEach>

@@ -247,7 +247,12 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="stulevelid">院系</label>
+                                    <label for="stumajor">专业</label>
+                                    <input type="text" name="stumajor" id="stumajor" value="${stu.stu_major}"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stulevelid">阶段</label>
                                     <select name="stulevelid" id="stulevelid" class="form-control">
                                         <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
                                             <c:choose>
@@ -257,6 +262,29 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <option value="${stulevel.stu_level_id}">${stulevel.stu_level_name} </option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stuenglish">英语水平</label>
+                                    <input type="text" id="stuenglish" name="stuenglish" value="${stu.stu_english}"
+                                           class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stugrade">成绩排名</label>
+                                    <select name="stugrade" id="stugrade" class="form-control">
+                                        <c:forEach items="${stugradePageBean.beanList}" var="stugrade">
+                                            <c:choose>
+                                                <c:when test="${stugrade.stu_grade_id eq stu.stu_grade_id}">
+                                                    <option value="${stugrade.stu_grade_id}"
+                                                            selected="selected">${stugrade.stu_grade_name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${stugrade.stu_grade_id}">${stugrade.stu_grade_name} </option>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:forEach>

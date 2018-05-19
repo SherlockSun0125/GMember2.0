@@ -241,10 +241,29 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="stumajor">专业</label>
+                                    <input type="text" name="stumajor" id="stumajor" class="form-control">
+                                </div>
+
+                                <div class="form-group">
                                     <label for="stulevelid">阶段</label>
                                     <select name="stulevelid" id="stulevelid" class="form-control">
                                         <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
                                            <option value="${stulevel.stu_level_id}">${stulevel.stu_level_name} </option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stuenglish">英语水平</label>
+                                    <input type="text" id="stuenglish" name="stuenglish" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stugrade">成绩排名</label>
+                                    <select name="stugrade" id="stugrade" class="form-control">
+                                        <c:forEach items="${stugradePageBean.beanList}" var="stugrade">
+                                             <option value="${stugrade.stu_grade_id}">${stugrade.stu_grade_name} </option>
                                         </c:forEach>
                                     </select>
                                 </div>

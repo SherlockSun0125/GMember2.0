@@ -49,15 +49,17 @@
     <delete id="deleteStudent" parameterType="int">
         DELETE FROM student WHERE stu_id=#{stu_id}
     </delete>
-    <insert id="addStudent" useGeneratedKeys="true" keyProperty="stu_id">
-        INSERT INTO student(stu_num,stu_name, stu_pwd, stu_sex, stu_age, stu_phone, stu_mail,dep_id,stu_level_id,stu_note,stu_english,stu_grade_id,stu_major)
-        VALUES(#{stu_num},#{stu_name},#{stu_pwd},#{stu_sex},#{stu_age},#{stu_phone},#{stu_mail},#{dep_id},#{stu_level_id},#{stu_note},#{stu_english},#{stu_grade_id},#{stu_major})
-    </insert>
 
+    <insert id="addStudent" parameterType="cn.edu.hitwh.gmember.pojo.Student" useGeneratedKeys="true" keyProperty="stu_id">
+        INSERT INTO student(stu_num,stu_name, stu_pwd, stu_sex, stu_age, stu_phone, stu_mail,dep_id,stu_level_id,stu_note,stu_english,stu_grade_id,stu_major)
+        VALUES(#{stu_num},#{stu_name},#{stu_pwd},#{stu_sex},#{stu_age},#{stu_phone},#{stu_mail},#{dp_id},#{stu_level_id},#{stu_note},#{stu_english},#{stu_grade_id},#{stu_major})
+    </insert>
+    
     <update id="updateStudent" parameterType="cn.edu.hitwh.gmember.pojo.Student">
         UPDATE gmember.student set stu_num=#{stu.stu_num},stu_name=#{stu.stu_name},stu_sex=#{stu.stu_sex},stu_age=#{stu.stu_age},
-        dep_id=#{stu.dep_id},stu_phone=#{stu.stu_phone},stu_mail=#{stu.stu_mail},stu_pwd=#{stu.stu_pwd},stu_note=#{stu.stu_note},
-        stu_level_id=#{stu.stu_level_id},stu_english=#{stu.stu_english},stu_grade_id=#{stu.stu_grade_id},tea_id=#{stu.tea_id},emp_id=#{stu.emp_id},stu_major=#{stu.stu_major}
+            dep_id=#{stu.dep_id},stu_phone=#{stu.stu_phone},stu_mail=#{stu.stu_mail},stu_pwd=#{stu.stu_pwd},stu_note=#{stu.stu_note},
+            stu_level_id=#{stu.stu_level_id},stu_english=#{stu.stu_english},stu_grade_id=#{stu.stu_grade_id},tea_id=#{stu.tea_id},emp_id=#{stu.emp_id},stu_major=#{stu.stu_major}
         WHERE stu_id=#{stu.stu_id}
     </update>
+
 </mapper>

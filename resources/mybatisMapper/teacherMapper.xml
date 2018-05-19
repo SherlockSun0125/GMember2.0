@@ -24,6 +24,10 @@
         SELECT * FROM teacher ORDER BY tea_id DESC LIMIT #{from},#{pageSize}
     </select>
 
+    <select id="findAllTeacherDetail" resultMap="teacherMap">
+        SELECT * FROM teacher;
+    </select>
+
     <select id="countAllTeachers" resultType="int">
         SELECT COUNT(*) FROM teacher
     </select>

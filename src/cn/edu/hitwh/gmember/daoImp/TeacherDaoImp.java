@@ -53,10 +53,7 @@ public class TeacherDaoImp implements ITeacherDao{
 
         //获得教师信息
         TeacherMapper teacherMapper=session.getMapper(TeacherMapper.class);
-//        for(int i=0;i<teachers.size();i++){
-//            System.out.println("来自dao层的问候(取出的数据)："+teachers.get(i));
-//        }
-        //获得总教师人数
+
         totalTeachers=teacherMapper.countAllTeachers();
         int from=(currentPage-1)*pageSize;
 
@@ -67,6 +64,31 @@ public class TeacherDaoImp implements ITeacherDao{
         teacherPageBean.setPageSize(pageSize);
         teacherPageBean.setCurrentPage(currentPage);
         teacherPageBean.setTotalPages(teacherPageBean.getTotalPages());
+        session.close();
+        return teacherPageBean;
+    }
+
+    @Override
+    public PageBean<Teacher> findAllTeacherDetail() {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        PageBean<Teacher> teacherPageBean=new PageBean<Teacher>();
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        //获得教师信息
+        TeacherMapper teacherMapper=session.getMapper(TeacherMapper.class);
+
+        List<Teacher> teachers=teacherMapper.findAllTeacherDetail();
+        teacherPageBean.setBeanList(teachers);
+
+        session.close();
         return teacherPageBean;
     }
 

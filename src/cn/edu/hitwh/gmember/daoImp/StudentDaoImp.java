@@ -106,8 +106,9 @@ public class StudentDaoImp implements IStudentDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
         StudentMapper studentMapper=session.getMapper(StudentMapper.class);
+        int number=studentMapper.countAllStudents();
         session.close();
-        return studentMapper.countAllStudents();
+        return number;
     }
 
     @Override

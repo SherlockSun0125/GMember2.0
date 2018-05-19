@@ -13,6 +13,6 @@ public interface StudentMapper {
     public int countAllStudents();
     public int countStudentsByLevel(int stu_level_id);
     public void deleteStudent(int stu_id);
-    public int addStudent(@Param("stu") Student student);
+    public int addStudent(Student student);
     public void updateStudent(@Param("stu")Student student);
 }

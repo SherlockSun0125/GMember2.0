@@ -9,10 +9,11 @@ public class Employee {
     private String emp_phone;
     private String emp_mail;
     private String com_id;
+    private String emp_note;
 
     public Employee()   {}
 
-    public Employee(String emp_id, String emp_name, String emp_pwd, String emp_sex, int emp_age, String emp_phone, String emp_mail, String com_id) {
+    public Employee(String emp_id, String emp_name, String emp_pwd, String emp_sex, int emp_age, String emp_phone, String emp_mail, String com_id, String emp_note) {
         this.emp_id = emp_id;
         this.emp_name = emp_name;
         this.emp_pwd = emp_pwd;
@@ -21,38 +22,7 @@ public class Employee {
         this.emp_phone = emp_phone;
         this.emp_mail = emp_mail;
         this.com_id = com_id;
-    }
-
-    public void setEmp_id(String emp_id) {
-        this.emp_id = emp_id;
-    }
-
-    public void setEmp_name(String emp_name) {
-        this.emp_name = emp_name;
-    }
-
-    public void setEmp_pwd(String emp_pwd) {
-        this.emp_pwd = emp_pwd;
-    }
-
-    public void setEmp_sex(String emp_sex) {
-        this.emp_sex = emp_sex;
-    }
-
-    public void setEmp_age(int emp_age) {
-        this.emp_age = emp_age;
-    }
-
-    public void setEmp_phone(String emp_phone) {
-        this.emp_phone = emp_phone;
-    }
-
-    public void setEmp_mail(String emp_mail) {
-        this.emp_mail = emp_mail;
-    }
-
-    public void setCom_id(String com_id) {
-        this.com_id = com_id;
+        this.emp_note = emp_note;
     }
 
     public String getEmp_id() {
@@ -87,6 +57,46 @@ public class Employee {
         return com_id;
     }
 
+    public String getEmp_note() {
+        return emp_note;
+    }
+
+    public void setEmp_id(String emp_id) {
+        this.emp_id = emp_id;
+    }
+
+    public void setEmp_name(String emp_name) {
+        this.emp_name = emp_name;
+    }
+
+    public void setEmp_pwd(String emp_pwd) {
+        this.emp_pwd = emp_pwd;
+    }
+
+    public void setEmp_sex(String emp_sex) {
+        this.emp_sex = emp_sex;
+    }
+
+    public void setEmp_age(int emp_age) {
+        this.emp_age = emp_age;
+    }
+
+    public void setEmp_phone(String emp_phone) {
+        this.emp_phone = emp_phone;
+    }
+
+    public void setEmp_mail(String emp_mail) {
+        this.emp_mail = emp_mail;
+    }
+
+    public void setCom_id(String com_id) {
+        this.com_id = com_id;
+    }
+
+    public void setEmp_note(String emp_note) {
+        this.emp_note = emp_note;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -97,7 +107,8 @@ public class Employee {
                 ", emp_age=" + emp_age +
                 ", emp_phone='" + emp_phone + '\'' +
                 ", emp_mail='" + emp_mail + '\'' +
-                ", com_id=" + com_id + '\''+
+                ", com_id='" + com_id + '\'' +
+                ", emp_note='" + emp_note + '\'' +
                 '}';
     }
 }

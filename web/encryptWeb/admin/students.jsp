@@ -182,6 +182,7 @@
                 <th>姓名</th>
                 <th>院系</th>
                 <th>阶段</th>
+                <th>教师</th>
                 <th>导师</th>
                 <th>谨慎操作</th>
             </tr>
@@ -202,10 +203,45 @@
                             </c:choose>
                         </c:forEach>
                     </td>
-                    <td>${stu.stu_level_id}</td>
-                    <td>${stu.emp_id}</td>
+                    <td>
+                        <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
+                            <c:choose>
+                                <c:when test="${stulevel.stu_level_id eq stu.stu_level_id}">
+                                    ${stulevel.stu_level_name}
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </td>
+                    <td>
+                        <c:forEach items="${teacherPageBean.beanList}" var="teachers">
+                            <c:choose>
+                                <c:when test="${stu.tea_id eq teachers.tea_id}">
+                                    ${teachers.tea_name}
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${stu.tea_id eq 0}">
+                                未分配
+                            </c:when>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:forEach items="${employeePageBean.beanList}" var="employees">
+                            <c:choose>
+                                <c:when test="${stu.emp_id eq employees.emp_id}">
+                                    ${employees.emp_name}
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${stu.emp_id eq 0}">
+                                未分配
+                            </c:when>
+                        </c:choose>
+                    </td>
                     <td style="text-align: center">
-                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentById&studentid=${stu.stu_id}"><i
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=toUpdateStudent&studentid=${stu.stu_id}"><i
                                 class="fa fa-pencil"></i></a>
                         &nbsp;&nbsp;
                         <a href="${pageContext.request.contextPath}/studentServlet?method=deleteStudent&studentid=${stu.stu_id}&studentname=${stu.stu_name}"

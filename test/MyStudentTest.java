@@ -23,7 +23,21 @@ public class MyStudentTest {
 
         IStudentService studentService=new StudentServiceImp();
 
-        System.out.println(studentService.findStudentById(1010));
+
+        Student student=studentService.findStudentById(1026);
+        student.setStu_english("四级满分");
+        student.setStu_major("网络安全");
+        student.setStu_note("hahahahahaha");
+//        studentService.updateStudent(student);
+        student.setStu_id(1028);
+//        student.setTea_id(null);
+
+        studentService.addStudent(student);
+//        student.setStu_num("140410429");
+//        student.setStu_id(1027);
+//        studentService.addStudent(student);
+
+//        System.out.println(studentService.findStudentById(1010));
 
 //        studentPageBean=studentService.findStudentsByLevel(0);
 //

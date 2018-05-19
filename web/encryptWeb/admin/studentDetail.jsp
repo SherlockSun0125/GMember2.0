@@ -194,16 +194,56 @@
                         <td class="tname" style="border: 3px solid #EEEEEE">姓名</td>
                         <td colspan="2" style="border: 3px solid #EEEEEE">${stu.stu_name}</td>
                         <td class="tname" style="border: 3px solid #EEEEEE">院系</td>
-                        <td style="border: 3px solid #EEEEEE" colspan="2">${stu.dep_id}</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">
+                            <c:forEach items="${departmentPageBean.beanList}" var="dep">
+                                <c:choose>
+                                    <c:when test="${stu.dep_id eq dep.dep_id}">
+                                        ${dep.dep_name}
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                        </td>
                     </tr>
                     <tr>
                         <td  class="tname" style="border: 3px solid #EEEEEE">阶段</td>
                         <td style="border: 3px solid #EEEEEE" colspan="2">
-                            ${stu.stu_level_id}
+                            <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
+                                <c:choose>
+                                    <c:when test="${stulevel.stu_level_id eq stu.stu_level_id}">
+                                        ${stulevel.stu_level_name}
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
                         </td>
                         <td class="tname" style="border: 3px solid #EEEEEE">导师</td>
-                        <td style="border: 3px solid #EEEEEE" colspan="5">${stu.emp_id}
-                            【后期实现如下格式：员工姓名（id=****,所属公司）,或者仅仅显示姓名，点击之后查看详细信息】
+                        <td style="border: 3px solid #EEEEEE" colspan="2">
+                            <c:forEach items="${employeePageBean.beanList}" var="employees">
+                                <c:choose>
+                                    <c:when test="${stu.emp_id eq employees.emp_id}">
+                                        ${employees.emp_name}
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                            <c:choose>
+                                <c:when test="${stu.emp_id eq 0}">
+                                    未分配
+                                </c:when>
+                            </c:choose>
+                        </td>
+                        <td class="tname" style="border: 3px solid #EEEEEE">教师</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">
+                            <c:forEach items="${teacherPageBean.beanList}" var="teachers">
+                                <c:choose>
+                                    <c:when test="${stu.tea_id eq teachers.tea_id}">
+                                        ${teachers.tea_name}
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                            <c:choose>
+                                <c:when test="${stu.tea_id eq 0}">
+                                    未分配
+                                </c:when>
+                            </c:choose>
                         </td>
                     </tr>
                     <tr>
@@ -213,6 +253,22 @@
                         <td style="border: 3px solid #EEEEEE" colspan="2">${stu.stu_age}</td>
                         <td class="tname" style="border: 3px solid #EEEEEE" colspan="1">密码</td>
                         <td style="border: 3px solid #EEEEEE" colspan="2">${stu.stu_pwd}</td>
+                    </tr>
+                    <tr>
+                        <td class="tname" colspan="1" style="border: 3px solid #EEEEEE">英语水平</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">${stu.stu_english}</td>
+                        <td class="tname" style="border: 3px solid #EEEEEE" colspan="1">成绩排名</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">
+                            <c:forEach items="${stugradePageBean.beanList}" var="stugrade">
+                               <c:choose>
+                                   <c:when test="${stugrade.stu_grade_id eq stu.stu_grade_id}">
+                                       ${stugrade.stu_grade_name}
+                                   </c:when>
+                               </c:choose>
+                            </c:forEach>
+                        </td>
+                        <td class="tname" colspan="1" style="border: 3px solid #EEEEEE">专业</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="2">${stu.stu_major}</td>
                     </tr>
                     <tr>
                         <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">备<br/>注

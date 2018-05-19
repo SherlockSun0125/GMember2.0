@@ -1,14 +1,8 @@
 package cn.edu.hitwh.gmember.servlet;
 
 import cn.edu.hitwh.gmember.pojo.*;
-import cn.edu.hitwh.gmember.service.IDepartmentService;
-import cn.edu.hitwh.gmember.service.IStudentService;
-import cn.edu.hitwh.gmember.service.IStugradeService;
-import cn.edu.hitwh.gmember.service.IStulevelService;
-import cn.edu.hitwh.gmember.serviceImp.DepartmentServiceImp;
-import cn.edu.hitwh.gmember.serviceImp.StudentServiceImp;
-import cn.edu.hitwh.gmember.serviceImp.StugradeServiceImp;
-import cn.edu.hitwh.gmember.serviceImp.StulevelServiceImp;
+import cn.edu.hitwh.gmember.service.*;
+import cn.edu.hitwh.gmember.serviceImp.*;
 import cn.edu.hitwh.gmember.tools.PageBean;
 import cn.itcast.servlet.BaseServlet;
 
@@ -24,6 +18,8 @@ public class StudentServlet extends BaseServlet {
     private IDepartmentService departmentService=new DepartmentServiceImp();
     private IStulevelService stulevelService=new StulevelServiceImp();
     private IStugradeService stugradeService=new StugradeServiceImp();
+    private ITeacherService teacherService=new TeacherServiceImp();
+    private IEmployeeService employeeService=new EmployeeServiceImp();
 
 //    学生登录
     public String studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,7 +51,7 @@ public class StudentServlet extends BaseServlet {
         PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
         req.setAttribute("departmentPageBean",departmentPageBean);
         req.setAttribute("stugradePageBean",stugradePageBean);
-        return "r:/apply.jsp";
+        return "f:/apply.jsp";
     }
 
 //    后台找到所有学生
@@ -64,12 +60,18 @@ public class StudentServlet extends BaseServlet {
         String url=getUrl(req);
         PageBean<Student> pageBean=studentService.findAllStudents(currentPage);
         PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<Teacher> teacherPageBean=teacherService.findAllTeacherDetail();
+        PageBean<Employee> employeePageBean=employeeService.findAllEmployeeDetail();
+        PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
 
         pageBean.setUrl(url);
         pageBean.setCurrentPage(currentPage);
         pageBean.setTotalPages(pageBean.getTotalPages());
         req.setAttribute("pb",pageBean);
         req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("teacherPageBean",teacherPageBean);
+        req.setAttribute("employeePageBean",employeePageBean);
+        req.setAttribute("stuLevelPageBean",stuLevelPageBean);
         return "f:/encryptWeb/admin/students.jsp";
     }
 
@@ -90,12 +92,18 @@ public class StudentServlet extends BaseServlet {
         int levelid=Integer.parseInt(req.getParameter("levelid"));
         PageBean<Student> pageBean=studentService.findStudentsByLevel(levelid,currentPage);
         PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<Teacher> teacherPageBean=teacherService.findAllTeacherDetail();
+        PageBean<Employee> employeePageBean=employeeService.findAllEmployeeDetail();
+        PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
 
         pageBean.setCurrentPage(currentPage);
         pageBean.setTotalPages(pageBean.getTotalPages());
         pageBean.setUrl(url);
         req.setAttribute("pb",pageBean);
         req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("teacherPageBean",teacherPageBean);
+        req.setAttribute("employeePageBean",employeePageBean);
+        req.setAttribute("stuLevelPageBean",stuLevelPageBean);
         return "f:/encryptWeb/admin/students.jsp";
     }
 
@@ -117,7 +125,9 @@ public class StudentServlet extends BaseServlet {
     //获得院系列表和阶段列表
     public String toAddStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
         req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("stugradePageBean",stugradePageBean);
         return "f:/encryptWeb/admin/addStudent.jsp";
     }
 
@@ -125,6 +135,18 @@ public class StudentServlet extends BaseServlet {
     public String adminFindStudentById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int stu_id=Integer.parseInt(req.getParameter("studentid"));
         Student stu=studentService.findStudentById(stu_id);
+
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<Teacher> teacherPageBean=teacherService.findAllTeacherDetail();
+        PageBean<Employee> employeePageBean=employeeService.findAllEmployeeDetail();
+        PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
+        PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
+        req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("teacherPageBean",teacherPageBean);
+        req.setAttribute("employeePageBean",employeePageBean);
+        req.setAttribute("stuLevelPageBean",stuLevelPageBean);
+        req.setAttribute("stugradePageBean",stugradePageBean);
+
         req.setAttribute("stu",stu);
         return "f:/encryptWeb/admin/studentDetail.jsp";
     }
@@ -133,9 +155,9 @@ public class StudentServlet extends BaseServlet {
     public String addStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student newStudent=new Student();
         String url=getUrl(req);
-        System.out.println("网页url="+url);
+//        System.out.println("网页url="+url);
 
-//        工号
+//        学号
         String stunum=req.getParameter("stunum");
         newStudent.setStu_num(stunum);
         System.out.println("学生num="+stunum);
@@ -154,11 +176,24 @@ public class StudentServlet extends BaseServlet {
 //        院系
         int depid=Integer.parseInt(req.getParameter("depid"));
         newStudent.setDep_id(depid);
-        System.out.println("学生depid="+depid);
+//        System.out.println("学生depid="+depid);
+
+        //专业
+        String stumajor=req.getParameter("stumajor");
+        newStudent.setStu_major(stumajor);
+
 //        所处阶段
         int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
         newStudent.setStu_level_id(stulevelid);
         System.out.println("学生levelid="+stulevelid);
+
+        //获得英语成绩
+        String stuenglish=req.getParameter("stuenglish");
+        newStudent.setStu_english(stuenglish);
+
+        //获得成绩id
+        int stugradeid=Integer.parseInt(req.getParameter("stugrade"));
+        newStudent.setStu_grade_id(stugradeid);
 //        手机号
         String stuphone=req.getParameter("stuphone");
         newStudent.setStu_phone(stuphone);
@@ -175,6 +210,7 @@ public class StudentServlet extends BaseServlet {
         String stupwd=stuphone;
         newStudent.setStu_pwd(stupwd);
         System.out.println("学生pwd="+stupwd);
+
 
 //        插入数据库
         Integer stuid=studentService.addStudent(newStudent);
@@ -194,65 +230,90 @@ public class StudentServlet extends BaseServlet {
         return "f:/encryptWeb/admin/addStudent.jsp";
     }
 
-    //用于从新闻详情页装置修改信息页，获取id
-    public String toUpdateNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    //用于从学生详情页装置修改信息页，获取id
+    public String toUpdateStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int studentid=Integer.parseInt(req.getParameter("studentid"));
         Student student=studentService.findStudentById(studentid);
+
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<Teacher> teacherPageBean=teacherService.findAllTeacherDetail();
+        PageBean<Employee> employeePageBean=employeeService.findAllEmployeeDetail();
+        PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
+        PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
+        req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("teacherPageBean",teacherPageBean);
+        req.setAttribute("employeePageBean",employeePageBean);
+        req.setAttribute("stuLevelPageBean",stuLevelPageBean);
+        req.setAttribute("stugradePageBean",stugradePageBean);
+
         req.setAttribute("stu",student);
         return "f:/encryptWeb/admin/studentProfile.jsp";
     }
 
     //在studentProfile.jsp页面更新信息
     public String updateStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Student newStudent=new Student();
         String url=getUrl(req);
-        System.out.println("网页url="+url);
-
+//        System.out.println("网页url="+url);
 //      学生id
         int stuid=Integer.parseInt(req.getParameter("studentid"));
-        System.out.println("学生id="+stuid);
-        newStudent.setStu_id(stuid);
-//        工号
+//        System.out.println("学生id="+stuid);
+
+        Student newStudent=studentService.findStudentById(stuid);
+//        学号
         String stunum=req.getParameter("stunum");
         newStudent.setStu_num(stunum);
-        System.out.println("学生num="+stunum);
+//        System.out.println("学生num="+stunum);
 //        姓名
         String stuname=req.getParameter("stuname");
         newStudent.setStu_name(stuname);
-        System.out.println("学生name="+stuname);
+//        System.out.println("学生name="+stuname);
 //        性别
         String stusex=req.getParameter("stusex");
         newStudent.setStu_sex(stusex);
-        System.out.println("学生sex="+stusex);
+//        System.out.println("学生sex="+stusex);
 //        年龄
         int stuage=Integer.parseInt(req.getParameter("stuage"));
         newStudent.setStu_age(stuage);
-        System.out.println("学生age="+stuage);
+//        System.out.println("学生age="+stuage);
 //        院系
         int depid=Integer.parseInt(req.getParameter("depid"));
         newStudent.setDep_id(depid);
-        System.out.println("学生depid="+depid);
+//        System.out.println("学生depid="+depid);
+
+        //专业
+        String stumajor=req.getParameter("stumajor");
+        newStudent.setStu_major(stumajor);
+
 //        所处阶段
         int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
         newStudent.setStu_level_id(stulevelid);
-        System.out.println("学生levelid="+stulevelid);
+//        System.out.println("学生levelid="+stulevelid);
+
+        //获得英语成绩
+        String stuenglish=req.getParameter("stuenglish");
+        newStudent.setStu_english(stuenglish);
+
+        //获得成绩id
+        int stugradeid=Integer.parseInt(req.getParameter("stugrade"));
+        newStudent.setStu_grade_id(stugradeid);
+
 //        手机号
         String stuphone=req.getParameter("stuphone");
         newStudent.setStu_phone(stuphone);
-        System.out.println("学生phone="+stuphone);
+//        System.out.println("学生phone="+stuphone);
 //        邮箱
         String stumail=req.getParameter("stumail");
         newStudent.setStu_mail(stumail);
-        System.out.println("学生mail="+stumail);
+//        System.out.println("学生mail="+stumail);
 //        备注
         String stunote=req.getParameter("stunote");
-
         newStudent.setStu_note(stunote);
-        System.out.println("学生note="+stunote);
+//        System.out.println("学生note="+stunote);
 //        密码
         String stupwd=req.getParameter("stupwd");
         newStudent.setStu_pwd(stupwd);
-        System.out.println("学生pwd="+stupwd);
+//        System.out.println("学生pwd="+stupwd);
+
 
 //        更新数据库
         studentService.updateStudent(newStudent);
@@ -261,9 +322,11 @@ public class StudentServlet extends BaseServlet {
         Student stu=studentService.findStudentById(stuid);
         PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
         PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
+        PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
         req.setAttribute("stu",stu);
         req.setAttribute("departmentPageBean",departmentPageBean);
         req.setAttribute("stuLevelPageBean",stuLevelPageBean);
+        req.setAttribute("stugradePageBean",stugradePageBean);
 
         req.setAttribute("msgUpdateStudent","信息更新成功！");
 
