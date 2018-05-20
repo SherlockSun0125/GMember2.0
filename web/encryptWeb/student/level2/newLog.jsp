@@ -120,20 +120,6 @@
                 <div class="g-mn1c m-learnbox" id="courseLearn-inner-box">
                     <div class="m-forumtopic f-cb">
                         <div class="j-enable" style="">
-                            <%--<div class="u-gx-inputwarp f-cb j-forumRes" style="position:relative; z-index:150;">--%>
-                                <%--<div class="tit f-f0 f-cb">--%>
-                                    <%--<div class="f-fl"><em class="f-sign">*</em>阶段选择</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="txt" style="width:375px;">--%>
-                                    <%--<div class="up j-up f-thide" style="background-position: 342px -177px;"></div>--%>
-                                    <%--<select style="width: 375px;height: 35px;border:1px lightgray solid;font-size: 13px;padding-left: 5px">--%>
-                                        <%--<option class="f-cb list">工程学习阶段</option>--%>
-                                        <%--<option class="f-cb list">校企合作阶段</option>--%>
-                                        <%--<option class="f-cb list">毕业设计阶段</option>--%>
-                                        <%--<option class="f-cb list">就业推荐阶段</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
                             <div class="u-gx-inputwarp f-cb">
                                 <div class="tit f-f0 f-cb">
                                     <div class="f-fl"><em class="f-sign">*</em>标题</div>

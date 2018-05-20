@@ -70,4 +70,13 @@
         <url-pattern>/noticeServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>testServlet</servlet-name>
+        <servlet-class>cn.edu.hitwh.gmember.servlet.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>testServlet</servlet-name>
+        <url-pattern>/testServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

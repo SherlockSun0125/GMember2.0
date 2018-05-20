@@ -352,7 +352,7 @@
         <div class="g-flow">
             <div class="f-pr f-cb">
                 <div style="position: absolute;top:2px;bottom:2px;">
-                    <a class="f-fl" hidefocus="true" data-index="logo" href="../../index.jsp">
+                    <a class="f-fl" hidefocus="true" data-index="logo" href="${pageContext.request.contextPath}/index.jsp">
                         <img class="f-fl img" src="static/hitwh_logo_white.png" title="学生主页" width="540px"
                              style="margin-top: 2px;margin-bottom: 1px">
                     </a>
@@ -361,24 +361,24 @@
                     <div class="userinfo f-fr f-cb f-pr">
                         <div class="login f-cb">
                             <div class="u-mystudy f-pr f-cb f-fr">
-                                <a class="mystudy nitem f-f0" data-index="用户退出" target="_blank"
+                                <a class="mystudy nitem f-f0" data-index="用户退出" target="_self"
                                    href="exit.jsp" hidefocus="true">退出</a>
                             </div>
 
-                            <div class="name j-userinfo" id="auto-id-1523840858750">
-                                <div class="f-pr">
-                                    <div class="face">
-                                        <img class="j-nav-myimg"
-                                             src="static/head1.jpg"
-                                             width="30px" height="30px" alt="头像">
-                                    </div>
-                                </div>
-                            </div>
+                            <%--<div class="name j-userinfo" id="auto-id-1523840858750">--%>
+                                <%--<div class="f-pr">--%>
+                                    <%--<div class="face">--%>
+                                        <%--<img class="j-nav-myimg"--%>
+                                             <%--src="static/head1.jpg"--%>
+                                             <%--width="30px" height="30px" alt="头像">--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                             <a class="username self f-thide" target="_self" data-index="点击用户名"
                                href="setting.jsp">
-                                <span class=" f-fs1 f-f0">PaulSuen</span>
+                                <span class=" f-fs1 f-f0">${Student.stu_name}</span>
                             </a>
-                            <i class="line" style="padding-top: 2%"></i>
+                            <i class="line" style="padding-top: 2.5%"></i>
                             <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
                                href="messageT.jsp" title="查看更多消息" target="_blank">
                                 <span>消息</span>
@@ -405,9 +405,9 @@
             </div>
         </div>
         <div class="ux-user-info-bottom">
-            <div class="ux-user-info-bottom_name">PaulSuen</div>
+            <div class="ux-user-info-bottom_name">${Student.stu_name}</div>
             <div class="ux-user-info-bottom_description f-pr">
-                <span>个人简介</span>
+                <span>${Student.stu_note}</span>
             </div>
         </div>
     </div>
@@ -424,13 +424,14 @@
                         <h5>工程学习阶段</h5>
 
                         <p>
-                            显示一些进度信息
+                            <%--显示一些进度信息--%>
+                                <br/>
+                                <br/>
                         </p>
 
                         <a class="btn-small btn-hl" href="level1/myLog.jsp">
                             <span>进入</span>
                         </a>
-                        <!-- button small end -->
                     </div>
                 </div>
                 <div class="span3 ">
@@ -442,12 +443,14 @@
                         <h5>校企合作阶段</h5>
 
                         <p>
-                            显示一些进度信息
+                            <%--显示一些进度信息--%>
+                                <br/>
+                                <br/>
                         </p>
 
                         <a class="btn-small btn-hl" href="level2/myLog.jsp">
                             <span>进入</span>
-                        </a><!-- button small end -->
+                        </a>
                     </div>
                 </div>
                 <div class="span3">
@@ -459,7 +462,9 @@
                         <h5>毕业设计阶段</h5>
 
                         <p>
-                            显示一些进度信息
+                            <%--显示一些进度信息--%>
+                                <br/>
+                                <br/>
                         </p>
 
                         <a class="btn-small btn-hl" href="level3/myLog.jsp">
@@ -476,7 +481,9 @@
                         <h5>就业推荐阶段</h5>
 
                         <p>
-                            显示一些进度信息
+                            <%--显示一些进度信息--%>
+                                <br/>
+                                <br/>
                         </p>
 
                         <a class="btn-small btn-hl" href="level4/myResume.jsp">

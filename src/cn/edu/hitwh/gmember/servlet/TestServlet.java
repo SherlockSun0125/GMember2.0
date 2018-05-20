@@ -1,36 +1,23 @@
 package cn.edu.hitwh.gmember.servlet;
 
+import cn.itcast.servlet.BaseServlet;
+
 import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "TestServlet")
-public class TestServlet implements Servlet {
-    public TestServlet(){
-        System.out.println("创建Servlet");
-    }
-    @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
-        System.out.println("初始化Servlet");
-    }
+public class TestServlet extends BaseServlet {
 
-    @Override
-    public ServletConfig getServletConfig() {
-        return null;
-    }
+    public String getData(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("调用了该方法");
+        String logtitle=req.getParameter("logtitle");
+        System.out.println("日志标题为："+logtitle);
 
-    @Override
-    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
+        String logcontent=req.getParameter("logcontent");
+        System.out.println("日志内容为："+logcontent);
 
-    }
-
-    @Override
-    public String getServletInfo() {
-        return null;
-    }
-
-    @Override
-    public void destroy() {
-
+        req.setAttribute("msgAddLog",logtitle+"=============="+logcontent);
+        return "f:/encryptWeb/student/level1/newLog.jsp";
     }
 }

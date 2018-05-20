@@ -67,7 +67,7 @@ public class StudentServlet extends BaseServlet {
         newStudent.setStu_name(stuname);
 //        性别
         int stusex=Integer.parseInt(req.getParameter("stusex"));
-        System.out.println("性别是什么？"+stusex);
+//        System.out.println("性别是什么？"+stusex);
         String sex;
         if(stusex==0){
             sex="女";
@@ -104,8 +104,11 @@ public class StudentServlet extends BaseServlet {
         String stunote=req.getParameter("stunote");
         newStudent.setStu_note(stunote);
 //        密码初始化为手机号
-        String stupwd=stuphone;
+        String stupwd=stunum;
         newStudent.setStu_pwd(stupwd);
+
+//        设置等级为0
+        newStudent.setStu_level_id(0);
 
 //        插入数据库
         Integer stuid=studentService.addStudent(newStudent);
@@ -123,6 +126,18 @@ public class StudentServlet extends BaseServlet {
         }
 
         return "f:/apply.jsp";
+    }
+
+    public String addLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        System.out.println("调用了该方法");
+        String logtitle=req.getParameter("logtitle");
+        System.out.println("日志标题为："+logtitle);
+
+        String logcontent=req.getParameter("logcontent");
+        System.out.println("日志内容为："+logcontent);
+
+        req.setAttribute("msgAddLog",logtitle+"=============="+logcontent);
+        return "f:/encryptWeb/student/level1/newLog.jsp";
     }
 
     //    后台找到所有学生

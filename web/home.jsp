@@ -27,7 +27,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.ui.totop.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/ajax-mail.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 
 
@@ -50,7 +49,7 @@
                         </li>
                         <li><a href="${pageContext.request.contextPath}/noticeServlet?method=findAllNotices"><span class="name">通知公告</span></a>
                         </li>
-                        <li><a href=""><span class="name">合作企业</span></a>
+                        <li><a href="${pageContext.request.contextPath}/enterprise.jsp"><span class="name">合作企业</span></a>
                         </li>
                         <li><a><span class="name">用户中心</span></a>
                             <ul>
@@ -59,7 +58,6 @@
                                 <li><a href="${pageContext.request.contextPath}/employeeLogin.jsp" target="_blank">企业用户登录</a></li>
                             </ul>
                         </li>
-                        <%--<li><a href="download.jsp"><span class="name">下载中心</span></a></li>--%>
                         <li><a href="${pageContext.request.contextPath}/about1.jsp"><span class="name">计划介绍</span></a></li>
                     </ul>
                 </nav>

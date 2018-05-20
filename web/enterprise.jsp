@@ -59,13 +59,12 @@ ${pageContext.request.contextPath}/<%@page contentType="text/html; charset=utf-8
                                 <li><a href="${pageContext.request.contextPath}/employeeLogin.jsp"  target="_blank">企业用户登录</a></li>
                             </ul>
                         </li>
-                        <%--<li><a href="download.jsp"><span class="name">下载中心</span></a></li>--%>
                         <li><a href="${pageContext.request.contextPath}/about1.jsp"><span class="name">计划介绍</span></a></li>
                     </ul>
                 </nav>
                 <form class="top-search pull-right">
                     <input type="text" placeholder="站内搜索..." class="span3">
-                    <button type="button" class="btn"><i class="icon-search-form"></i></button>
+                    <button type="button" class="btn" href=""><i class="icon-search-form"></i></button>
                 </form>
             </div>
         </div>
