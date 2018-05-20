@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatisTest.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.hitwh.gmember.mapper.StulogMapper">
+    <resultMap id="stulogMap" type="cn.edu.hitwh.gmember.pojo.StuLog">
+        <id property="stu_log_id" column="stu_log_id"></id>
+        <result property="stu_log_title" column="stu_log_title"></result>
+        <result property="stu_log_content" column="stu_log_content"></result>
+        <result property="stu_log_time" column="stu_log_time"></result>
+        <result property="stu_id" column="stu_id"></result>
+        <result property="stu_level_id" column="stu_level_id"></result>
+        <result property="emp_feedback" column="emp_feedback"></result>
+        <result property="tea_feedback" column="tea_feedback"></result>
+
+    </resultMap>
+
+    <!--创建的时候不包含logid，教师反馈和导师反馈-->
+    <insert id="addStuLog" useGeneratedKeys="true" keyProperty="stu_log_id" parameterType="cn.edu.hitwh.gmember.pojo.StuLog">
+        INSERT INTO stulog(stu_log_title, stu_log_content, stu_log_time, stu_id, stu_level_id)
+        VALUES (#{stu_log_title},#{stu_log_content},#{stu_log_time},#{stu_id},#{stu_level_id})
+    </insert>
+
+</mapper>

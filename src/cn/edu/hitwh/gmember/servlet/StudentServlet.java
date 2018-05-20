@@ -3,6 +3,7 @@ package cn.edu.hitwh.gmember.servlet;
 import cn.edu.hitwh.gmember.pojo.*;
 import cn.edu.hitwh.gmember.service.*;
 import cn.edu.hitwh.gmember.serviceImp.*;
+import cn.edu.hitwh.gmember.tools.DateTools;
 import cn.edu.hitwh.gmember.tools.PageBean;
 import cn.itcast.servlet.BaseServlet;
 
@@ -11,15 +12,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet(name = "StudentServlet")
 public class StudentServlet extends BaseServlet {
+    private DateTools dateTools=new DateTools();
     private IStudentService studentService = new StudentServiceImp();
     private IDepartmentService departmentService=new DepartmentServiceImp();
     private IStulevelService stulevelService=new StulevelServiceImp();
     private IStugradeService stugradeService=new StugradeServiceImp();
     private ITeacherService teacherService=new TeacherServiceImp();
     private IEmployeeService employeeService=new EmployeeServiceImp();
+    private IStulogService stulogService=new StulogServiceImp();
 
 //    学生登录
     public String studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -129,14 +133,38 @@ public class StudentServlet extends BaseServlet {
     }
 
     public String addLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        System.out.println("调用了该方法");
+        StuLog newLog=new StuLog();
+
+//        设置日志标题
         String logtitle=req.getParameter("logtitle");
-        System.out.println("日志标题为："+logtitle);
+        newLog.setStu_log_title(logtitle);
+//        System.out.println("日志标题为："+logtitle);
 
+//        设置日志内容
         String logcontent=req.getParameter("logcontent");
-        System.out.println("日志内容为："+logcontent);
+        newLog.setStu_log_content(logcontent);
+//        System.out.println("日志内容为："+logcontent);
 
-        req.setAttribute("msgAddLog",logtitle+"=============="+logcontent);
+//        设置日志时间
+        Date now=new Date();
+        String date=dateTools.date2Str(now);
+        newLog.setStu_log_time(date);
+
+//        设置学生id
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+        newLog.setStu_id(stuid);
+
+//        设置阶段id
+        int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
+        newLog.setStu_level_id(stulevelid);
+
+        Integer logid=stulogService.addStuLog(newLog);
+
+        if (logid==null){
+            req.setAttribute("msgAddLog", "日志发布失败！");
+        }else {
+            req.setAttribute("msgAddLog", "日志发布成功！");
+        }
         return "f:/encryptWeb/student/level1/newLog.jsp";
     }
 

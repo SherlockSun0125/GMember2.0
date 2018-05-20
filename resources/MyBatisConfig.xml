@@ -32,5 +32,6 @@
         <mapper resource="mybatisMapper/comtypeMapper.xml"/>
         <mapper resource="mybatisMapper/newssectionMapper.xml"/>
         <mapper resource="mybatisMapper/noticesectionMapper.xml"/>
+        <mapper resource="mybatisMapper/stulogMapper.xml"/>
     </mappers>
 </configuration>
