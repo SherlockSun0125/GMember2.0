@@ -3,7 +3,7 @@
         PUBLIC "-//mybatisTest.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hitwh.gmember.mapper.StulogMapper">
-    <resultMap id="stulogMap" type="cn.edu.hitwh.gmember.pojo.StuLog">
+    <resultMap id="stuLogMap" type="cn.edu.hitwh.gmember.pojo.StuLog">
         <id property="stu_log_id" column="stu_log_id"></id>
         <result property="stu_log_title" column="stu_log_title"></result>
         <result property="stu_log_content" column="stu_log_content"></result>
@@ -12,7 +12,8 @@
         <result property="stu_level_id" column="stu_level_id"></result>
         <result property="emp_feedback" column="emp_feedback"></result>
         <result property="tea_feedback" column="tea_feedback"></result>
-
+        <result property="emp_status" column="emp_status"></result>
+        <result property="tea_status" column="tea_status"></result>
     </resultMap>
 
     <!--创建的时候不包含logid，教师反馈和导师反馈-->
@@ -21,4 +22,43 @@
         VALUES (#{stu_log_title},#{stu_log_content},#{stu_log_time},#{stu_id},#{stu_level_id})
     </insert>
 
+    <!--更新是除了id之外的信息-->
+    <update id="updateStuLog" parameterType="cn.edu.hitwh.gmember.pojo.StuLog">
+        UPDATE stulog
+        SET stu_log_title=#{stu_log_title},stu_log_content=#{stu_log_content},stu_log_time=#{stu_log_time},
+            stu_id=stu_id=#{stu_id},stu_level_id=#{stu_level_id},emp_feedback=#{emp_feedback},tea_feedback=#{tea_feedback},
+            emp_status=#{emp_status},tea_status=#{tea_status}
+        WHERE stu_log_id=#{stu_log_id}
+    </update>
+
+    <!--学生删除日志-->
+    <delete id="deleteStuLog" parameterType="int">
+        DELETE * FROM stulog WHERE stu_log_id=#{stu_log_id}
+    </delete>
+
+    <!--找到谋生某阶段所有日志-->
+    <select id="findLogsOfStudentLevel" resultMap="stuLogMap">
+        SELECT * FROM stulog
+        WHERE stu_id=#{stu_id} AND stu_level_id=#{stu_level_id}
+        ORDER BY stu_log_id LIMIT #{from},#{pageSize}
+    </select>
+
+    <!--找到某阶段某老师所有学生的所有日志-->
+    <select id="findLogsOfTeacherLevel" resultMap="stuLogMap">
+        SELECT * FROM stulog,student
+        WHERE stulog.stu_id=student.stu_id AND student.tea_id=#{tea_id} AND stulog.stu_level_id=#{stu_level_id}
+        ORDER BY stu_log_id LIMIT #{from},#{pageSize}
+    </select>
+
+    <!--找到某阶段某导师所有学生的所有日志-->
+    <select id="findLogsOfEmployeeLevel" resultMap="stuLogMap">
+        SELECT * FROM stulog,student
+        WHERE stulog.stu_id=student.stu_id AND student.emp_id=#{emp_id} AND stulog.stu_level_id=#{stu_level_id}
+        ORDER BY stu_log_id LIMIT #{from},#{pageSize}
+    </select>
+
+    <!--查看某个日志的详情-->
+    <select id="findLogById" resultType="cn.edu.hitwh.gmember.pojo.StuLog">
+        SELECT * FROM stulog WHERE stu_log_id=#{stu_log_id}
+    </select>
 </mapper>
