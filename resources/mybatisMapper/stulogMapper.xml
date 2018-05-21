@@ -16,24 +16,24 @@
         <result property="tea_status" column="tea_status"></result>
     </resultMap>
 
-    <!--创建的时候不包含logid，教师反馈和导师反馈-->
+    <!--创建的时候不包含logid，-->
     <insert id="addStuLog" useGeneratedKeys="true" keyProperty="stu_log_id" parameterType="cn.edu.hitwh.gmember.pojo.StuLog">
         INSERT INTO stulog(stu_log_title, stu_log_content, stu_log_time, stu_id, stu_level_id)
         VALUES (#{stu_log_title},#{stu_log_content},#{stu_log_time},#{stu_id},#{stu_level_id})
     </insert>
 
-    <!--更新是除了id之外的信息-->
+    <!--更新是除了id之外的信息,教师反馈和导师反馈也用这个来更新-->
     <update id="updateStuLog" parameterType="cn.edu.hitwh.gmember.pojo.StuLog">
         UPDATE stulog
         SET stu_log_title=#{stu_log_title},stu_log_content=#{stu_log_content},stu_log_time=#{stu_log_time},
-            stu_id=stu_id=#{stu_id},stu_level_id=#{stu_level_id},emp_feedback=#{emp_feedback},tea_feedback=#{tea_feedback},
+            stu_id=#{stu_id},stu_level_id=#{stu_level_id},emp_feedback=#{emp_feedback},tea_feedback=#{tea_feedback},
             emp_status=#{emp_status},tea_status=#{tea_status}
         WHERE stu_log_id=#{stu_log_id}
     </update>
 
     <!--学生删除日志-->
     <delete id="deleteStuLog" parameterType="int">
-        DELETE * FROM stulog WHERE stu_log_id=#{stu_log_id}
+        DELETE FROM stulog WHERE stu_log_id=#{stu_log_id}
     </delete>
 
     <!--找到谋生某阶段所有日志-->
@@ -42,6 +42,10 @@
         WHERE stu_id=#{stu_id} AND stu_level_id=#{stu_level_id}
         ORDER BY stu_log_id LIMIT #{from},#{pageSize}
     </select>
+    <!--计算某阶段某生日志总数-->
+    <select id="countLogsOfStudentLevel" resultType="int">
+        SELECT COUNT(*) FROM stulog WHERE stu_level_id=#{stu_level_id} AND stu_id=#{stu_id}
+    </select>
 
     <!--找到某阶段某老师所有学生的所有日志-->
     <select id="findLogsOfTeacherLevel" resultMap="stuLogMap">
@@ -49,12 +53,20 @@
         WHERE stulog.stu_id=student.stu_id AND student.tea_id=#{tea_id} AND stulog.stu_level_id=#{stu_level_id}
         ORDER BY stu_log_id LIMIT #{from},#{pageSize}
     </select>
+    <select id="countLogsOfTeacherLevel" resultType="int">
+        SELECT COUNT(*) FROM stulog,student
+        WHERE stulog.stu_id=student.stu_id AND student.tea_id=#{tea_id} AND stulog.stu_level_id=#{stu_level_id}
+    </select>
 
     <!--找到某阶段某导师所有学生的所有日志-->
     <select id="findLogsOfEmployeeLevel" resultMap="stuLogMap">
         SELECT * FROM stulog,student
         WHERE stulog.stu_id=student.stu_id AND student.emp_id=#{emp_id} AND stulog.stu_level_id=#{stu_level_id}
         ORDER BY stu_log_id LIMIT #{from},#{pageSize}
+    </select>
+    <select id="countLogsOfEmployeeLevel" resultType="int">
+        SELECT COUNT(*) FROM stulog,student
+        WHERE stulog.stu_id=student.stu_id AND student.emp_id=#{emp_id} AND stulog.stu_level_id=#{stu_level_id}
     </select>
 
     <!--查看某个日志的详情-->

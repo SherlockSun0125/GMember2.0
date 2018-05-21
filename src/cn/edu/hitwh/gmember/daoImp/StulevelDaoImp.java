@@ -1,10 +1,7 @@
 package cn.edu.hitwh.gmember.daoImp;
 
-import cn.edu.hitwh.gmember.dao.IDepartmentDao;
 import cn.edu.hitwh.gmember.dao.IStulevelDao;
-import cn.edu.hitwh.gmember.mapper.DepartmentMapper;
 import cn.edu.hitwh.gmember.mapper.StulevelMapper;
-import cn.edu.hitwh.gmember.pojo.Department;
 import cn.edu.hitwh.gmember.pojo.StuLevel;
 import cn.edu.hitwh.gmember.tools.PageBean;
 import org.apache.ibatis.io.Resources;
