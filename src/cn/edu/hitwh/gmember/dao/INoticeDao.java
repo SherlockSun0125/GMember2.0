@@ -10,4 +10,5 @@ public interface INoticeDao {
     public Notice findNoticeById(int noticeid);
     public void updateNotice(Notice notice);
     public void deleteNotice(int noti_id);
+    public Integer countAllNotices();
 }

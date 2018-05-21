@@ -61,4 +61,13 @@ public class NoticeServiceImp implements INoticeService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Integer countAllNotices() {
+        try {
+            return noticeDao.countAllNotices();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

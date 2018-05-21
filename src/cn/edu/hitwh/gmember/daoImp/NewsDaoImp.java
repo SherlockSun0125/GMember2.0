@@ -194,4 +194,22 @@ public class NewsDaoImp implements INewsDao {
             session.close();
         }
     }
+
+    @Override
+    public Integer countAllNews() {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        NewsMapper newsMapper=session.getMapper(NewsMapper.class);
+
+        int newsNum=newsMapper.countAllNews();
+        return newsNum;
+    }
 }

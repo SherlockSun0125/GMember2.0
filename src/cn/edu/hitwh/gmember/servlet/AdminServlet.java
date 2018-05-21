@@ -17,6 +17,10 @@ public class AdminServlet extends BaseServlet {
     private IComtypeService comtypeService=new ComtypeServiceImp();
     private INewsSectionService newsSectionService=new NewsSectionServiceImp();
     private INoticeSectionService noticeSectionService=new NoticeSectionServiceImp();
+    private IStudentService studentService=new StudentServiceImp();
+    private INewsService newsService=new NewsServiceImp();
+    private INoticeService noticeService=new NoticeServiceImp();
+
 
     public String adminLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("调用adminLogin方法！");
@@ -29,17 +33,22 @@ public class AdminServlet extends BaseServlet {
 
         if (adminSql != null) {
             req.getSession().setAttribute("msgAdminLogin", "");
-//            resp.sendRedirect(req.getContextPath()+"/encryptWeb/admin");
             PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
             PageBean<Comtype> comtypePageBean=comtypeService.findAllComtypes();
             PageBean<NewsSection> newsSectionPageBean=newsSectionService.findAllNewsSections();
             PageBean<NoticeSection> noticeSectionPageBean=noticeSectionService.findAllNoticeSections();
+            int studentNum=studentService.countAllStudents();
+            int newsNum=newsService.countAllNews();
+            int noticeNum=noticeService.countAllNotices();
+
             req.getSession().setAttribute("stuLevelPageBean",stuLevelPageBean);
             req.getSession().setAttribute("comtypePageBean",comtypePageBean);
             req.getSession().setAttribute("newsSectionPageBean",newsSectionPageBean);
             req.getSession().setAttribute("noticeSectionPageBean",noticeSectionPageBean);
-
+            req.getSession().setAttribute("studentNum",studentNum);
+            req.getSession().setAttribute("newsNoticeNum",newsNum+noticeNum);
             req.getSession().setAttribute("Admin", adminSql);
+
             return "r:/encryptWeb/admin/index.jsp";
         } else {
             req.setAttribute("msgAdminLogin", "账号或密码错误！请重新输入！");

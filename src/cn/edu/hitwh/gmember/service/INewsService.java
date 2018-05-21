@@ -10,5 +10,5 @@ public interface INewsService {
     public News findNewsById(int news_id);
     public void updateNews(News news);
     public void deleteNews(int news_id);
-
+    public Integer countAllNews();
 }

@@ -184,4 +184,22 @@ public class NoticeDaoImp implements INoticeDao {
             session.close();
         }
     }
+
+    @Override
+    public Integer countAllNotices() {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        NoticeMapper noticeMapper=session.getMapper(NoticeMapper.class);
+
+        int noticeNum=noticeMapper.countAllNotices();
+        return noticeNum;
+    }
 }

@@ -186,14 +186,14 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="knob-container">
                             <input class="knob" data-width="200" data-min="0" data-max="1000"
-                                   data-displayPrevious="true" value="200" data-fgColor="#92A3C2" data-readOnly=true;>
+                                   data-displayPrevious="true" value="${studentNum}" data-fgColor="#92A3C2" data-readOnly=true;>
                             <h3 class="text-muted text-center">学生人数</h3>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="knob-container">
                             <input class="knob" data-width="200" data-min="0" data-max="2500"
-                                   data-displayPrevious="true" value="100" data-fgColor="#92A3C2" data-readOnly=true;>
+                                   data-displayPrevious="true" value="${newsNoticeNum}" data-fgColor="#92A3C2" data-readOnly=true;>
                             <h3 class="text-muted text-center">通知新闻数量</h3>
                         </div>
                     </div>

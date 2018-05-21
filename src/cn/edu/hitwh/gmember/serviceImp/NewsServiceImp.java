@@ -62,4 +62,13 @@ public class NewsServiceImp implements INewsService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Integer countAllNews() {
+        try{
+            return newsDao.countAllNews();
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
 }
