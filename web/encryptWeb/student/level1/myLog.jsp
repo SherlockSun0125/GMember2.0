@@ -124,13 +124,13 @@
                                                         <p class="f-fc9 f-pa watch">
                                                             <c:choose>
                                                                 <c:when test="${stulogs.tea_status eq 3}">
-                                                                    老师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                    老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
                                                                 </c:when>
                                                                 <c:when test="${stulogs.tea_status eq 2}">
-                                                                    老师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                    老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
                                                                 </c:when>
                                                                 <c:when test="${stulogs.tea_status eq 1}">
-                                                                    老师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                    老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
                                                                 </c:when>
                                                                 <c:otherwise>&nbsp;</c:otherwise>
                                                             </c:choose>
@@ -139,13 +139,13 @@
                                                         <p class="f-fc9 f-pa reply">
                                                             <c:choose>
                                                                 <c:when test="${stulogs.emp_status eq 3}">
-                                                                    导师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                    导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
                                                                 </c:when>
                                                                 <c:when test="${stulogs.emp_status eq 2}">
-                                                                    导师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                    导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
                                                                 </c:when>
                                                                 <c:when test="${stulogs.emp_status eq 1}">
-                                                                    导师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                    导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
                                                                 </c:when>
                                                                 <c:otherwise>&nbsp;</c:otherwise>
                                                             </c:choose>
@@ -157,6 +157,7 @@
                                         <div style="float:left; width: 100%; text-align: center;" >
                                             <%@include file="/pager/pager.jsp"%>
                                         </div>
+                                        <small>${msgDeleteLog}</small>
                                     </div>
                                 </div>
                             </div>

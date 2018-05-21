@@ -6,6 +6,7 @@ public class StuLog {
     private String stu_log_title;
     private String stu_log_content;
     private String stu_log_time;
+    private String stu_log_lastchange;
     private int stu_level_id;
     private String tea_feedback;
     private int tea_status;
@@ -18,12 +19,13 @@ public class StuLog {
     public StuLog() {
     }
 
-    public StuLog(String stu_log_id, int stu_id, String stu_log_title, String stu_log_content, String stu_log_time, int stu_level_id, String tea_feedback, int tea_status, String tea_time, String emp_feedback, int emp_status, String emp_time) {
+    public StuLog(String stu_log_id, int stu_id, String stu_log_title, String stu_log_content, String stu_log_time, String stu_log_lastchange, int stu_level_id, String tea_feedback, int tea_status, String tea_time, String emp_feedback, int emp_status, String emp_time) {
         this.stu_log_id = stu_log_id;
         this.stu_id = stu_id;
         this.stu_log_title = stu_log_title;
         this.stu_log_content = stu_log_content;
         this.stu_log_time = stu_log_time;
+        this.stu_log_lastchange = stu_log_lastchange;
         this.stu_level_id = stu_level_id;
         this.tea_feedback = tea_feedback;
         this.tea_status = tea_status;
@@ -51,6 +53,10 @@ public class StuLog {
 
     public String getStu_log_time() {
         return stu_log_time;
+    }
+
+    public String getStu_log_lastchange() {
+        return stu_log_lastchange;
     }
 
     public int getStu_level_id() {
@@ -101,6 +107,10 @@ public class StuLog {
         this.stu_log_time = stu_log_time;
     }
 
+    public void setStu_log_lastchange(String stu_log_lastchange) {
+        this.stu_log_lastchange = stu_log_lastchange;
+    }
+
     public void setStu_level_id(int stu_level_id) {
         this.stu_level_id = stu_level_id;
     }
@@ -137,6 +147,7 @@ public class StuLog {
                 ", stu_log_title='" + stu_log_title + '\'' +
                 ", stu_log_content='" + stu_log_content + '\'' +
                 ", stu_log_time='" + stu_log_time + '\'' +
+                ", stu_log_lastchange='" + stu_log_lastchange + '\'' +
                 ", stu_level_id=" + stu_level_id +
                 ", tea_feedback='" + tea_feedback + '\'' +
                 ", tea_status=" + tea_status +

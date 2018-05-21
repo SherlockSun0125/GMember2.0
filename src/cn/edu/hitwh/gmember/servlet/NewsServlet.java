@@ -211,10 +211,11 @@ public class NewsServlet extends BaseServlet {
     public String deleteNews(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
         int currentPage=getCurrentPage(req);
-        System.out.println("网页url="+url);
+//        System.out.println("网页url="+url);
         int newsid=Integer.parseInt(req.getParameter("newsid"));
         String newstitile=req.getParameter("newstitile");
         newsService.deleteNews(newsid);
+
         PageBean<News> pageBean=new PageBean<News>();
         pageBean= newsService.findAllNews(currentPage);
         pageBean.setUrl(url);

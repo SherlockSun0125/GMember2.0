@@ -201,17 +201,79 @@ public class StudentServlet extends BaseServlet {
         int stuid=stuLog.getStu_id();
         Student student=studentService.findStudentById(stuid);
         int teaid=student.getTea_id();
+        int empid=student.getEmp_id();
         Teacher teacher=teacherService.findTeacherById(teaid);
+        Employee employee=employeeService.findAllEmployeeById(empid);
 
         req.setAttribute("stuLog",stuLog);
         req.setAttribute("teacherName",teacher.getTea_name());
+        req.setAttribute("employeeName",employee.getEmp_name());
         return "f:/encryptWeb/student/level1/logDetails.jsp";
     }
 
+//    学生编辑日志的一个中间跳转
+    public String toUpdateLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int logid=Integer.parseInt(req.getParameter("logid"));
+        StuLog stuLog=stulogService.findLogByid(logid);
+
+        req.setAttribute("stuLog",stuLog);
+        return "f:/encryptWeb/student/level1/logProfile.jsp";
+    }
+        //修改日志
+    public String updateLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int logid=Integer.parseInt(req.getParameter("logid"));
+        StuLog newlog=stulogService.findLogByid(logid);
+
+        String logtitle= req.getParameter("logtitle");
+        String logcontent=req.getParameter("logcontent");
+        Date changeTime=new Date();
+
+        newlog.setStu_log_title(logtitle);
+        newlog.setStu_log_content(logcontent);
+        newlog.setStu_log_lastchange(dateTools.date2Str(changeTime));
+
+        stulogService.updateStuLog(newlog);
+
+        //再次找到该日志并回显
+        StuLog stuLog=stulogService.findLogByid(logid);
+        //查看其教师姓名和导师姓名
+        int stuid=stuLog.getStu_id();
+        Student student=studentService.findStudentById(stuid);
+        int teaid=student.getTea_id();
+        int empid=student.getEmp_id();
+        Teacher teacher=teacherService.findTeacherById(teaid);
+        Employee employee=employeeService.findAllEmployeeById(empid);
+
+        req.setAttribute("stuLog",stuLog);
+        req.setAttribute("teacherName",teacher.getTea_name());
+        req.setAttribute("employeeName",employee.getEmp_name());
+        req.setAttribute("msgUpdateLog","日志更新成功！");
+        return "f:/encryptWeb/student/level1/logDetails.jsp";
+    }
+
+    public String deleteLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int logid=Integer.parseInt(req.getParameter("logid"));
+        StuLog stuLog=stulogService.findLogByid(logid);
+        String logname=stuLog.getStu_log_title();
+
+        String url=getUrl(req);
+        int currentPage=getCurrentPage(req);
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+        int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
+
+        stulogService.deleteStuLog(logid);
 
 
+        PageBean<StuLog> stuLogPageBean=stulogService.findLogsOfStudentLevel(stuid,stulevelid,currentPage);
 
+        stuLogPageBean.setUrl(url);
+        stuLogPageBean.setCurrentPage(currentPage);
+        stuLogPageBean.setTotalPages(stuLogPageBean.getTotalPages());
 
+        req.setAttribute("pb",stuLogPageBean);
+        req.setAttribute("msgDeleteLog","日志\""+logname+"\"已删除！");
+        return "f:/encryptWeb/student/level1/myLog.jsp";
+    }
     /*
     后台方法
      */

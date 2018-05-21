@@ -6,4 +6,5 @@ import cn.edu.hitwh.gmember.tools.PageBean;
 public interface IEmployeeService {
     public Employee login(Employee employee);
     public PageBean<Employee> findAllEmployeeDetail();
+    public Employee findAllEmployeeById(int emp_id);
 }

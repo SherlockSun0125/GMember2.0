@@ -6,4 +6,5 @@ import cn.edu.hitwh.gmember.tools.PageBean;
 public interface IEmployeeDao {
     public Employee findEmployee(String id,String pwd);
     public PageBean<Employee> findAllEmployeeDetail();
+    public Employee findAllEmployeeById(int emp_id);
 }

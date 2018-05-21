@@ -25,4 +25,13 @@ public class EmployeeServiceImp implements IEmployeeService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Employee findAllEmployeeById(int emp_id) {
+        try{
+            return employeeDao.findAllEmployeeById(emp_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

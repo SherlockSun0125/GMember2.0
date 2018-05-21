@@ -885,29 +885,51 @@
                                         <div class="infobar f-cb"></div>
                                         <div class="optbar f-cb">
                                             <div class="f-fl f-fc9 time j-time">于${stuLog.stu_log_time}发表</div>
+                                            <c:choose>
+                                                <c:when test="${stuLog.stu_log_lastchange eq null}">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="f-fl f-fc9 time j-time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;并最后更改于${stuLog.stu_log_lastchange}</div>
+                                                </c:otherwise>
+                                            </c:choose>
                                             <div class="f-cb f-fr optBox j-optBox">
-                                                <a hidefocus="true" class="f-fr f-fc9 opt delBtn j-delBtn">删除</a>
+                                                <a hidefocus="true" class="f-fr f-fc9 opt delBtn j-delBtn" href="${pageContext.request.contextPath}/studentServlet?method=deleteLog&logid=${stuLog.stu_log_id}&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">删除</a>
                                                 <div class="f-fr divider">|</div>
-                                                <a hidefocus="true" class="f-fl f-fc9 editBtn j-editBtn">编辑</a>
+                                                <a hidefocus="true" class="f-fl f-fc9 editBtn j-editBtn" href="${pageContext.request.contextPath}/studentServlet?method=toUpdateLog&logid=${stuLog.stu_log_id}">编辑</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!--回复-->
-                                <c:choose>
-                                    <c:when test="${stuLog.tea_feedback eq null}">
-                                        <br/>
-                                    </c:when>
-                                    <c:otherwise>
 
-                                        <div class="j-reply-all allbox">
+                                <div class="j-reply-all allbox">
                                             <div class="m-basepool f-cb">
                                                 <div class="j-list" style="">
                                                     <div class="m-data-lists f-cb f-pr j-data-list">
-                                                        <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
+                                                        <%--教师评价--%>
+                                                            <c:choose>
+                                                            <c:when test="${stuLog.tea_feedback eq null}">
+                                                                <br/>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
                                                             <div class="rinfobox f-cb">
                                                                 <h4 class="j-reply-info f-fl">教师评价</h4>
+                                                                <p class="watch" style="margin-left:5em">
+                                                                    <c:choose>
+                                                                        <c:when test="${stuLog.tea_status eq 3}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                        </c:when>
+                                                                        <c:when test="${stuLog.tea_status eq 2}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                        </c:when>
+                                                                        <c:when test="${stuLog.tea_status eq 1}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                        </c:when>
+                                                                        <c:otherwise>&nbsp;</c:otherwise>
+                                                                    </c:choose>
+                                                                </p>
                                                             </div>
                                                             <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
                                                                 <div class="f-richEditorText j-content edueditor_styleclass_0">${stuLog.tea_feedback}<br></div>
@@ -923,18 +945,58 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                            </c:otherwise>
+                                                            </c:choose>
+
+                                                            <%--企业导师评价--%>
+                                                            <c:choose>
+                                                            <c:when test="${stuLog.emp_feedback eq null}">
+                                                                <br/>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
+                                                            <div class="rinfobox f-cb">
+                                                                <h4 class="j-reply-info f-fl" style="font-weight: bold">企业导师评价</h4>
+                                                                <p class="watch" style="margin-left:7.4em">
+                                                                    <c:choose>
+                                                                        <c:when test="${stuLog.emp_status eq 3}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                        </c:when>
+                                                                        <c:when test="${stuLog.emp_status eq 2}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                        </c:when>
+                                                                        <c:when test="${stuLog.emp_status eq 1}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                        </c:when>
+                                                                        <c:otherwise>&nbsp;</c:otherwise>
+                                                                    </c:choose>
+                                                                </p>
+                                                            </div>
+                                                            <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
+                                                                <div class="f-richEditorText j-content edueditor_styleclass_0">${stuLog.emp_feedback}<br></div>
+                                                                <div class="bar f-cb">
+                                                                    <div class="f-fl name j-name">
+                                                                <span>
+                                                                    <span class="userInfo j-userInfo" title="">
+                                                                        导师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师1">${employeeName}</a>&nbsp;&nbsp
+                                                                    </span>
+                                                                </span>
+                                                                    </div>
+                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.emp_time}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                            </c:otherwise>
+                                                            </c:choose>
                                                     </div>
 
                                                 </div>
-                                                <div class="j-none empty" style="display:none"><span
-                                                        class="f-f0 f-fc9 j-none-txt f-ib"></span></div>
                                             </div>
                                         </div>
-                                    </c:otherwise>
-                                </c:choose>
                             </div>
                         </div>
                     </div>
+                    <small>${msgUpdateLog}</small>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@
         <result property="stu_log_title" column="stu_log_title"></result>
         <result property="stu_log_content" column="stu_log_content"></result>
         <result property="stu_log_time" column="stu_log_time"></result>
+        <result property="stu_log_lastchange" column="stu_log_lastchange"></result>
         <result property="stu_id" column="stu_id"></result>
         <result property="stu_level_id" column="stu_level_id"></result>
         <result property="emp_feedback" column="emp_feedback"></result>
@@ -18,7 +19,7 @@
         <result property="emp_time" column="emp_time"></result>
     </resultMap>
 
-    <!--创建的时候不包含logid，-->
+    <!--创建的时候不包含logid、lastchange、tea、emp-->
     <insert id="addStuLog" useGeneratedKeys="true" keyProperty="stu_log_id" parameterType="cn.edu.hitwh.gmember.pojo.StuLog">
         INSERT INTO stulog(stu_log_title, stu_log_content, stu_log_time, stu_id, stu_level_id)
         VALUES (#{stu_log_title},#{stu_log_content},#{stu_log_time},#{stu_id},#{stu_level_id})
@@ -29,7 +30,7 @@
         UPDATE stulog
         SET stu_log_title=#{stu_log_title},stu_log_content=#{stu_log_content},stu_log_time=#{stu_log_time},
             stu_id=#{stu_id},stu_level_id=#{stu_level_id},emp_feedback=#{emp_feedback},tea_feedback=#{tea_feedback},
-            emp_status=#{emp_status},tea_status=#{tea_status},emp_time=#{emp_time},tea_time=#{tea_time}
+            emp_status=#{emp_status},tea_status=#{tea_status},emp_time=#{emp_time},tea_time=#{tea_time},stu_log_lastchange=#{stu_log_lastchange}
         WHERE stu_log_id=#{stu_log_id}
     </update>
 
@@ -42,7 +43,7 @@
     <select id="findLogsOfStudentLevel" resultMap="stuLogMap">
         SELECT * FROM stulog
         WHERE stu_id=#{stu_id} AND stu_level_id=#{stu_level_id}
-        ORDER BY stu_log_id LIMIT #{from},#{pageSize}
+        ORDER BY stu_log_id DESC LIMIT #{from},#{pageSize}
     </select>
     <!--计算某阶段某生日志总数-->
     <select id="countLogsOfStudentLevel" resultType="int">
@@ -53,7 +54,7 @@
     <select id="findLogsOfTeacherLevel" resultMap="stuLogMap">
         SELECT * FROM stulog,student
         WHERE stulog.stu_id=student.stu_id AND student.tea_id=#{tea_id} AND stulog.stu_level_id=#{stu_level_id}
-        ORDER BY stu_log_id LIMIT #{from},#{pageSize}
+        ORDER BY stu_log_id DESC LIMIT #{from},#{pageSize}
     </select>
     <select id="countLogsOfTeacherLevel" resultType="int">
         SELECT COUNT(*) FROM stulog,student
@@ -64,7 +65,7 @@
     <select id="findLogsOfEmployeeLevel" resultMap="stuLogMap">
         SELECT * FROM stulog,student
         WHERE stulog.stu_id=student.stu_id AND student.emp_id=#{emp_id} AND stulog.stu_level_id=#{stu_level_id}
-        ORDER BY stu_log_id LIMIT #{from},#{pageSize}
+        ORDER BY stu_log_id DESC LIMIT #{from},#{pageSize}
     </select>
     <select id="countLogsOfEmployeeLevel" resultType="int">
         SELECT COUNT(*) FROM stulog,student

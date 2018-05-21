@@ -20,4 +20,8 @@
     <select id="findAllEmployeeDetail" resultMap="employeeMap">
         SELECT * FROM employee
     </select>
+
+    <select id="findAllEmployeeById" resultType="cn.edu.hitwh.gmember.pojo.Employee">
+        SELECT * FROM employee WHERE emp_id=#{emp_id}
+    </select>
 </mapper>

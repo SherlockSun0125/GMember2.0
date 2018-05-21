@@ -55,4 +55,22 @@ public class EmployeeDaoImp implements IEmployeeDao{
         session.close();
         return employeePageBean;
     }
+
+    @Override
+    public Employee findAllEmployeeById(int emp_id) {
+        String resource = "MyBatisConfig.xml";
+        Reader reader = null;
+        SqlSession session;
+        try {
+            reader = Resources.getResourceAsReader(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        session = sqlSessionFactory.openSession();
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        Employee employee=employeeMapper.findAllEmployeeById(emp_id);
+        session.close();
+        return employee;
+    }
 }
