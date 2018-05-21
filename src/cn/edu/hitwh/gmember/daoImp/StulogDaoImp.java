@@ -185,6 +185,7 @@ public class StulogDaoImp implements IStulogDao{
         stuLogPageBean.setPageSize(pageSize);
         stuLogPageBean.setCurrentPage(currentPage);
         stuLogPageBean.setTotalRecords(totalRecords);
+        stuLogPageBean.setTotalPages(stuLogPageBean.getTotalPages());
 
         session.close();
         return stuLogPageBean;

@@ -205,4 +205,26 @@ public class StudentDaoImp implements IStudentDao{
         session.close();
         return student;
     }
+
+    @Override
+    public PageBean<Student> findAllStudentDetail() {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        PageBean<Student> studentPageBean=new PageBean<Student>();
+        try{
+            reader= Resources.getResourceAsReader(resource);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+        StudentMapper studentMapper=session.getMapper(StudentMapper.class);
+
+        List<Student> studentList=studentMapper.findAllStudentDetail();
+        studentPageBean.setBeanList(studentList);
+
+        session.close();
+        return  studentPageBean;
+    }
 }

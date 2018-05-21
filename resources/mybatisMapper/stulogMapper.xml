@@ -14,6 +14,8 @@
         <result property="tea_feedback" column="tea_feedback"></result>
         <result property="emp_status" column="emp_status"></result>
         <result property="tea_status" column="tea_status"></result>
+        <result property="tea_time" column="tea_time"></result>
+        <result property="emp_time" column="emp_time"></result>
     </resultMap>
 
     <!--创建的时候不包含logid，-->
@@ -27,7 +29,7 @@
         UPDATE stulog
         SET stu_log_title=#{stu_log_title},stu_log_content=#{stu_log_content},stu_log_time=#{stu_log_time},
             stu_id=#{stu_id},stu_level_id=#{stu_level_id},emp_feedback=#{emp_feedback},tea_feedback=#{tea_feedback},
-            emp_status=#{emp_status},tea_status=#{tea_status}
+            emp_status=#{emp_status},tea_status=#{tea_status},emp_time=#{emp_time},tea_time=#{tea_time}
         WHERE stu_log_id=#{stu_log_id}
     </update>
 

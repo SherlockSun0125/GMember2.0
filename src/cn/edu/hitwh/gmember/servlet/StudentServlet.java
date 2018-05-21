@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet(name = "StudentServlet")
 public class StudentServlet extends BaseServlet {
@@ -25,7 +26,10 @@ public class StudentServlet extends BaseServlet {
     private IEmployeeService employeeService=new EmployeeServiceImp();
     private IStulogService stulogService=new StulogServiceImp();
 
-//    学生登录
+    /*
+    前台的函数
+     */
+    //学生登录
     public String studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String stunum = request.getParameter("stunum");
         String stupwd = request.getParameter("stupwd");
@@ -58,7 +62,7 @@ public class StudentServlet extends BaseServlet {
         return "f:/apply.jsp";
     }
 
-//    除导师和教师之外的信息
+    //除导师和教师之外的信息
     public String apply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student newStudent=new Student();
         String url=getUrl(req);
@@ -132,6 +136,10 @@ public class StudentServlet extends BaseServlet {
         return "f:/apply.jsp";
     }
 
+    /*
+    学生区
+     */
+    //学生写日志
     public String addLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         StuLog newLog=new StuLog();
 
@@ -167,8 +175,47 @@ public class StudentServlet extends BaseServlet {
         }
         return "f:/encryptWeb/student/level1/newLog.jsp";
     }
+    //学生区查看自己该阶段所写的所有日志
+    public String findLogsOfStudentLevel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        String url=getUrl(req);
+        int currentPage=getCurrentPage(req);
 
-    //    后台找到所有学生
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+        int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
+
+        PageBean<StuLog> stuLogPageBean=stulogService.findLogsOfStudentLevel(stuid,stulevelid,currentPage);
+
+        stuLogPageBean.setUrl(url);
+        stuLogPageBean.setCurrentPage(currentPage);
+        stuLogPageBean.setTotalPages(stuLogPageBean.getTotalPages());
+
+        req.setAttribute("pb",stuLogPageBean);
+        return "f:/encryptWeb/student/level1/myLog.jsp";
+    }
+    //查看日志详情
+    public String findLogById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int logid=Integer.parseInt(req.getParameter("logid"));
+        //找到该日志
+        StuLog stuLog=stulogService.findLogByid(logid);
+        //查看其教师姓名
+        int stuid=stuLog.getStu_id();
+        Student student=studentService.findStudentById(stuid);
+        int teaid=student.getTea_id();
+        Teacher teacher=teacherService.findTeacherById(teaid);
+
+        req.setAttribute("stuLog",stuLog);
+        req.setAttribute("teacherName",teacher.getTea_name());
+        return "f:/encryptWeb/student/level1/logDetails.jsp";
+    }
+
+
+
+
+
+    /*
+    后台方法
+     */
+    //后台找到所有学生
     public String findAllStudents(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage=getCurrentPage(req);
         String url=getUrl(req);
@@ -189,7 +236,6 @@ public class StudentServlet extends BaseServlet {
         return "f:/encryptWeb/admin/students.jsp";
     }
 
-
     //中间转折一下获取id并找到该student的全部信息并转到studentProfile.jsp
     public String findStudentById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int stu_id=Integer.parseInt(req.getParameter("studentid"));
@@ -199,7 +245,7 @@ public class StudentServlet extends BaseServlet {
         return "f:/encryptWeb/admin/studentProfile.jsp";
     }
 
-//    后台根据学生阶段获得学生列表
+    //后台根据学生阶段获得学生列表
     public String findStudentsByLevel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
         int currentPage=getCurrentPage(req);
@@ -221,7 +267,7 @@ public class StudentServlet extends BaseServlet {
         return "f:/encryptWeb/admin/students.jsp";
     }
 
-//    删除学生
+    //删除学生
     public String deleteStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
         int currentPage=getCurrentPage(req);
@@ -265,7 +311,7 @@ public class StudentServlet extends BaseServlet {
         return "f:/encryptWeb/admin/studentDetail.jsp";
     }
 
-//    增加学生
+    //增加学生
     public String addStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student newStudent=new Student();
         String url=getUrl(req);
@@ -447,20 +493,10 @@ public class StudentServlet extends BaseServlet {
         return "f:/encryptWeb/admin/studentProfile.jsp";
     }
 
-    //判断是否是总的;如果levelid为空，即为总的，否则，现在该层次所有人
-    private Integer getLevelid(HttpServletRequest req){
-        Integer levelid=null;
-        String param=req.getParameter("levelid");
-        if(param!=null && !param.trim().isEmpty()){
-            try{
-                levelid=Integer.parseInt(param);
-            }catch (RuntimeException e){
-                e.printStackTrace();
-            }
-        }
-        return levelid;
-    }
 
+    /*
+    公用方法
+     */
     //得到当前页
     private int getCurrentPage(HttpServletRequest req){
         int currentPage=1;

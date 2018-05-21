@@ -79,4 +79,13 @@ public class StudentServiceImp implements IStudentService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public PageBean<Student> findAllStudentDetail() {
+        try{
+            return studentDao.findAllStudentDetail();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

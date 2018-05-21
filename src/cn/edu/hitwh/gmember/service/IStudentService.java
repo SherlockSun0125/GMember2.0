@@ -12,4 +12,5 @@ public interface IStudentService {
     public Integer addStudent(Student student);
     public void updateStudent(Student student);
     public Student findStudentById(int stu_id);
+    public PageBean<Student> findAllStudentDetail();
 }

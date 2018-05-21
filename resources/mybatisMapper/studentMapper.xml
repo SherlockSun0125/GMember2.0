@@ -60,4 +60,8 @@
         stu_level_id=#{stu.stu_level_id},stu_english=#{stu.stu_english},stu_grade_id=#{stu.stu_grade_id},tea_id=#{stu.tea_id},emp_id=#{stu.emp_id},stu_major=#{stu.stu_major}
         WHERE stu_id=#{stu.stu_id}
     </update>
+
+    <select id="findAllStudentDetail" resultMap="studentMap">
+        SELECT * FROM student;
+    </select>
 </mapper>

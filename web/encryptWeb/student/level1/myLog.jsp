@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
@@ -68,7 +69,8 @@
         <div class="g-sd1">
             <div class="m-learnleft">
                 <div id="j-courseTabList">
-                    <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab"  data-type="30" href="${pageContext.request.contextPath}/encryptWeb/student/level1/myLog.jsp">
+                    <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab"  data-type="30"
+                       href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                         <div class="ic f-fl"></div>
                         <span class="f-fl">学习日志</span>
                     </a>
@@ -93,7 +95,7 @@
                     <!--发帖按钮-->
                     <div class="f-cb">
                         <a class="j-newTopicBtn f-fl" style="margin-bottom:40px;margin-top: 12px;"
-                           href="newLog.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addLog.png" style="width: 120px"></a>
+                           href="${pageContext.request.contextPath}/encryptWeb/student/level1/newLog.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addLog.png" style="width: 120px"></a>
                     </div>
 
                     <!--帖子展示-->
@@ -109,30 +111,52 @@
                                     <div class="j-list" style="">
                                         <div class="m-data-lists f-cb f-pr j-data-list">
                                             <!--第一帖-->
-                                            <%--<c:forEach>--%>
-                                                <div class="first">
+                                            <c:forEach items="${pb.beanList}" var="stulogs">
                                                     <li class="u-forumli">
                                                         <div class="f-cb cnt">
-                                                            <a></a><a class="f-fc3 f-f0 lb10 j-link" href="logDetails.jsp" target="_self">日志1</a>
+                                                            <a></a><a class="f-fc3 f-f0 lb10 j-link" href="${pageContext.request.contextPath}/studentServlet?method=findLogById&logid=${stulogs.stu_log_id}" target="_self">${stulogs.stu_log_title}</a>
                                                         </div>
                                                         <span>
                                                             <span class="j-txt">
-                                                                <span class="lb10 f-fc9">于2018年04月11日发表</span>
+                                                                <span class="lb10 f-fc9">于${stulogs.stu_log_time}发表</span>
                                                             </span>
-
                                                         </span>
-                                                        <p class="f-fc9 f-pa watch">教师反馈：0</p>
-                                                        <p class="f-fc9 f-pa reply">导师反馈：1</p>
-                                                            <%--<p class="f-fc9 f-pa vote">点赞：0</p>--%>
+                                                        <p class="f-fc9 f-pa watch">
+                                                            <c:choose>
+                                                                <c:when test="${stulogs.tea_status eq 3}">
+                                                                    老师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                </c:when>
+                                                                <c:when test="${stulogs.tea_status eq 2}">
+                                                                    老师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                </c:when>
+                                                                <c:when test="${stulogs.tea_status eq 1}">
+                                                                    老师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                </c:when>
+                                                                <c:otherwise>&nbsp;</c:otherwise>
+                                                            </c:choose>
+                                                        </p>
+                                                        &nbsp;
+                                                        <p class="f-fc9 f-pa reply">
+                                                            <c:choose>
+                                                                <c:when test="${stulogs.emp_status eq 3}">
+                                                                    导师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                </c:when>
+                                                                <c:when test="${stulogs.emp_status eq 2}">
+                                                                    导师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                </c:when>
+                                                                <c:when test="${stulogs.emp_status eq 1}">
+                                                                    导师评价：<span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                </c:when>
+                                                                <c:otherwise>&nbsp;</c:otherwise>
+                                                            </c:choose>
+                                                        </p>
                                                     </li>
-                                                </div>
-                                            <%--</c:forEach>--%>
+                                            </c:forEach>
                                         </div>
                                         <!--分页-->
-                                       <%@include file="/pager/pager.jsp"%>
-                                    </div>
-                                    <div class="j-none empty" style="display:none">
-                                        <span class="f-f0 f-fc9 j-none-txt f-ib">还没有主题</span>
+                                        <div style="float:left; width: 100%; text-align: center;" >
+                                            <%@include file="/pager/pager.jsp"%>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

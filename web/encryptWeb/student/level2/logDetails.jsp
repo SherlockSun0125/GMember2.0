@@ -913,18 +913,7 @@
                                     </div>
                                 </div>
                                 <div class="j-banState"></div>
-                                <div class="rinfobox f-cb">
-                                    <h4 class="j-reply-info f-fl">共2回复</h4>
-                                    <div class="j-reply-sort f-fr auto-1524789536707-parent" style="display: none">
-                                        <div class="auto-1524789536707"> 排序方式：
-                                            <a class="j-time double upsort" id="auto-id-1524789537000" style="">
-                                                回复时间<span></span>
-                                            </a>
-                                            <span class="divider"></span>
-                                            <a class="j-vote single nosort" style="">点赞数</a>
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <!--回复-->
                                 <div class="j-reply-all allbox">
@@ -933,10 +922,7 @@
                                             <div class="m-data-lists f-cb f-pr j-data-list">
                                                 <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
                                                     <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
-                                                        <div class="tagCt f-cb j-tagBox" style="display: none;">
-                                                            <div class="u-forumtag u-forumtag1 j-tagTopNode">置顶</div>
-                                                            <div class="u-forumtag j-tagAgreeNode">赞同</div>
-                                                        </div>
+
                                                         <div class="f-richEditorText j-content edueditor_styleclass_0"
                                                              id="auto-id-1524789537474"><p>教师评价1<br></p></div>
                                                         <div class="bar f-cb">
@@ -948,18 +934,6 @@
                                                                 </span>
                                                             </div>
                                                             <div class="f-fl f-fc9 time j-time">于2018年04月11日发表</div>
-                                                            <div class="f-fr j-manBox" style="display: none;"></div>
-                                                            <a hidefocus="true" class="f-fr f-fc9 opt delBtn j-delBtn" style="display: none;">删除</a>
-                                                            <div class="j-delDivider f-fr divider" style="display: none">|</div>
-                                                            <a hidefocus="true" class="f-fr f-fc9 opt cmtBtn j-cmtBtn" style="display: none;">评论(2)</a>
-                                                            <div class="j-cmtDivider f-fr divider" style="display: none;">|</div>
-                                                            <div class="f-fr votebox j-vote" style="display: none;">
-                                                                <div class="f-cb auto-1524789536688">
-                                                                    <div class="up f-fl j-up hvr" title="顶"></div>
-                                                                    <p class="num f-fl f-thide j-num" title="0">0</p>
-                                                                    <div class="down f-fl j-down hvr" title="踩"></div>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

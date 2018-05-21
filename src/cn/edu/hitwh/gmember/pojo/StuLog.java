@@ -9,14 +9,16 @@ public class StuLog {
     private int stu_level_id;
     private String tea_feedback;
     private int tea_status;
+    private String tea_time;
     private String emp_feedback;
     private int emp_status;
+    private String emp_time;
 
 
     public StuLog() {
     }
 
-    public StuLog(String stu_log_id, int stu_id, String stu_log_title, String stu_log_content, String stu_log_time, int stu_level_id, String tea_feedback, int tea_status, String emp_feedback, int emp_status) {
+    public StuLog(String stu_log_id, int stu_id, String stu_log_title, String stu_log_content, String stu_log_time, int stu_level_id, String tea_feedback, int tea_status, String tea_time, String emp_feedback, int emp_status, String emp_time) {
         this.stu_log_id = stu_log_id;
         this.stu_id = stu_id;
         this.stu_log_title = stu_log_title;
@@ -25,8 +27,10 @@ public class StuLog {
         this.stu_level_id = stu_level_id;
         this.tea_feedback = tea_feedback;
         this.tea_status = tea_status;
+        this.tea_time = tea_time;
         this.emp_feedback = emp_feedback;
         this.emp_status = emp_status;
+        this.emp_time = emp_time;
     }
 
     public String getStu_log_id() {
@@ -61,12 +65,20 @@ public class StuLog {
         return tea_status;
     }
 
+    public String getTea_time() {
+        return tea_time;
+    }
+
     public String getEmp_feedback() {
         return emp_feedback;
     }
 
     public int getEmp_status() {
         return emp_status;
+    }
+
+    public String getEmp_time() {
+        return emp_time;
     }
 
     public void setStu_log_id(String stu_log_id) {
@@ -101,12 +113,20 @@ public class StuLog {
         this.tea_status = tea_status;
     }
 
+    public void setTea_time(String tea_time) {
+        this.tea_time = tea_time;
+    }
+
     public void setEmp_feedback(String emp_feedback) {
         this.emp_feedback = emp_feedback;
     }
 
     public void setEmp_status(int emp_status) {
         this.emp_status = emp_status;
+    }
+
+    public void setEmp_time(String emp_time) {
+        this.emp_time = emp_time;
     }
 
     @Override
@@ -120,8 +140,10 @@ public class StuLog {
                 ", stu_level_id=" + stu_level_id +
                 ", tea_feedback='" + tea_feedback + '\'' +
                 ", tea_status=" + tea_status +
+                ", tea_time='" + tea_time + '\'' +
                 ", emp_feedback='" + emp_feedback + '\'' +
                 ", emp_status=" + emp_status +
+                ", emp_time='" + emp_time + '\'' +
                 '}';
     }
 }

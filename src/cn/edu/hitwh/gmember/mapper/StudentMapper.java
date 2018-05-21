@@ -15,4 +15,5 @@ public interface StudentMapper {
     public void deleteStudent(int stu_id);
     public int addStudent(Student student);
     public void updateStudent(@Param("stu")Student student);
+    public List<Student> findAllStudentDetail();
 }

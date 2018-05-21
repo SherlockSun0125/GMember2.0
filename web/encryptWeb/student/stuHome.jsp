@@ -429,7 +429,7 @@
                                 <br/>
                         </p>
 
-                        <a class="btn-small btn-hl" href="level1/myLog.jsp">
+                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                             <span>进入</span>
                         </a>
                     </div>

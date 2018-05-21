@@ -47,7 +47,7 @@ public class AdminServlet extends BaseServlet {
             req.getSession().setAttribute("noticeSectionPageBean",noticeSectionPageBean);
             req.getSession().setAttribute("studentNum",studentNum);
             req.getSession().setAttribute("newsNoticeNum",newsNum+noticeNum);
-            req.getSession().setAttribute("Admin", adminSql);
+            req.getSession().setAttribute("Admin",  adminSql);
 
             return "r:/encryptWeb/admin/index.jsp";
         } else {

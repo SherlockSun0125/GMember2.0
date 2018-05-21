@@ -75,7 +75,8 @@
         <div class="g-sd1">
             <div class="m-learnleft">
                 <div id="j-courseTabList">
-                    <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb"  data-type="30" href="myLog.jsp">
+                    <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb"  data-type="30"
+                       href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                         <div class="ic f-fl"></div>
                         <span class="f-fl">学习日志</span>
                     </a>
