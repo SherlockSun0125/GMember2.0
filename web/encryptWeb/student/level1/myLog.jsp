@@ -100,68 +100,77 @@
 
                     <!--帖子展示-->
                     <div class="u-forumlistwrap j-alltopiclist">
-                        <div class="m-flwrap">
-                            <div class="ttitle">
-                                <h4 class="f-fl f-fc3">全部日志</h4>
-                                <div class="f-fl u-coursecate j-lessonuit"></div>
-
-                            </div>
-                            <div class="f-cb auto-1523950289417-parent">
-                                <div class="m-basepool f-cb auto-1523950289417">
-                                    <div class="j-list" style="">
-                                        <div class="m-data-lists f-cb f-pr j-data-list">
-                                            <!--第一帖-->
-                                            <c:forEach items="${pb.beanList}" var="stulogs">
-                                                    <li class="u-forumli">
-                                                        <div class="f-cb cnt">
-                                                            <a></a><a class="f-fc3 f-f0 lb10 j-link" href="${pageContext.request.contextPath}/studentServlet?method=findLogById&logid=${stulogs.stu_log_id}" target="_self">${stulogs.stu_log_title}</a>
-                                                        </div>
-                                                        <span>
+                        <c:choose>
+                            <c:when test="${pb.totalRecords eq 0}">
+                                <div class="ttitle">
+                                    <h4 class="f-fl f-fc3">你还没有写日志</h4>
+                                    <div class="f-fl u-coursecate j-lessonuit"></div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="m-flwrap">
+                                    <div class="ttitle">
+                                        <h4 class="f-fl f-fc3">全部日志</h4>
+                                        <div class="f-fl u-coursecate j-lessonuit"></div>
+                                    </div>
+                                    <div class="f-cb auto-1523950289417-parent">
+                                        <div class="m-basepool f-cb auto-1523950289417">
+                                            <div class="j-list" style="">
+                                                <div class="m-data-lists f-cb f-pr j-data-list">
+                                                    <!--第一帖-->
+                                                    <c:forEach items="${pb.beanList}" var="stulogs">
+                                                        <li class="u-forumli">
+                                                            <div class="f-cb cnt">
+                                                                <a></a><a class="f-fc3 f-f0 lb10 j-link" href="${pageContext.request.contextPath}/studentServlet?method=findLogById&logid=${stulogs.stu_log_id}" target="_self">${stulogs.stu_log_title}</a>
+                                                            </div>
+                                                            <span>
                                                             <span class="j-txt">
                                                                 <span class="lb10 f-fc9">于${stulogs.stu_log_time}发表</span>
                                                             </span>
                                                         </span>
-                                                        <p class="f-fc9 f-pa watch">
-                                                            <c:choose>
-                                                                <c:when test="${stulogs.tea_status eq 3}">
-                                                                    老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                </c:when>
-                                                                <c:when test="${stulogs.tea_status eq 2}">
-                                                                    老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                </c:when>
-                                                                <c:when test="${stulogs.tea_status eq 1}">
-                                                                    老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                </c:when>
-                                                                <c:otherwise>&nbsp;</c:otherwise>
-                                                            </c:choose>
-                                                        </p>
-                                                        &nbsp;
-                                                        <p class="f-fc9 f-pa reply">
-                                                            <c:choose>
-                                                                <c:when test="${stulogs.emp_status eq 3}">
-                                                                    导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                </c:when>
-                                                                <c:when test="${stulogs.emp_status eq 2}">
-                                                                    导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                </c:when>
-                                                                <c:when test="${stulogs.emp_status eq 1}">
-                                                                    导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                </c:when>
-                                                                <c:otherwise>&nbsp;</c:otherwise>
-                                                            </c:choose>
-                                                        </p>
-                                                    </li>
-                                            </c:forEach>
+                                                            <p class="f-fc9 f-pa watch">
+                                                                <c:choose>
+                                                                    <c:when test="${stulogs.tea_status eq 3}">
+                                                                        老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                    </c:when>
+                                                                    <c:when test="${stulogs.tea_status eq 2}">
+                                                                        老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                    </c:when>
+                                                                    <c:when test="${stulogs.tea_status eq 1}">
+                                                                        老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                    </c:when>
+                                                                    <c:otherwise>&nbsp;</c:otherwise>
+                                                                </c:choose>
+                                                            </p>
+                                                            &nbsp;
+                                                            <p class="f-fc9 f-pa reply">
+                                                                <c:choose>
+                                                                    <c:when test="${stulogs.emp_status eq 3}">
+                                                                        导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                    </c:when>
+                                                                    <c:when test="${stulogs.emp_status eq 2}">
+                                                                        导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                    </c:when>
+                                                                    <c:when test="${stulogs.emp_status eq 1}">
+                                                                        导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                    </c:when>
+                                                                    <c:otherwise>&nbsp;</c:otherwise>
+                                                                </c:choose>
+                                                            </p>
+                                                        </li>
+                                                    </c:forEach>
+                                                </div>
+                                                <!--分页-->
+                                                <div style="float:left; width: 100%; text-align: center;" >
+                                                    <%@include file="/pager/pager.jsp"%>
+                                                </div>
+                                                <small>${msgDeleteLog}</small>
+                                            </div>
                                         </div>
-                                        <!--分页-->
-                                        <div style="float:left; width: 100%; text-align: center;" >
-                                            <%@include file="/pager/pager.jsp"%>
-                                        </div>
-                                        <small>${msgDeleteLog}</small>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>

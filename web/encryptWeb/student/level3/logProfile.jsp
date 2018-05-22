@@ -1,4 +1,4 @@
-<!--<%@page contentType="text/html; charset=utf-8" %>-->
+<%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,7 +17,7 @@
             width: 16px;
             height: 16px;
             margin: 12px 0 0 10px;
-            background-image: url("/encryptWeb/student/static/icon9.png");
+            background-image: url("../static/icon9.png");
             background-position: -48px 0px;
         }
         .file {
@@ -70,6 +70,15 @@
                                        href="${pageContext.request.contextPath}/encryptWeb/student/exit.jsp" hidefocus="true">退出</a>
                                 </div>
 
+                                <div class="name j-userinfo" id="auto-id-1523840858750">
+                                    <div class="f-pr">
+                                        <div class="face">
+                                            <img class="j-nav-myimg"
+                                                 src="${pageContext.request.contextPath}/encryptWeb/student/static/head1.jpg"
+                                                 width="30px" height="30px" alt="头像">
+                                        </div>
+                                    </div>
+                                </div>
                                 <a class="username self f-thide" target="_self" data-index="点击用户名"
                                    href="${pageContext.request.contextPath}/encryptWeb/student/setting.jsp">
                                     <span class=" f-fs1 f-f0">${Student.stu_name}</span>
@@ -105,7 +114,7 @@
                         <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab" data-type="30"
                            href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                             <div class="ic f-fl"></div>
-                            <span class="f-fl ">毕设日志</span>
+                            <span class="f-fl ">学习日志</span>
                         </a>
                         <ul class="tab u-tabul">
                             <li class="u-greentab j-tabitem f-f0 first" data-name="开题" data-type="1">
@@ -128,21 +137,20 @@
             <div class="g-mn1">
                 <div class="g-mn1c m-learnbox" id="courseLearn-inner-box">
                     <div class="m-forumtopic f-cb">
-                        <form action="${pageContext.request.contextPath}/studentServlet?method=addLog&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}" method="post">
+                        <form action="${pageContext.request.contextPath}/studentServlet?method=updateLog&logid=${stuLog.stu_log_id}" method="post">
                             <div class="form-group">
                                 <label style="font-size: 1.25em" for="logtitle">日志主题</label>
-                                <input class="form-control" style="width: 40%" id="logtitle" name="logtitle">
+                                <input class="form-control" style="width: 40%" id="logtitle" name="logtitle" value="${stuLog.stu_log_title}">
                             </div>
                             <div class="form-group">
                                 <label style="font-size: 1.25em" for="editor">日志内容</label>
                                 <div id="editor">
-
+                                    <p>${stuLog.stu_log_content}</p>
                                 </div>
                                 <textarea id="logcontent" name="logcontent" style="width:100%; height:200px;display: none"></textarea>
                             </div>
-                            <input type="submit" class="btn btn-success" value="提交日志" id="addlog">
+                            <input type="submit" class="btn btn-success" value="更新日志" id="uppdateLog">
                         </form>
-                        ${msgAddLog}
                     </div>
                     <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
                     <script type="text/javascript">

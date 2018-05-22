@@ -21,7 +21,7 @@ public class TeacherServlet extends BaseServlet {
     private IDepartmentService departmentService=new DepartmentServiceImp();
 
     public String teacherLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String teanum=req.getParameter("teaid");
+        String teanum=req.getParameter("teanum");
         String teapwd=req.getParameter("teapwd");
         Teacher teacher=new Teacher();
         teacher.setTea_num(teanum);

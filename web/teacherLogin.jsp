@@ -318,7 +318,7 @@
 <div class="auth_tab">
     <div class="auth_tab_links">
         <ul>
-            <li id="accountLogin" style="width:100%;" class="selected" tabid="01"><span>教师用户用户登录</span></li>
+            <li id="accountLogin" style="width:100%;" class="selected" tabid="01"><span>教师用户登录</span></li>
         </ul>
     </div>
     <div class="clearfloat"></div>

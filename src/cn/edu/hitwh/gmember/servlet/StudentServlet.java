@@ -173,7 +173,16 @@ public class StudentServlet extends BaseServlet {
         }else {
             req.setAttribute("msgAddLog", "日志发布成功！");
         }
-        return "f:/encryptWeb/student/level1/newLog.jsp";
+
+        req.setAttribute("stuLog",newLog);
+
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/logDetails.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/logDetails.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/logDetails.jsp";
+        }
     }
     //学生区查看自己该阶段所写的所有日志
     public String findLogsOfStudentLevel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -190,7 +199,15 @@ public class StudentServlet extends BaseServlet {
         stuLogPageBean.setTotalPages(stuLogPageBean.getTotalPages());
 
         req.setAttribute("pb",stuLogPageBean);
-        return "f:/encryptWeb/student/level1/myLog.jsp";
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/myLog.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/myLog.jsp";
+        }else if(stulevelid==3){
+            return "f:/encryptWeb/student/level3/myLog.jsp";
+        }else{
+            return "f:/encryptWeb/student/level4/myLog.jsp";
+        }
     }
     //查看日志详情
     public String findLogById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -200,15 +217,34 @@ public class StudentServlet extends BaseServlet {
         //查看其教师姓名
         int stuid=stuLog.getStu_id();
         Student student=studentService.findStudentById(stuid);
-        int teaid=student.getTea_id();
+        //确定有没有分配老师
+       int teaid=student.getTea_id();
+        if (teaid!=0){
+            Teacher teacher=teacherService.findTeacherById(teaid);
+            req.setAttribute("teacherName",teacher.getTea_name());
+        }else {
+            req.setAttribute("teacherName",null);
+        }
+
+        //确定有没有分配导师
         int empid=student.getEmp_id();
-        Teacher teacher=teacherService.findTeacherById(teaid);
-        Employee employee=employeeService.findAllEmployeeById(empid);
+        if (empid!=0){
+            Employee employee=employeeService.findAllEmployeeById(empid);
+            req.setAttribute("employeeName",employee.getEmp_name());
+        }else {
+            req.setAttribute("employeeName",null);
+        }
 
         req.setAttribute("stuLog",stuLog);
-        req.setAttribute("teacherName",teacher.getTea_name());
-        req.setAttribute("employeeName",employee.getEmp_name());
-        return "f:/encryptWeb/student/level1/logDetails.jsp";
+        int stulevelid=stuLog.getStu_level_id();
+
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/logDetails.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/logDetails.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/logDetails.jsp";
+        }
     }
 
 //    学生编辑日志的一个中间跳转
@@ -217,7 +253,15 @@ public class StudentServlet extends BaseServlet {
         StuLog stuLog=stulogService.findLogByid(logid);
 
         req.setAttribute("stuLog",stuLog);
-        return "f:/encryptWeb/student/level1/logProfile.jsp";
+        int stulevelid=stuLog.getStu_level_id();
+
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/logProfile.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/logProfile.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/logProfile.jsp";
+        }
     }
         //修改日志
     public String updateLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -240,15 +284,32 @@ public class StudentServlet extends BaseServlet {
         int stuid=stuLog.getStu_id();
         Student student=studentService.findStudentById(stuid);
         int teaid=student.getTea_id();
+        if (teaid!=0){
+            Teacher teacher=teacherService.findTeacherById(teaid);
+            req.setAttribute("teacherName",teacher.getTea_name());
+        }else {
+            req.setAttribute("teacherName",null);
+        }
+
+        //确定有没有分配导师
         int empid=student.getEmp_id();
-        Teacher teacher=teacherService.findTeacherById(teaid);
-        Employee employee=employeeService.findAllEmployeeById(empid);
+        if (empid!=0){
+            Employee employee=employeeService.findAllEmployeeById(empid);
+            req.setAttribute("employeeName",employee.getEmp_name());
+        }else {
+            req.setAttribute("employeeName",null);
+        }
 
         req.setAttribute("stuLog",stuLog);
-        req.setAttribute("teacherName",teacher.getTea_name());
-        req.setAttribute("employeeName",employee.getEmp_name());
         req.setAttribute("msgUpdateLog","日志更新成功！");
-        return "f:/encryptWeb/student/level1/logDetails.jsp";
+        int stulevelid=stuLog.getStu_level_id();
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/logDetails.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/logDetails.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/logDetails.jsp";
+        }
     }
 
     public String deleteLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -263,7 +324,6 @@ public class StudentServlet extends BaseServlet {
 
         stulogService.deleteStuLog(logid);
 
-
         PageBean<StuLog> stuLogPageBean=stulogService.findLogsOfStudentLevel(stuid,stulevelid,currentPage);
 
         stuLogPageBean.setUrl(url);
@@ -272,8 +332,17 @@ public class StudentServlet extends BaseServlet {
 
         req.setAttribute("pb",stuLogPageBean);
         req.setAttribute("msgDeleteLog","日志\""+logname+"\"已删除！");
-        return "f:/encryptWeb/student/level1/myLog.jsp";
+
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/myLog.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/myLog.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/myLog.jsp";
+        }
     }
+
+
     /*
     后台方法
      */
