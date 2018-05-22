@@ -418,44 +418,40 @@
             <div class="row highlights">
                     <%--1--%>
                 <div class="span3">
-
                     <c:choose>
-                    <c:when test="${Student.stu_level_id eq 1}">
-                        <div class="hl-circle">
-                            <a class="hl-icon1" href="level1/myLog.jsp">工程学习阶段</a>
-                        </div>
-                        <div class="highlights-content clearfix">
-                            <h5>工程学习阶段</h5>
-                            <p>
-                                        你当前处于工程学习阶段！
-                                        <br/>
-                                        打好基础很重要哦！
-                                        <br/>
-                                        <br/>
-                                    </p>
-                            <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=1">
-                                        <span>进入</span>
-                                    </a>
-                        </div>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="hl-circle">
-                            <a class="hl-icon1" disabled="disabled">工程学习阶段</a>
-                        </div>
-                        <div class="highlights-content clearfix">
-                            <h5>工程学习阶段</h5>
-                            <p>
-                                你当前处于工程学习阶段！
-                                <br/>
-                                打好基础很重要哦！
-                                <br/>
-                                <br/>
-                            </p>
-                            <a class="btn-small btn-hl" disabled="diabled">
-                                <span>进入</span>
-                            </a>
-                        </div>
-                    </c:otherwise>
+                        <c:when test="${Student.stu_level_id eq 1}">
+                            <div class="hl-circle">
+                                <a class="hl-icon1" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=1p">工程学习阶段</a>
+                            </div>
+                            <div class="highlights-content clearfix">
+                                <h5>工程学习阶段</h5>
+                                <p>
+                                    你当前处于工程学习阶段！
+                                    <br/>
+                                    打好基础很重要哦！
+                                    <br/>
+                                    <br/>
+                                </p>
+                                <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=1">
+                                            <span>进入</span>
+                                        </a>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="hl-circle">
+                                <a class="hl-icon1" disabled="disabled">工程学习阶段</a>
+                            </div>
+                            <div class="highlights-content clearfix">
+                                <h5>工程学习阶段</h5>
+                                <p>
+                                    你不在该阶段！
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </p>
+                                <a class="btn-small btn-hl" disabled="diabled"><span>进入</span></a>
+                            </div>
+                        </c:otherwise>
                     </c:choose>
                 </div>
                     <%--2--%>
@@ -475,8 +471,8 @@
                                         <br/>
                                     </p>
                             <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=2">
-                                        <span>进入</span>
-                                    </a>
+                                <span>进入</span>
+                            </a>
                         </div>
                     </c:when>
                         <c:otherwise>
@@ -491,9 +487,7 @@
                                     <br/>
                                     <br/>
                                 </p>
-                                <a class="btn-small btn-hl" disabled="disabled" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=2">
-                                    <span>进入</span>
-                                </a>
+                                <a class="btn-small btn-hl" disabled="disabled"><span>进入</span></a>
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -501,41 +495,39 @@
                     <%--3--%>
                  <div class="span3 highlights">
                      <c:choose>
-                     <c:when test="${Student.stu_level_id eq 3}">
-                        <div class="hl-circle">
-                                <a class="hl-icon3" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=3">毕业设计阶段</a>
-                            </div>
-                        <div class="highlights-content clearfix">
-                            <h5>毕业设计阶段</h5>
-                            <p>
-                                            你当前处于毕业设计阶段！
-                                            <br/>
-                                            加油！
-                                            <br/>
-                                            <br/>
-                                        </p>
-                            <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=3">
-                                            <span>进入</span>
-                                        </a>
-                         </div>
-                     </c:when>
-                     <c:otherwise>
-                         <div class="hl-circle">
-                             <a class="hl-icon3" disabled="disabled">毕业设计阶段</a>
-                         </div>
-                         <div class="highlights-content clearfix">
-                             <h5>毕业设计阶段</h5>
-                             <p>
-                                 你不在该阶段！
-                                 <br/>
-                                 <br/>
-                                 <br/>
-                             </p>
-                             <a class="btn-small btn-hl" disabled="disabled" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=3">
-                                 <span>进入</span>
-                             </a>
-                         </div>
-                     </c:otherwise>
+                         <c:when test="${Student.stu_level_id eq 3}">
+                            <div class="hl-circle">
+                                    <a class="hl-icon3" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=3">毕业设计阶段</a>
+                                </div>
+                            <div class="highlights-content clearfix">
+                                <h5>毕业设计阶段</h5>
+                                <p>
+                                    你当前处于毕业设计阶段！
+                                    <br/>
+                                    加油！
+                                    <br/>
+                                    <br/>
+                                </p>
+                                <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=3">
+                                                <span>进入</span>
+                                            </a>
+                             </div>
+                         </c:when>
+                         <c:otherwise>
+                             <div class="hl-circle">
+                                 <a class="hl-icon3" disabled="disabled">毕业设计阶段</a>
+                             </div>
+                             <div class="highlights-content clearfix">
+                                 <h5>毕业设计阶段</h5>
+                                 <p>
+                                     你不在该阶段！
+                                     <br/>
+                                     <br/>
+                                     <br/>
+                                 </p>
+                                 <a class="btn-small btn-hl" disabled="disabled"><span>进入</span></a>
+                             </div>
+                         </c:otherwise>
                      </c:choose>
                  </div>
                     <%--4--%>
@@ -562,21 +554,19 @@
                             </c:when>
                             <c:otherwise>
                                 <div class="hl-circle">
-                                    <a class="hl-icon4" href="level4/myResume.jsp" disabled="disabled">就业推荐阶段</a>
+                                    <a class="hl-icon4" disabled="disabled">就业推荐阶段</a>
                                 </div>
 
                                 <div class="highlights-content clearfix">
                                     <h5>就业推荐阶段</h5>
-                                <p>
-                                    你不在该阶段！
-                                    <br/>
-                                    <br/>
-                                    <br/>
-                                </p>
-                                <a class="btn-small btn-hl" disabled="disabled" >
-                                    <span>进入</span>
-                                </a>
-                                </div>
+                                    <p>
+                                        你不在该阶段！
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </p>
+                                    <a class="btn-small btn-hl" disabled="disabled" ><span>进入</span></a>
+                                    </div>
                             </c:otherwise>
                         </c:choose>
                 </div>
