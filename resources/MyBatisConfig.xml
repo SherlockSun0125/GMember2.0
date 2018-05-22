@@ -33,5 +33,7 @@
         <mapper resource="mybatisMapper/newssectionMapper.xml"/>
         <mapper resource="mybatisMapper/noticesectionMapper.xml"/>
         <mapper resource="mybatisMapper/stulogMapper.xml"/>
+        <mapper resource="mybatisMapper/courseMapper.xml"/>
+        <mapper resource="mybatisMapper/projectMapper.xml"/>
     </mappers>
 </configuration>

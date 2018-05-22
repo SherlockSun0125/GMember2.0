@@ -22,4 +22,27 @@
         SELECT * FROM course WHERE stu_id=#{stu_id}
     </select>
 
+    <insert id="addCourse" parameterType="cn.edu.hitwh.gmember.pojo.Course" useGeneratedKeys="true" keyProperty="course_id">
+        insert into
+        course (course_num, course_seq, stu_id, course_name, course_type, exam_type, course_place, course_weeks,
+                exam_time, exam_grade, teacher, isEnd)
+        values (#{course_num},#{course_seq},#{stu_id},#{course_name},#{course_type},#{exam_type},#{course_place},#{course_weeks},
+                #{exam_time},#{exam_grade},#{teacher},#{isEnd});
+    </insert>
+
+    <delete id="deleteCourse" parameterType="int">
+        DELETE FROM course WHERE course_id=#{course_id}
+    </delete>
+
+    <select id="findCourseById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.Course">
+        SELECT * FROM course WHERE course_id=#{course_id}
+    </select>
+
+    <update id="updateCourse" parameterType="cn.edu.hitwh.gmember.pojo.Course">
+        UPDATE course SET course_num=#{course_num},course_seq=#{course_seq},stu_id=#{stu_id},course_name=#{course_name},
+            course_type=#{course_type},exam_type=#{exam_type},course_place=#{course_place},course_weeks=#{course_weeks},
+            exam_time=#{exam_time},exam_grade=#{exam_grade},teacher=#{teacher},isEnd=#{isEnd}
+        WHERE course_id=#{course_id}
+    </update>
+
 </mapper>

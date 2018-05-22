@@ -1,8 +1,9 @@
 package cn.edu.hitwh.gmember.daoImp;
 
-import cn.edu.hitwh.gmember.dao.ICourseDao;
-import cn.edu.hitwh.gmember.mapper.CourseMapper;
-import cn.edu.hitwh.gmember.pojo.Course;
+import cn.edu.hitwh.gmember.dao.IProjectDao;
+import cn.edu.hitwh.gmember.dao.IProjectDao;
+import cn.edu.hitwh.gmember.mapper.ProjectMapper;
+import cn.edu.hitwh.gmember.pojo.Project;
 import cn.edu.hitwh.gmember.tools.PageBean;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -12,14 +13,14 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.Reader;
 import java.util.List;
 
-public class CourseDaoImp implements ICourseDao{
+public class ProjectDaoImp implements IProjectDao{
 
     @Override
-    public PageBean<Course> findCoursesByStuId(int stu_id) {
+    public PageBean<Project> findProjectsByStuId(int stu_id) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
-        PageBean<Course> coursePageBean=new PageBean<Course>();
+        PageBean<Project> projectPageBean=new PageBean<Project>();
         try{
             reader=Resources.getResourceAsReader(resource);
         }catch (Exception e){
@@ -28,22 +29,22 @@ public class CourseDaoImp implements ICourseDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
 
-        CourseMapper courseMapper=session.getMapper(CourseMapper.class);
+        ProjectMapper projectMapper=session.getMapper(ProjectMapper.class);
 
-        List<Course> courses=courseMapper.findCoursesByStuId(stu_id);
+        List<Project> projects=projectMapper.findProjectsByStuId(stu_id);
 
-        coursePageBean.setBeanList(courses);
+        projectPageBean.setBeanList(projects);
 
         session.close();
-        return coursePageBean;
+        return projectPageBean;
     }
 
     @Override
-    public Integer addCourse(Course course) {
+    public Integer addProject(Project project) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
-        Integer course_id=null;
+        Integer project_id=null;
         try{
             reader=Resources.getResourceAsReader(resource);
         }catch (Exception e){
@@ -52,22 +53,22 @@ public class CourseDaoImp implements ICourseDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
 
-        CourseMapper courseMapper=session.getMapper(CourseMapper.class);
+        ProjectMapper projectMapper=session.getMapper(ProjectMapper.class);
 
         try {
-            course_id = courseMapper.addCourse(course);
+            project_id = projectMapper.addProject(project);
             session.commit();
         }catch (Exception e){
             session.rollback();
             e.printStackTrace();
         }finally {
             session.close();
-            return course_id;
+            return project_id;
         }
     }
 
     @Override
-    public void deleteCourse(int course_id) {
+    public void deleteProject(int project_id) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
@@ -79,10 +80,10 @@ public class CourseDaoImp implements ICourseDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
 
-        CourseMapper courseMapper=session.getMapper(CourseMapper.class);
+        ProjectMapper projectMapper=session.getMapper(ProjectMapper.class);
 
         try {
-            courseMapper.deleteCourse(course_id);
+            projectMapper.deleteProject(project_id);
             session.commit();
         }catch (Exception e){
             session.rollback();
@@ -93,7 +94,7 @@ public class CourseDaoImp implements ICourseDao{
     }
 
     @Override
-    public Course findCourseById(int course_id) {
+    public Project findProjectById(int project_id) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
@@ -105,14 +106,14 @@ public class CourseDaoImp implements ICourseDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
 
-        CourseMapper courseMapper=session.getMapper(CourseMapper.class);
-        Course course=courseMapper.findCourseById(course_id);
+        ProjectMapper projectMapper=session.getMapper(ProjectMapper.class);
+        Project project=projectMapper.findProjectById(project_id);
         session.close();
-        return  course;
+        return  project;
     }
 
     @Override
-    public void updateCourse(Course course) {
+    public void updateProject(Project project) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
@@ -124,9 +125,9 @@ public class CourseDaoImp implements ICourseDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
 
-        CourseMapper courseMapper=session.getMapper(CourseMapper.class);
+        ProjectMapper projectMapper=session.getMapper(ProjectMapper.class);
         try {
-            courseMapper.updateCourse(course);
+            projectMapper.updateProject(project);
             session.commit();
         }catch (Exception e){
             session.rollback();

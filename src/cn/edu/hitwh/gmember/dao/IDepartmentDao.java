@@ -5,5 +5,4 @@ import cn.edu.hitwh.gmember.tools.PageBean;
 
 public interface IDepartmentDao {
     public PageBean<Department> findAllDepartments();
-
 }

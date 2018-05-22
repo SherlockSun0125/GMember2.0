@@ -1,7 +1,7 @@
 package cn.edu.hitwh.gmember.pojo;
 
 public class Course {
-    private int course_id;
+    private int course_id;//hou
     private String course_num;
     private int course_seq;
     private int stu_id;
@@ -11,9 +11,9 @@ public class Course {
     private String course_place;
     private String course_weeks;
     private String exam_time;
-    private double exam_grade;
+    private double exam_grade;//hou
     private String teacher;
-    private int isEnd;
+    private int isEnd;//hou
 
     public Course(){}
 

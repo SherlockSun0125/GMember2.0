@@ -106,69 +106,29 @@
                     <!--项目展示-->
                     <div class="u-forumlistwrap j-alltopiclist">
                         <div class="m-flwrap">
-                            <div class="ttitle">
-                                <h4 class="f-fl f-fc3">全部课程</h4>
-                                <div class="f-fl u-coursecate j-lessonuit"></div>
+                            <div style="height: 36px;font-weight: bold">
+                                <h4 class="f-fl f-fc3" style="font-weight: bold">项目列表</h4>
                             </div>
                             <div style="margin-top: 10px;padding-left: 0;">
-                                <table class="table table-bordered table-hover table-striped">
-                                    <thead>
-                                        <th class="col-lg-1">项目名称</th>
-                                        <th>所属课程</th>
-                                        <th>负责教师</th>
-                                        <th>项目语言</th>
-                                        <th>项目时间</th>
-                                        <th>项目地点</th>
-                                        <th>主要成员</th>
-                                        <th>项目简介</th>
-                                        <th>项目更新</th>
-                                    </thead>
+                                <table class="table table-hover">
+                                    <%--<thead>--%>
+                                        <%--<th class="col-lg-1">项目名称</th>--%>
+                                        <%--<th>所属课程</th>--%>
+                                        <%--<th>负责教师</th>--%>
+                                        <%--<th>项目语言</th>--%>
+                                        <%--<th>项目时间</th>--%>
+                                        <%--<th>项目地点</th>--%>
+                                        <%--<th>主要成员</th>--%>
+                                        <%--<th>项目简介</th>--%>
+                                        <%--<th>项目更新</th>--%>
+                                    <%--</thead>--%>
                                     <tbody>
-                                    <tr>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>
-                                            <a href="">更改</a>
-                                            <span>&smid;</span>
-                                            <a href="">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>
-                                            <a href="">更改</a>
-                                            <span>&smid;</span>
-                                            <a href="">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>
-                                            <a href="">更改</a>
-                                            <span>&smid;</span>
-                                            <a href="">删除</a>
-                                        </td>
-                                    </tr>
+                                        <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
+                                            <td width="100%"><a>基于web的工程领军人与卓越工程师管理平台</a></td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #EEEEEE">
+                                            <td width="100%"><a>基于web的工程领军人与卓越工程师管理平台</a>&nbsp;(已结束)</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

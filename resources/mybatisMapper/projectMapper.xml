@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatisTest.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.hitwh.gmember.mapper.ProjectMapper">
+    <resultMap id="projectMap" type="cn.edu.hitwh.gmember.pojo.Project">
+        <id column="project_id" property="project_id"></id>
+        <result column="stu_id" property="stu_id"></result>
+        <result column="project_name" property="project_name"></result>
+        <result column="course" property="course"></result>
+        <result column="teacher" property="teacher"></result>
+        <result column="project_place" property="project_place"></result>
+        <result column="project_start_time" property="project_start_time"></result>
+        <result column="project_stop_time" property="project_stop_time"></result>
+        <result column="project_member" property="project_member"></result>
+        <result column="project_about" property="project_about"></result>
+        <result column="stu_level_id" property="stu_level_id"></result>
+        <result column="start_paper" property="start_paper"></result>
+        <result column="mid_paper" property="mid_paper"></result>
+        <result column="end_paper" property="end_paper"></result>
+        <result column="isEnd" property="isEnd"></result>
+    </resultMap>
+
+    <select id="findProjectsByStuId" parameterType="int" resultMap="projectMap">
+        SELECT * FROM project WHERE stu_id=#{stu_id}
+    </select>
+
+    <insert id="addProject" parameterType="cn.edu.hitwh.gmember.pojo.Project" useGeneratedKeys="true" keyProperty="project_id">
+        insert into
+        project (stu_id, project_name, course, teacher, project_place, project_start_time, project_stop_time,
+                 project_member, project_about, stu_level_id, start_paper, mid_paper, end_paper, isEnd)
+        values (#{stu_id},#{project_name},#{course},#{teacher},#{project_place},#{project_start_time},#{project_stop_time},
+                #{project_member},#{project_about},#{stu_level_id},#{start_paper},#{mid_paper},#{end_paper},#{isEnd});
+    </insert>
+
+    <delete id="deleteProject" parameterType="int">
+        DELETE FROM project WHERE project_id=#{project_id}
+    </delete>
+
+    <select id="findProjectById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.Project">
+        SELECT * FROM project WHERE project_id=#{project_id}
+    </select>
+
+    <update id="updateProject" parameterType="cn.edu.hitwh.gmember.pojo.Project">
+        UPDATE project SET stu_id=#{stu_id},project_name=#{project_name},course=#{course},teacher=#{teacher},
+            project_place=#{project_place},project_start_time=#{project_start_time},project_stop_time=#{project_stop_time},
+            project_member=#{project_member},project_about=#{project_about},stu_level_id=#{stu_level_id},start_paper=#{start_paper},
+            mid_paper=#{mid_paper},end_paper=#{end_paper},isEnd=#{isEnd}
+        WHERE project_id=#{project_id}
+    </update>
+
+</mapper>

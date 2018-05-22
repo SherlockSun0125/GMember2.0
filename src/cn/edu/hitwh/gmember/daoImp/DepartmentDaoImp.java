@@ -3,7 +3,6 @@ package cn.edu.hitwh.gmember.daoImp;
 import cn.edu.hitwh.gmember.dao.IDepartmentDao;
 import cn.edu.hitwh.gmember.mapper.DepartmentMapper;
 import cn.edu.hitwh.gmember.pojo.Department;
-import cn.edu.hitwh.gmember.pojo.Teacher;
 import cn.edu.hitwh.gmember.tools.PageBean;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -31,9 +30,6 @@ public class DepartmentDaoImp implements IDepartmentDao{
 
         DepartmentMapper departmentMapper=session.getMapper(DepartmentMapper.class);
         List<Department> departmentList=departmentMapper.findAllDepartments();
-//        for(int i=0;i<departmentList.size();i++){
-//            System.out.println("======"+departmentList.get(i).toString());
-//        }
         departmentPageBean.setBeanList(departmentList);
         return departmentPageBean;
     }
