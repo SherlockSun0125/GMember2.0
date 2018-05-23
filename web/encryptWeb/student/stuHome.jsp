@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>个人主页</title>
     <!--样式-->
-    <link rel="stylesheet" href="static/pt_newpages_cp_user_homepage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/pt_newpages_cp_user_homepage.css">
     <style type="text/css">
         *[hidefocus] {
             outline: none;
@@ -342,8 +342,8 @@
             width: 100%;
         }
     </style>
-    <link href="../../css/bootstrap-2.min.css" rel="stylesheet" type="text/css">
-    <link href="../../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/css/bootstrap-2.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 
 <body style="padding-bottom: 0px;">
@@ -354,7 +354,7 @@
             <div class="f-pr f-cb">
                 <div style="position: absolute;top:2px;bottom:2px;">
                     <a class="f-fl" hidefocus="true" data-index="logo" href="${pageContext.request.contextPath}/index.jsp">
-                        <img class="f-fl img" src="static/hitwh_logo_white.png" title="学生主页" width="540px"
+                        <img class="f-fl img" src="${pageContext.request.contextPath}/encryptWeb/student/static/hitwh_logo_white.png" title="学生主页" width="540px"
                              style="margin-top: 2px;margin-bottom: 1px">
                     </a>
                 </div>
@@ -363,7 +363,7 @@
                         <div class="login f-cb">
                             <div class="u-mystudy f-pr f-cb f-fr">
                                 <a class="mystudy nitem f-f0" data-index="用户退出" target="_self"
-                                   href="exit.jsp" hidefocus="true">退出</a>
+                                   href="${pageContext.request.contextPath}/encryptWeb/student/exit.jsp" hidefocus="true">退出</a>
                             </div>
 
                             <%--<div class="name j-userinfo" id="auto-id-1523840858750">--%>
@@ -376,18 +376,18 @@
                                 <%--</div>--%>
                             <%--</div>--%>
                             <a class="username self f-thide" target="_self" data-index="点击用户名"
-                               href="setting.jsp">
+                               href="${pageContext.request.contextPath}/encryptWeb/student/setting.jsp">
                                 <span class=" f-fs1 f-f0">${Student.stu_name}</span>
                             </a>
                             <i class="line" style="padding-top: 2.5%"></i>
                             <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
-                               href="messageT.jsp" title="查看更多消息" target="_blank">
+                               href="${pageContext.request.contextPath}/encryptWeb/student/messageT.jsp" title="查看更多消息" target="_blank">
                                 <span>消息</span>
                                 <em class="num hidddenClass j-nav-msgnum">0</em>
                             </a>
                             <div class="u-mystudy f-pr f-cb f-fr">
                                 <a class="mystudy nitem f-f0" id="j-nav-my-class" data-index="我的学习" target="_self"
-                                   href="forum.jsp" hidefocus="true">讨论区</a>
+                                   href="${pageContext.request.contextPath}/encryptWeb/student/forum.jsp" hidefocus="true">讨论区</a>
                             </div>
                         </div>
                     </div>

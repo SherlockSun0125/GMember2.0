@@ -431,7 +431,7 @@
         }
 
         .auto-1524789536682 .list-in a:hover {
-            color: #21a557;
+            color: #e84807;
         }
 
         .auto-1524789536682 .list-in img {
@@ -497,7 +497,7 @@
         }
 
         .u-manList li:hover a {
-            color: #61A500;
+            color: #e84807;
         }
 
         .auto-1524789536693 {
@@ -561,9 +561,6 @@
 
         .auto-1524789536693 .optbar .followBtn.followed .first, .auto-1524789536693 .optbar .followBtn.followed .secHvr {
             display: none;
-        }
-
-        .auto-1524789536695 {
         }
 
         .auto-1524789536695 .rich-opt {
@@ -779,6 +776,19 @@
             background-color: #f3f6f7
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/encryptWeb/student/static/wangEditor.min.js"></script>
+    <style>
+        input{
+            /*文本框样式*/
+            border: none;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f8f8;
+        }
+    </style>
 </head>
 
 <body>
@@ -827,12 +837,12 @@
     <!--网页主体-->
     <div id="g-body">
         <div class="m-cbg"></div>
-        <div class="g-wrap f-cb" id="auto-id-1524789537185">
+        <div class="g-wrap f-cb">
             <!--左侧边栏-->
             <div class="g-sd1">
                 <div class="m-learnleft">
                     <div id="j-courseTabList">
-                        <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab" data-type="30"
+                        <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb" data-type="30"
                            href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                             <div class="ic f-fl"></div>
                             <span class="f-fl ">学习日志</span>
@@ -841,7 +851,7 @@
                             <li class="u-greentab j-tabitem f-f0 first" data-name="我的课程" data-type="1">
                                 <a class="f-thide f-fc3" href="myCourse.jsp">我的课程</a>
                             </li>
-                            <li class="u-greentab j-tabitem f-f0 last" data-name="我的项目" data-type="7"
+                            <li class="u-greentab j-tabitem f-f0 last  u-curtab" data-name="我的项目" data-type="7"
                                 data-id="2001487096" id="auto-id-1523950289741">
                                 <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
                             </li>
@@ -850,144 +860,255 @@
                 </div>
             </div>
 
-
             <!--中间-->
             <div class="g-mn1">
-                <div class="g-mn1c m-learnbox" id="courseLearn-inner-box">
+                <div class="g-mn1c m-learnbox">
                     <div class="u-learn-modulewidth" style="width: 90%">
                         <div class="j-breadNavBox">
                             <div class="u-forumbreadnav">
                                 <a href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">工程学习阶段</a>
                                 <span class="f-icon split"></span>
-                                <span>日志详情</span>
+                                <span>项目更新</span>
                             </div>
                         </div>
-                        <div class="j-detailBox auto-1524789536709-parent" id="auto-id-1524789537182">
-                            <div class="auto-1524789536709" id="auto-id-1524789537181">
+                        <div class="j-detailBox">
+                            <div>
                                 <div class="j-post">
                                     <div class="auto-1524789536693">
                                         <div class="f-cb">
-                                                <h3 class="j-title title f-fl">${stuLog.stu_log_title}</h3>
-                                        </div>
-                                        <div class="infobar f-cb"></div>
-                                        <div class="content f-richEditorText j-content" style="text-align: left">
-                                            ${stuLog.stu_log_content}
+                                            <table class="table table-bordered" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold">项目名称</td>
+                                                        <td colspan="3">
+                                                          <input type="text" name="projectName" value="${project.project_name}" >
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold">所属课程</td>
+                                                        <td>
+                                                            <input type="text" name="projectCourse" value="${project.course}">
+                                                        </td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold">负责教师</td>
+                                                        <td>
+                                                            <input type="text" name="projectTeacher" value="${project.teacher}">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold">开始时间</td>
+                                                        <td>
+                                                            <input type="text" name="projectStartTime" value="${project.project_start_time}">
+                                                        </td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold">结束时间</td>
+                                                        <td>${project.project_stop_time}
+                                                            <input type="text" name="projectStopTime" value="${project.project_stop_time}">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold">地点</td>
+                                                        <td>
+                                                            <input type="text" name="projectPlace" value="${project.project_place}">
+                                                        </td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold">成员</td>
+                                                        <td>${project.project_member}
+                                                            <input type="text" name="projectMember" value="${project.project_member}">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height:10em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">备<br/>注</td>
+                                                        <td colspan="3">
+                                                            <div id="editor1" style="width: 100%;height: 100%;border: none;">
+                                                                <p>${project.project_about}</p>
+                                                            </div>
+                                                            <textarea id="projectAbout" name="projectAbout" style="width:100%; height:200px;display: none"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>开<br/>题<br/>汇<br/>报</td>
+                                                        <td colspan="3">
+                                                            <div id="editor2" style="width: 100%;height: 100%;border: none;">
+                                                                <p>${project.start_paper}</p>
+                                                            </div>
+                                                            <textarea id="startPaper" name="startPaper" style="width:100%; height:200px;display: none"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>中<br/>期<br/>汇<br/>报</td>
+                                                        <td colspan="3">
+                                                            <div id="editor3" style="width: 100%;height: 100%;border: none;">
+                                                                <p>${project.mid_paper}</p>
+                                                            </div>
+                                                            <textarea id="midPaper" name="midPaper" style="width:100%; height:200px;display: none"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>终<br/>期<br/>汇<br/>报</td>
+                                                        <td colspan="3">
+                                                            <div id="editor4" style="width: 100%;height: 100%;border: none;">
+                                                                <p>${project.end_paper}</p>
+                                                            </div>
+                                                            <textarea id="endPaper" name="endPaper" style="width:100%; height:200px;display: none"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <div class="infobar f-cb"></div>
                                         <div class="optbar f-cb">
-                                            <div class="f-fl f-fc9 time j-time">于${stuLog.stu_log_time}发表</div>
-                                            <c:choose>
-                                                <c:when test="${stuLog.stu_log_lastchange eq null}">
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <div class="f-fl f-fc9 time j-time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;并最后更改于${stuLog.stu_log_lastchange}</div>
-                                                </c:otherwise>
-                                            </c:choose>
                                             <div class="f-cb f-fr optBox j-optBox">
-                                                <a hidefocus="true" class="f-fr f-fc9 opt delBtn j-delBtn" href="${pageContext.request.contextPath}/studentServlet?method=deleteLog&logid=${stuLog.stu_log_id}&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">删除</a>
-                                                <div class="f-fr divider">|</div>
-                                                <a hidefocus="true" class="f-fl f-fc9 editBtn j-editBtn" href="${pageContext.request.contextPath}/studentServlet?method=toUpdateLog&logid=${stuLog.stu_log_id}">编辑</a>
+                                                <a class="btn btn-success" href="${pageContext.request.contextPath}/studentServlet?method=updateProject&projectid=${project.project_id}">更新</a>
                                             </div>
                                         </div>
+                                        <%--初始化四个编辑器--%>
+                                        <script type="text/javascript">
+                                            var E = window.wangEditor;
+                                            var editor1 = new E('#editor1');
+
+                                            editor1.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+                                            editor1.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
+                                            editor1.customConfig.menus = [
+                                                'head',  // 标题
+                                                'bold',  // 粗体
+                                                'fontSize',  // 字号
+                                                'fontName',  // 字体
+                                                'italic',  // 斜体
+                                                'underline',  // 下划线
+                                                'strikeThrough',  // 删除线
+                                                'foreColor',  // 文字颜色
+                                                'backColor',  // 背景颜色
+                                                'link',  // 插入链接
+                                                'list',  // 列表
+                                                'justify',  // 对齐方式
+                                                'quote',  // 引用
+                                                'emoticon',  // 表情
+                                                'image',  // 插入图片
+                                                'table',  // 表格
+                                                'code',  // 插入代码
+                                                'undo',  // 撤销
+                                                'redo'  // 重复
+                                            ]
+
+                                            var projectAbout=$("#projectAbout");
+                                            editor1.customConfig.onchange=function (html) {
+                                                projectAbout.val(html);
+                                            }
+
+                                            editor1.create();
+                                            projectAbout.val(editor1.$txt.html);
+                                        </script>
+                                        <script type="text/javascript">
+                                            var E = window.wangEditor;
+                                            var editor2 = new E('#editor2');
+
+                                            editor2.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+                                            editor2.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
+                                            editor2.customConfig.menus = [
+                                                'head',  // 标题
+                                                'bold',  // 粗体
+                                                'fontSize',  // 字号
+                                                'fontName',  // 字体
+                                                'italic',  // 斜体
+                                                'underline',  // 下划线
+                                                'strikeThrough',  // 删除线
+                                                'foreColor',  // 文字颜色
+                                                'backColor',  // 背景颜色
+                                                'link',  // 插入链接
+                                                'list',  // 列表
+                                                'justify',  // 对齐方式
+                                                'quote',  // 引用
+                                                'emoticon',  // 表情
+                                                'image',  // 插入图片
+                                                'table',  // 表格
+                                                'code',  // 插入代码
+                                                'undo',  // 撤销
+                                                'redo'  // 重复
+                                            ]
+
+                                            var startPaper=$("#startPaper");
+                                            editor2.customConfig.onchange=function (html) {
+                                                startPaper.val(html);
+                                            }
+
+                                            editor2.create();
+                                            startPaper.val(editor2.$txt.html);
+                                        </script>
+                                        <script type="text/javascript">
+                                            var E = window.wangEditor;
+                                            var editor3 = new E('#editor3');
+
+                                            editor3.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+                                            editor3.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
+                                            editor3.customConfig.menus = [
+                                                'head',  // 标题
+                                                'bold',  // 粗体
+                                                'fontSize',  // 字号
+                                                'fontName',  // 字体
+                                                'italic',  // 斜体
+                                                'underline',  // 下划线
+                                                'strikeThrough',  // 删除线
+                                                'foreColor',  // 文字颜色
+                                                'backColor',  // 背景颜色
+                                                'link',  // 插入链接
+                                                'list',  // 列表
+                                                'justify',  // 对齐方式
+                                                'quote',  // 引用
+                                                'emoticon',  // 表情
+                                                'image',  // 插入图片
+                                                'table',  // 表格
+                                                'code',  // 插入代码
+                                                'undo',  // 撤销
+                                                'redo'  // 重复
+                                            ]
+
+                                            var midPaper=$("#midPaper");
+                                            editor3.customConfig.onchange=function (html) {
+                                                midPaper.val(html);
+                                            }
+
+                                            editor3.create();
+                                            midPaper.val(editor3.$txt.html);
+                                        </script>
+                                        <script type="text/javascript">
+                                            var E = window.wangEditor;
+                                            var editor4 = new E('#editor4');
+
+                                            editor4.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+                                            editor4.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
+                                            editor4.customConfig.menus = [
+                                                'head',  // 标题
+                                                'bold',  // 粗体
+                                                'fontSize',  // 字号
+                                                'fontName',  // 字体
+                                                'italic',  // 斜体
+                                                'underline',  // 下划线
+                                                'strikeThrough',  // 删除线
+                                                'foreColor',  // 文字颜色
+                                                'backColor',  // 背景颜色
+                                                'link',  // 插入链接
+                                                'list',  // 列表
+                                                'justify',  // 对齐方式
+                                                'quote',  // 引用
+                                                'emoticon',  // 表情
+                                                'image',  // 插入图片
+                                                'table',  // 表格
+                                                'code',  // 插入代码
+                                                'undo',  // 撤销
+                                                'redo'  // 重复
+                                            ]
+
+                                            var endPaper=$("#endPaper");
+                                            editor4.customConfig.onchange=function (html) {
+                                                endPaper.val(html);
+                                            }
+
+                                            editor4.create();
+                                            endPaper.val(editor4.$txt.html);
+                                        </script>
                                     </div>
                                 </div>
-
-                                <!--回复-->
-
-                                <div class="j-reply-all allbox">
-                                            <div class="m-basepool f-cb">
-                                                <div class="j-list" style="">
-                                                    <div class="m-data-lists f-cb f-pr j-data-list">
-                                                        <%--教师评价--%>
-                                                            <c:choose>
-                                                            <c:when test="${stuLog.tea_feedback eq null}">
-                                                                <br/>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
-                                                            <div class="rinfobox f-cb">
-                                                                <h4 class="j-reply-info f-fl">教师评价</h4>
-                                                                <p class="watch" style="margin-left:5em">
-                                                                    <c:choose>
-                                                                        <c:when test="${stuLog.tea_status eq 3}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.tea_status eq 2}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.tea_status eq 1}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                        </c:when>
-                                                                        <c:otherwise>&nbsp;</c:otherwise>
-                                                                    </c:choose>
-                                                                </p>
-                                                            </div>
-                                                            <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
-                                                                <div class="f-richEditorText j-content edueditor_styleclass_0">${stuLog.tea_feedback}<br></div>
-                                                                <div class="bar f-cb">
-                                                                    <div class="f-fl name j-name">
-                                                                <span>
-                                                                    <span class="userInfo j-userInfo" title="">
-                                                                        教师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师1">${teacherName}</a>&nbsp;&nbsp
-                                                                    </span>
-                                                                </span>
-                                                                    </div>
-                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.tea_time}</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                            </c:otherwise>
-                                                            </c:choose>
-
-                                                            <%--企业导师评价--%>
-                                                            <c:choose>
-                                                            <c:when test="${stuLog.emp_feedback eq null}">
-                                                                <br/>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
-                                                            <div class="rinfobox f-cb">
-                                                                <h4 class="j-reply-info f-fl" style="font-weight: bold">企业导师评价</h4>
-                                                                <p class="watch" style="margin-left:7.4em">
-                                                                    <c:choose>
-                                                                        <c:when test="${stuLog.emp_status eq 3}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.emp_status eq 2}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.emp_status eq 1}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                        </c:when>
-                                                                        <c:otherwise>&nbsp;</c:otherwise>
-                                                                    </c:choose>
-                                                                </p>
-                                                            </div>
-                                                            <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
-                                                                <div class="f-richEditorText j-content edueditor_styleclass_0">${stuLog.emp_feedback}<br></div>
-                                                                <div class="bar f-cb">
-                                                                    <div class="f-fl name j-name">
-                                                                <span>
-                                                                    <span class="userInfo j-userInfo" title="">
-                                                                        导师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师1">${employeeName}</a>&nbsp;&nbsp
-                                                                    </span>
-                                                                </span>
-                                                                    </div>
-                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.emp_time}</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                            </c:otherwise>
-                                                            </c:choose>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
                             </div>
                         </div>
                     </div>
-                    <small>${msgUpdateLog}</small>
                 </div>
             </div>
         </div>

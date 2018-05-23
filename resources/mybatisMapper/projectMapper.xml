@@ -21,8 +21,8 @@
         <result column="isEnd" property="isEnd"></result>
     </resultMap>
 
-    <select id="findProjectsByStuId" parameterType="int" resultMap="projectMap">
-        SELECT * FROM project WHERE stu_id=#{stu_id}
+    <select id="findProjectsByStuLevel" resultMap="projectMap">
+        SELECT * FROM project WHERE stu_id=#{stu_id} AND stu_level_id=#{stu_level_id}
     </select>
 
     <insert id="addProject" parameterType="cn.edu.hitwh.gmember.pojo.Project" useGeneratedKeys="true" keyProperty="project_id">

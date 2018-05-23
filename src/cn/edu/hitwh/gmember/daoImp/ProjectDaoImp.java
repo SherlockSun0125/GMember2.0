@@ -16,7 +16,7 @@ import java.util.List;
 public class ProjectDaoImp implements IProjectDao{
 
     @Override
-    public PageBean<Project> findProjectsByStuId(int stu_id) {
+    public PageBean<Project> findProjectsByStuLevel(int stu_id,int stu_level_id) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
@@ -31,7 +31,7 @@ public class ProjectDaoImp implements IProjectDao{
 
         ProjectMapper projectMapper=session.getMapper(ProjectMapper.class);
 
-        List<Project> projects=projectMapper.findProjectsByStuId(stu_id);
+        List<Project> projects=projectMapper.findProjectsByStuLevel(stu_id,stu_level_id);
 
         projectPageBean.setBeanList(projects);
 

@@ -10,9 +10,9 @@ public class ProjectServiceImp implements IProjectService {
     IProjectDao projectDao=new ProjectDaoImp();
 
     @Override
-    public PageBean<Project> findProjectsByStuId(int stu_id) {
+    public PageBean<Project> findProjectsByStuLevel(int stu_id,int stu_levle_id) {
         try {
-            return projectDao.findProjectsByStuId(stu_id);
+            return projectDao.findProjectsByStuLevel(stu_id,stu_levle_id);
         }catch (Exception e){
             throw new RuntimeException(e);
         }

@@ -7,10 +7,10 @@ public class MyProjectTest {
         IProjectService projectService=new ProjectServiceImp();
 
 //        修改
-        Project project=new Project();
-        project=projectService.findProjectById(9002);
-        project.setProject_about("这是一个大型的java软件");
-        projectService.updateProject(project);
+//        Project project=new Project();
+//        project=projectService.findProjectById(9002);
+//        project.setProject_about("这是一个大型的java软件");
+//        projectService.updateProject(project);
 
 
 //        查找
@@ -23,23 +23,23 @@ public class MyProjectTest {
 
 
 //        增加
-//        Project project=new Project();
-//        project.setStu_id(1002);
-//        project.setProject_name("java程序");
-//        project.setProject_place("宋健北520");
-//        project.setProject_start_time("第八周");
-//        project.setProject_stop_time("第十八周");
-//        project.setProject_member("本人");
-//        project.setStu_level_id(1);
-//        project.setProject_about("一个java程序");
-//
-//
-//        Integer id=projectService.addProject(project);
-//        if(id==null) {
-//            System.out.println("+++++++失败+++++++");
-//        }else{
-//            System.out.println("++++++++++++++id=" + id);
-//        }
+        Project project=new Project();
+        project.setStu_id(1002);
+        project.setProject_name("微信小程序");
+        project.setProject_place("宋健北520");
+        project.setProject_start_time("第八周");
+        project.setProject_stop_time("第十八周");
+        project.setProject_member("本人");
+        project.setStu_level_id(1);
+        project.setProject_about("微信小程序，各项功能完好！");
+
+
+        Integer id=projectService.addProject(project);
+        if(id==null) {
+            System.out.println("+++++++失败+++++++");
+        }else{
+            System.out.println("++++++++++++++id=" + id);
+        }
 
 
 
