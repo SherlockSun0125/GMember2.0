@@ -125,6 +125,8 @@ public class ProjectDaoImp implements IProjectDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
 
+        System.out.println("来自dao层的问候："+project.toString());
+
         ProjectMapper projectMapper=session.getMapper(ProjectMapper.class);
         try {
             projectMapper.updateProject(project);

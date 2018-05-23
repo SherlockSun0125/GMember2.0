@@ -344,6 +344,11 @@
     </style>
     <link href="${pageContext.request.contextPath}/css/bootstrap-2.min.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath}/css/style.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript">
+        function notIn() {
+            alert("你不在该阶段！");
+        }
+    </script>
 </head>
 
 <body style="padding-bottom: 0px;">
@@ -421,7 +426,7 @@
                     <c:choose>
                         <c:when test="${Student.stu_level_id eq 1}">
                             <div class="hl-circle">
-                                <a class="hl-icon1" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=1p">工程学习阶段</a>
+                                <a class="hl-icon1" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=1">工程学习阶段</a>
                             </div>
                             <div class="highlights-content clearfix">
                                 <h5>工程学习阶段</h5>
@@ -433,23 +438,24 @@
                                     <br/>
                                 </p>
                                 <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=1">
-                                            <span>进入</span>
-                                        </a>
+                                    <span>进入</span>
+                                </a>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <div class="hl-circle">
-                                <a class="hl-icon1" disabled="disabled">工程学习阶段</a>
+                                <a class="hl-icon1" disabled="disabled"  onclick="notIn()">工程学习阶段</a>
                             </div>
                             <div class="highlights-content clearfix">
                                 <h5>工程学习阶段</h5>
                                 <p>
-                                    你不在该阶段！
+                                    <%--你不在该阶段！--%>
+                                    <br/>
                                     <br/>
                                     <br/>
                                     <br/>
                                 </p>
-                                <a class="btn-small btn-hl" disabled="diabled"><span>进入</span></a>
+                                <a class="btn-small btn-hl" disabled="diabled" onclick="notIn()"><span>进入</span></a>
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -464,12 +470,12 @@
                         <div class="highlights-content clearfix">
                             <h5>校企合作阶段</h5>
                             <p>
-                                        你当前处于校企合作阶段！
-                                        <br/>
-                                        这是一次很好的历练！
-                                        <br/>
-                                        <br/>
-                                    </p>
+                                你当前处于校企合作阶段！
+                                <br/>
+                                这是一次很好的历练！
+                                <br/>
+                                <br/>
+                            </p>
                             <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=2">
                                 <span>进入</span>
                             </a>
@@ -477,17 +483,18 @@
                     </c:when>
                         <c:otherwise>
                             <div class="hl-circle">
-                                <a class="hl-icon2" disabled="disabled">校企合作阶段</a>
+                                <a class="hl-icon2" disabled="disabled" onclick="notIn()">校企合作阶段</a>
                             </div>
                             <div class="highlights-content clearfix">
                                 <h5>校企合作阶段</h5>
                                 <p>
-                                    你不在该阶段！
+                                    <%--你不在该阶段！--%>
+                                    <br/>
                                     <br/>
                                     <br/>
                                     <br/>
                                 </p>
-                                <a class="btn-small btn-hl" disabled="disabled"><span>进入</span></a>
+                                <a class="btn-small btn-hl" disabled="disabled" onclick="notIn()"><span>进入</span></a>
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -509,23 +516,24 @@
                                     <br/>
                                 </p>
                                 <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=3">
-                                                <span>进入</span>
-                                            </a>
+                                    <span>进入</span>
+                                </a>
                              </div>
                          </c:when>
                          <c:otherwise>
                              <div class="hl-circle">
-                                 <a class="hl-icon3" disabled="disabled">毕业设计阶段</a>
+                                 <a class="hl-icon3" disabled="disabled" onclick="notIn()">毕业设计阶段</a>
                              </div>
                              <div class="highlights-content clearfix">
                                  <h5>毕业设计阶段</h5>
                                  <p>
-                                     你不在该阶段！
+                                     <%--你不在该阶段！--%>
+                                     <br/>
                                      <br/>
                                      <br/>
                                      <br/>
                                  </p>
-                                 <a class="btn-small btn-hl" disabled="disabled"><span>进入</span></a>
+                                 <a class="btn-small btn-hl" disabled="disabled" onclick="notIn()"><span>进入</span></a>
                              </div>
                          </c:otherwise>
                      </c:choose>
@@ -554,18 +562,19 @@
                             </c:when>
                             <c:otherwise>
                                 <div class="hl-circle">
-                                    <a class="hl-icon4" disabled="disabled">就业推荐阶段</a>
+                                    <a class="hl-icon4" disabled="disabled" onclick="notIn()">就业推荐阶段</a>
                                 </div>
 
                                 <div class="highlights-content clearfix">
                                     <h5>就业推荐阶段</h5>
                                     <p>
-                                        你不在该阶段！
+                                        <%--你不在该阶段！--%>
+                                        <br/>
                                         <br/>
                                         <br/>
                                         <br/>
                                     </p>
-                                    <a class="btn-small btn-hl" disabled="disabled" ><span>进入</span></a>
+                                    <a class="btn-small btn-hl" disabled="disabled" onclick="notIn()"><span>进入</span></a>
                                     </div>
                             </c:otherwise>
                         </c:choose>

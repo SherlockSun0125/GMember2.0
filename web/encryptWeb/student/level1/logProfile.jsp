@@ -144,7 +144,7 @@
                                 <div id="editor">
                                     <p>${stuLog.stu_log_content}</p>
                                 </div>
-                                <textarea id="logcontent" name="logcontent" style="width:100%; height:200px;display: none"></textarea>
+                                <textarea id="logcontent" name="logcontent" style="width:100%; height:200px;display: none">${stuLog.stu_log_content}</textarea>
                             </div>
                             <input type="submit" class="btn btn-success" value="更新日志" id="uppdateLog">
                         </form>

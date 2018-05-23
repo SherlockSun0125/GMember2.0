@@ -92,7 +92,7 @@
                     <!--发帖按钮-->
                     <div class="f-cb">
                         <a class="j-newTopicBtn f-fl" style="margin-bottom:40px;margin-top: 12px;"
-                           href="newLog.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addProject.png" style="width: 120px"></a>
+                           href="${pageContext.request.contentType}/encryptWeb/student/level1/newProject.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addProject.png" style="width: 120px"></a>
                     </div>
                     <!--项目展示-->
                     <div class="u-forumlistwrap j-alltopiclist">

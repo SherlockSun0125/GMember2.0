@@ -17,21 +17,8 @@
             width: 16px;
             height: 16px;
             margin: 12px 0 0 10px;
-            background-image: url("../static/icon9.png");
+            background-image: url("/encryptWeb/student/static/icon9.png");
             background-position: -48px 0px;
-        }
-        .file {
-            position: relative;
-            display: inline-block;
-            background: #D0EEFF;
-            border: 1px solid #99D3F5;
-            border-radius: 4px;
-            padding: 8px 24px;
-            overflow: hidden;
-            color: #1E88C7;
-            text-decoration: none;
-            text-indent: 0;
-            line-height: 20px;
         }
         .file input {
             position: absolute;
@@ -39,12 +26,6 @@
             right: 0;
             top: 0;
             opacity: 0;
-        }
-        .file:hover {
-            background: #AADFFD;
-            border-color: #78C3F3;
-            color: #004974;
-            text-decoration: none;
         }
     </style>
 </head>
@@ -122,17 +103,16 @@
 
             <!--右部-->
             <div class="g-mn1">
-                <div class="g-mn1c m-learnbox" id="courseLearn-inner-box">
+                <div class="g-mn1c m-learnbox">
                     <div class="m-forumtopic f-cb">
                         <form action="${pageContext.request.contextPath}/studentServlet?method=addLog&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}" method="post">
                             <div class="form-group">
-                                <label style="font-size: 1.25em" for="logtitle">日志主题</label>
+                                <label style="font-size: 1.25em" for="logtitle"><em style="color: red;vertical-align: middle">*&nbsp;</em>日志主题</label>
                                 <input class="form-control" style="width: 40%" id="logtitle" name="logtitle">
                             </div>
                             <div class="form-group">
-                                <label style="font-size: 1.25em" for="editor">日志内容</label>
+                                <label style="font-size: 1.25em" for="editor"><em style="color: red;vertical-align: middle">*&nbsp;</em>日志内容</label>
                                 <div id="editor">
-
                                 </div>
                                 <textarea id="logcontent" name="logcontent" style="width:100%; height:200px;display: none"></textarea>
                             </div>
@@ -144,10 +124,10 @@
                     <script type="text/javascript">
                         var E = window.wangEditor;
                         var editor = new E('#editor');
-                        // var editor = new E( document.getElementById('editor') )
 
                         editor.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
                         editor.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
+
                         editor.customConfig.menus = [
                             'head',  // 标题
                             'bold',  // 粗体
@@ -159,21 +139,21 @@
                             'foreColor',  // 文字颜色
                             'backColor',  // 背景颜色
                             'link',  // 插入链接
-                            'list',  // 列表
                             'justify',  // 对齐方式
                             'quote',  // 引用
                             'emoticon',  // 表情
                             'image',  // 插入图片
                             'table',  // 表格
+                            'video',  // 插入视频
                             'code',  // 插入代码
                             'undo',  // 撤销
                             'redo'  // 重复
-                        ]
+                        ];
 
                         var logcontent=$("#logcontent");
                         editor.customConfig.onchange=function (html) {
                             logcontent.val(html);
-                        }
+                        };
 
                         editor.create();
                         logcontent.val(editor.$txt.html);

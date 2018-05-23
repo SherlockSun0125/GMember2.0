@@ -416,6 +416,8 @@ public class StudentServlet extends BaseServlet {
         String midPaper=req.getParameter("midPaper");
         String endPaper=req.getParameter("endPaper");
 
+        System.out.println("来自servlet层的问候1："+project.toString());
+
         //更新项目信息
         project.setProject_name(projectName);
         project.setCourse(projectCourse);
@@ -428,6 +430,8 @@ public class StudentServlet extends BaseServlet {
         project.setStart_paper(startPaper);
         project.setMid_paper(midPaper);
         project.setEnd_paper(endPaper);
+
+        System.out.println("来自servlet层的问候2："+project.toString());
 
         projectService.updateProject(project);
 
@@ -464,6 +468,51 @@ public class StudentServlet extends BaseServlet {
         }
     }
 
+    //增加项目
+    public String addProject(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+        int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
+
+        Project project=new Project();
+        //获取网页信息
+        String projectName=req.getParameter("projectName");
+        String projectCourse=req.getParameter("projectCourse");
+        String projectTeacher=req.getParameter("projectTeacher");
+        String projectStartTime=req.getParameter("projectStartTime");
+        String projectStopTime=req.getParameter("projectStopTime");
+        String projectPlace=req.getParameter("projectPlace");
+        String projectMember=req.getParameter("projectMember");
+        String projectAbout=req.getParameter("projectAbout");
+
+        System.out.println("来自servlet层的问候1："+project.toString());
+
+        //设置项目信息
+        project.setProject_name(projectName);
+        project.setCourse(projectCourse);
+        project.setTeacher(projectTeacher);
+        project.setProject_start_time(projectStartTime);
+        project.setProject_stop_time(projectStopTime);
+        project.setProject_place(projectPlace);
+        project.setProject_member(projectMember);
+        project.setProject_about(projectAbout);
+
+        project.setStu_id(stuid);
+        project.setStu_level_id(stulevelid);
+
+
+        projectService.addProject(project);
+
+        req.setAttribute("project",project);
+
+        req.setAttribute("msgAddProject","项目增加成功！");
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/projectDetails.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/projectDetails.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/projectDetails.jsp";
+        }
+    }
 
     /*
     后台方法

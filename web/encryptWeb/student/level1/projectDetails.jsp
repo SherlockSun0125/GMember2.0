@@ -781,7 +781,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="background-color: #EEEEEE;">
 <div id="g-container">
     <!--头部-->
     <div class="f-pf g-headwrap" id="j-fixed-head">
@@ -931,6 +931,7 @@
                         </div>
                     </div>
                         <small>${msgUpdateProject}</small>
+                        <small>${msgAddProject}</small>
                 </div>
             </div>
         </div>

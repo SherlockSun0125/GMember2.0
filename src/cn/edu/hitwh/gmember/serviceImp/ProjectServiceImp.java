@@ -48,6 +48,7 @@ public class ProjectServiceImp implements IProjectService {
     @Override
     public void updateProject(Project project) {
         try{
+            System.out.println("来自service层的问候："+project.toString());
             projectDao.updateProject(project);
         }catch (Exception e){
             throw new RuntimeException(e);
