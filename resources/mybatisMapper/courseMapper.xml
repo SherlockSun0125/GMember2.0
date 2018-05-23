@@ -10,6 +10,7 @@
         <result column="course_name" property="course_name"></result>
         <result column="course_type" property="course_type"></result>
         <result column="course_place" property="course_place"></result>
+        <result column="course_time" property="course_time"></result>
         <result column="course_weeks" property="course_weeks"></result>
         <result column="exam_time" property="exam_time"></result>
         <result column="exam_grade" property="exam_grade"></result>
@@ -19,7 +20,7 @@
     </resultMap>
 
     <select id="findCoursesByStuId" parameterType="int" resultMap="courseMap">
-        SELECT * FROM course WHERE stu_id=#{stu_id}
+        SELECT * FROM course WHERE stu_id=#{stu_id} ORDER BY isEnd DESC,course_id DESC
     </select>
 
     <insert id="addCourse" parameterType="cn.edu.hitwh.gmember.pojo.Course" useGeneratedKeys="true" keyProperty="course_id">

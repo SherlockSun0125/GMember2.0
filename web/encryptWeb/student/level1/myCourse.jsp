@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
@@ -77,7 +78,7 @@
                     </a>
                     <ul class="tab u-tabul">
                         <li class="u-greentab j-tabitem f-f0 first u-curtab" data-name="我的课程" data-type="1">
-                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/encryptWeb/student/level1/myCourse.jsp">我的课程</a>
+                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findCoursesByStuId&stuid=${Student.stu_id}">我的课程</a>
                         </li>
                         <li class="u-greentab j-tabitem f-f0 last" data-name="我的项目" data-type="7"
                             data-id="2001487096" id="auto-id-1523950289741">
@@ -117,31 +118,26 @@
                                         <%--<th>课程属性</th>--%>
                                         <%--<th>考试类型</th>--%>
                                         <th>上课地点</th>
-                                        <th>上课时间</th>
                                         <th>上课周次</th>
+                                        <th>上课时间</th>
                                         <th>考试时间</th>
-                                        <%--<th>考试成绩</th>--%>
+                                        <th>考试成绩</th>
                                         <th>任课教师</th>
-                                        <th>变更信息</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <a>222</a>
-                                            </td>
-                                            <td>222</td>
-                                            <td>222</td>
-                                            <td>222</td>
-                                            <td>222</td>
-                                            <td>222</td>
-                                            <td>
-                                                <a href="">结课</a>
-                                                <span>&smid;</span>
-                                                <a href="">更改</a>
-                                                <span>&smid;</span>
-                                                <a href="">删除</a>
-                                            </td>
-                                        </tr>
+                                        <c:forEach items="${coursePageBean.beanList}" var="courses">
+                                            <tr>
+                                                <td>
+                                                    <a>${courses.course_name}</a>
+                                                </td>
+                                                <td>${courses.course_place}</td>
+                                                <td>${courses.course_weeks}</td>
+                                                <td>${courses.course_time}</td>
+                                                <td>${courses.exam_time}</td>
+                                                <td>${courses.exam_grade}</td>
+                                                <td>${courses.teacher}</td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

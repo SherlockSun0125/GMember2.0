@@ -839,7 +839,7 @@
                         </a>
                         <ul class="tab u-tabul">
                             <li class="u-greentab j-tabitem f-f0 first" data-name="我的课程" data-type="1">
-                                <a class="f-thide f-fc3" href="myCourse.jsp">我的课程</a>
+                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findCoursesByStuId&stuid=${Student.stu_id}">我的课程</a>
                             </li>
                             <li class="u-greentab j-tabitem f-f0 last  u-curtab" data-name="我的项目">
                                 <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>

@@ -26,6 +26,7 @@ public class StudentServlet extends BaseServlet {
     private IEmployeeService employeeService=new EmployeeServiceImp();
     private IStulogService stulogService=new StulogServiceImp();
     private IProjectService projectService=new ProjectServiceImp();
+    private ICourseService courseService=new CourseServiceImp();
 
     /*
     前台的函数
@@ -344,7 +345,7 @@ public class StudentServlet extends BaseServlet {
         }
     }
 
-    //查看某生某阶段所有日志
+    //查看某生某阶段所有项目
     public String findProjectsByStuLevel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int stu_id=Integer.parseInt(req.getParameter("stuid"));
         int stu_level_id=Integer.parseInt(req.getParameter("stulevleid"));
@@ -470,6 +471,170 @@ public class StudentServlet extends BaseServlet {
 
     //增加项目
     public String addProject(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+        int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
+
+        Project project=new Project();
+        //获取网页信息
+        String projectName=req.getParameter("projectName");
+        String projectCourse=req.getParameter("projectCourse");
+        String projectTeacher=req.getParameter("projectTeacher");
+        String projectStartTime=req.getParameter("projectStartTime");
+        String projectStopTime=req.getParameter("projectStopTime");
+        String projectPlace=req.getParameter("projectPlace");
+        String projectMember=req.getParameter("projectMember");
+        String projectAbout=req.getParameter("projectAbout");
+
+        System.out.println("来自servlet层的问候1："+project.toString());
+
+        //设置项目信息
+        project.setProject_name(projectName);
+        project.setCourse(projectCourse);
+        project.setTeacher(projectTeacher);
+        project.setProject_start_time(projectStartTime);
+        project.setProject_stop_time(projectStopTime);
+        project.setProject_place(projectPlace);
+        project.setProject_member(projectMember);
+        project.setProject_about(projectAbout);
+
+        project.setStu_id(stuid);
+        project.setStu_level_id(stulevelid);
+
+
+        projectService.addProject(project);
+
+        req.setAttribute("project",project);
+
+        req.setAttribute("msgAddProject","项目增加成功！");
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/projectDetails.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/projectDetails.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/projectDetails.jsp";
+        }
+    }
+
+
+    //查看某生某阶段所有项目
+    public String findCoursesByStuId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int stu_id=Integer.parseInt(req.getParameter("stuid"));
+        PageBean<Course> coursePageBean=new PageBean<Course>();
+        coursePageBean=courseService.findCoursesByStuId(stu_id);
+
+        req.setAttribute("coursePageBean",coursePageBean);
+
+        return "f:/encryptWeb/student/level1/myCourse.jsp";
+    }
+    //查看项目详情
+    public String findCourseById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int projectid=Integer.parseInt(req.getParameter("projectid"));
+
+        Project project=projectService.findProjectById(projectid);
+
+        int stu_level_id=project.getStu_level_id();
+
+        req.setAttribute("project",project);
+
+        if (stu_level_id==1){
+            return "f:/encryptWeb/student/level1/projectDetails.jsp";
+        }else if(stu_level_id==2){
+            return "f:/encryptWeb/student/level2/projectDetails.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/projectDetails.jsp";
+        }
+    }
+
+    //更新项目
+    public String toUpdateCourse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int projectid=Integer.parseInt(req.getParameter("projectid"));
+        //找到该项目
+        Project project=projectService.findProjectById(projectid);
+        int stulevelid=project.getStu_level_id();
+
+        req.setAttribute("project",project);
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/projectProfile.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/projectProfile.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/projectProfile.jsp";
+        }
+    }
+
+    //更新项目
+    public String updateCourse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int projectid=Integer.parseInt(req.getParameter("projectid"));
+        //找到该项目
+        Project project=projectService.findProjectById(projectid);
+
+        //获取网页信息
+        String projectName=req.getParameter("projectName");
+        String projectCourse=req.getParameter("projectCourse");
+        String projectTeacher=req.getParameter("projectTeacher");
+        String projectStartTime=req.getParameter("projectStartTime");
+        String projectStopTime=req.getParameter("projectStopTime");
+        String projectPlace=req.getParameter("projectPlace");
+        String projectMember=req.getParameter("projectMember");
+        String projectAbout=req.getParameter("projectAbout");
+        String startPaper=req.getParameter("startPaper");
+        String midPaper=req.getParameter("midPaper");
+        String endPaper=req.getParameter("endPaper");
+
+        System.out.println("来自servlet层的问候1："+project.toString());
+
+        //更新项目信息
+        project.setProject_name(projectName);
+        project.setCourse(projectCourse);
+        project.setTeacher(projectTeacher);
+        project.setProject_start_time(projectStartTime);
+        project.setProject_stop_time(projectStopTime);
+        project.setProject_place(projectPlace);
+        project.setProject_member(projectMember);
+        project.setProject_about(projectAbout);
+        project.setStart_paper(startPaper);
+        project.setMid_paper(midPaper);
+        project.setEnd_paper(endPaper);
+
+        System.out.println("来自servlet层的问候2："+project.toString());
+
+        projectService.updateProject(project);
+
+        req.setAttribute("project",project);
+
+        int stulevelid=project.getStu_level_id();
+        req.setAttribute("msgUpdateProject","项目信息更新成功！");
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/projectDetails.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/projectDetails.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/projectDetails.jsp";
+        }
+    }
+
+    //删除项目
+    public String deleteCourse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int projectid=Integer.parseInt(req.getParameter("projectid"));
+
+        Project project=projectService.findProjectById(projectid);
+        int stulevelid=project.getStu_level_id();
+        String projectname=project.getProject_name();
+
+        projectService.deleteProject(projectid);
+
+        req.setAttribute("msgDeleteProject","项目\""+projectname+"\"删除成功！");
+        if (stulevelid==1){
+            return "f:/encryptWeb/student/level1/myProject.jsp";
+        }else if(stulevelid==2){
+            return "f:/encryptWeb/student/level2/myProject.jsp";
+        }else{
+            return "f:/encryptWeb/student/level3/myProject.jsp";
+        }
+    }
+
+    //增加项目
+    public String addCourse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int stuid=Integer.parseInt(req.getParameter("stuid"));
         int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
 

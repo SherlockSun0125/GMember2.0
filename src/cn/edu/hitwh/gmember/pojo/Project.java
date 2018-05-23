@@ -16,10 +16,11 @@ public class Project {
     private String mid_paper;
     private String end_paper;
     private int isEnd;
+    private String project_grade;//ABCDE
 
     public Project(){}
 
-    public Project(int project_id, int stu_id, String project_name, String course, String teacher, String project_place, String project_start_time, String project_stop_time, String project_member, String project_about, int stu_level_id, String start_paper, String mid_paper, String end_paper, int isEnd) {
+    public Project(int project_id, int stu_id, String project_name, String course, String teacher, String project_place, String project_start_time, String project_stop_time, String project_member, String project_about, int stu_level_id, String start_paper, String mid_paper, String end_paper, int isEnd, String project_grade) {
         this.project_id = project_id;
         this.stu_id = stu_id;
         this.project_name = project_name;
@@ -35,126 +36,135 @@ public class Project {
         this.mid_paper = mid_paper;
         this.end_paper = end_paper;
         this.isEnd = isEnd;
+        this.project_grade = project_grade;
     }
 
     public int getProject_id() {
         return project_id;
     }
 
-    public int getStu_id() {
-        return stu_id;
-    }
-
-    public String getProject_name() {
-        return project_name;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public String getTeacher() {
-        return teacher;
-    }
-
-    public String getProject_place() {
-        return project_place;
-    }
-
-    public String getProject_start_time() {
-        return project_start_time;
-    }
-
-    public String getProject_stop_time() {
-        return project_stop_time;
-    }
-
-    public String getProject_member() {
-        return project_member;
-    }
-
-    public String getProject_about() {
-        return project_about;
-    }
-
-    public int getStu_level_id() {
-        return stu_level_id;
-    }
-
-    public String getStart_paper() {
-        return start_paper;
-    }
-
-    public String getMid_paper() {
-        return mid_paper;
-    }
-
-    public String getEnd_paper() {
-        return end_paper;
-    }
-
-    public int getIsEnd() {
-        return isEnd;
-    }
-
     public void setProject_id(int project_id) {
         this.project_id = project_id;
+    }
+
+    public int getStu_id() {
+        return stu_id;
     }
 
     public void setStu_id(int stu_id) {
         this.stu_id = stu_id;
     }
 
+    public String getProject_name() {
+        return project_name;
+    }
+
     public void setProject_name(String project_name) {
         this.project_name = project_name;
+    }
+
+    public String getCourse() {
+        return course;
     }
 
     public void setCourse(String course) {
         this.course = course;
     }
 
+    public String getTeacher() {
+        return teacher;
+    }
+
     public void setTeacher(String teacher) {
         this.teacher = teacher;
+    }
+
+    public String getProject_place() {
+        return project_place;
     }
 
     public void setProject_place(String project_place) {
         this.project_place = project_place;
     }
 
+    public String getProject_start_time() {
+        return project_start_time;
+    }
+
     public void setProject_start_time(String project_start_time) {
         this.project_start_time = project_start_time;
+    }
+
+    public String getProject_stop_time() {
+        return project_stop_time;
     }
 
     public void setProject_stop_time(String project_stop_time) {
         this.project_stop_time = project_stop_time;
     }
 
+    public String getProject_member() {
+        return project_member;
+    }
+
     public void setProject_member(String project_member) {
         this.project_member = project_member;
+    }
+
+    public String getProject_about() {
+        return project_about;
     }
 
     public void setProject_about(String project_about) {
         this.project_about = project_about;
     }
 
+    public int getStu_level_id() {
+        return stu_level_id;
+    }
+
     public void setStu_level_id(int stu_level_id) {
         this.stu_level_id = stu_level_id;
+    }
+
+    public String getStart_paper() {
+        return start_paper;
     }
 
     public void setStart_paper(String start_paper) {
         this.start_paper = start_paper;
     }
 
+    public String getMid_paper() {
+        return mid_paper;
+    }
+
     public void setMid_paper(String mid_paper) {
         this.mid_paper = mid_paper;
+    }
+
+    public String getEnd_paper() {
+        return end_paper;
     }
 
     public void setEnd_paper(String end_paper) {
         this.end_paper = end_paper;
     }
 
+    public int getIsEnd() {
+        return isEnd;
+    }
+
     public void setIsEnd(int isEnd) {
         this.isEnd = isEnd;
+    }
+
+    public String getProject_grade() {
+        return project_grade;
+    }
+
+    public void setProject_grade(String project_grade) {
+        this.project_grade = project_grade;
     }
 
     @Override
@@ -175,6 +185,7 @@ public class Project {
                 ", mid_paper='" + mid_paper + '\'' +
                 ", end_paper='" + end_paper + '\'' +
                 ", isEnd=" + isEnd +
+                ", project_grade='" + project_grade + '\'' +
                 '}';
     }
 }

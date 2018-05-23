@@ -90,7 +90,7 @@
                         <ul class="tab u-tabul">
                             <li class="u-greentab j-tabitem f-f0 first" data-name="我的课程" data-type="1"
                                 data-id="2001487091" id="auto-id-1523965034572">
-                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/encryptWeb/student/level1/myCourse.jsp">我的课程</a>
+                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findCoursesByStuId&stuid=${Student.stu_id}">我的课程</a>
                             </li>
                             <li class="u-greentab j-tabitem f-f0 last" data-name="我的项目" data-type="7"
                                 data-id="2001487096" id="auto-id-1523965034577">
