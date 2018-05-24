@@ -267,7 +267,39 @@
                                         </c:forEach>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="teaid">教师</label>
+                                    <select name="teaid" id="teaid" class="form-control">
+                                        <c:forEach items="${teacherPageBean1.beanList}" var="teachers">
+                                            <c:choose>
+                                                <c:when test="${teachers.tea_id eq stu.tea_id}">
+                                                    <option value="${teachers.tea_id}"
+                                                            selected="selected">${teachers.tea_name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${teachers.tea_id}">${teachers.tea_name} </option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="empid">导师</label>
+                                    <select name="empid" id="empid" class="form-control">
+                                        <c:forEach items="${employeePageBean.beanList}" var="employee">
+                                            <c:choose>
+                                                <c:when test="${employee.emp_id eq stu.emp_id}">
+                                                    <option value="${employee.emp_id}"
+                                                            selected="selected">${employee.emp_name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${employee.emp_id}">${employee.emp_name} </option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="stuenglish">英语水平</label>
                                     <input type="text" id="stuenglish" name="stuenglish" value="${stu.stu_english}"

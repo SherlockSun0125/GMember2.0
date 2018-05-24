@@ -180,7 +180,7 @@
 <div class="content">
     <div class="main-content">
         <div class="btn-toolbar list-toolbar">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/sudentServlet?method=toUpdateStudent&studentid=${stu.stu_id}">
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/studentServlet?method=toUpdateStudent&studentid=${stu.stu_id}">
                 <i class="fa fa-pencil"></i>&nbsp;修改信息</a>
             <button class="btn btn-default">导出信息</button>
             <div class="btn-group"></div>

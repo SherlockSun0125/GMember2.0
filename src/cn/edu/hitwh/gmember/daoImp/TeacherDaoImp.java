@@ -183,4 +183,33 @@ public class TeacherDaoImp implements ITeacherDao{
         session.close();
         return teacher;
     }
+
+    @Override
+    public PageBean<Teacher> findAllTeachersByDep(int dep_id) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        PageBean<Teacher> teacherPageBean=new PageBean<Teacher>();
+        int totalTeachers;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        //获得教师信息
+        TeacherMapper teacherMapper=session.getMapper(TeacherMapper.class);
+
+        totalTeachers=teacherMapper.countAllTeachers();
+
+        List<Teacher> teachers=teacherMapper.findAllTeachersByDep(dep_id);
+
+        teacherPageBean.setBeanList(teachers);
+        teacherPageBean.setTotalRecords(totalTeachers);
+
+        session.close();
+        return teacherPageBean;
+    }
 }

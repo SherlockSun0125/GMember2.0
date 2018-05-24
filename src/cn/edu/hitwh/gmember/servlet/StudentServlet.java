@@ -854,11 +854,15 @@ public class StudentServlet extends BaseServlet {
         PageBean<Employee> employeePageBean=employeeService.findAllEmployeeDetail();
         PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
         PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
+        PageBean<Teacher> teacherPageBean1=teacherService.findAllTeachersByDep(student.getDep_id());
+
         req.setAttribute("departmentPageBean",departmentPageBean);
         req.setAttribute("teacherPageBean",teacherPageBean);
         req.setAttribute("employeePageBean",employeePageBean);
         req.setAttribute("stuLevelPageBean",stuLevelPageBean);
         req.setAttribute("stugradePageBean",stugradePageBean);
+        req.setAttribute("teacherPageBean1",teacherPageBean1);
+        req.setAttribute("employeePageBean",employeePageBean);
 
         req.setAttribute("stu",student);
         return "f:/encryptWeb/admin/studentProfile.jsp";
@@ -903,6 +907,11 @@ public class StudentServlet extends BaseServlet {
         newStudent.setStu_level_id(stulevelid);
 //        System.out.println("学生levelid="+stulevelid);
 
+        int teaid=Integer.parseInt(req.getParameter("teaid"));
+        newStudent.setTea_id(teaid);
+        int empid=Integer.parseInt(req.getParameter("empid"));
+        newStudent.setEmp_id(empid);
+
         //获得英语成绩
         String stuenglish=req.getParameter("stuenglish");
         newStudent.setStu_english(stuenglish);
@@ -937,10 +946,15 @@ public class StudentServlet extends BaseServlet {
         PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
         PageBean<StuLevel> stuLevelPageBean=stulevelService.findAllStuLevels();
         PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
+        PageBean<Teacher> teacherPageBean1=teacherService.findAllTeachersByDep(depid);
+        PageBean<Employee> employeePageBean=employeeService.findAllEmployeeDetail();
+
         req.setAttribute("stu",stu);
         req.setAttribute("departmentPageBean",departmentPageBean);
         req.setAttribute("stuLevelPageBean",stuLevelPageBean);
         req.setAttribute("stugradePageBean",stugradePageBean);
+        req.setAttribute("teacherPageBean1",teacherPageBean1);
+        req.setAttribute("employeePageBean",employeePageBean);
 
         req.setAttribute("msgUpdateStudent","信息更新成功！");
 

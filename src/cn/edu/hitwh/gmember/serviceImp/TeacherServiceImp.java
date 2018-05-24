@@ -70,4 +70,13 @@ public class TeacherServiceImp implements ITeacherService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public PageBean<Teacher> findAllTeachersByDep(int dep_id) {
+        try{
+            return teacherDao.findAllTeachersByDep(dep_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -16,4 +16,5 @@ public interface TeacherMapper {
     public int addTeacher(Teacher teacher);
     public void updateTeacher(@Param("tea") Teacher teacher);
     public Teacher findTeacherById(int tea_id);
+    public List<Teacher> findAllTeachersByDep(int dep_id);
 }

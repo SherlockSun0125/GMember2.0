@@ -11,4 +11,5 @@ public interface ITeacherDao {
     public Integer addTeacher(Teacher teacher);
     public void updateTeacher(Teacher teacher);
     public Teacher findTeacherById(int tea_id);
+    public PageBean<Teacher> findAllTeachersByDep(int dep_id);
 }

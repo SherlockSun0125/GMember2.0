@@ -51,4 +51,8 @@
     <select id="findTeacherById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.Teacher">
         SELECT * FROM teacher WHERE tea_id=#{tea_id}
     </select>
+
+    <select id="findAllTeachersByDep" parameterType="int" resultMap="teacherMap">
+        SELECT * FROM teacher WHERE dep_id=#{dep_id}
+    </select>
 </mapper>

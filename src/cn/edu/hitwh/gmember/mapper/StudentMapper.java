@@ -16,4 +16,5 @@ public interface StudentMapper {
     public int addStudent(Student student);
     public void updateStudent(@Param("stu")Student student);
     public List<Student> findAllStudentDetail();
+    public List<Student> findAllStudentByDepLevel(@Param("dep_id") int dep_id,@Param("stu_level_id") int stu_level_id);
 }
