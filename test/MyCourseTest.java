@@ -13,7 +13,7 @@ public class MyCourseTest {
 //        修改
         Course course=new Course();
         course=courseService.findCourseById(8002);
-        course.setExam_grade(90);
+//        course.setExam_grade();
         courseService.updateCourse(course);
 
 

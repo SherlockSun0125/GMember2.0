@@ -97,7 +97,7 @@
                     <!--发帖按钮-->
                     <div class="f-cb">
                         <a class="j-newTopicBtn f-fl" style="margin-bottom:40px;margin-top: 12px;"
-                           href="newLog.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addCourse.png" style="width: 120px"></a>
+                           href="${pageContext.request.contextPath}/encryptWeb/student/level1/newCourse.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addCourse.png" style="width: 120px"></a>
                     </div>
 
                     <!--课程信息-->
@@ -128,7 +128,14 @@
                                         <c:forEach items="${coursePageBean.beanList}" var="courses">
                                             <tr>
                                                 <td>
-                                                    <a>${courses.course_name}</a>
+                                                    <a href="${pageContext.request.contextPath}/studentServlet?method=findCourseById&courseid=${courses.course_id}">${courses.course_name}</a>
+                                                    <c:choose>
+                                                        <c:when test="${courses.isEnd eq 0}">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span style="color: red">&nbsp(已结课)</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </td>
                                                 <td>${courses.course_place}</td>
                                                 <td>${courses.course_weeks}</td>
@@ -142,6 +149,7 @@
                                 </table>
                             </div>
                         </div>
+                        <small>${msgDeleteCourse}</small>
                     </div>
                 </div>
             </div>

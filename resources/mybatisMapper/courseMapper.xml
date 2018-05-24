@@ -7,28 +7,31 @@
         <id column="course_id" property="course_id"></id>
         <result column="course_num" property="course_num"></result>
         <result column="course_seq" property="course_seq"></result>
+        <result column="stu_id" property="stu_id"></result>
         <result column="course_name" property="course_name"></result>
         <result column="course_type" property="course_type"></result>
+        <result column="exam_type" property="exam_type"></result>
         <result column="course_place" property="course_place"></result>
         <result column="course_time" property="course_time"></result>
         <result column="course_weeks" property="course_weeks"></result>
         <result column="exam_time" property="exam_time"></result>
         <result column="exam_grade" property="exam_grade"></result>
-        <result column="stu_id" property="stu_id"></result>
         <result column="teacher" property="teacher"></result>
         <result column="isEnd" property="isEnd"></result>
+        <result column="course_about" property="course_about"></result>
     </resultMap>
 
     <select id="findCoursesByStuId" parameterType="int" resultMap="courseMap">
-        SELECT * FROM course WHERE stu_id=#{stu_id} ORDER BY isEnd DESC,course_id DESC
+        SELECT * FROM course WHERE stu_id=#{stu_id} ORDER BY isEnd,course_id DESC
     </select>
 
+    <!--增加时没有course_id,isEnd-->
     <insert id="addCourse" parameterType="cn.edu.hitwh.gmember.pojo.Course" useGeneratedKeys="true" keyProperty="course_id">
         insert into
         course (course_num, course_seq, stu_id, course_name, course_type, exam_type, course_place, course_weeks,
-                exam_time, exam_grade, teacher, isEnd)
+                course_time,exam_time, exam_grade, teacher,course_about)
         values (#{course_num},#{course_seq},#{stu_id},#{course_name},#{course_type},#{exam_type},#{course_place},#{course_weeks},
-                #{exam_time},#{exam_grade},#{teacher},#{isEnd});
+                #{course_time},#{exam_time},#{exam_grade},#{teacher},#{course_about});
     </insert>
 
     <delete id="deleteCourse" parameterType="int">
@@ -39,10 +42,12 @@
         SELECT * FROM course WHERE course_id=#{course_id}
     </select>
 
+    <!--更新除id的信息-->
     <update id="updateCourse" parameterType="cn.edu.hitwh.gmember.pojo.Course">
         UPDATE course SET course_num=#{course_num},course_seq=#{course_seq},stu_id=#{stu_id},course_name=#{course_name},
             course_type=#{course_type},exam_type=#{exam_type},course_place=#{course_place},course_weeks=#{course_weeks},
-            exam_time=#{exam_time},exam_grade=#{exam_grade},teacher=#{teacher},isEnd=#{isEnd}
+            course_time=#{course_time},exam_time=#{exam_time},exam_grade=#{exam_grade},teacher=#{teacher},isEnd=#{isEnd},
+            course_about=#{course_about}
         WHERE course_id=#{course_id}
     </update>
 

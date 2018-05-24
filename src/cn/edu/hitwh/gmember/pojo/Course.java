@@ -3,7 +3,7 @@ package cn.edu.hitwh.gmember.pojo;
 public class Course {
     private int course_id;//hou
     private String course_num;
-    private int course_seq;
+    private String course_seq;
     private int stu_id;
     private String course_name;
     private String course_type;
@@ -12,13 +12,14 @@ public class Course {
     private String course_weeks;
     private String course_time;
     private String exam_time;
-    private double exam_grade;//hou
+    private String exam_grade;//hou
     private String teacher;
     private int isEnd;//hou
+    private String course_about;
 
     public Course(){}
 
-    public Course(int course_id, String course_num, int course_seq, int stu_id, String course_name, String course_type, String exam_type, String course_place, String course_weeks, String course_time, String exam_time, double exam_grade, String teacher, int isEnd) {
+    public Course(int course_id, String course_num, String course_seq, int stu_id, String course_name, String course_type, String exam_type, String course_place, String course_weeks, String course_time, String exam_time, String exam_grade, String teacher, int isEnd, String course_about) {
         this.course_id = course_id;
         this.course_num = course_num;
         this.course_seq = course_seq;
@@ -33,6 +34,7 @@ public class Course {
         this.exam_grade = exam_grade;
         this.teacher = teacher;
         this.isEnd = isEnd;
+        this.course_about = course_about;
     }
 
     public int getCourse_id() {
@@ -51,11 +53,11 @@ public class Course {
         this.course_num = course_num;
     }
 
-    public int getCourse_seq() {
+    public String getCourse_seq() {
         return course_seq;
     }
 
-    public void setCourse_seq(int course_seq) {
+    public void setCourse_seq(String course_seq) {
         this.course_seq = course_seq;
     }
 
@@ -123,11 +125,11 @@ public class Course {
         this.exam_time = exam_time;
     }
 
-    public double getExam_grade() {
+    public String getExam_grade() {
         return exam_grade;
     }
 
-    public void setExam_grade(double exam_grade) {
+    public void setExam_grade(String exam_grade) {
         this.exam_grade = exam_grade;
     }
 
@@ -147,12 +149,20 @@ public class Course {
         this.isEnd = isEnd;
     }
 
+    public String getCourse_about() {
+        return course_about;
+    }
+
+    public void setCourse_about(String course_about) {
+        this.course_about = course_about;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
                 "course_id=" + course_id +
                 ", course_num='" + course_num + '\'' +
-                ", course_seq=" + course_seq +
+                ", course_seq='" + course_seq + '\'' +
                 ", stu_id=" + stu_id +
                 ", course_name='" + course_name + '\'' +
                 ", course_type='" + course_type + '\'' +
@@ -161,9 +171,10 @@ public class Course {
                 ", course_weeks='" + course_weeks + '\'' +
                 ", course_time='" + course_time + '\'' +
                 ", exam_time='" + exam_time + '\'' +
-                ", exam_grade=" + exam_grade +
+                ", exam_grade='" + exam_grade + '\'' +
                 ", teacher='" + teacher + '\'' +
                 ", isEnd=" + isEnd +
+                ", course_about='" + course_about + '\'' +
                 '}';
     }
 }
