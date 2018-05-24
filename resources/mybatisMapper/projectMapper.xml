@@ -24,7 +24,7 @@
     <select id="findProjectsByStuLevel" resultMap="projectMap">
         SELECT * FROM project
         WHERE stu_id=#{stu_id} AND stu_level_id=#{stu_level_id}
-        ORDER BY project_id DESC
+        ORDER BY isEnd,project_id DESC
     </select>
 
     <insert id="addProject" parameterType="cn.edu.hitwh.gmember.pojo.Project" useGeneratedKeys="true" keyProperty="project_id">

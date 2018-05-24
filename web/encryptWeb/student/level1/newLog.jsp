@@ -104,8 +104,21 @@
             <!--右部-->
             <div class="g-mn1">
                 <div class="g-mn1c m-learnbox">
+                    <script type="text/javascript">
+                        function checkForm() {
+                            if(!$("#logtitle").val()){
+                                alert("日志名称不能为空！");
+                                return false;
+                            }
+                            if(!$("#logcontent").val()){
+                                alert("日志内容不能为空！");
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
                     <div class="m-forumtopic f-cb">
-                        <form action="${pageContext.request.contextPath}/studentServlet?method=addLog&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}" method="post">
+                        <form action="${pageContext.request.contextPath}/studentServlet?method=addLog&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}" method="post" onsubmit="return checkForm()">
                             <div class="form-group">
                                 <label style="font-size: 1.25em" for="logtitle"><em style="color: red;vertical-align: middle">*&nbsp;</em>日志主题</label>
                                 <input class="form-control" style="width: 40%" id="logtitle" name="logtitle">

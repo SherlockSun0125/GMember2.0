@@ -814,7 +814,7 @@
 
                                 <a class="username self f-thide" target="_self" data-index="点击用户名"
                                    href="${pageContext.request.contextPath}/encryptWeb/student/setting.jsp">
-                                    <span class=" f-fs1 f-f0">${Studeng.stu_name}</span>
+                                    <span class=" f-fs1 f-f0">${Student.stu_name}</span>
                                 </a>
                                 <i class="line" style="padding-top: 2%"></i>
                                 <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"

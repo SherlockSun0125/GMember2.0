@@ -814,7 +814,7 @@
 
                                 <a class="username self f-thide" target="_self" data-index="点击用户名"
                                    href="${pageContext.request.contextPath}/encryptWeb/student/setting.jsp">
-                                    <span class=" f-fs1 f-f0">${Studeng.stu_name}</span>
+                                    <span class=" f-fs1 f-f0">${Student.stu_name}</span>
                                 </a>
                                 <i class="line" style="padding-top: 2%"></i>
                                 <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
@@ -906,7 +906,7 @@
                                 </script>
 
                                 <div class="j-post">
-                                    <form action="${pageContext.request.contextPath}/studentServlet?method=updateCourse&courseid=${course.course_id}" method="post">
+                                    <form action="${pageContext.request.contextPath}/studentServlet?method=updateCourse&courseid=${course.course_id}" method="post" onsubmit="return checkForm()">
                                         <div class="auto-1524789536693">
                                             <div class="f-cb">
                                                 <table class="table table-bordered" cellpadding="0" cellspacing="0">

@@ -814,7 +814,7 @@
 
                                 <a class="username self f-thide" target="_self" data-index="点击用户名"
                                    href="${pageContext.request.contextPath}/encryptWeb/student/setting.jsp">
-                                    <span class=" f-fs1 f-f0">${Studeng.stu_name}</span>
+                                    <span class=" f-fs1 f-f0">${Student.stu_name}</span>
                                 </a>
                                 <i class="line" style="padding-top: 2%"></i>
                                 <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
@@ -873,8 +873,37 @@
                         </div>
                         <div class="j-detailBox">
                             <div>
+                                <script type="text/javascript">
+                                    function checkForm() {
+                                        if(!$("#projectName").val()){
+                                            alert("项目名称不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectStartTime").val()){
+                                            alert("项目开始时间不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectStopTime").val()){
+                                            alert("项目结束时间不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectPlace").val()){
+                                            alert("项目地点不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectMember").val()){
+                                            alert("项目成员不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectAbout").val()){
+                                            alert("备注不能为空！");
+                                            return false;
+                                        }
+                                        return true;
+                                    }
+                                </script>
                                 <div class="j-post">
-                                    <form action="${pageContext.request.contextPath}/studentServlet?method=addProject&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}" method="post">
+                                    <form action="${pageContext.request.contextPath}/studentServlet?method=addProject&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}" method="post" onsubmit="return checkForm()">
                                         <div class="auto-1524789536693">
                                             <div class="f-cb">
                                                 <table class="table table-bordered" cellpadding="0" cellspacing="0">
@@ -882,37 +911,37 @@
                                                     <tr>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目名称</td>
                                                         <td colspan="3">
-                                                            <input type="text" name="projectName" >
+                                                            <input type="text" name="projectName" id="projectName">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">&nbsp;&nbsp;</em>所属课程</td>
                                                         <td>
-                                                            <input type="text" name="projectCourse">
+                                                            <input type="text" name="projectCourse" id="projectCourse">
                                                         </td>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">&nbsp;&nbsp;</em>负责教师</td>
                                                         <td>
-                                                            <input type="text" name="projectTeacher">
+                                                            <input type="text" name="projectTeacher" id="projectTeacher">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>开始时间</td>
                                                         <td>
-                                                            <input type="text" name="projectStartTime">
+                                                            <input type="text" name="projectStartTime" id="projectStartTime">
                                                         </td>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>结束时间</td>
                                                         <td>
-                                                            <input type="text" name="projectStopTime">
+                                                            <input type="text" name="projectStopTime" id="projectStopTime">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目地点</td>
                                                         <td>
-                                                            <input type="text" name="projectPlace">
+                                                            <input type="text" name="projectPlace" id="projectPlace">
                                                         </td>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目成员</td>
                                                         <td>
-                                                            <input type="text" name="projectMember">
+                                                            <input type="text" name="projectMember" id="projectMember">
                                                         </td>
                                                     </tr>
                                                     <tr>
