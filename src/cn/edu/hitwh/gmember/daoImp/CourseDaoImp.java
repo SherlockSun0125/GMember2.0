@@ -31,8 +31,10 @@ public class CourseDaoImp implements ICourseDao{
         CourseMapper courseMapper=session.getMapper(CourseMapper.class);
 
         List<Course> courses=courseMapper.findCoursesByStuId(stu_id);
+        int totalRecords=courseMapper.countCoursesByStuId(stu_id);
 
         coursePageBean.setBeanList(courses);
+        coursePageBean.setTotalRecords(totalRecords);
 
         session.close();
         return coursePageBean;

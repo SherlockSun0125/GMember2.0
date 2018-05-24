@@ -60,13 +60,14 @@
         <div class="g-sd1">
             <div class="m-learnleft">
                 <div id="j-courseTabList">
-                    <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab"  data-type="30">
+                    <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab"  data-type="30"
+                       href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                         <div class="ic f-fl"></div>
                         <span class="f-fl">学习日志</span>
                     </a>
                     <ul class="tab u-tabul">
                         <li class="u-greentab j-tabitem f-f0 first last" data-name="我的课程" data-type="1">
-                            <a class="f-thide f-fc3" href="myProject.jsp">我的项目</a>
+                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
                         </li>
                     </ul>
                 </div>

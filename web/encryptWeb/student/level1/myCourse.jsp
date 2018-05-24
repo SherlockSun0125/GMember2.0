@@ -102,53 +102,63 @@
 
                     <!--课程信息-->
                     <div class="u-forumlistwrap j-alltopiclist">
-                        <div class="m-flwrap">
-                            <div class="ttitle">
-                                <h4 class="f-fl f-fc3">课程概览</h4>
-                                <div class="f-fl u-coursecate j-lessonuit"></div>
+                        <c:choose>
+                            <c:when test="${coursePageBean.totalRecords eq 0}">
+                                <div class="ttitle">
+                                    <h4 class="f-fl f-fc3">你还没有添加课程！</h4>
+                                    <div class="f-fl u-coursecate j-lessonuit"></div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="m-flwrap">
+                                <div class="ttitle">
+                                    <h4 class="f-fl f-fc3">课程概览</h4>
+                                    <div class="f-fl u-coursecate j-lessonuit"></div>
+                                </div>
+                                <div style="margin-top: 10px;padding-left: 0;">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <th>
+                                                课程名称
+                                            </th>
+                                            <%--<th>课程号</th>--%>
+                                            <%--<th>课序号</th>--%>
+                                            <%--<th>课程属性</th>--%>
+                                            <%--<th>考试类型</th>--%>
+                                            <th>上课地点</th>
+                                            <th>上课周次</th>
+                                            <th>上课时间</th>
+                                            <th>考试时间</th>
+                                            <th>考试成绩</th>
+                                            <th>任课教师</th>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${coursePageBean.beanList}" var="courses">
+                                                <tr>
+                                                    <td>
+                                                        <a href="${pageContext.request.contextPath}/studentServlet?method=findCourseById&courseid=${courses.course_id}">${courses.course_name}</a>
+                                                        <c:choose>
+                                                            <c:when test="${courses.isEnd eq 0}">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span style="color: red">&nbsp(已结课)</span>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </td>
+                                                    <td>${courses.course_place}</td>
+                                                    <td>${courses.course_weeks}</td>
+                                                    <td>${courses.course_time}</td>
+                                                    <td>${courses.exam_time}</td>
+                                                    <td>${courses.exam_grade}</td>
+                                                    <td>${courses.teacher}</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div style="margin-top: 10px;padding-left: 0;">
-                                <table class="table table-bordered table-hover table-striped">
-                                    <thead>
-                                        <th>
-                                            课程名称
-                                        </th>
-                                        <%--<th>课程号</th>--%>
-                                        <%--<th>课序号</th>--%>
-                                        <%--<th>课程属性</th>--%>
-                                        <%--<th>考试类型</th>--%>
-                                        <th>上课地点</th>
-                                        <th>上课周次</th>
-                                        <th>上课时间</th>
-                                        <th>考试时间</th>
-                                        <th>考试成绩</th>
-                                        <th>任课教师</th>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach items="${coursePageBean.beanList}" var="courses">
-                                            <tr>
-                                                <td>
-                                                    <a href="${pageContext.request.contextPath}/studentServlet?method=findCourseById&courseid=${courses.course_id}">${courses.course_name}</a>
-                                                    <c:choose>
-                                                        <c:when test="${courses.isEnd eq 0}">
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <span style="color: red">&nbsp(已结课)</span>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </td>
-                                                <td>${courses.course_place}</td>
-                                                <td>${courses.course_weeks}</td>
-                                                <td>${courses.course_time}</td>
-                                                <td>${courses.exam_time}</td>
-                                                <td>${courses.exam_grade}</td>
-                                                <td>${courses.teacher}</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                            </c:otherwise>
+                        </c:choose>
                         <small>${msgDeleteCourse}</small>
                     </div>
                 </div>

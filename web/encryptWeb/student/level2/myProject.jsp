@@ -1,14 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chong
-  Date: 2018/5/7
-  Time: 10:32
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-    <title>我的项目</title>
+    <title>我的课设</title>
     <!--三个重要的CSS文件-->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/core_62c0700cc15bd051f36fa48b7a5c1a26.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/pt_newpages_course_learn.css">
@@ -21,7 +15,7 @@
         }
     </style>
 </head>
-<body  style="background-color: #EEEEEE">
+<body style="background-color: #EEEEEE">
 <!--头部-->
 <div class="f-pf g-headwrap" id="j-fixed-head">
     <div class="g-hd f-bg1 m-yktNav " id="j-topnav">
@@ -41,17 +35,8 @@
                                    href="${pageContext.request.contextPath}/encryptWeb/student/exit.jsp" hidefocus="true">退出</a>
                             </div>
 
-                            <div class="name j-userinfo" id="auto-id-1523840858750">
-                                <div class="f-pr">
-                                    <div class="face">
-                                        <img class="j-nav-myimg"
-                                             src="${pageContext.request.contextPath}/encryptWeb/student/static/head1.jpg"
-                                             width="30px" height="30px" alt="头像">
-                                    </div>
-                                </div>
-                            </div>
                             <a class="username self f-thide" target="_self" data-index="点击用户名"
-                               href="${pageContext.request.contextPath}/encryptWeb/student/setting.jsp">
+                               href="../setting.jsp">
                                 <span class=" f-fs1 f-f0">${Student.stu_name}</span>
                             </a>
                             <i class="line" style="padding-top: 2%"></i>
@@ -83,13 +68,13 @@
             <div class="m-learnleft">
                 <div id="j-courseTabList">
                     <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb"  data-type="30"
-                    href="${pageContext.request.contextPath}/encryptWeb/student/level2/myLog.jsp">
+                       href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                         <div class="ic f-fl"></div>
-                        <span class="f-fl">实习日志</span>
+                        <span class="f-fl">学习日志</span>
                     </a>
                     <ul class="tab u-tabul">
-                        <li class="u-greentab j-tabitem f-f0 first last u-curtab" data-name="我的项目" data-type="1">
-                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/encryptWeb/student/level2/myProject.jsp">我的项目</a>
+                        <li class="u-greentab j-tabitem f-f0 first last u-curtab" data-name="我的课程" data-type="1">
+                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
                         </li>
                     </ul>
                 </div>
@@ -99,84 +84,50 @@
         <!--右侧主体-->
         <div class="g-mn1">
             <div class="g-mn1c m-learnbox" id="courseLearn-inner-box">
-
                 <div class="m-forumindex">
                     <!--发帖按钮-->
                     <div class="f-cb">
                         <a class="j-newTopicBtn f-fl" style="margin-bottom:40px;margin-top: 12px;"
-                           href="newLog.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addProject.png" style="width: 120px"></a>
+                           href="${pageContext.request.contentType}/encryptWeb/student/level1/newProject.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addProject.png" style="width: 120px"></a>
                     </div>
-
                     <!--项目展示-->
                     <div class="u-forumlistwrap j-alltopiclist">
-                        <div class="m-flwrap">
-                            <div class="ttitle">
-                                <h4 class="f-fl f-fc3">全部课程</h4>
-                                <div class="f-fl u-coursecate j-lessonuit"></div>
+                        <c:choose>
+                            <c:when test="${projectPageBean.totalRecords eq 0}">
+                                <div class="ttitle">
+                                    <h4 class="f-fl f-fc3">你还没有项目！</h4>
+                                    <div class="f-fl u-coursecate j-lessonuit"></div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                            <div class="m-flwrap">
+                                <div style="height: 36px;font-weight: bold">
+                                    <h4 class="f-fl f-fc3" style="font-weight: bold">项目列表</h4>
+                                </div>
+                                <div style="margin-top: 10px;padding-left: 0;">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                            <c:forEach items="${projectPageBean.beanList}" var="projects">
+                                                <c:choose>
+                                                    <c:when test="${projects.isEnd eq 0}">
+                                                        <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
+                                                            <td width="100%"><a href="${pageContext.request.contextPath}/studentServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a></td>
+                                                        </tr>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
+                                                            <td width="100%"><a href="${pageContext.request.contextPath}/studentServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a><span style="color: red">&nbsp(已结束)</span></td>
+                                                        </tr>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div style="margin-top: 10px;padding-left: 0;">
-                                <table class="table table-bordered table-hover table-striped">
-                                    <thead>
-                                        <th class="col-lg-1">项目名称</th>
-                                        <th>合作企业</th>
-                                        <th>负责导师</th>
-                                        <th>监督教师</th>
-                                        <th>项目时间</th>
-                                        <th>项目地点</th>
-                                        <th>主要成员</th>
-                                        <th>项目简介</th>
-                                        <th>项目更新</th>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>
-                                            <a href="">更改</a>
-                                            <span>&smid;</span>
-                                            <a href="">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>
-                                            <a href="">更改</a>
-                                            <span>&smid;</span>
-                                            <a href="">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>222</td>
-                                        <td>
-                                            <a href="">更改</a>
-                                            <span>&smid;</span>
-                                            <a href="">删除</a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                            </c:otherwise>
+                        </c:choose>
+                        <small>${msgDeleteProject}</small>
                     </div>
                 </div>
             </div>

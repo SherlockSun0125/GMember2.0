@@ -11,4 +11,5 @@ public interface CourseMapper {
     public void deleteCourse(int course_id);
     public Course findCourseById(int course_id);
     public void updateCourse(Course course);
+    public int countCoursesByStuId(int stu_id);
 }

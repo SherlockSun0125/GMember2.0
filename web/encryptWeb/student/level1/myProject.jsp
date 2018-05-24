@@ -96,23 +96,20 @@
                     </div>
                     <!--项目展示-->
                     <div class="u-forumlistwrap j-alltopiclist">
-                        <div class="m-flwrap">
-                            <div style="height: 36px;font-weight: bold">
-                                <h4 class="f-fl f-fc3" style="font-weight: bold">项目列表</h4>
-                            </div>
-                            <div style="margin-top: 10px;padding-left: 0;">
+                        <c:choose>
+                            <c:when test="${projectPageBean.totalRecords eq 0}">
+                                <div class="ttitle">
+                                    <h4 class="f-fl f-fc3">你还没有项目！</h4>
+                                    <div class="f-fl u-coursecate j-lessonuit"></div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="m-flwrap">
+                                    <div style="height: 36px;font-weight: bold">
+                                        <h4 class="f-fl f-fc3" style="font-weight: bold">项目列表</h4>
+                                    </div>
+                                    <div style="margin-top: 10px;padding-left: 0;">
                                 <table class="table table-hover">
-                                    <%--<thead>--%>
-                                        <%--<th class="col-lg-1">项目名称</th>--%>
-                                        <%--<th>所属课程</th>--%>
-                                        <%--<th>负责教师</th>--%>
-                                        <%--<th>项目语言</th>--%>
-                                        <%--<th>项目时间</th>--%>
-                                        <%--<th>项目地点</th>--%>
-                                        <%--<th>主要成员</th>--%>
-                                        <%--<th>项目简介</th>--%>
-                                        <%--<th>项目更新</th>--%>
-                                    <%--</thead>--%>
                                     <tbody>
                                         <c:forEach items="${projectPageBean.beanList}" var="projects">
                                             <c:choose>
@@ -131,7 +128,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                                 </div>
+                            </c:otherwise>
+                        </c:choose>
                         <small>${msgDeleteProject}</small>
                     </div>
                 </div>

@@ -11,4 +11,5 @@ public interface ProjectMapper {
     public void deleteProject(int project_id);
     public Project findProjectById(int project_id);
     public void updateProject(Project project);
+    public int countProjectsByStuLevel(@Param("stu_id") int stu_id,@Param("stu_level_id") int stu_level_id);
 }

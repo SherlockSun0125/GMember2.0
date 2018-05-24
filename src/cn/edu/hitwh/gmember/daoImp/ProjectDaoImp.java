@@ -32,8 +32,10 @@ public class ProjectDaoImp implements IProjectDao{
         ProjectMapper projectMapper=session.getMapper(ProjectMapper.class);
 
         List<Project> projects=projectMapper.findProjectsByStuLevel(stu_id,stu_level_id);
+        int totalRecords=projectMapper.countProjectsByStuLevel(stu_id,stu_level_id);
 
         projectPageBean.setBeanList(projects);
+        projectPageBean.setTotalRecords(totalRecords);
 
         session.close();
         return projectPageBean;

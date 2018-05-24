@@ -435,7 +435,6 @@
                                     <br/>
                                     打好基础很重要哦！
                                     <br/>
-                                    <br/>
                                 </p>
                                 <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=1">
                                     <span>进入</span>
@@ -450,7 +449,6 @@
                                 <h5>工程学习阶段</h5>
                                 <p>
                                     <%--你不在该阶段！--%>
-                                    <br/>
                                     <br/>
                                     <br/>
                                     <br/>
@@ -474,7 +472,6 @@
                                 <br/>
                                 这是一次很好的历练！
                                 <br/>
-                                <br/>
                             </p>
                             <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=2">
                                 <span>进入</span>
@@ -489,7 +486,6 @@
                                 <h5>校企合作阶段</h5>
                                 <p>
                                     <%--你不在该阶段！--%>
-                                    <br/>
                                     <br/>
                                     <br/>
                                     <br/>
@@ -513,7 +509,6 @@
                                     <br/>
                                     加油！
                                     <br/>
-                                    <br/>
                                 </p>
                                 <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=3">
                                     <span>进入</span>
@@ -528,7 +523,6 @@
                                  <h5>毕业设计阶段</h5>
                                  <p>
                                      <%--你不在该阶段！--%>
-                                     <br/>
                                      <br/>
                                      <br/>
                                      <br/>
@@ -553,7 +547,6 @@
                                     <br/>
                                     祝你找到好工作！
                                     <br/>
-                                    <br/>
                                 </p>
                                 <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=4">
                                     <span>进入</span>
@@ -572,13 +565,11 @@
                                         <br/>
                                         <br/>
                                         <br/>
-                                        <br/>
                                     </p>
                                     <a class="btn-small btn-hl" disabled="disabled" onclick="notIn()"><span>进入</span></a>
                                     </div>
                             </c:otherwise>
                         </c:choose>
-                </div>
                 </div>
             </div>
         </div>

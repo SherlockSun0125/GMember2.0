@@ -51,4 +51,7 @@
         WHERE course_id=#{course_id}
     </update>
 
+    <select id="countCoursesByStuId" parameterType="int" resultType="int">
+        SELECT count(*) FROM course WHERE stu_id=#{stu_id}
+    </select>
 </mapper>
