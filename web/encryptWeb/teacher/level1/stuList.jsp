@@ -162,12 +162,12 @@
                                 <c:choose>
                                     <c:when test="${stu.stu_id eq student.stu_id}">
                                         <li class="u-greentab j-tabitem f-f0 first u-curtab">
-                                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findCoursesByStuId&stuid=${Student.stu_id}">我的课程</a>
+                                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentLevelInfo&stuid=${student.stu_id}&stulevelid=${student.stu_level_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
                                         </li>
                                     </c:when>
                                     <c:otherwise>
                                         <li class="u-greentab j-tabitem f-f0">
-                                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
+                                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentLevelInfo&stuid=${student.stu_id}&stulevelid=${student.stu_level_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
                                         </li>
                                     </c:otherwise>
                                 </c:choose>
@@ -180,7 +180,7 @@
             <!--中间-->
             <div class="g-mn1">
                 <div class="m-learnbox" style="margin-left: 300px;">
-                    <div style="width: 90%">
+                    <div style="width: 96%">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#stuLog" data-toggle="tab">日志</a></li>
                             <li><a href="#stuCourse" data-toggle="tab">课程</a></li>
@@ -188,7 +188,7 @@
                         </ul>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-lg-12">
                                 <br>
                                 <div id="myTabContent" class="tab-content">
                                         <div class="tab-pane active in" style="width: 100%;" id="stuLog">
@@ -196,7 +196,7 @@
                                                 <c:choose>
                                                     <c:when test="${pb.totalRecords eq 0}">
                                                         <div class="ttitle">
-                                                            <h4 class="f-fl f-fc3">你还没有写日志</h4>
+                                                            <h4 class="f-fl f-fc3">该生还没有写日志</h4>
                                                             <div class="f-fl u-coursecate j-lessonuit"></div>
                                                         </div>
                                                     </c:when>
@@ -204,6 +204,8 @@
                                                         <div class="m-flwrap">
                                                             <div class="ttitle">
                                                                 <h4 class="f-fl f-fc3">全部日志</h4>
+                                                                <br/>
+                                                                <hr/>
                                                                 <div class="f-fl u-coursecate j-lessonuit"></div>
                                                             </div>
                                                             <div class="f-cb auto-1523950289417-parent">
@@ -214,14 +216,14 @@
                                                                             <c:forEach items="${pb.beanList}" var="stulogs">
                                                                                 <li class="u-forumli">
                                                                                     <div class="f-cb cnt">
-                                                                                        <a></a><a class="f-fc3 f-f0 lb10 j-link" href="${pageContext.request.contextPath}/studentServlet?method=findLogById&logid=${stulogs.stu_log_id}" target="_self">${stulogs.stu_log_title}</a>
+                                                                                        <a></a><a class="f-fc3 f-f0 lb10 j-link" href="${pageContext.request.contextPath}/teacherServlet?method=findLogById&logid=${stulogs.stu_log_id}" target="_self">${stulogs.stu_log_title}</a>
                                                                                     </div>
                                                                                     <span>
-                                                            <span class="j-txt">
-                                                                <span class="lb10 f-fc9">于${stulogs.stu_log_time}发表</span>
-                                                            </span>
-                                                        </span>
-                                                                                    <p class="f-fc9 f-pa watch">
+                                                                                        <span class="j-txt">
+                                                                                            <span class="lb10 f-fc9">于${stulogs.stu_log_time}发表</span>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                        <p class="f-fc9 f-pa" style="width:110px; bottom: 20px; right:110px;">
                                                                                         <c:choose>
                                                                                             <c:when test="${stulogs.tea_status eq 3}">
                                                                                                 老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
@@ -236,7 +238,7 @@
                                                                                         </c:choose>
                                                                                     </p>
                                                                                     &nbsp;
-                                                                                    <p class="f-fc9 f-pa reply">
+                                                                                    <p class="f-fc9 f-pa" style="width:100px; bottom: 20px; right: 0;">
                                                                                         <c:choose>
                                                                                             <c:when test="${stulogs.emp_status eq 3}">
                                                                                                 导师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
@@ -269,7 +271,7 @@
                                             <c:choose>
                                                 <c:when test="${coursePageBean.totalRecords eq 0}">
                                                     <div class="ttitle">
-                                                        <h4 class="f-fl f-fc3">你还没有添加课程！</h4>
+                                                        <h4 class="f-fl f-fc3">该生还没有添加课程！</h4>
                                                         <div class="f-fl u-coursecate j-lessonuit"></div>
                                                     </div>
                                                 </c:when>
@@ -338,7 +340,7 @@
                                                             <h4 class="f-fl f-fc3" style="font-weight: bold">项目列表</h4>
                                                         </div>
                                                         <div style="margin-top: 10px;padding-left: 0;">
-                                                            <table class="table table-hover">
+                                                            <table class="table table-hover" style="text-align: left">
                                                                 <tbody>
                                                                 <c:forEach items="${projectPageBean.beanList}" var="projects">
                                                                     <c:choose>

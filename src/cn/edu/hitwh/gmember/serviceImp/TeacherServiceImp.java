@@ -2,6 +2,7 @@ package cn.edu.hitwh.gmember.serviceImp;
 
 import cn.edu.hitwh.gmember.dao.ITeacherDao;
 import cn.edu.hitwh.gmember.daoImp.TeacherDaoImp;
+import cn.edu.hitwh.gmember.pojo.Student;
 import cn.edu.hitwh.gmember.pojo.Teacher;
 import cn.edu.hitwh.gmember.service.ITeacherService;
 import cn.edu.hitwh.gmember.tools.PageBean;
@@ -79,4 +80,14 @@ public class TeacherServiceImp implements ITeacherService {
             throw new RuntimeException(e);
         }
     }
+
+    public PageBean<Student> findAllStudentsByTeaLevel(int tea_id, int stu_level_id){
+        try{
+            return teacherDao.findAllStudentsByTeaLevel(tea_id, stu_level_id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

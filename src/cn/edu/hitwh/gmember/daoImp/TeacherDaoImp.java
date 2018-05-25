@@ -1,7 +1,9 @@
 package cn.edu.hitwh.gmember.daoImp;
 
 import cn.edu.hitwh.gmember.dao.ITeacherDao;
+import cn.edu.hitwh.gmember.mapper.StudentMapper;
 import cn.edu.hitwh.gmember.mapper.TeacherMapper;
+import cn.edu.hitwh.gmember.pojo.Student;
 import cn.edu.hitwh.gmember.pojo.Teacher;
 import cn.edu.hitwh.gmember.tools.PageBean;
 import org.apache.ibatis.io.Resources;
@@ -212,4 +214,34 @@ public class TeacherDaoImp implements ITeacherDao{
         session.close();
         return teacherPageBean;
     }
+
+    @Override
+    public PageBean<Student> findAllStudentsByTeaLevel(int tea_id, int stu_level_id) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        PageBean<Student> studentPageBean=new PageBean<Student>();
+        int totalStudents;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        //获得所有学生
+        StudentMapper studentMapper=session.getMapper(StudentMapper.class);
+
+        List<Student> studentList=studentMapper.findAllStudentsByTeaLevel(tea_id,stu_level_id);
+        totalStudents=studentMapper.countAllStudentsByTeaLevel(tea_id, stu_level_id);
+
+        studentPageBean.setBeanList(studentList);
+        studentPageBean.setTotalRecords(totalStudents);
+
+        session.close();
+        return studentPageBean;
+    }
+
+
 }

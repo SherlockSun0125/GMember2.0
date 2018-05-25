@@ -17,4 +17,6 @@ public interface StudentMapper {
     public void updateStudent(@Param("stu")Student student);
     public List<Student> findAllStudentDetail();
     public List<Student> findAllStudentByDepLevel(@Param("dep_id") int dep_id,@Param("stu_level_id") int stu_level_id);
+    public List<Student> findAllStudentsByTeaLevel(@Param("tea_id") int tea_id,@Param("stu_level_id") int stu_level_id);
+    public int countAllStudentsByTeaLevel(@Param("tea_id") int tea_id,@Param("stu_level_id") int stu_level_id);
 }

@@ -1,5 +1,6 @@
 package cn.edu.hitwh.gmember.dao;
 
+import cn.edu.hitwh.gmember.pojo.Student;
 import cn.edu.hitwh.gmember.pojo.Teacher;
 import cn.edu.hitwh.gmember.tools.PageBean;
 
@@ -12,4 +13,5 @@ public interface ITeacherDao {
     public void updateTeacher(Teacher teacher);
     public Teacher findTeacherById(int tea_id);
     public PageBean<Teacher> findAllTeachersByDep(int dep_id);
+    public PageBean<Student> findAllStudentsByTeaLevel(int tea_id,int stu_level_id);
 }

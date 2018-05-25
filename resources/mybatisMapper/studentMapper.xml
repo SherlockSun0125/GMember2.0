@@ -65,9 +65,16 @@
         SELECT * FROM student;
     </select>
 
-
     <!--教师查看其院系某阶段的学生-->
     <select id="findAllStudentByDepLevel" resultMap="studentMap" >
         SELECT * FROM student WHERE stu_level_id=#{stu_level_id} AND  dep_id=#{dep_id}
+    </select>
+
+    <select id="findAllStudentsByTeaLevel" resultMap="studentMap">
+        SELECT * FROM student WHERE tea_id=#{tea_id} AND stu_level_id=#{stu_level_id}
+    </select>
+
+    <select id="countAllStudentsByTeaLevel" resultType="int">
+        SELECT count(*) FROM student WHERE tea_id=#{tea_id} AND stu_level_id=#{stu_level_id}
     </select>
 </mapper>

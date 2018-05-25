@@ -407,7 +407,7 @@
             <div class="row highlights">
                 <div class="span3">
                     <div class="hl-circle">
-                        <a class="hl-icon1" href="${pageContext.request.contextPath}/encryptWeb/teacher/level1/stuList.jsp">工程学习阶段管理</a>
+                        <a class="hl-icon1" href="${pageContext.request.contextPath}teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=1">工程学习阶段管理</a>
                     </div>
 
                     <div class="highlights-content clearfix">
@@ -418,7 +418,7 @@
                             <%--显示一些进度信息--%>
                         </p>
 
-                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/encryptWeb/teacher/level1/stuList.jsp">
+                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=1">
                             <span>进入管理</span>
                         </a>
                         <!-- button small end -->
@@ -426,7 +426,7 @@
                 </div>
                 <div class="span3">
                     <div class="hl-circle">
-                        <a class="hl-icon2" href="${pageContext.request.contextPath}/encryptWeb/teacher/level2/stuList.jsp">校企合作阶段管理</a>
+                        <a class="hl-icon2" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=2">校企合作阶段管理</a>
                     </div>
 
                     <div class="highlights-content clearfix">
@@ -437,14 +437,14 @@
                             <%--显示一些进度信息--%>
                         </p>
 
-                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/encryptWeb/teacher/level2/stuList.jsp">
+                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=2">
                             <span>进入管理</span>
                         </a><!-- button small end -->
                     </div>
                 </div>
                 <div class="span3">
                     <div class="hl-circle">
-                        <a class="hl-icon3" href="${pageContext.request.contextPath}/encryptWeb/teacher/level3/stuList.jsp">毕业设计阶段管理</a>
+                        <a class="hl-icon3" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=3">毕业设计阶段管理</a>
                     </div>
 
                     <div class="highlights-content clearfix">
@@ -455,14 +455,14 @@
                             <%--显示一些进度信息--%>
                         </p>
 
-                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/encryptWeb/teacher/level3/stuList.jsp">
+                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=3">
                             <span>进入管理</span>
                         </a><!-- button small end -->
                     </div>
                 </div>
                 <div class="span3 highlights">
                     <div class="hl-circle">
-                        <a class="hl-icon4" href="${pageContext.request.contextPath}/encryptWeb/teacher/level4/stuList.jsp">就业推荐阶段管理</a>
+                        <a class="hl-icon4" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=4">就业推荐阶段管理</a>
                     </div>
 
                     <div class="highlights-content clearfix">
@@ -473,7 +473,7 @@
                             <%--显示一些进度信息--%>
                         </p>
 
-                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/encryptWeb/teacher/level4/stuList.jsp">
+                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=4">
                             <span>进入管理</span>
                         </a><!-- button small end -->
                     </div>
