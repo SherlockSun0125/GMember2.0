@@ -77,4 +77,12 @@
     <select id="countAllStudentsByTeaLevel" resultType="int">
         SELECT count(*) FROM student WHERE tea_id=#{tea_id} AND stu_level_id=#{stu_level_id}
     </select>
+
+    <select id="findAllStudentsByEmpLevel" resultMap="studentMap">
+        SELECT * FROM student WHERE emp_id=#{emp_id} AND stu_level_id=#{stu_level_id}
+    </select>
+
+    <select id="countAllStudentsByEmpLevel" resultType="int">
+        SELECT count(*) FROM student WHERE emp_id=#{emp_id} AND stu_level_id=#{stu_level_id}
+    </select>
 </mapper>

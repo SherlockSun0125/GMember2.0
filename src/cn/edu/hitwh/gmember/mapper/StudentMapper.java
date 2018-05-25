@@ -19,4 +19,8 @@ public interface StudentMapper {
     public List<Student> findAllStudentByDepLevel(@Param("dep_id") int dep_id,@Param("stu_level_id") int stu_level_id);
     public List<Student> findAllStudentsByTeaLevel(@Param("tea_id") int tea_id,@Param("stu_level_id") int stu_level_id);
     public int countAllStudentsByTeaLevel(@Param("tea_id") int tea_id,@Param("stu_level_id") int stu_level_id);
+    public List<Student> findAllStudentsByEmpLevel(@Param("emp_id") int emp_id,@Param("stu_level_id") int stu_level_id);
+    public int countAllStudentsByEmpLevel(@Param("emp_id") int emp_id,@Param("stu_level_id") int stu_level_id);
+
+
 }
