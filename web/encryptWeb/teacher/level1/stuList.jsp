@@ -302,7 +302,7 @@
                                                                 <c:forEach items="${coursePageBean.beanList}" var="courses">
                                                                     <tr>
                                                                         <td>
-                                                                            <a href="${pageContext.request.contextPath}/studentServlet?method=findCourseById&courseid=${courses.course_id}">${courses.course_name}</a>
+                                                                            <a href="${pageContext.request.contextPath}/teacherServlet?method=findCourseById&courseid=${courses.course_id}">${courses.course_name}</a>
                                                                             <c:choose>
                                                                                 <c:when test="${courses.isEnd eq 0}">
                                                                                 </c:when>
@@ -346,12 +346,12 @@
                                                                     <c:choose>
                                                                         <c:when test="${projects.isEnd eq 0}">
                                                                             <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
-                                                                                <td width="100%"><a href="${pageContext.request.contextPath}/studentServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a></td>
+                                                                                <td width="100%"><a href="${pageContext.request.contextPath}/teacherServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a></td>
                                                                             </tr>
                                                                         </c:when>
                                                                         <c:otherwise>
                                                                             <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
-                                                                                <td width="100%"><a href="${pageContext.request.contextPath}/studentServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a><span style="color: red">&nbsp(已结束)</span></td>
+                                                                                <td width="100%"><a href="${pageContext.request.contextPath}/teacherServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a><span style="color: red">&nbsp(已结束)</span></td>
                                                                             </tr>
                                                                         </c:otherwise>
                                                                     </c:choose>

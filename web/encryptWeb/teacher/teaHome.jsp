@@ -292,7 +292,7 @@
 
 
         .ux-user-info {
-            background: url(static/user-bg.png) center center no-repeat;
+            background: url(/encryptWeb/teacher/static/user-bg.png) center center no-repeat;
             height: 220px;
         }
 
@@ -352,7 +352,7 @@
         <div class="g-flow">
             <div class="f-pr f-cb">
                 <div style="position: absolute;top:2px;bottom:2px;">
-                    <a class="f-fl" hidefocus="true" target="_self" data-index="logo" href="../../index.jsp">
+                    <a class="f-fl" hidefocus="true" target="_self" data-index="logo" href="${pageContext.request.contextPath}/index.jsp">
                         <img class="f-fl img" src="${pageContext.request.contextPath}/encryptWeb/teacher/static/hitwh_logo_white.png" title="教师主页" width="540px"
                              style="margin-top: 2px;margin-bottom: 1px">
                     </a>
@@ -365,7 +365,7 @@
                                    href="${pageContext.request.contextPath}/encryptWeb/teacher/exit.jsp" hidefocus="true">退出</a>
                             </div>
                             <a class="username self f-thide" target="_self" data-index="点击用户名"
-                               href="setting.jsp">
+                               href="${pageContext.request.contextPath}/encryptWeb/teacher/setting.jsp">
                                 <span class=" f-fs1 f-f0">${Teacher.tea_name}</span>
                             </a>
                             <i class="line" style="padding-top: 2%"></i>

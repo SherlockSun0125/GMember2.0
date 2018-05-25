@@ -927,9 +927,9 @@
                     <div class="u-learn-modulewidth" style="width: 96%">
                         <div class="j-breadNavBox">
                             <div class="u-forumbreadnav">
-                                <a href="${pageContext.request.contextPath}teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=1">工程学习阶段管理</a>
+                                <a href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=2">工程学习阶段</a>
                                 <span class="f-icon split"></span>
-                                <span>查看日志</span>
+                                <span>日志详情</span>
                             </div>
                         </div>
                         <div class="j-detailBox auto-1524789536709-parent">
@@ -1005,113 +1005,91 @@
                                                 </c:choose>
 
                                                 <%--教师评价--%>
-                                                <c:choose>
-                                                    <c:when test="${stuLog.tea_feedback eq null}">
-                                                        <form action="${pageContext.request.contextPath}/teacherServlet?method=feedbackLog&logid=${stuLog.stu_log_id}" method="post" onsubmit="checkForm()">
-                                                            <h4 style="font-weight: bold"><em style="color: red">*&nbsp;</em>评论内容</h4>
-                                                            <div id="editor1" style="width: 100%;border: none;"></div>
-                                                            <textarea id="teaFeedback" name="teaFeedback" style="width:100%; height:200px;display: none"></textarea>
-                                                            <div>
-                                                                <p style="font-weight: bold;position: absolute;left:0"><em style="color: red">*&nbsp;</em>点评</p>
-                                                                <span style="margin-right: 4em;padding-left: 3em">
-                                                                    <input type="radio" name="teaStatus" id="teaStatus3" value="3"><label for="teaStatus3">点赞</label>
-                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-
-                                                                    <input type="radio" name="teaStatus" id="teaStatus2" value="2" checked="checked"><label for="teaStatus2">提醒</label>
-                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-
-                                                                    <input type="radio" name="teaStatus" id="teaStatus1" value="1"><label for="teaStatus1">警告</label>
-                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                </span>
-                                                            </div>
-                                                            <button class="btn btn-success" style="float: right" type="submit">评价</button>
-                                                        </form>
-                                                        <script type="text/javascript">
-                                                            function checkForm() {
-                                                                if(!$("#teaFeedback").val()){
-                                                                    alert("评论不能为空!");
-                                                                    return false;
-                                                                }
-                                                                return true;
-                                                            }
-                                                        </script>
-                                                        <script type="text/javascript">
-                                                                var E = window.wangEditor;
-                                                                var editor1 = new E('#editor1');
-
-                                                                editor1.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
-                                                                editor1.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
-                                                                editor1.customConfig.menus = [
-                                                                    'head',  // 标题
-                                                                    'bold',  // 粗体
-                                                                    'fontSize',  // 字号
-                                                                    'fontName',  // 字体
-                                                                    'italic',  // 斜体
-                                                                    'underline',  // 下划线
-                                                                    'strikeThrough',  // 删除线
-                                                                    'foreColor',  // 文字颜色
-                                                                    'backColor',  // 背景颜色
-                                                                    'link',  // 插入链接
-                                                                    'justify',  // 对齐方式
-                                                                    'quote',  // 引用
-                                                                    'image',  // 插入图片
-                                                                    'table',  // 表格
-                                                                    'code',  // 插入代码
-                                                                    'undo',  // 撤销
-                                                                    'redo'  // 重复
-                                                                ];
-
-                                                                var teaFeedback=$("#teaFeedback");
-                                                                editor1.customConfig.onchange=function (html) {
-                                                                    teaFeedback.val(html);
-                                                                };
-
-                                                                editor1.create();
-                                                                teaFeedback.val(editor1.$txt.html);
-
-                                                        </script>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
-                                                            <div class="rinfobox f-cb">
-                                                                <h4 class="j-reply-info f-fl" style="font-weight: bold">教师评价</h4>
-                                                                <p class="watch" style="margin-left:5em">
-                                                                    <c:choose>
-                                                                        <c:when test="${stuLog.tea_status eq 3}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.tea_status eq 2}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.tea_status eq 1}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                        </c:when>
-                                                                    </c:choose>
-                                                                </p>
-                                                            </div>
-                                                            <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
-                                                                <div class="f-richEditorText j-content edueditor_styleclass_0">${stuLog.tea_feedback}<br></div>
-                                                                <div class="bar f-cb">
-                                                                    <div class="f-fl name j-name">
-                                                                <span>
-                                                                    <span class="userInfo j-userInfo">
-                                                                        教师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师1">${teacherName}</a>&nbsp;&nbsp
-                                                                    </span>
-                                                                </span>
-                                                                    </div>
-                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.tea_time}</div>
-                                                                    <div class="f-cb f-fr optBox j-optBox">
-                                                                        <a hidefocus="true" class="f-fr f-fc9 opt delBtn j-delBtn" href="${pageContext.request.contextPath}/teacherServlet?method=deleteLogFd&logid=${stuLog.stu_log_id}">删除</a>
-                                                                        <div class="f-fr divider">|</div>
-                                                                        <a hidefocus="true" class="f-fl f-fc9 editBtn j-editBtn" href="${pageContext.request.contextPath}/teacherServlet?method=toUpdateLogFd&logid=${stuLog.stu_log_id}">编辑</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                <div>
+                                                    <form action="${pageContext.request.contextPath}/teacherServlet?method=feedbackLog&logid=${stuLog.stu_log_id}" method="post" onsubmit="checkForm()">
+                                                        <h4 style="font-weight: bold"><em style="color: red">*&nbsp;</em>评论内容</h4>
+                                                        <div id="editor1" style="width: 100%;border: none;">
+                                                            <p>${stuLog.tea_feedback}</p>
                                                         </div>
-                                                    </c:otherwise>
-                                                </c:choose>
+                                                        <textarea id="teaFeedback" name="teaFeedback" style="width:100%; height:200px;display: none">${stuLog.tea_feedback}</textarea>
+                                                        <div>
+                                                            <p style="font-weight: bold;position: absolute;left:0"><em style="color: red">*&nbsp;</em>点评</p>
+                                                            <span style="margin-right: 4em;padding-left: 3em">
+                                                                <c:choose>
+                                                                    <c:when test="${stuLog.tea_status eq 1}">
+                                                                        <input type="radio" name="teaStatus" id="teaStatus3" value="3"><label for="teaStatus3">点赞</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                        <input type="radio" name="teaStatus" id="teaStatus2" value="2"><label for="teaStatus2">提醒</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                        <input type="radio" name="teaStatus" id="teaStatus1" value="1"  checked="checked"><label for="teaStatus1">警告</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                    </c:when>
+                                                                    <c:when test="${stuLog.tea_status eq 2}">
+                                                                        <input type="radio" name="teaStatus" id="teaStatus3" value="3"><label for="teaStatus3">点赞</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                        <input type="radio" name="teaStatus" id="teaStatus2" value="2" checked="checked"><label for="teaStatus2">提醒</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                        <input type="radio" name="teaStatus" id="teaStatus1" value="1"><label for="teaStatus1">警告</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <input type="radio" name="teaStatus" id="teaStatus3" value="3"  checked="checked"><label for="teaStatus3">点赞</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                        <input type="radio" name="teaStatus" id="teaStatus2" value="2"><label for="teaStatus2">提醒</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                        <input type="radio" name="teaStatus" id="teaStatus1" value="1"><label for="teaStatus1">警告</label>
+                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </span>
+                                                        </div>
+                                                        <button class="btn btn-success" style="float: right" type="submit">评价</button>
+                                                    </form>
+                                                    <script type="text/javascript">
+                                                        function checkForm() {
+                                                            if(!$("#teaFeedback").val()){
+                                                                alert("评论不能为空!");
+                                                                return false;
+                                                            }
+                                                            return true;
+                                                        }
+                                                    </script>
+                                                    <script type="text/javascript">
+                                                        var E = window.wangEditor;
+                                                        var editor1 = new E('#editor1');
 
+                                                        editor1.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+                                                        editor1.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
+                                                        editor1.customConfig.menus = [
+                                                            'head',  // 标题
+                                                            'bold',  // 粗体
+                                                            'fontSize',  // 字号
+                                                            'fontName',  // 字体
+                                                            'italic',  // 斜体
+                                                            'underline',  // 下划线
+                                                            'strikeThrough',  // 删除线
+                                                            'foreColor',  // 文字颜色
+                                                            'backColor',  // 背景颜色
+                                                            'link',  // 插入链接
+                                                            'justify',  // 对齐方式
+                                                            'quote',  // 引用
+                                                            'image',  // 插入图片
+                                                            'table',  // 表格
+                                                            'code',  // 插入代码
+                                                            'undo',  // 撤销
+                                                            'redo'  // 重复
+                                                        ];
 
+                                                        var teaFeedback=$("#teaFeedback");
+                                                        editor1.customConfig.onchange=function (html) {
+                                                            teaFeedback.val(html);
+                                                        };
+
+                                                        editor1.create();
+                                                        teaFeedback.val(editor1.$txt.html);
+
+                                                    </script>
+                                                </div>
                                             </div>
 
                                         </div>

@@ -782,16 +782,6 @@
             background-color: #f3f6f7
         }
     </style>
-    <style type="text/css">
-        thead th{
-            font-weight: bold;
-            background-color: #2d89ef;
-            text-align: center;
-        }
-        table{
-            text-align: center;
-        }
-    </style>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
@@ -904,7 +894,7 @@
                         <ul class="tab u-tabul">
                             <c:forEach items="${studentPageBean.beanList}" var="student">
                                 <c:choose>
-                                    <c:when test="${stuLog.stu_id eq student.stu_id}">
+                                    <c:when test="${project.stu_id eq student.stu_id}">
                                         <li class="u-greentab j-tabitem f-f0 first u-curtab">
                                             <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentLevelInfo&stuid=${student.stu_id}&stulevelid=${student.stu_level_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
                                         </li>
@@ -924,197 +914,71 @@
             <!--中间-->
             <div class="g-mn1">
                 <div class="g-mn1c m-learnbox" id="courseLearn-inner-box">
-                    <div class="u-learn-modulewidth" style="width: 96%">
+                    <div class="u-learn-modulewidth" style="width: 90%">
                         <div class="j-breadNavBox">
                             <div class="u-forumbreadnav">
-                                <a href="${pageContext.request.contextPath}teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=1">工程学习阶段管理</a>
+                                <a href="${pageContext.request.contextPath}teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=2">工程学习阶段管理</a>
                                 <span class="f-icon split"></span>
-                                <span>查看日志</span>
+                                <span>项目查看</span>
                             </div>
                         </div>
-                        <div class="j-detailBox auto-1524789536709-parent">
+                        <div class="j-detailBox auto-1524789536709-parent" id="auto-id-1524789537182">
                             <div class="auto-1524789536709" id="auto-id-1524789537181">
                                 <div class="j-post">
                                     <div class="auto-1524789536693">
                                         <div class="f-cb">
-                                            <h3 class="j-title title f-fl">${stuLog.stu_log_title}</h3>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                <tr>
+                                                    <td style="width: 6em;text-align: center;font-weight: bold">项目名称</td>
+                                                    <td colspan="3">${project.project_name}
+                                                        <c:choose>
+                                                            <c:when test="${project.isEnd eq 0}">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span style="color: red">&nbsp(已结束)</span>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 6em;text-align: center;font-weight: bold">所属课程</td>
+                                                    <td>${project.course}</td>
+                                                    <td style="width: 6em;text-align: center;font-weight: bold">负责教师</td>
+                                                    <td>${project.teacher}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 6em;text-align: center;font-weight: bold">开始时间</td>
+                                                    <td>${project.project_start_time}</td>
+                                                    <td style="width: 6em;text-align: center;font-weight: bold">结束时间</td>
+                                                    <td>${project.project_stop_time}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 6em;text-align: center;font-weight: bold">地点</td>
+                                                    <td>${project.project_place}</td>
+                                                    <td style="width: 6em;text-align: center;font-weight: bold">成员</td>
+                                                    <td>${project.project_member}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height:10em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">备<br/>注</td>
+                                                    <td colspan="3">${project.project_about}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>开<br/>题<br/>汇<br/>报</td>
+                                                    <td colspan="3">${project.start_paper}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>中<br/>期<br/>汇<br/>报</td>
+                                                    <td colspan="3">${project.mid_paper}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>终<br/>期<br/>汇<br/>报</td>
+                                                    <td colspan="3">${project.end_paper}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <div class="infobar f-cb"></div>
-                                        <div style="text-align: left;position: relative; min-height: 300px;padding: 15px 15px 0px 15px;">
-                                            ${stuLog.stu_log_content}
-                                        </div>
-                                        <div class="infobar f-cb"></div>
-                                        <div class="optbar f-cb">
-                                            <div class="f-fl f-fc9 time j-time">于${stuLog.stu_log_time}发表</div>
-                                            <c:choose>
-                                                <c:when test="${stuLog.stu_log_lastchange eq null}">
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <div class="f-fl f-fc9 time j-time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;并最后更改于${stuLog.stu_log_lastchange}</div>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--回复-->
-
-                                <div class="j-reply-all allbox">
-                                    <div class="m-basepool f-cb">
-                                        <div class="j-list" style="">
-                                            <div class="m-data-lists f-cb f-pr j-data-list">
-                                                <%--企业导师评价--%>
-                                                <c:choose>
-                                                    <c:when test="${stuLog.emp_feedback eq null}">
-                                                        <br/>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
-                                                            <div class="rinfobox f-cb">
-                                                                <h4 class="j-reply-info f-fl" style="font-weight: bold">企业导师评价</h4>
-                                                                <p class="watch" style="margin-left:7.4em">
-                                                                    <c:choose>
-                                                                        <c:when test="${stuLog.emp_status eq 3}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.emp_status eq 2}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.emp_status eq 1}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                        </c:when>
-                                                                        <c:otherwise>&nbsp;</c:otherwise>
-                                                                    </c:choose>
-                                                                </p>
-                                                            </div>
-                                                            <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
-                                                                <div class="f-richEditorText j-content edueditor_styleclass_0">${stuLog.emp_feedback}<br></div>
-                                                                <div class="bar f-cb">
-                                                                    <div class="f-fl name j-name">
-                                                                <span>
-                                                                    <span class="userInfo j-userInfo" title="">
-                                                                        导师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师1">${employeeName}</a>&nbsp;&nbsp
-                                                                    </span>
-                                                                </span>
-                                                                    </div>
-                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.emp_time}</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </c:otherwise>
-                                                </c:choose>
-
-                                                <%--教师评价--%>
-                                                <c:choose>
-                                                    <c:when test="${stuLog.tea_feedback eq null}">
-                                                        <form action="${pageContext.request.contextPath}/teacherServlet?method=feedbackLog&logid=${stuLog.stu_log_id}" method="post" onsubmit="checkForm()">
-                                                            <h4 style="font-weight: bold"><em style="color: red">*&nbsp;</em>评论内容</h4>
-                                                            <div id="editor1" style="width: 100%;border: none;"></div>
-                                                            <textarea id="teaFeedback" name="teaFeedback" style="width:100%; height:200px;display: none"></textarea>
-                                                            <div>
-                                                                <p style="font-weight: bold;position: absolute;left:0"><em style="color: red">*&nbsp;</em>点评</p>
-                                                                <span style="margin-right: 4em;padding-left: 3em">
-                                                                    <input type="radio" name="teaStatus" id="teaStatus3" value="3"><label for="teaStatus3">点赞</label>
-                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-
-                                                                    <input type="radio" name="teaStatus" id="teaStatus2" value="2" checked="checked"><label for="teaStatus2">提醒</label>
-                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-
-                                                                    <input type="radio" name="teaStatus" id="teaStatus1" value="1"><label for="teaStatus1">警告</label>
-                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                </span>
-                                                            </div>
-                                                            <button class="btn btn-success" style="float: right" type="submit">评价</button>
-                                                        </form>
-                                                        <script type="text/javascript">
-                                                            function checkForm() {
-                                                                if(!$("#teaFeedback").val()){
-                                                                    alert("评论不能为空!");
-                                                                    return false;
-                                                                }
-                                                                return true;
-                                                            }
-                                                        </script>
-                                                        <script type="text/javascript">
-                                                                var E = window.wangEditor;
-                                                                var editor1 = new E('#editor1');
-
-                                                                editor1.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
-                                                                editor1.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
-                                                                editor1.customConfig.menus = [
-                                                                    'head',  // 标题
-                                                                    'bold',  // 粗体
-                                                                    'fontSize',  // 字号
-                                                                    'fontName',  // 字体
-                                                                    'italic',  // 斜体
-                                                                    'underline',  // 下划线
-                                                                    'strikeThrough',  // 删除线
-                                                                    'foreColor',  // 文字颜色
-                                                                    'backColor',  // 背景颜色
-                                                                    'link',  // 插入链接
-                                                                    'justify',  // 对齐方式
-                                                                    'quote',  // 引用
-                                                                    'image',  // 插入图片
-                                                                    'table',  // 表格
-                                                                    'code',  // 插入代码
-                                                                    'undo',  // 撤销
-                                                                    'redo'  // 重复
-                                                                ];
-
-                                                                var teaFeedback=$("#teaFeedback");
-                                                                editor1.customConfig.onchange=function (html) {
-                                                                    teaFeedback.val(html);
-                                                                };
-
-                                                                editor1.create();
-                                                                teaFeedback.val(editor1.$txt.html);
-
-                                                        </script>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
-                                                            <div class="rinfobox f-cb">
-                                                                <h4 class="j-reply-info f-fl" style="font-weight: bold">教师评价</h4>
-                                                                <p class="watch" style="margin-left:5em">
-                                                                    <c:choose>
-                                                                        <c:when test="${stuLog.tea_status eq 3}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.tea_status eq 2}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                        </c:when>
-                                                                        <c:when test="${stuLog.tea_status eq 1}">
-                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                        </c:when>
-                                                                    </c:choose>
-                                                                </p>
-                                                            </div>
-                                                            <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
-                                                                <div class="f-richEditorText j-content edueditor_styleclass_0">${stuLog.tea_feedback}<br></div>
-                                                                <div class="bar f-cb">
-                                                                    <div class="f-fl name j-name">
-                                                                <span>
-                                                                    <span class="userInfo j-userInfo">
-                                                                        教师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师1">${teacherName}</a>&nbsp;&nbsp
-                                                                    </span>
-                                                                </span>
-                                                                    </div>
-                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.tea_time}</div>
-                                                                    <div class="f-cb f-fr optBox j-optBox">
-                                                                        <a hidefocus="true" class="f-fr f-fc9 opt delBtn j-delBtn" href="${pageContext.request.contextPath}/teacherServlet?method=deleteLogFd&logid=${stuLog.stu_log_id}">删除</a>
-                                                                        <div class="f-fr divider">|</div>
-                                                                        <a hidefocus="true" class="f-fl f-fc9 editBtn j-editBtn" href="${pageContext.request.contextPath}/teacherServlet?method=toUpdateLogFd&logid=${stuLog.stu_log_id}">编辑</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </c:otherwise>
-                                                </c:choose>
-
-
-                                            </div>
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
