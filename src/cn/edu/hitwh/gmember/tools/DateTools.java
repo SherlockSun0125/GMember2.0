@@ -22,4 +22,10 @@ public class DateTools {
         }
         return date;
     }
+
+    public String date2Str2(Date date){
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
+//        System.out.println("时间是"+simpleDateFormat);
+        return simpleDateFormat.format(date);
+    }
 }

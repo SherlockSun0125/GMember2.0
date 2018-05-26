@@ -18,6 +18,9 @@
         <result column="start_paper" property="start_paper"></result>
         <result column="mid_paper" property="mid_paper"></result>
         <result column="end_paper" property="end_paper"></result>
+        <result column="start_paperF" property="start_paperF"></result>
+        <result column="mid_paperF" property="mid_paperF"></result>
+        <result column="end_paperF" property="end_paperF"></result>
         <result column="isEnd" property="isEnd"></result>
         <result column="file_desc" property="file_desc"></result>
         <result column="file_path" property="file_path"></result>
@@ -32,10 +35,11 @@
     <insert id="addProject" parameterType="cn.edu.hitwh.gmember.pojo.Project" useGeneratedKeys="true" keyProperty="project_id">
         insert into
         project (stu_id, project_name, course, teacher, project_place, project_start_time, project_stop_time,
-                 project_member, project_about, stu_level_id, start_paper, mid_paper, end_paper, isEnd,file_desc,file_path)
+                 project_member, project_about, stu_level_id, start_paper, mid_paper, end_paper,start_paperF,
+                 mid_paperF,end_paperF,isEnd)
         values (#{stu_id},#{project_name},#{course},#{teacher},#{project_place},#{project_start_time},#{project_stop_time},
-                #{project_member},#{project_about},#{stu_level_id},#{start_paper},#{mid_paper},#{end_paper},#{isEnd},
-                #{file_desc},#{file_path});
+                #{project_member},#{project_about},#{stu_level_id},#{start_paper},#{mid_paper},#{end_paper},#{start_paperF},
+                #{mid_paperF},#{end_paperF},#{isEnd});
     </insert>
 
     <delete id="deleteProject" parameterType="int">
@@ -50,7 +54,7 @@
         UPDATE project SET stu_id=#{stu_id},project_name=#{project_name},course=#{course},teacher=#{teacher},
             project_place=#{project_place},project_start_time=#{project_start_time},project_stop_time=#{project_stop_time},
             project_member=#{project_member},project_about=#{project_about},stu_level_id=#{stu_level_id},start_paper=#{start_paper},
-            mid_paper=#{mid_paper},end_paper=#{end_paper},isEnd=#{isEnd},file_desc=#{file_desc},file_path=#{file_path}
+            mid_paper=#{mid_paper},end_paper=#{end_paper},isEnd=#{isEnd},start_paperF=#{start_paperF},mid_paperF=#{mid_paperF},end_paperF=#{end_paperF}
         WHERE project_id=#{project_id}
     </update>
 

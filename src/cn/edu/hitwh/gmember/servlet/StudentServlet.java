@@ -525,27 +525,22 @@ public class StudentServlet extends BaseServlet {
 
     public String uploadFile(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int projectid=Integer.parseInt(req.getParameter("projectid"));
-
-        //模拟数据库存储文件名
-        HttpSession session=req.getSession();
-        List<String> list=(List<String>)session.getAttribute("files");
-        if(list==null){
-            //如果集合为空，就创建一个集合
-            list=new ArrayList<String>();
-        }
+        String projectlevel=req.getParameter("projectlevel");
 
         try {
             Project project=projectService.findProjectById(projectid);
+            Student student=studentService.findStudentById(project.getStu_id());
             //获取文件描述信息
 //            String desc=req.getParameter("fileDesc");
             //获取上传的文件
-            Part part=req.getPart("startPaper");
+            Part part=req.getPart(projectlevel+"Paper");
             //获取请求的信息
             String name=part.getHeader("content-disposition");
             System.out.println(name);//测试使用
 //            System.out.println(desc);//
 
             //获取上传文件的目录
+//            String root=req.getContextPath()+("/upload");
             String root=req.getServletContext().getRealPath("/upload");
             System.out.println("测试上传文件的路径："+root);
 
@@ -554,18 +549,30 @@ public class StudentServlet extends BaseServlet {
             System.out.println("测试获取文件的后缀："+str);
 
             //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
-            String fname= UUID.randomUUID().toString()+str;
-            //将文件名保存到集合中
-            list.add(fname);
-            //将保存在集合中的文件名保存到域中
-            session.setAttribute("files", list);
+//            String fname= UUID.randomUUID().toString()+str;
+            Date date=new Date();
+            DateTools dateTools=new DateTools();
+            String fname="";
+
+            if (projectlevel.equals("start")) {
+                fname= student.getStu_id() + "-" + project.getProject_name() +"-开题报告-"+ dateTools.date2Str2(date) + str;
+                //将路径存入数据库
+                project.setStart_paper(fname);
+            }else if (projectlevel.equals("mid")){
+                fname = student.getStu_id() + "-" + project.getProject_name()+"-中期报告-" + dateTools.date2Str2(date) + str;
+                //将路径存入数据库
+                project.setMid_paper(fname);
+            }else {
+                fname = student.getStu_id() + "-" + project.getProject_name()+"-终期报告-"+ dateTools.date2Str2(date) + str;
+                //将路径存入数据库
+                project.setEnd_paper(fname);
+            }
 
             String filename=root+"\\"+fname;
             System.out.println("测试产生新的文件名："+filename);
 
             //上传文件到指定目录，不想上传文件就不调用这个
             part.write(filename);
-            project.setStart_paper(filename);
 
             projectService.updateProject(project);
 

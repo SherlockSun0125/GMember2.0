@@ -57,6 +57,7 @@ public class TestServlet extends HttpServlet {
             // 构造临时路径来存储上传的文件
             // 这个路径相对当前应用的目录
             String uploadPath = getServletContext().getRealPath("./") + File.separator + UPLOAD_DIRECTORY;
+            System.out.println("相对当前应用的目录uploadPath=");
 
 
             // 如果目录不存在则创建
@@ -79,7 +80,7 @@ public class TestServlet extends HttpServlet {
                             String filePath = uploadPath + File.separator + fileName;
                             File storeFile = new File(filePath);
                             // 在控制台输出文件的上传路径
-                            System.out.println(filePath);
+                            System.out.println("文件的上传路径filePath"+filePath);
                             // 保存文件到硬盘
                             item.write(storeFile);
                             request.setAttribute("message",

@@ -13,8 +13,11 @@ public class Project {
     private String project_about;
     private int stu_level_id;
     private String start_paper;
+    private String start_paperF;
     private String mid_paper;
+    private String mid_paperF;
     private String end_paper;
+    private String end_paperF;
     private int isEnd;
     private String project_grade;//ABCDE
     private String file_desc;
@@ -22,7 +25,7 @@ public class Project {
 
     public Project(){}
 
-    public Project(int project_id, int stu_id, String project_name, String course, String teacher, String project_place, String project_start_time, String project_stop_time, String project_member, String project_about, int stu_level_id, String start_paper, String mid_paper, String end_paper, int isEnd, String project_grade, String file_desc, String file_path) {
+    public Project(int project_id, int stu_id, String project_name, String course, String teacher, String project_place, String project_start_time, String project_stop_time, String project_member, String project_about, int stu_level_id, String start_paper, String start_paperF, String mid_paper, String mid_paperF, String end_paper, String end_paperF, int isEnd, String project_grade, String file_desc, String file_path) {
         this.project_id = project_id;
         this.stu_id = stu_id;
         this.project_name = project_name;
@@ -35,8 +38,11 @@ public class Project {
         this.project_about = project_about;
         this.stu_level_id = stu_level_id;
         this.start_paper = start_paper;
+        this.start_paperF = start_paperF;
         this.mid_paper = mid_paper;
+        this.mid_paperF = mid_paperF;
         this.end_paper = end_paper;
+        this.end_paperF = end_paperF;
         this.isEnd = isEnd;
         this.project_grade = project_grade;
         this.file_desc = file_desc;
@@ -139,6 +145,14 @@ public class Project {
         this.start_paper = start_paper;
     }
 
+    public String getStart_paperF() {
+        return start_paperF;
+    }
+
+    public void setStart_paperF(String start_paperF) {
+        this.start_paperF = start_paperF;
+    }
+
     public String getMid_paper() {
         return mid_paper;
     }
@@ -147,12 +161,28 @@ public class Project {
         this.mid_paper = mid_paper;
     }
 
+    public String getMid_paperF() {
+        return mid_paperF;
+    }
+
+    public void setMid_paperF(String mid_paperF) {
+        this.mid_paperF = mid_paperF;
+    }
+
     public String getEnd_paper() {
         return end_paper;
     }
 
     public void setEnd_paper(String end_paper) {
         this.end_paper = end_paper;
+    }
+
+    public String getEnd_paperF() {
+        return end_paperF;
+    }
+
+    public void setEnd_paperF(String end_paperF) {
+        this.end_paperF = end_paperF;
     }
 
     public int getIsEnd() {
@@ -202,8 +232,11 @@ public class Project {
                 ", project_about='" + project_about + '\'' +
                 ", stu_level_id=" + stu_level_id +
                 ", start_paper='" + start_paper + '\'' +
+                ", start_paperF='" + start_paperF + '\'' +
                 ", mid_paper='" + mid_paper + '\'' +
+                ", mid_paperF='" + mid_paperF + '\'' +
                 ", end_paper='" + end_paper + '\'' +
+                ", end_paperF='" + end_paperF + '\'' +
                 ", isEnd=" + isEnd +
                 ", project_grade='" + project_grade + '\'' +
                 ", file_desc='" + file_desc + '\'' +
