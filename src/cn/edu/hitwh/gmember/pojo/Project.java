@@ -17,10 +17,12 @@ public class Project {
     private String end_paper;
     private int isEnd;
     private String project_grade;//ABCDE
+    private String file_desc;
+    private String file_path;
 
     public Project(){}
 
-    public Project(int project_id, int stu_id, String project_name, String course, String teacher, String project_place, String project_start_time, String project_stop_time, String project_member, String project_about, int stu_level_id, String start_paper, String mid_paper, String end_paper, int isEnd, String project_grade) {
+    public Project(int project_id, int stu_id, String project_name, String course, String teacher, String project_place, String project_start_time, String project_stop_time, String project_member, String project_about, int stu_level_id, String start_paper, String mid_paper, String end_paper, int isEnd, String project_grade, String file_desc, String file_path) {
         this.project_id = project_id;
         this.stu_id = stu_id;
         this.project_name = project_name;
@@ -37,6 +39,8 @@ public class Project {
         this.end_paper = end_paper;
         this.isEnd = isEnd;
         this.project_grade = project_grade;
+        this.file_desc = file_desc;
+        this.file_path = file_path;
     }
 
     public int getProject_id() {
@@ -167,6 +171,22 @@ public class Project {
         this.project_grade = project_grade;
     }
 
+    public String getFile_desc() {
+        return file_desc;
+    }
+
+    public void setFile_desc(String file_desc) {
+        this.file_desc = file_desc;
+    }
+
+    public String getFile_path() {
+        return file_path;
+    }
+
+    public void setFile_path(String file_path) {
+        this.file_path = file_path;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -186,6 +206,8 @@ public class Project {
                 ", end_paper='" + end_paper + '\'' +
                 ", isEnd=" + isEnd +
                 ", project_grade='" + project_grade + '\'' +
+                ", file_desc='" + file_desc + '\'' +
+                ", file_path='" + file_path + '\'' +
                 '}';
     }
 }

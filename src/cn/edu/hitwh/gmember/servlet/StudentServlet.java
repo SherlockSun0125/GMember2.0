@@ -8,14 +8,20 @@ import cn.edu.hitwh.gmember.tools.PageBean;
 import cn.itcast.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @WebServlet(name = "StudentServlet")
+@MultipartConfig
 public class StudentServlet extends BaseServlet {
     private DateTools dateTools=new DateTools();
     private IStudentService studentService = new StudentServiceImp();
@@ -314,7 +320,7 @@ public class StudentServlet extends BaseServlet {
         }
     }
 
-    //查看删除日志
+    //删除日志
     public String deleteLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int logid=Integer.parseInt(req.getParameter("logid"));
         StuLog stuLog=stulogService.findLogByid(logid);
@@ -348,17 +354,19 @@ public class StudentServlet extends BaseServlet {
     //查看某生某阶段所有项目
     public String findProjectsByStuLevel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int stu_id=Integer.parseInt(req.getParameter("stuid"));
-        int stu_level_id=Integer.parseInt(req.getParameter("stulevleid"));
+        int stu_level_id=Integer.parseInt(req.getParameter("stulevelid"));
         PageBean<Project> projectPageBean=new PageBean<Project>();
         projectPageBean=projectService.findProjectsByStuLevel(stu_id,stu_level_id);
 
-        req.setAttribute("projectPageBean",projectPageBean);
-
         if (stu_level_id==1){
+            req.setAttribute("projectPageBean",projectPageBean);
             return "f:/encryptWeb/student/level1/myProject.jsp";
         }else if(stu_level_id==2){
+            req.setAttribute("projectPageBean",projectPageBean);
             return "f:/encryptWeb/student/level2/myProject.jsp";
-        }else{
+        }else{//第三阶段只能有一个项目
+            Project project=projectPageBean.getBeanList().get(0);
+            req.setAttribute("project",project);
             return "f:/encryptWeb/student/level3/myProject.jsp";
         }
     }
@@ -381,7 +389,7 @@ public class StudentServlet extends BaseServlet {
         }
     }
 
-    //更新项目
+    //去更新项目
     public String toUpdateProject(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int projectid=Integer.parseInt(req.getParameter("projectid"));
         //找到该项目
@@ -445,7 +453,7 @@ public class StudentServlet extends BaseServlet {
         }else if(stulevelid==2){
             return "f:/encryptWeb/student/level2/projectDetails.jsp";
         }else{
-            return "f:/encryptWeb/student/level3/projectDetails.jsp";
+            return "f:/encryptWeb/student/level3/myProject.jsp";
         }
     }
 
@@ -511,8 +519,67 @@ public class StudentServlet extends BaseServlet {
         }else if(stulevelid==2){
             return "f:/encryptWeb/student/level2/projectDetails.jsp";
         }else{
-            return "f:/encryptWeb/student/level3/projectDetails.jsp";
+            return "f:/encryptWeb/student/level3/myProject.jsp";
         }
+    }
+
+    public String uploadFile(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int projectid=Integer.parseInt(req.getParameter("projectid"));
+
+        //模拟数据库存储文件名
+        HttpSession session=req.getSession();
+        List<String> list=(List<String>)session.getAttribute("files");
+        if(list==null){
+            //如果集合为空，就创建一个集合
+            list=new ArrayList<String>();
+        }
+
+        try {
+            Project project=projectService.findProjectById(projectid);
+            //获取文件描述信息
+//            String desc=req.getParameter("fileDesc");
+            //获取上传的文件
+            Part part=req.getPart("startPaper");
+            //获取请求的信息
+            String name=part.getHeader("content-disposition");
+            System.out.println(name);//测试使用
+//            System.out.println(desc);//
+
+            //获取上传文件的目录
+            String root=req.getServletContext().getRealPath("/upload");
+            System.out.println("测试上传文件的路径："+root);
+
+            //获取文件的后缀
+            String str=name.substring(name.lastIndexOf("."), name.length()-1);
+            System.out.println("测试获取文件的后缀："+str);
+
+            //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
+            String fname= UUID.randomUUID().toString()+str;
+            //将文件名保存到集合中
+            list.add(fname);
+            //将保存在集合中的文件名保存到域中
+            session.setAttribute("files", list);
+
+            String filename=root+"\\"+fname;
+            System.out.println("测试产生新的文件名："+filename);
+
+            //上传文件到指定目录，不想上传文件就不调用这个
+            part.write(filename);
+            project.setStart_paper(filename);
+
+            projectService.updateProject(project);
+
+            req.setAttribute("msgUploadFile", "上传文件成功");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.setAttribute("msgUploadFile", "上传文件失败");
+        }
+
+        Project newProject=projectService.findProjectById(projectid);
+        req.setAttribute("project",newProject);
+
+        return "f:/encryptWeb/student/level3/myProject.jsp";
     }
 
 

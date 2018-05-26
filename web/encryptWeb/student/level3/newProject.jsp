@@ -845,11 +845,11 @@
                         <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb"  data-type="30"
                            href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                             <div class="ic f-fl"></div>
-                            <span class="f-fl">学习日志</span>
+                            <span class="f-fl">毕设日志</span>
                         </a>
                         <ul class="tab u-tabul">
-                            <li class="u-greentab j-tabitem f-f0 first last u-curtab" data-name="我的项目" data-type="1">
-                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
+                            <li class="u-greentab j-tabitem f-f0 first u-curtab" data-name="毕业设计" data-type="1">
+                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;毕业设计</a>
                             </li>
                         </ul>
                     </div>
@@ -864,7 +864,7 @@
                             <div class="u-forumbreadnav">
                                 <a href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">工程学习阶段</a>
                                 <span class="f-icon split"></span>
-                                <span>项目更新</span>
+                                <span>增加项目</span>
                             </div>
                         </div>
                         <div class="j-detailBox">
@@ -899,7 +899,7 @@
                                     }
                                 </script>
                                 <div class="j-post">
-                                    <form action="${pageContext.request.contextPath}/studentServlet?method=updateProject&projectid=${project.project_id}" method="post" onsubmit="return checkForm()">
+                                    <form action="${pageContext.request.contextPath}/studentServlet?method=addProject&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}" method="post" onsubmit="return checkForm()">
                                         <div class="auto-1524789536693">
                                             <div class="f-cb">
                                                 <table class="table table-bordered" cellpadding="0" cellspacing="0">
@@ -907,73 +907,44 @@
                                                     <tr>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目名称</td>
                                                         <td colspan="3">
-                                                            <input type="text" name="projectName" value="${project.project_name}" id="projectName">
+                                                            <input type="text" name="projectName" id="projectName">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">&nbsp;&nbsp;</em>所属课程</td>
                                                         <td>
-                                                            <input type="text" name="projectCourse" value="${project.course}" id="projectCourse">
+                                                            <input type="text" name="projectCourse" id="projectCourse">
                                                         </td>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">&nbsp;&nbsp;</em>负责教师</td>
                                                         <td>
-                                                            <input type="text" name="projectTeacher" value="${project.teacher}" id="projectTeacher">
+                                                            <input type="text" name="projectTeacher" id="projectTeacher">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>开始时间</td>
                                                         <td>
-                                                            <input type="text" name="projectStartTime" value="${project.project_start_time}" id="projectStartTime">
+                                                            <input type="text" name="projectStartTime" id="projectStartTime">
                                                         </td>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>结束时间</td>
                                                         <td>
-                                                            <input type="text" name="projectStopTime" value="${project.project_stop_time}" id="projectStopTime">
+                                                            <input type="text" name="projectStopTime" id="projectStopTime">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目地点</td>
                                                         <td>
-                                                            <input type="text" name="projectPlace" value="${project.project_place}" id="projectPlace">
+                                                            <input type="text" name="projectPlace" id="projectPlace">
                                                         </td>
                                                         <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目成员</td>
                                                         <td>
-                                                            <input type="text" name="projectMember" value="${project.project_member}" id="projectMember">
+                                                            <input type="text" name="projectMember" id="projectMember">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="height:10em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle"><em style="color: red;vertical-align: middle">*</em><br/>备<br/>注</td>
                                                         <td colspan="3">
-                                                            <div id="editor1" style="width: 100%;height: 100%;border: none;">
-                                                                <p>${project.project_about}</p>
-                                                            </div>
-                                                            <textarea id="projectAbout" name="projectAbout" style="width:100%; height:200px;display: none">${project.project_about}</textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>开<br/>题<br/>汇<br/>报</td>
-                                                        <td colspan="3">
-                                                            <div id="editor2" style="width: 100%;height: 100%;border: none;">
-                                                                <p>${project.start_paper}</p>
-                                                            </div>
-                                                            <textarea id="startPaper" name="startPaper" style="width:100%; height:200px;display: none">${project.start_paper}</textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>中<br/>期<br/>汇<br/>报</td>
-                                                        <td colspan="3">
-                                                            <div id="editor3" style="width: 100%;height: 100%;border: none;">
-                                                                <p>${project.mid_paper}</p>
-                                                            </div>
-                                                            <textarea id="midPaper" name="midPaper" style="width:100%; height:200px;display: none">${project.mid_paper}</textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>终<br/>期<br/>汇<br/>报</td>
-                                                        <td colspan="3">
-                                                            <div id="editor4" style="width: 100%;height: 100%;border: none;">
-                                                                <p >${project.end_paper}</p>
-                                                            </div>
-                                                            <textarea id="endPaper" name="endPaper"  style="width:100%; height:200px;display: none">${project.end_paper}</textarea>
+                                                            <div id="editor1" style="width: 100%;height: 100%;border: none;"></div>
+                                                            <textarea id="projectAbout" name="projectAbout" style="width:100%; height:200px;display: none"></textarea>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -982,7 +953,7 @@
                                             <div class="infobar f-cb"></div>
                                             <div class="optbar f-cb">
                                                 <div class="f-cb f-fr optBox j-optBox">
-                                                    <button class="btn btn-success" type="submit">更新</button>
+                                                    <button class="btn btn-success" type="submit">增加</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1023,114 +994,6 @@
 
                                     editor1.create();
                                     projectAbout.val(editor1.$txt.html);
-                                    </script>
-                                    <script type="text/javascript">
-                                        var E = window.wangEditor;
-                                        var editor2 = new E('#editor2');
-
-                                        editor2.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
-                                        editor2.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
-                                        editor2.customConfig.menus = [
-                                            'head',  // 标题
-                                            'bold',  // 粗体
-                                            'fontSize',  // 字号
-                                            'fontName',  // 字体
-                                            'italic',  // 斜体
-                                            'underline',  // 下划线
-                                            'strikeThrough',  // 删除线
-                                            'foreColor',  // 文字颜色
-                                            'backColor',  // 背景颜色
-                                            'link',  // 插入链接
-                                            'justify',  // 对齐方式
-                                            'quote',  // 引用
-                                            'emoticon',  // 表情
-                                            'image',  // 插入图片
-                                            'table',  // 表格
-                                            'video',  // 插入视频
-                                            'code',  // 插入代码
-                                            'undo',  // 撤销
-                                            'redo'  // 重复
-                                        ];
-
-                                        var startPaper=$("#startPaper");
-                                        editor2.customConfig.onchange=function (html) {
-                                            startPaper.val(html);
-                                        };
-
-                                        editor2.create();
-                                        startPaper.val(editor2.$txt.html);
-                                    </script>
-                                    <script type="text/javascript">
-                                        var E = window.wangEditor;
-                                        var editor3 = new E('#editor3');
-
-                                        editor3.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
-                                        editor3.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
-                                        editor3.customConfig.menus = [
-                                            'head',  // 标题
-                                            'bold',  // 粗体
-                                            'fontSize',  // 字号
-                                            'fontName',  // 字体
-                                            'italic',  // 斜体
-                                            'underline',  // 下划线
-                                            'strikeThrough',  // 删除线
-                                            'foreColor',  // 文字颜色
-                                            'backColor',  // 背景颜色
-                                            'link',  // 插入链接
-                                            'justify',  // 对齐方式
-                                            'quote',  // 引用
-                                            'emoticon',  // 表情
-                                            'image',  // 插入图片
-                                            'table',  // 表格
-                                            'video',  // 插入视频
-                                            'code',  // 插入代码
-                                            'undo',  // 撤销
-                                            'redo'  // 重复
-                                        ];
-
-                                        var midPaper=$("#midPaper");
-                                        editor3.customConfig.onchange=function (html) {
-                                            midPaper.val(html);
-                                        };
-
-                                        editor3.create();
-                                        midPaper.val(editor3.$txt.html);
-                                    </script>
-                                    <script type="text/javascript">
-                                        var E = window.wangEditor;
-                                        var editor4 = new E('#editor4');
-
-                                        editor4.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
-                                        editor4.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
-                                        editor4.customConfig.menus = [
-                                            'head',  // 标题
-                                            'bold',  // 粗体
-                                            'fontSize',  // 字号
-                                            'fontName',  // 字体
-                                            'italic',  // 斜体
-                                            'underline',  // 下划线
-                                            'strikeThrough',  // 删除线
-                                            'foreColor',  // 文字颜色
-                                            'backColor',  // 背景颜色
-                                            'link',  // 插入链接
-                                            'justify',  // 对齐方式
-                                            'quote',  // 引用
-                                            'emoticon',  // 表情
-                                            'image',  // 插入图片
-                                            'table',  // 表格
-                                            'video',  // 插入视频
-                                            'code',  // 插入代码
-                                            'undo',  // 撤销
-                                            'redo'  // 重复
-                                        ];
-
-                                        var endPaper=$("#endPaper");
-                                        editor4.customConfig.onchange=function (html) {
-                                            endPaper.val(html);
-                                        };
-
-                                        editor4.create();
-                                        endPaper.val(editor4.$txt.html);
                                     </script>
                                 </div>
                             </div>

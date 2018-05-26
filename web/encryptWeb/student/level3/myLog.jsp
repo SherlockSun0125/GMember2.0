@@ -76,15 +76,7 @@
                     </a>
                     <ul class="tab u-tabul">
                         <li class="u-greentab j-tabitem f-f0 first" data-name="开题" data-type="1">
-                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/encryptWeb/student/level3/startProject.jsp">毕设开题</a>
-                        </li>
-                        <li class="u-greentab j-tabitem f-f0 last" data-name="中期" data-type="7"
-                            data-id="2001487096">
-                            <a class="f-thide f-fc3"  href="${pageContext.request.contextPath}/encryptWeb/student/level3/midProject.jsp">毕设中期</a>
-                        </li>
-                        <li class="u-greentab j-tabitem f-f0 last" data-name="终期" data-type="7"
-                            data-id="2001487096">
-                            <a class="f-thide f-fc3"  href="${pageContext.request.contextPath}/encryptWeb/student/level3/endProject.jsp">毕设终期</a>
+                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;毕设开题</a>
                         </li>
                     </ul>
                 </div>

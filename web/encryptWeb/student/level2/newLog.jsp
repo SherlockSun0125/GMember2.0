@@ -107,12 +107,8 @@
                             <span class="f-fl ">学习日志</span>
                         </a>
                         <ul class="tab u-tabul">
-                            <li class="u-greentab j-tabitem f-f0 first" data-name="我的课程" data-type="1">
-                                <a class="f-thide f-fc3" href="myCourse.jsp">我的课程</a>
-                            </li>
-                            <li class="u-greentab j-tabitem f-f0 last" data-name="我的项目" data-type="7"
-                                data-id="2001487096" id="auto-id-1523950289741">
-                                <a class="f-thide f-fc3" href="myProject.jsp">我的项目</a>
+                            <li class="u-greentab j-tabitem f-f0 first last" data-name="我的项目" data-type="1">
+                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
                             </li>
                         </ul>
                     </div>

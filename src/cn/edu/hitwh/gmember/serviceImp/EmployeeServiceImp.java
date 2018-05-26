@@ -12,7 +12,7 @@ public class EmployeeServiceImp implements IEmployeeService {
     @Override
     public Employee login(Employee employee) {
         try{
-           return employeeDao.findEmployee(employee.getEmp_id(),employee.getEmp_pwd());
+           return employeeDao.findEmployee(employee.getEmp_phone(),employee.getEmp_pwd());
         }catch (Exception e){
             throw new RuntimeException(e);
         }

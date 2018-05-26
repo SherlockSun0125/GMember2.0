@@ -266,7 +266,7 @@
     </style>
     <script>
         function checkForm() {
-            if(!$("#empid").val()){
+            if(!$("#empphone").val()){
                 alert("账号不能为空！");
                 return false;
             }
@@ -302,7 +302,7 @@
                 <input type="hidden" name="method" value="employeeLogin"/>
                 <p>
                     <i class="auth_icon auth_icon_user"></i>
-                    <input id="empid" name="empid" placeholder="账号" class="auth_input" type="text" value=""/>
+                    <input id="empphone" name="empphone" placeholder="账号" class="auth_input" type="text" value=""/>
                 </p>
 
                 <p>
@@ -332,7 +332,7 @@
                     <small>1、帐号为手机号。</small>
                 </div>
                 <div>
-                    <small>2、初始密码默认身份证号后6位。</small>
+                    <small>2、初始密码默认手机号。</small>
                 </div>
                 <div>
                     <small>3、如忘记密码请尽快联系管理员。</small>

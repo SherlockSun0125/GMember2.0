@@ -18,7 +18,7 @@ import java.util.List;
 
 public class EmployeeDaoImp implements IEmployeeDao{
     @Override
-    public Employee findEmployee(String id, String pwd) {
+    public Employee findEmployee(String phone, String pwd) {
         String resource = "MyBatisConfig.xml";
         Reader reader = null;
         SqlSession session;
@@ -30,7 +30,7 @@ public class EmployeeDaoImp implements IEmployeeDao{
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         session = sqlSessionFactory.openSession();
         EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
-        Employee employee = employeeMapper.findEmployee(id, pwd);
+        Employee employee = employeeMapper.findEmployee(phone, pwd);
         session.close();
         return employee;
     }

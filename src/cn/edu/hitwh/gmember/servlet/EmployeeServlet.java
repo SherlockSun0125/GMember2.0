@@ -24,10 +24,10 @@ public class EmployeeServlet extends BaseServlet {
     private DateTools dateTools=new DateTools();
 
     public String employeeLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String empid = req.getParameter("empid");
+        String empphone = req.getParameter("empphone");
         String emppwd = req.getParameter("emppwd");
         Employee employee = new Employee();
-        employee.setEmp_id(empid);
+        employee.setEmp_phone(empphone);
         employee.setEmp_pwd(emppwd);
         Employee employeeLogin = employeeService.login(employee);
         if (employeeLogin == null) {

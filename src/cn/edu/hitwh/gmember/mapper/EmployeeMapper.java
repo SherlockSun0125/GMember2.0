@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface EmployeeMapper {
-    public Employee findEmployee(@Param(value = "id") String id, @Param(value = "pwd") String pwd);
+    public Employee findEmployee(@Param(value = "phone") String phone, @Param(value = "pwd") String pwd);
     public List<Employee> findAllEmployeeDetail();
     public Employee findAllEmployeeById(int emp_id);
 }

@@ -355,7 +355,7 @@
                     <small>1、帐号为职工号。</small>
                 </div>
                 <div>
-                    <small>2、初始密码默认身份证号后6位。</small>
+                    <small>2、初始密码默认手机号。</small>
                 </div>
                 <div>
                     <small>3、如忘记密码请尽快联系管理员。</small>

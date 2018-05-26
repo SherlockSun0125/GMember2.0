@@ -838,7 +838,7 @@
                             <span class="f-fl">学习日志</span>
                         </a>
                         <ul class="tab u-tabul">
-                            <li class="u-greentab j-tabitem f-f0 first last u-curtab" data-name="我的课程" data-type="1">
+                            <li class="u-greentab j-tabitem f-f0 first last u-curtab" data-name="我的项目" data-type="1">
                                 <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
                             </li>
                         </ul>
@@ -857,8 +857,8 @@
                                 <span>项目详情</span>
                             </div>
                         </div>
-                        <div class="j-detailBox auto-1524789536709-parent" id="auto-id-1524789537182">
-                            <div class="auto-1524789536709" id="auto-id-1524789537181">
+                        <div class="j-detailBox auto-1524789536709-parent">
+                            <div>
                                 <div class="j-post">
                                     <div class="auto-1524789536693">
                                         <div class="f-cb">

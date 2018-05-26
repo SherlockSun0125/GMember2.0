@@ -70,15 +70,6 @@
                                        href="${pageContext.request.contextPath}/encryptWeb/student/exit.jsp" hidefocus="true">退出</a>
                                 </div>
 
-                                <div class="name j-userinfo" id="auto-id-1523840858750">
-                                    <div class="f-pr">
-                                        <div class="face">
-                                            <img class="j-nav-myimg"
-                                                 src="${pageContext.request.contextPath}/encryptWeb/student/static/head1.jpg"
-                                                 width="30px" height="30px" alt="头像">
-                                        </div>
-                                    </div>
-                                </div>
                                 <a class="username self f-thide" target="_self" data-index="点击用户名"
                                    href="${pageContext.request.contextPath}/encryptWeb/student/setting.jsp">
                                     <span class=" f-fs1 f-f0">${Student.stu_name}</span>
@@ -117,12 +108,8 @@
                             <span class="f-fl ">学习日志</span>
                         </a>
                         <ul class="tab u-tabul">
-                            <li class="u-greentab j-tabitem f-f0 first" data-name="我的课程" data-type="1">
-                                <a class="f-thide f-fc3" href="myCourse.jsp">我的课程</a>
-                            </li>
-                            <li class="u-greentab j-tabitem f-f0 last" data-name="我的项目" data-type="7"
-                                data-id="2001487096" id="auto-id-1523950289741">
-                                <a class="f-thide f-fc3" href="myProject.jsp">我的项目</a>
+                            <li class="u-greentab j-tabitem f-f0 first last" data-name="我的项目" data-type="1">
+                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
                             </li>
                         </ul>
                     </div>

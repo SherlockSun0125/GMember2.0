@@ -15,7 +15,7 @@
         <result property="emp_note" column="emp_note"></result>
     </resultMap>
     <select id="findEmployee" resultType="cn.edu.hitwh.gmember.pojo.Employee">
-        SELECT * FROM employee WHERE emp_id=#{id} AND emp_pwd=#{pwd}
+        SELECT * FROM employee WHERE emp_phone=#{phone} AND emp_pwd=#{pwd}
     </select>
     <select id="findAllEmployeeDetail" resultMap="employeeMap">
         SELECT * FROM employee

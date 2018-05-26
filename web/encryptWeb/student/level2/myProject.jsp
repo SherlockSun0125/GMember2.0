@@ -73,7 +73,7 @@
                         <span class="f-fl">学习日志</span>
                     </a>
                     <ul class="tab u-tabul">
-                        <li class="u-greentab j-tabitem f-f0 first last u-curtab" data-name="我的课程" data-type="1">
+                        <li class="u-greentab j-tabitem f-f0 first last u-curtab" data-name="我的项目" data-type="1">
                             <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
                         </li>
                     </ul>
@@ -88,7 +88,7 @@
                     <!--发帖按钮-->
                     <div class="f-cb">
                         <a class="j-newTopicBtn f-fl" style="margin-bottom:40px;margin-top: 12px;"
-                           href="${pageContext.request.contentType}/encryptWeb/student/level1/newProject.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addProject.png" style="width: 120px"></a>
+                           href="${pageContext.request.contentType}/encryptWeb/student/level2/newProject.jsp"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/addProject.png" style="width: 120px"></a>
                     </div>
                     <!--项目展示-->
                     <div class="u-forumlistwrap j-alltopiclist">
