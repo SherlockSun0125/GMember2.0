@@ -355,8 +355,8 @@ public class StudentServlet extends BaseServlet {
     public String findProjectsByStuLevel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int stu_id=Integer.parseInt(req.getParameter("stuid"));
         int stu_level_id=Integer.parseInt(req.getParameter("stulevelid"));
-        PageBean<Project> projectPageBean=new PageBean<Project>();
-        projectPageBean=projectService.findProjectsByStuLevel(stu_id,stu_level_id);
+
+        PageBean<Project> projectPageBean=projectService.findProjectsByStuLevel(stu_id,stu_level_id);
 
         if (stu_level_id==1){
             req.setAttribute("projectPageBean",projectPageBean);
@@ -365,8 +365,12 @@ public class StudentServlet extends BaseServlet {
             req.setAttribute("projectPageBean",projectPageBean);
             return "f:/encryptWeb/student/level2/myProject.jsp";
         }else{//第三阶段只能有一个项目
-            Project project=projectPageBean.getBeanList().get(0);
-            req.setAttribute("project",project);
+            if (projectPageBean.getTotalRecords()==0){
+                req.setAttribute("project",null);
+            }else {
+                Project project = projectPageBean.getBeanList().get(0);
+                req.setAttribute("project", project);
+            }
             return "f:/encryptWeb/student/level3/myProject.jsp";
         }
     }
@@ -421,11 +425,22 @@ public class StudentServlet extends BaseServlet {
         String projectPlace=req.getParameter("projectPlace");
         String projectMember=req.getParameter("projectMember");
         String projectAbout=req.getParameter("projectAbout");
-        String startPaper=req.getParameter("startPaper");
-        String midPaper=req.getParameter("midPaper");
-        String endPaper=req.getParameter("endPaper");
 
-        System.out.println("来自servlet层的问候1："+project.toString());
+        if (project.getStu_level_id()!=3){
+            String startPaper=req.getParameter("startPaper");
+            String midPaper=req.getParameter("midPaper");
+            String endPaper=req.getParameter("endPaper");
+
+            project.setStart_paper(startPaper);
+            project.setMid_paper(midPaper);
+            project.setEnd_paper(endPaper);
+        }else{
+            project.setStart_paper(project.getStart_paper());
+            project.setMid_paper(project.getMid_paper());
+            project.setEnd_paper(project.getEnd_paper());
+        }
+
+//        System.out.println("来自servlet层的问候1："+project.toString());
 
         //更新项目信息
         project.setProject_name(projectName);
@@ -436,11 +451,8 @@ public class StudentServlet extends BaseServlet {
         project.setProject_place(projectPlace);
         project.setProject_member(projectMember);
         project.setProject_about(projectAbout);
-        project.setStart_paper(startPaper);
-        project.setMid_paper(midPaper);
-        project.setEnd_paper(endPaper);
 
-        System.out.println("来自servlet层的问候2："+project.toString());
+//        System.out.println("来自servlet层的问候2："+project.toString());
 
         projectService.updateProject(project);
 
@@ -576,11 +588,11 @@ public class StudentServlet extends BaseServlet {
 
             projectService.updateProject(project);
 
-            req.setAttribute("msgUploadFile", "上传文件成功");
+            req.setAttribute("msgUploadFile"+projectlevel, "上传文件成功");
 
         } catch (Exception e) {
             e.printStackTrace();
-            req.setAttribute("msgUploadFile", "上传文件失败");
+            req.setAttribute("msgUploadFile"+projectlevel, "上传文件失败");
         }
 
         Project newProject=projectService.findProjectById(projectid);

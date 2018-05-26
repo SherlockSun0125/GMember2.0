@@ -97,14 +97,13 @@
                     </c:when>
                     <c:otherwise>
                         <div>
-                            <!--发帖按钮-->
+                            <!--更改-->
                             <div class="f-cb" style="margin-bottom: 30px;margin-top: 20px">
                                 <div style="margin-bottom:40px;margin-top: 12px;margin-right: 20px;position: absolute;">
                                     <a href="${pageContext.request.contextPath}/studentServlet?method=toUpdateProject&projectid=${project.project_id}">
                                         <img src="${pageContext.request.contextPath}/encryptWeb/student/static/changeGProject.png" style="width: 120px">
                                     </a>
                                 </div>
-                                <small>${msgAddProject}</small>
                             </div>
 
                             <!--帖子展示-->
@@ -158,17 +157,23 @@
                                                             <tr>
                                                                 <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>开<br/>题<br/>汇<br/>报</td>
                                                                 <script>
-                                                                    function checkForm() {
+                                                                    function checkStartForm() {
                                                                         if(!$("#startPaper").val()){
-                                                                            alert("未上传文件！");
+                                                                            alert("未选择任何文件！");
                                                                             return false;
                                                                         }
+                                                                        return true;
+                                                                    }
+                                                                    function checkMidForm() {
                                                                         if(!$("#midPaper").val()){
-                                                                            alert("未上传文件！");
+                                                                            alert("未选择任何文件！");
                                                                             return false;
                                                                         }
+                                                                       return true;
+                                                                    }
+                                                                    function checkEndForm() {
                                                                         if(!$("#endPaper").val()){
-                                                                            alert("未上传文件！");
+                                                                            alert("未选择任何文件！");
                                                                             return false;
                                                                         }
                                                                         return true;
@@ -177,14 +182,15 @@
                                                                 <td colspan="1" style="width: 25em;">
                                                                     <c:choose>
                                                                         <c:when test="${project.start_paper eq null}">
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkStartForm()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=start">
-                                                                                <input type="file" name="startPaper" id="startPaper"><br/>
+                                                                                <input type="file" name="startPaper" id="startPaper">
+                                                                                <br/>
                                                                                 <input type="submit" value="上传开题报告" class="btn btn-success">
                                                                             </form>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkStartForm()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=start">
                                                                                 <input type="file" name="startPaper">
                                                                                 <br/>
@@ -193,7 +199,7 @@
                                                                                 <a class="btn btn-info" href="${pageContext.request.contextPath}/upload/${project.start_paper}">下载开题报告</a><br/>
                                                                         </c:otherwise>
                                                                     </c:choose>
-                                                                    <small>${msgUploadFile}</small>
+                                                                    <small>${msgUploadFilestart}</small>
                                                                 </td>
                                                                 <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">导<br/>师<br/>评<br/>价</td>
                                                                 <td>
@@ -205,14 +211,15 @@
                                                                 <td colspan="1">
                                                                     <c:choose>
                                                                         <c:when test="${project.mid_paper eq null}">
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkMidForm()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=mid">
-                                                                                <input type="file" name="midPaper" id="midPaper"><br/>
+                                                                                <input type="file" name="midPaper" id="midPaper">
+                                                                                <br/>
                                                                                 <input type="submit" value="上传中期报告" class="btn btn-success">
                                                                             </form>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkMidForm()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=mid">
                                                                                 <input type="file" name="midPaper">
                                                                                 <br/>
@@ -221,7 +228,7 @@
                                                                             <a class="btn btn-info" href="${pageContext.request.contextPath}/upload/${project.mid_paper}">下载中期报告</a><br/>
                                                                         </c:otherwise>
                                                                     </c:choose>
-                                                                    <small>${msgUploadFile}</small>
+                                                                    <small>${msgUploadFilemid}</small>
                                                                 </td>
                                                                 <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">导<br/>师<br/>评<br/>价</td>
                                                                 <td>
@@ -233,14 +240,15 @@
                                                                 <td colspan="1">
                                                                     <c:choose>
                                                                         <c:when test="${project.end_paper eq null}">
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkEndForm()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=end">
                                                                                 <input type="file" name="endPaper" id="endPaper">
+                                                                                <br/>
                                                                                 <input type="submit" value="上传终期报告" class="btn btn-success">
                                                                             </form>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkEndForm()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=end">
                                                                                 <input type="file" name="endPaper">
                                                                                 <br/>
@@ -249,7 +257,7 @@
                                                                             <a class="btn btn-info" href="${pageContext.request.contextPath}/upload/${project.end_paper}">下载终期报告</a><br/>
                                                                         </c:otherwise>
                                                                     </c:choose>
-                                                                    <small>${msgUploadFile}</small>
+                                                                    <small>${msgUploadFileend}</small>
                                                                 </td>
                                                                 <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">导<br/>师<br/>评<br/>价</td>
                                                                 <td colspan="1">
@@ -259,6 +267,7 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                    <small>${msgAddProject}</small>
                                                 </div>
                                             </div>
                                         </div>

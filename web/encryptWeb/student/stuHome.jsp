@@ -413,11 +413,18 @@
         <div class="ux-user-info-bottom">
             <div class="ux-user-info-bottom_name">${Student.stu_name}</div>
             <div class="ux-user-info-bottom_description f-pr">
-                <span>${Student.stu_note}</span>
+                <c:choose>
+                    <c:when test="${Student.stu_note eq null}">
+                        <br/>
+                    </c:when>
+                    <c:otherwise>
+                        <span>${Student.stu_note}</span>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
-    <div class="ux-user-info_show">
+    <div style="margin-top: 80px">
         <div class="container">
             <!-- !important -->
             <div class="row highlights">
@@ -449,7 +456,6 @@
                                 <h5>工程学习阶段</h5>
                                 <p>
                                     <%--你不在该阶段！--%>
-                                    <br/>
                                     <br/>
                                     <br/>
                                 </p>
@@ -488,7 +494,6 @@
                                     <%--你不在该阶段！--%>
                                     <br/>
                                     <br/>
-                                    <br/>
                                 </p>
                                 <a class="btn-small btn-hl" disabled="disabled" onclick="notIn()"><span>进入</span></a>
                             </div>
@@ -525,7 +530,6 @@
                                      <%--你不在该阶段！--%>
                                      <br/>
                                      <br/>
-                                     <br/>
                                  </p>
                                  <a class="btn-small btn-hl" disabled="disabled" onclick="notIn()"><span>进入</span></a>
                              </div>
@@ -537,7 +541,8 @@
                         <c:choose>
                             <c:when test="${Student.stu_level_id eq 4}">
                             <div class="hl-circle">
-                                <a class="hl-icon4" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=4">就业推荐阶段</a>
+                                <a class="hl-icon4" href="${pageContext.request.contextPath}/encryptWeb/student/level4/myResume.jsp">就业推荐阶段</a>
+                                <%--<a class="hl-icon4" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=4">就业推荐阶段</a>--%>
                             </div>
 
                             <div class="highlights-content clearfix">
@@ -546,9 +551,8 @@
                                     你当前处于就业推荐阶段！
                                     <br/>
                                     祝你找到好工作！
-                                    <br/>
                                 </p>
-                                <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=4">
+                                <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/encryptWeb/student/level4/myResume.jsp">
                                     <span>进入</span>
                                 </a>
                             </div>
@@ -562,7 +566,6 @@
                                     <h5>就业推荐阶段</h5>
                                     <p>
                                         <%--你不在该阶段！--%>
-                                        <br/>
                                         <br/>
                                         <br/>
                                     </p>

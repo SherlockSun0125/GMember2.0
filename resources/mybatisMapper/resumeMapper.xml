@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatisTest.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.hitwh.gmember.mapper.ResumeMapper">
+    <resultMap id="resumeMap" type="cn.edu.hitwh.gmember.pojo.Resume">
+        <id property="resume_id" column="resume_id"></id>
+        <result property="stu_id" column="stu_id"></result>
+        <result property="resume_path" column="resume_path"></result>
+        <result property="resume_advice" column="resume_advice"></result>
+        <result property="resume_advice_time" column="resume_advice_time"></result>
+    </resultMap>
+    
+    <!--<select id="findResumeByStuId">-->
+      <!--SELECT-->
+
+       <!---->
+    <!--</select>-->
+
+</mapper>

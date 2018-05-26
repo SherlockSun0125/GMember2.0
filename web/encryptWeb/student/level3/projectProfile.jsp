@@ -779,6 +779,16 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/encryptWeb/student/static/wangEditor.min.js"></script>
+    <style>
+        input{
+            /*文本框样式*/
+            border: none;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f8f8;
+        }
+    </style>
 </head>
 
 <body style="background-color: #EEEEEE;">
@@ -827,7 +837,7 @@
     <!--网页主体-->
     <div id="g-body">
         <div class="m-cbg"></div>
-        <div class="g-wrap f-cb" id="auto-id-1524789537185">
+        <div class="g-wrap f-cb">
             <!--左侧侧边栏-->
             <div class="g-sd1">
                 <div class="m-learnleft">
@@ -835,11 +845,11 @@
                         <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb"  data-type="30"
                            href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                             <div class="ic f-fl"></div>
-                            <span class="f-fl">学习日志</span>
+                            <span class="f-fl">毕设日志</span>
                         </a>
                         <ul class="tab u-tabul">
-                            <li class="u-greentab j-tabitem f-f0 first last u-curtab" data-name="我的项目" data-type="1">
-                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">我的项目</a>
+                            <li class="u-greentab j-tabitem f-f0 first u-curtab" data-name="毕业设计" data-type="1">
+                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;毕业设计</a>
                             </li>
                         </ul>
                     </div>
@@ -848,86 +858,149 @@
 
             <!--中间-->
             <div class="g-mn1">
-                <div class="g-mn1c m-learnbox" id="courseLearn-inner-box">
+                <div class="g-mn1c m-learnbox">
                     <div class="u-learn-modulewidth" style="width: 90%">
                         <div class="j-breadNavBox">
                             <div class="u-forumbreadnav">
-                                <a href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">工程学习阶段</a>
+                                <a href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">毕业设计阶段</a>
                                 <span class="f-icon split"></span>
-                                <span>项目详情</span>
+                                <span>毕设更新</span>
                             </div>
                         </div>
-                        <div class="j-detailBox auto-1524789536709-parent">
+                        <div class="j-detailBox">
                             <div>
+                                <script type="text/javascript">
+                                    function checkForm() {
+                                        if(!$("#projectName").val()){
+                                            alert("项目名称不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectStartTime").val()){
+                                            alert("项目开始时间不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectStopTime").val()){
+                                            alert("项目结束时间不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectPlace").val()){
+                                            alert("项目地点不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectMember").val()){
+                                            alert("项目成员不能为空！");
+                                            return false;
+                                        }
+                                        if(!$("#projectAbout").val()){
+                                            alert("备注不能为空！");
+                                            return false;
+                                        }
+                                        return true;
+                                    }
+                                </script>
                                 <div class="j-post">
-                                    <div class="auto-1524789536693">
-                                        <div class="f-cb">
-                                            <table class="table table-bordered">
-                                                <tbody>
+                                    <form action="${pageContext.request.contextPath}/studentServlet?method=updateProject&projectid=${project.project_id}" method="post" onsubmit="return checkForm()">
+                                        <div class="auto-1524789536693">
+                                            <div class="f-cb">
+                                                <table class="table table-bordered" cellpadding="0" cellspacing="0">
+                                                    <tbody>
                                                     <tr>
-                                                        <td style="width: 6em;text-align: center;font-weight: bold">项目名称</td>
-                                                        <td colspan="3">${project.project_name}
-                                                            <c:choose>
-                                                                <c:when test="${project.isEnd eq 0}">
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <span style="color: red">&nbsp(已结束)</span>
-                                                                </c:otherwise>
-                                                            </c:choose>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目名称</td>
+                                                        <td colspan="3">
+                                                            <input type="text" name="projectName" value="${project.project_name}" id="projectName">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="width: 6em;text-align: center;font-weight: bold">所属课程</td>
-                                                        <td>${project.course}</td>
-                                                        <td style="width: 6em;text-align: center;font-weight: bold">负责教师</td>
-                                                        <td>${project.teacher}</td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">&nbsp;&nbsp;</em>所属课程</td>
+                                                        <td>
+                                                            <input type="text" name="projectCourse" value="${project.course}" id="projectCourse">
+                                                        </td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">&nbsp;&nbsp;</em>负责教师</td>
+                                                        <td>
+                                                            <input type="text" name="projectTeacher" value="${project.teacher}" id="projectTeacher">
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="width: 6em;text-align: center;font-weight: bold">开始时间</td>
-                                                        <td>${project.project_start_time}</td>
-                                                        <td style="width: 6em;text-align: center;font-weight: bold">结束时间</td>
-                                                        <td>${project.project_stop_time}</td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>开始时间</td>
+                                                        <td>
+                                                            <input type="text" name="projectStartTime" value="${project.project_start_time}" id="projectStartTime">
+                                                        </td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>结束时间</td>
+                                                        <td>
+                                                            <input type="text" name="projectStopTime" value="${project.project_stop_time}" id="projectStopTime">
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="width: 6em;text-align: center;font-weight: bold">地点</td>
-                                                        <td>${project.project_place}</td>
-                                                        <td style="width: 6em;text-align: center;font-weight: bold">成员</td>
-                                                        <td>${project.project_member}</td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目地点</td>
+                                                        <td>
+                                                            <input type="text" name="projectPlace" value="${project.project_place}" id="projectPlace">
+                                                        </td>
+                                                        <td style="width: 6em;text-align: center;font-weight: bold"><em style="color: red;vertical-align: middle">*&nbsp;</em>项目成员</td>
+                                                        <td>
+                                                            <input type="text" name="projectMember" value="${project.project_member}" id="projectMember">
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="height:10em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">备<br/>注</td>
-                                                        <td colspan="3">${project.project_about}</td>
+                                                        <td style="height:10em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle"><em style="color: red;vertical-align: middle">*</em><br/>备<br/>注</td>
+                                                        <td colspan="3">
+                                                            <div id="editor1" style="width: 100%;height: 100%;border: none;">
+                                                                <p>${project.project_about}</p>
+                                                            </div>
+                                                            <textarea id="projectAbout" name="projectAbout" style="width:100%; height:200px;display: none">${project.project_about}</textarea>
+                                                        </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>开<br/>题<br/>汇<br/>报</td>
-                                                        <td colspan="3">${project.start_paper}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>中<br/>期<br/>汇<br/>报</td>
-                                                        <td colspan="3">${project.mid_paper}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>终<br/>期<br/>汇<br/>报</td>
-                                                        <td colspan="3">${project.end_paper}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="infobar f-cb"></div>
-                                        <div class="optbar f-cb">
-                                            <div class="f-cb f-fr optBox j-optBox">
-                                                <a hidefocus="true" class="f-fr f-fc9 opt delBtn j-delBtn" href="${pageContext.request.contextPath}/studentServlet?method=deleteProject&projectid=${project.project_id}">删除</a>
-                                                <div class="f-fr divider">|</div>
-                                                <a hidefocus="true" class="f-fl f-fc9 editBtn j-editBtn" href="${pageContext.request.contextPath}/studentServlet?method=toUpdateProject&projectid=${project.project_id}">更新</a>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="infobar f-cb"></div>
+                                            <div class="optbar f-cb">
+                                                <div class="f-cb f-fr optBox j-optBox">
+                                                    <button class="btn btn-success" type="submit">更新</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
+                                    <%--初始化四个编辑器--%>
+                                    <script type="text/javascript">
+                                    var E = window.wangEditor;
+                                    var editor1 = new E('#editor1');
+
+                                    editor1.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+                                    editor1.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
+                                    editor1.customConfig.menus = [
+                                        'head',  // 标题
+                                        'bold',  // 粗体
+                                        'fontSize',  // 字号
+                                        'fontName',  // 字体
+                                        'italic',  // 斜体
+                                        'underline',  // 下划线
+                                        'strikeThrough',  // 删除线
+                                        'foreColor',  // 文字颜色
+                                        'backColor',  // 背景颜色
+                                        'link',  // 插入链接
+                                        'justify',  // 对齐方式
+                                        'quote',  // 引用
+                                        'emoticon',  // 表情
+                                        'image',  // 插入图片
+                                        'table',  // 表格
+                                        'video',  // 插入视频
+                                        'code',  // 插入代码
+                                        'undo',  // 撤销
+                                        'redo'  // 重复
+                                    ];
+
+                                    var projectAbout=$("#projectAbout");
+                                    editor1.customConfig.onchange=function (html) {
+                                        projectAbout.val(html);
+                                    };
+
+                                    editor1.create();
+                                    projectAbout.val(editor1.$txt.html);
+                                    </script>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        <small>${msgUpdateProject}</small>
-                        <small>${msgAddProject}</small>
                 </div>
             </div>
         </div>

@@ -82,7 +82,7 @@
                         </li>
                         <li class="u-greentab j-tabitem f-f0 last" data-name="我的项目" data-type="7"
                             data-id="2001487096" id="auto-id-1523950289741">
-                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevleid=${Student.stu_level_id}">我的项目</a>
+                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">我的项目</a>
                         </li>
                     </ul>
                 </div>

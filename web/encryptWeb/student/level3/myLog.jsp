@@ -33,7 +33,7 @@
                     <div class="userinfo f-fr f-cb f-pr">
                         <div class="login f-cb">
                             <div class="u-mystudy f-pr f-cb f-fr">
-                                <a class="mystudy nitem f-f0" data-index="用户退出" target="_blank"
+                                <a class="mystudy nitem f-f0" data-index="用户退出" target="_self"
                                    href="${pageContext.request.contextPath}/encryptWeb/student/exit.jsp" hidefocus="true">退出</a>
                             </div>
 
@@ -70,7 +70,7 @@
             <div class="m-learnleft">
                 <div id="j-courseTabList">
                     <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab"  data-type="30"
-                    href="${pageContext.request.contextPath}/studentServlet?method=method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
+                    href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                         <div class="ic f-fl"></div>
                         <span class="f-fl">毕设日志</span>
                     </a>

@@ -828,26 +828,18 @@
     <div id="g-body">
         <div class="m-cbg"></div>
         <div class="g-wrap f-cb" id="auto-id-1524789537185">
-            <!--左侧边栏-->
+            <!--左侧侧边栏-->
             <div class="g-sd1">
                 <div class="m-learnleft">
                     <div id="j-courseTabList">
-                        <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab" data-type="30"
+                        <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb u-curtab"  data-type="30"
                            href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">
                             <div class="ic f-fl"></div>
-                            <span class="f-fl ">毕设日志</span>
+                            <span class="f-fl">毕设日志</span>
                         </a>
                         <ul class="tab u-tabul">
                             <li class="u-greentab j-tabitem f-f0 first" data-name="开题" data-type="1">
-                                <a class="f-thide f-fc3" href="startProgram.jsp">毕设开题</a>
-                            </li>
-                            <li class="u-greentab j-tabitem f-f0 last" data-name="中期" data-type="7"
-                                data-id="2001487096">
-                                <a class="f-thide f-fc3"  href="midProject.jsp">毕设中期</a>
-                            </li>
-                            <li class="u-greentab j-tabitem f-f0 last" data-name="终期" data-type="7"
-                                data-id="2001487096">
-                                <a class="f-thide f-fc3"  href="endProject.jsp">毕设终期</a>
+                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;毕设开题</a>
                             </li>
                         </ul>
                     </div>
