@@ -94,19 +94,19 @@
             <div class="m-learnleft">
                 <div id="j-courseTabList">
                     <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb  u-curtab" data-type="30"
-                    href="${pageContext.request.contextPath}/studentServlet?method=findResumeByStuId&stuid=${Student.stu_id}">
-                    <div class="ic_2 f-fl"></div>
-                    <span class="f-fl">我的简历</span>
+                        href="${pageContext.request.contextPath}/studentServlet?method=findResumeByStuId&stuid=${Student.stu_id}">
+                        <div class="ic_2 f-fl"></div>
+                        <span class="f-fl">我的简历</span>
                     </a>
-                    <ul class="tab u-tabul">
-                        <li class="u-greentab j-tabitem f-f0 first" data-name="导师推荐" data-type="1">
-                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/encryptWeb/student/level4/empRecommend.jsp">导师推荐</a>
-                        </li>
-                        <li class="u-greentab j-tabitem f-f0 last" data-name="我的投递" data-type="7"
-                            data-id="2001487096" id="auto-id-1523950289741">
-                            <a class="f-thide f-fc3"  href="${pageContext.request.contextPath}/encryptWeb/student/level4/myDelivery.jsp">我的投递</a>
-                        </li>
-                    </ul>
+                    <%--<ul class="tab u-tabul">--%>
+                        <%--<li class="u-greentab j-tabitem f-f0 first" data-name="导师推荐" data-type="1">--%>
+                            <%--<a class="f-thide f-fc3" href="${pageContext.request.contextPath}/encryptWeb/student/level4/empRecommend.jsp">导师推荐</a>--%>
+                        <%--</li>--%>
+                        <%--<li class="u-greentab j-tabitem f-f0 last" data-name="我的投递" data-type="7"--%>
+                            <%--data-id="2001487096" id="auto-id-1523950289741">--%>
+                            <%--<a class="f-thide f-fc3"  href="${pageContext.request.contextPath}/encryptWeb/student/level4/myDelivery.jsp">我的投递</a>--%>
+                        <%--</li>--%>
+                    <%--</ul>--%>
                 </div>
             </div>
         </div>
@@ -133,13 +133,14 @@
                                       action="${pageContext.request.contextPath}/studentServlet?method=updateResume&resumeid=${resume.resume_id}">
                                     <input type="file" name="resume"><br/>
                                     <button style="margin-right: 20px;border: none" type="submit">
-                                        <img src="${pageContext.request.contextPath}/encryptWeb/student/static/uploadResume.png" style="width: 120px">
+                                        <img src="${pageContext.request.contextPath}/encryptWeb/student/static/reUploadResume.png" style="width: 120px">
                                     </button>
+                                    <a  href="${pageContext.request.contextPath}/upload/${resume.resume_path}" target="pdfContainer" onclick="showPdf(true)" style="width: 120px;padding-right: 20px">
+                                        <img src="${pageContext.request.contextPath}/encryptWeb/student/static/lookResume.png" style="width: 120px">
+                                    </a>
                                 </form>
 
-                                <a  href="${pageContext.request.contextPath}/upload/${resume.resume_path}" target="pdfContainer" onclick="showPdf(true)" style="width: 120px;padding-right: 20px">
-                                    <img src="${pageContext.request.contextPath}/encryptWeb/student/static/lookResume.png" style="width: 120px">
-                                </a>
+
                             </c:otherwise>
                         </c:choose>
                         <small>${msgAddResume}</small>
@@ -148,10 +149,10 @@
                     <!--帖子展示-->
                     <div class="u-forumlistwrap j-alltopiclist">
                         <div class="m-flwrap">
-                            <div class="ttitle">
-                                <h4 class="f-fl f-fc3">导师反馈</h4>
-                                <div class="f-fl u-coursecate j-lessonuit"></div>
-                            </div>
+                            <%--<div class="ttitle">--%>
+                                <%--<h4 class="f-fl f-fc3">导师反馈</h4>--%>
+                                <%--<div class="f-fl u-coursecate j-lessonuit"></div>--%>
+                            <%--</div>--%>
                             <script src="${pageContext.request.contextPath}/pdfjs/build/pdf.js"></script>
                             <script src="${pageContext.request.contextPath}/pdfjs/build/pdf.worker.js"></script>
                             <script type="text/javascript">

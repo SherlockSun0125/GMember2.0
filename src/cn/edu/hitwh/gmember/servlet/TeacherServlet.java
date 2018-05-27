@@ -69,16 +69,24 @@ public class TeacherServlet extends BaseServlet {
 
         req.setAttribute("pb",stuLogPageBean);
         req.setAttribute("coursePageBean",coursePageBean);
-        req.setAttribute("projectPageBean",projectPageBean);
         req.setAttribute("studentPageBean",studentPageBean);
         req.setAttribute("stu",firstStu);
         req.setAttribute("studentPageBean",studentPageBean);
 
         if (stulevelid==1){
+            req.setAttribute("projectPageBean",projectPageBean);
             return "f:/encryptWeb/teacher/level1/stuList.jsp";
         }else if (stulevelid==2){
+            req.setAttribute("projectPageBean",projectPageBean);
             return "f:/encryptWeb/teacher/level2/stuList.jsp";
         }else if(stulevelid==3){
+            if (projectPageBean.getTotalRecords()==0){
+                req.setAttribute("project",null);
+            }else {
+                Project project=projectPageBean.getBeanList().get(0);
+                System.out.println("获取到的毕设为："+project.toString());
+                req.setAttribute("project",project);
+            }
             return "f:/encryptWeb/teacher/level3/stuList.jsp";
         }else{
             return "f:/encryptWeb/teacher/level4/stuList.jsp";
@@ -104,15 +112,23 @@ public class TeacherServlet extends BaseServlet {
 
         req.setAttribute("pb",stuLogPageBean);
         req.setAttribute("coursePageBean",coursePageBean);
-        req.setAttribute("projectPageBean",projectPageBean);
         req.setAttribute("studentPageBean",studentPageBean);
         req.setAttribute("stu",student);
 
         if (stulevelid==1){
+            req.setAttribute("projectPageBean",projectPageBean);
             return "f:/encryptWeb/teacher/level1/stuList.jsp";
         }else if (stulevelid==2){
+            req.setAttribute("projectPageBean",projectPageBean);
             return "f:/encryptWeb/teacher/level2/stuList.jsp";
         }else{
+            if (projectPageBean.getTotalRecords()==0){
+                req.setAttribute("project",null);
+            }else {
+                Project project=projectPageBean.getBeanList().get(0);
+                System.out.println("获取到的毕设为："+project.toString());
+                req.setAttribute("project",project);
+            }
             return "f:/encryptWeb/teacher/level3/stuList.jsp";
         }
     }

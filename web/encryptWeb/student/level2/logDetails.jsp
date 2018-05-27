@@ -851,7 +851,7 @@
             <!--中间-->
             <div class="g-mn1">
                 <div class="g-mn1c m-learnbox" id="courseLearn-inner-box">
-                    <div class="u-learn-modulewidth" id="auto-id-1524789537183">
+                    <div class="u-learn-modulewidth"  style="width: 96%">
                         <div class="j-breadNavBox">
                             <div class="u-forumbreadnav">
                                 <a href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">工程学习阶段</a>

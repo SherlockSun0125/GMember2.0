@@ -76,7 +76,7 @@
                     </a>
                     <ul class="tab u-tabul">
                         <li class="u-greentab j-tabitem f-f0 first" data-name="开题" data-type="1">
-                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;毕设开题</a>
+                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/studentServlet?method=findProjectsByStuLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;毕业设计</a>
                         </li>
                     </ul>
                 </div>

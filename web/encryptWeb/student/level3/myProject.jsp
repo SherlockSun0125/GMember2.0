@@ -10,10 +10,29 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-    <%--<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/pdfjs/web/viewer.css">--%>
-    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/pdfjs/build/pdf.js"></script>--%>
-    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/pdfjs/build/pdf.worker.js"></script>--%>
-    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/pdfjs/web/viewer.js"></script>--%>
+    <style type="text/css">
+        .lightbox{
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            z-index: 7;
+            opacity: 0.3;
+            display: block;
+            background-color: rgb(0, 0, 0);
+            display: none;
+        }
+        .pop,iframe{
+            position: absolute;
+            left: 50%;
+            top:0;
+            width: 893px;
+            height: 100%;
+            margin-left: -446.5px;
+            z-index: 9;
+        }
+    </style>
 </head>
 <body style="background-color: #EEEEEE">
 <!--头部-->
@@ -115,9 +134,7 @@
                                     </div>
                                     <div class="j-detailBox auto-1524789536709-parent">
                                         <div>
-                                            <div class="j-post">
-                                                <div class="auto-1524789536693">
-                                                    <div class="f-cb">
+                                            <div class="f-cb">
                                                         <table class="table table-bordered">
                                                             <tbody>
                                                             <tr>
@@ -157,23 +174,44 @@
                                                             <tr>
                                                                 <td style="height:12em;width: 6em;text-align: center;font-weight: bold;vertical-align: middle">项<br/>目<br/>开<br/>题<br/>汇<br/>报</td>
                                                                 <script>
-                                                                    function checkStartForm() {
-                                                                        if(!$("#startPaper").val()){
-                                                                            alert("未选择任何文件！");
+                                                                    function checkStartForm1() {
+                                                                        if(!$("#startPaper1").val()){
+                                                                            alert("开题报告：未选择任何文件！");
                                                                             return false;
                                                                         }
                                                                         return true;
                                                                     }
-                                                                    function checkMidForm() {
-                                                                        if(!$("#midPaper").val()){
-                                                                            alert("未选择任何文件！");
+                                                                    function checkMidForm1() {
+                                                                        if(!$("#midPaper1").val()){
+                                                                            alert("中期报告：未选择任何文件！");
                                                                             return false;
                                                                         }
                                                                        return true;
                                                                     }
-                                                                    function checkEndForm() {
-                                                                        if(!$("#endPaper").val()){
-                                                                            alert("未选择任何文件！");
+                                                                    function checkEndForm1() {
+                                                                        if(!$("#endPaper1").val()){
+                                                                            alert("终期报告：未选择任何文件！");
+                                                                            return false;
+                                                                        }
+                                                                        return true;
+                                                                    }
+                                                                    function checkStartForm2() {
+                                                                        if(!$("#startPaper2").val()){
+                                                                            alert("开题报告：未选择任何文件！");
+                                                                            return false;
+                                                                        }
+                                                                        return true;
+                                                                    }
+                                                                    function checkMidForm2() {
+                                                                        if(!$("#midPaper2").val()){
+                                                                            alert("中期报告：未选择任何文件！");
+                                                                            return false;
+                                                                        }
+                                                                        return true;
+                                                                    }
+                                                                    function checkEndForm2() {
+                                                                        if(!$("#endPaper2").val()){
+                                                                            alert("终期报告：未选择任何文件！");
                                                                             return false;
                                                                         }
                                                                         return true;
@@ -182,21 +220,21 @@
                                                                 <td colspan="1" style="width: 25em;">
                                                                     <c:choose>
                                                                         <c:when test="${project.start_paper eq null}">
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkStartForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkStartForm1()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=start">
-                                                                                <input type="file" name="startPaper" id="startPaper">
+                                                                                <input type="file" name="startPaper" id="startPaper1">
                                                                                 <br/>
                                                                                 <input type="submit" value="上传开题报告" class="btn btn-success">
                                                                             </form>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkStartForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkStartForm2()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=start">
-                                                                                <input type="file" name="startPaper">
+                                                                                <input type="file" name="startPaper" id="startPaper2">
                                                                                 <br/>
-                                                                                <input type="submit" value="上传开题报告" class="btn btn-success">
+                                                                                <input type="submit" value="重传开题报告" class="btn btn-success">
                                                                             </form>
-                                                                                <a class="btn btn-info" href="${pageContext.request.contextPath}/upload/${project.start_paper}">下载开题报告</a><br/>
+                                                                                <a class="btn btn-info"  target="pdfContainer" onclick="showPdf(true)" href="${pageContext.request.contextPath}/upload/${project.start_paper}">查看开题报告</a><br/>
                                                                         </c:otherwise>
                                                                     </c:choose>
                                                                     <small>${msgUploadFilestart}</small>
@@ -211,21 +249,21 @@
                                                                 <td colspan="1">
                                                                     <c:choose>
                                                                         <c:when test="${project.mid_paper eq null}">
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkMidForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkMidForm1()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=mid">
-                                                                                <input type="file" name="midPaper" id="midPaper">
+                                                                                <input type="file" name="midPaper" id="midPaper1">
                                                                                 <br/>
                                                                                 <input type="submit" value="上传中期报告" class="btn btn-success">
                                                                             </form>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkMidForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkMidForm2()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=mid">
-                                                                                <input type="file" name="midPaper">
+                                                                                <input type="file" name="midPaper" id="midPaper2">
                                                                                 <br/>
-                                                                                <input type="submit" value="上传中期报告" class="btn btn-success">
+                                                                                <input type="submit" value="重传中期报告" class="btn btn-success">
                                                                             </form>
-                                                                            <a class="btn btn-info" href="${pageContext.request.contextPath}/upload/${project.mid_paper}">下载中期报告</a><br/>
+                                                                            <a class="btn btn-info"  target="pdfContainer" onclick="showPdf(true)" href="${pageContext.request.contextPath}/upload/${project.mid_paper}">查看中期报告</a><br/>
                                                                         </c:otherwise>
                                                                     </c:choose>
                                                                     <small>${msgUploadFilemid}</small>
@@ -240,21 +278,21 @@
                                                                 <td colspan="1">
                                                                     <c:choose>
                                                                         <c:when test="${project.end_paper eq null}">
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkEndForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkEndForm1()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=end">
-                                                                                <input type="file" name="endPaper" id="endPaper">
+                                                                                <input type="file" name="endPaper" id="endPaper1">
                                                                                 <br/>
                                                                                 <input type="submit" value="上传终期报告" class="btn btn-success">
                                                                             </form>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkEndForm()"
+                                                                            <form class="form-group" method="post" enctype="multipart/form-data" onsubmit="return checkEndForm2()"
                                                                                   action="${pageContext.request.contextPath}/studentServlet?method=uploadFile&projectid=${project.project_id}&projectlevel=end">
-                                                                                <input type="file" name="endPaper">
+                                                                                <input type="file" name="endPaper" id="endPaper2">
                                                                                 <br/>
-                                                                                <input type="submit" value="上传终期报告" class="btn btn-success">
+                                                                                <input type="submit" value="重传终期报告" class="btn btn-success">
                                                                             </form>
-                                                                            <a class="btn btn-info" href="${pageContext.request.contextPath}/upload/${project.end_paper}">下载终期报告</a><br/>
+                                                                            <a class="btn btn-info" target="pdfContainer" onclick="showPdf(true)" href="${pageContext.request.contextPath}/upload/${project.end_paper}">查看终期报告</a><br/>
                                                                         </c:otherwise>
                                                                     </c:choose>
                                                                     <small>${msgUploadFileend}</small>
@@ -267,7 +305,39 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                    <small>${msgAddProject}</small>
+                                            <small>${msgAddProject}</small>
+                                        </div>
+                                        <div>
+                                            <script src="${pageContext.request.contextPath}/pdfjs/build/pdf.js"></script>
+                                            <script src="${pageContext.request.contextPath}/pdfjs/build/pdf.worker.js"></script>
+                                            <script type="text/javascript">
+                                                function showPdf(isShow){
+                                                    var state = "";
+                                                    if(isShow){
+                                                        state = "block";
+                                                    }else{
+                                                        state = "none";
+                                                    }
+                                                    var pop = document.getElementById("pop");
+                                                    pop.style.display = state;
+                                                    var lightbox = document.getElementById("lightbox");
+                                                    lightbox.style.display = state;
+                                                }
+                                                function close(){
+                                                    showPdf(false);
+                                                }
+                                            </script>
+                                            <div>
+                                                <div class="lightbox" id="lightbox"></div>
+                                                <div id="pop" class="pop" style="display: none;">
+                                                    <a href="javascript:close()" style="
+                                                                    position: absolute;
+                                                                    right: -90px;
+                                                                    display: inline-block;
+                                                                    width: 80px;
+                                                                    height: 30px;
+                                                                " id="close"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/close.png" width="25px"></a>
+                                                    <iframe src="" frameborder="0" id="pdfContainer" name="pdfContainer"></iframe>
                                                 </div>
                                             </div>
                                         </div>

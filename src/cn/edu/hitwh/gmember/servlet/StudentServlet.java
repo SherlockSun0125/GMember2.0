@@ -561,37 +561,39 @@ public class StudentServlet extends BaseServlet {
             //获取文件的后缀
             String str=name.substring(name.lastIndexOf("."), name.length()-1);
             System.out.println("测试获取文件的后缀："+str);
-
-            //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
+            if (!str.equals(".pdf")){
+                req.setAttribute("msgUploadFile"+projectlevel, "上传文件失败!请上传PDF文件！");
+            }else{
+                //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
 //            String fname= UUID.randomUUID().toString()+str;
-            Date date=new Date();
-            DateTools dateTools=new DateTools();
-            String fname="";
+                Date date=new Date();
+                DateTools dateTools=new DateTools();
+                String fname="";
 
-            if (projectlevel.equals("start")) {
-                fname= student.getStu_id() + "-" + project.getProject_name() +"-开题报告-"+ dateTools.date2Str2(date) + str;
-                //将路径存入数据库
-                project.setStart_paper(fname);
-            }else if (projectlevel.equals("mid")){
-                fname = student.getStu_id() + "-" + project.getProject_name()+"-中期报告-" + dateTools.date2Str2(date) + str;
-                //将路径存入数据库
-                project.setMid_paper(fname);
-            }else {
-                fname = student.getStu_id() + "-" + project.getProject_name()+"-终期报告-"+ dateTools.date2Str2(date) + str;
-                //将路径存入数据库
-                project.setEnd_paper(fname);
+                if (projectlevel.equals("start")) {
+                    fname= student.getStu_id() + "-" + project.getProject_name() +"-开题报告-"+ dateTools.date2Str2(date) + str;
+                    //将路径存入数据库
+                    project.setStart_paper(fname);
+                }else if (projectlevel.equals("mid")){
+                    fname = student.getStu_id() + "-" + project.getProject_name()+"-中期报告-" + dateTools.date2Str2(date) + str;
+                    //将路径存入数据库
+                    project.setMid_paper(fname);
+                }else {
+                    fname = student.getStu_id() + "-" + project.getProject_name()+"-终期报告-"+ dateTools.date2Str2(date) + str;
+                    //将路径存入数据库
+                    project.setEnd_paper(fname);
+                }
+
+                String filename=root+"\\"+fname;
+                System.out.println("测试产生新的文件名："+filename);
+
+                //上传文件到指定目录，不想上传文件就不调用这个
+                part.write(filename);
+
+                projectService.updateProject(project);
+
+                req.setAttribute("msgUploadFile"+projectlevel, "上传文件成功");
             }
-
-            String filename=root+"\\"+fname;
-            System.out.println("测试产生新的文件名："+filename);
-
-            //上传文件到指定目录，不想上传文件就不调用这个
-            part.write(filename);
-
-            projectService.updateProject(project);
-
-            req.setAttribute("msgUploadFile"+projectlevel, "上传文件成功");
-
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("msgUploadFile"+projectlevel, "上传文件失败");
@@ -855,26 +857,30 @@ public class StudentServlet extends BaseServlet {
             String str=name.substring(name.lastIndexOf("."), name.length()-1);
             System.out.println("测试获取文件的后缀："+str);
 
-            //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
+            if (!str.equals(".pdf")){
+                req.setAttribute("msgAddResume", "上传文件失败!请上传PDF文件！");
+            }else {
+                //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
 //            String fname= UUID.randomUUID().toString()+str;
-            Date date=new Date();
-            DateTools dateTools=new DateTools();
-            String fname="";
+                Date date = new Date();
+                DateTools dateTools = new DateTools();
+                String fname = "";
 
-            fname= student.getStu_id() + "-" + student.getStu_name()+"-个人简历-"+ dateTools.date2Str2(date) + str;
-            //将路径存入数据库
-            resume.setResume_path(fname);
+                fname = student.getStu_id() + "-" + student.getStu_name() + "-个人简历-" + dateTools.date2Str2(date) + str;
+                //将路径存入数据库
+                resume.setResume_path(fname);
 
 
-            String filename=root+"\\"+fname;
-            System.out.println("测试产生新的文件名："+filename);
+                String filename = root + "\\" + fname;
+                System.out.println("测试产生新的文件名：" + filename);
 
-            //上传文件到指定目录，不想上传文件就不调用这个
-            part.write(filename);
+                //上传文件到指定目录，不想上传文件就不调用这个
+                part.write(filename);
 
-            resumeService.updateResume(resume);
+                resumeService.updateResume(resume);
 
-            req.setAttribute("msgAddResume", "上传文件成功");
+                req.setAttribute("msgAddResume", "上传文件成功");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("msgAddResume", "上传文件失败");
