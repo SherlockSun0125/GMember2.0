@@ -33,6 +33,7 @@ public class StudentServlet extends BaseServlet {
     private IStulogService stulogService=new StulogServiceImp();
     private IProjectService projectService=new ProjectServiceImp();
     private ICourseService courseService=new CourseServiceImp();
+    private IResumeService resumeService=new ResumeServiceImp();
 
     /*
     前台的函数
@@ -351,7 +352,7 @@ public class StudentServlet extends BaseServlet {
         }
     }
 
-    //查看某生某阶段所有项目
+    //查看某生某阶段所有项项目
     public String findProjectsByStuLevel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int stu_id=Integer.parseInt(req.getParameter("stuid"));
         int stu_level_id=Integer.parseInt(req.getParameter("stulevelid"));
@@ -535,6 +536,7 @@ public class StudentServlet extends BaseServlet {
         }
     }
 
+    //第三阶段上传文件
     public String uploadFile(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int projectid=Integer.parseInt(req.getParameter("projectid"));
         String projectlevel=req.getParameter("projectlevel");
@@ -751,6 +753,139 @@ public class StudentServlet extends BaseServlet {
         req.setAttribute("msgAddProject","项目增加成功！");
         return "f:/encryptWeb/student/level1/courseDetails.jsp";
     }
+
+    //按照学生id查看简历
+    public String findResumeByStuId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+        Resume resume=resumeService.findResumeByStuId(stuid);
+        if (resume == null){
+            req.setAttribute("resume",null);
+        }else {
+            req.setAttribute("resume",resume);
+        }
+
+        return "f:/encryptWeb/student/level4/myResume.jsp";
+    }
+
+
+    //上传简历
+    public String addResume(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+        Resume resume=new Resume();
+        Integer resumeid=null;
+
+        try {
+            Student student=studentService.findStudentById(stuid);
+            resume.setStu_id(stuid);
+            //获取文件描述信息
+//            String desc=req.getParameter("fileDesc");
+            //获取上传的文件
+            Part part=req.getPart("resume");
+            //获取请求的信息
+            String name=part.getHeader("content-disposition");
+            System.out.println(name);//测试使用
+//            System.out.println(desc);//
+
+            //获取上传文件的目录
+//            String root=req.getContextPath()+("/upload");
+            String root=req.getServletContext().getRealPath("/upload");
+            System.out.println("测试上传文件的路径："+root);
+
+            //获取文件的后缀
+            String str=name.substring(name.lastIndexOf("."), name.length()-1);
+            System.out.println("测试获取文件的后缀："+str);
+
+            //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
+//            String fname= UUID.randomUUID().toString()+str;
+            Date date=new Date();
+            DateTools dateTools=new DateTools();
+            String fname="";
+
+            fname= student.getStu_id() + "-" + student.getStu_name()+"-个人简历-"+ dateTools.date2Str2(date) + str;
+            //将路径存入数据库
+            resume.setResume_path(fname);
+
+
+            String filename=root+"\\"+fname;
+            System.out.println("测试产生新的文件名："+filename);
+
+            //上传文件到指定目录，不想上传文件就不调用这个
+            part.write(filename);
+
+            resumeid=resumeService.addResume(resume);
+            if (resumeid==null){
+                req.setAttribute("msgAddResume", "上传文件失败");
+            }else{
+                req.setAttribute("msgAddResume", "上传文件成功");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.setAttribute("msgAddResume", "上传文件失败");
+        }
+
+        Resume newResume=resumeService.findResumeById(resumeid);
+        req.setAttribute("resume",newResume);
+
+        return "f:/encryptWeb/student/level4/myResume.jsp";
+    }
+
+    //重传简历
+    public String updateResume(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int resumeid=Integer.parseInt(req.getParameter("resumeid"));
+        Resume resume=resumeService.findResumeById(resumeid);
+        int stuid=resume.getStu_id();
+        Student student=studentService.findStudentById(stuid);
+
+        try {
+            //获取文件描述信息
+//            String desc=req.getParameter("fileDesc");
+            //获取上传的文件
+            Part part=req.getPart("resume");
+            //获取请求的信息
+            String name=part.getHeader("content-disposition");
+            System.out.println(name);//测试使用
+//            System.out.println(desc);//
+
+            //获取上传文件的目录
+//            String root=req.getContextPath()+("/upload");
+            String root=req.getServletContext().getRealPath("/upload");
+            System.out.println("测试上传文件的路径："+root);
+
+            //获取文件的后缀
+            String str=name.substring(name.lastIndexOf("."), name.length()-1);
+            System.out.println("测试获取文件的后缀："+str);
+
+            //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
+//            String fname= UUID.randomUUID().toString()+str;
+            Date date=new Date();
+            DateTools dateTools=new DateTools();
+            String fname="";
+
+            fname= student.getStu_id() + "-" + student.getStu_name()+"-个人简历-"+ dateTools.date2Str2(date) + str;
+            //将路径存入数据库
+            resume.setResume_path(fname);
+
+
+            String filename=root+"\\"+fname;
+            System.out.println("测试产生新的文件名："+filename);
+
+            //上传文件到指定目录，不想上传文件就不调用这个
+            part.write(filename);
+
+            resumeService.updateResume(resume);
+
+            req.setAttribute("msgAddResume", "上传文件成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.setAttribute("msgAddResume", "上传文件失败");
+        }
+
+        Resume newResume=resumeService.findResumeById(resumeid);
+        req.setAttribute("resume",newResume);
+
+        return "f:/encryptWeb/student/level4/myResume.jsp";
+    }
+
 
     /*
     后台方法

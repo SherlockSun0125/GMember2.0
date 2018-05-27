@@ -541,7 +541,7 @@
                         <c:choose>
                             <c:when test="${Student.stu_level_id eq 4}">
                             <div class="hl-circle">
-                                <a class="hl-icon4" href="${pageContext.request.contextPath}/encryptWeb/student/level4/myResume.jsp">就业推荐阶段</a>
+                                <a class="hl-icon4" href="${pageContext.request.contextPath}/studentServlet?method=findResumeByStuId&stuid=${Student.stu_id}">就业推荐阶段</a>
                                 <%--<a class="hl-icon4" href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=4">就业推荐阶段</a>--%>
                             </div>
 
@@ -552,7 +552,7 @@
                                     <br/>
                                     祝你找到好工作！
                                 </p>
-                                <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/encryptWeb/student/level4/myResume.jsp">
+                                <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/studentServlet?method=findResumeByStuId&stuid=${Student.stu_id}">
                                     <span>进入</span>
                                 </a>
                             </div>

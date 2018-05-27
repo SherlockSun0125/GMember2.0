@@ -11,10 +11,25 @@
         <result property="resume_advice_time" column="resume_advice_time"></result>
     </resultMap>
     
-    <!--<select id="findResumeByStuId">-->
-      <!--SELECT-->
+    <select id="findResumeByStuId" parameterType="int" resultMap="resumeMap">
+        SELECT * from resume WHERE stu_id=#{stu_id}
+    </select>
 
-       <!---->
-    <!--</select>-->
+    <select id="findResumeById" parameterType="int" resultMap="resumeMap">
+        SELECT * FROM resume WHERE resume_id=#{resume_id}
+    </select>
+
+    <insert id="addResume" useGeneratedKeys="true" keyColumn="resume_id" parameterType="cn.edu.hitwh.gmember.pojo.Resume">
+        INSERT INTO resume(stu_id, resume_path, resume_advice, resume_advice_time)
+                VALUES (#{stu_id},#{resume_path},#{resume_advice},#{resume_advice_time})
+    </insert>
+
+    <update id="updateResume" parameterType="cn.edu.hitwh.gmember.pojo.Resume">
+        UPDATE resume SET stu_id=#{stu_id},resume_path=#{resume_path},
+            resume_advice=#{resume_advice},resume_advice_time=#{resume_advice_time}
+        WHERE resume_id=#{resume_id}
+    </update>
+
+
 
 </mapper>

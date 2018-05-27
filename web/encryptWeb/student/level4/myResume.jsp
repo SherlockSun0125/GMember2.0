@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
@@ -93,7 +94,7 @@
             <div class="m-learnleft">
                 <div id="j-courseTabList">
                     <a class="u-learnProgress-tab j-tabitem f-f0 f-fc3 f-cb  u-curtab" data-type="30"
-                    href="${pageContext.request.contextPath}/encryptWeb/student/level4/myResume.jsp">
+                    href="${pageContext.request.contextPath}/studentServlet?method=findResumeByStuId&stuid=${Student.stu_id}">
                     <div class="ic_2 f-fl"></div>
                     <span class="f-fl">我的简历</span>
                     </a>
@@ -117,10 +118,33 @@
                 <div class="m-forumindex">
                     <!--发帖按钮-->
                     <div  style="margin-bottom:40px;margin-top: 12px" >
-                        <a style="padding-right: 20px" href=""><img src="${pageContext.request.contextPath}/encryptWeb/student/static/uploadResume.png" style="width: 120px"></a>
-                        <a href=""><img src="${pageContext.request.contextPath}/encryptWeb/student/static/downloadResume.png" style="width: 120px"></a>
-                        <a class="btn btn-info" href="${pageContext.request.contextPath}/pdfjs/build/a.pdf" target="pdfContainer" onclick="showPdf(true)">0001_pdf</a>
+                        <c:choose>
+                            <c:when test="${resume eq null}">
+                                <form class="form-group" method="post" enctype="multipart/form-data"
+                                      action="${pageContext.request.contextPath}/studentServlet?method=addResume&stuid=${Student.stu_id}">
+                                    <input type="file" name="resume"><br/>
+                                    <button style="margin-right: 20px;border: none" type="submit">
+                                        <img src="${pageContext.request.contextPath}/encryptWeb/student/static/uploadResume.png" style="width: 120px">
+                                    </button>
+                                </form>
+                            </c:when>
+                            <c:otherwise>
+                                <form class="form-group" method="post" enctype="multipart/form-data"
+                                      action="${pageContext.request.contextPath}/studentServlet?method=updateResume&resumeid=${resume.resume_id}">
+                                    <input type="file" name="resume"><br/>
+                                    <button style="margin-right: 20px;border: none" type="submit">
+                                        <img src="${pageContext.request.contextPath}/encryptWeb/student/static/uploadResume.png" style="width: 120px">
+                                    </button>
+                                </form>
+
+                                <a  href="${pageContext.request.contextPath}/upload/${resume.resume_path}" target="pdfContainer" onclick="showPdf(true)" style="width: 120px;padding-right: 20px">
+                                    <img src="${pageContext.request.contextPath}/encryptWeb/student/static/lookResume.png" style="width: 120px">
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
+                        <small>${msgAddResume}</small>
                     </div>
+
                     <!--帖子展示-->
                     <div class="u-forumlistwrap j-alltopiclist">
                         <div class="m-flwrap">
