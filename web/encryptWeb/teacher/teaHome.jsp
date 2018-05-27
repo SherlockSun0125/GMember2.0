@@ -462,7 +462,7 @@
                 </div>
                 <div class="span3 highlights">
                     <div class="hl-circle">
-                        <a class="hl-icon4" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=4">就业推荐阶段管理</a>
+                        <a class="hl-icon4" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsResumesByTea&teaid=${Teacher.tea_id}">就业推荐阶段管理</a>
                     </div>
 
                     <div class="highlights-content clearfix">
@@ -473,7 +473,7 @@
                             <%--显示一些进度信息--%>
                         </p>
 
-                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=4">
+                        <a class="btn-small btn-hl" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsResumesByTea&teaid=${Teacher.tea_id}">
                             <span>进入管理</span>
                         </a><!-- button small end -->
                     </div>

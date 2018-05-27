@@ -6,14 +6,11 @@ import cn.edu.hitwh.gmember.serviceImp.*;
 import cn.edu.hitwh.gmember.tools.DateTools;
 import cn.edu.hitwh.gmember.tools.PageBean;
 import cn.itcast.servlet.BaseServlet;
-import sun.rmi.runtime.Log;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.Date;
 
 public class TeacherServlet extends BaseServlet {
@@ -25,6 +22,7 @@ public class TeacherServlet extends BaseServlet {
     private IProjectService projectService=new ProjectServiceImp();
     private IEmployeeService employeeService=new EmployeeServiceImp();
     private DateTools dateTools=new DateTools();
+    private IResumeService resumeService=new ResumeServiceImp();
 
 
     public String teacherLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,6 +45,7 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    //获取log列表
     public String findAllStudentsByTea(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int teaid=Integer.parseInt(req.getParameter("teaid"));
         int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
@@ -84,7 +83,7 @@ public class TeacherServlet extends BaseServlet {
                 req.setAttribute("project",null);
             }else {
                 Project project=projectPageBean.getBeanList().get(0);
-                System.out.println("获取到的毕设为："+project.toString());
+//                System.out.println("获取到的毕设为："+project.toString());
                 req.setAttribute("project",project);
             }
             return "f:/encryptWeb/teacher/level3/stuList.jsp";
@@ -93,6 +92,7 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    //获取log列表
     public String findAllStudentLevelInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int stuid=Integer.parseInt(req.getParameter("stuid"));
         int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
@@ -133,6 +133,7 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    //获取log详情
     public String findLogById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int logid=Integer.parseInt(req.getParameter("logid"));
 
@@ -176,6 +177,7 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    //反馈
     public String feedbackLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int logid=Integer.parseInt(req.getParameter("logid"));
 //        System.out.println("日志id="+logid);
@@ -235,6 +237,7 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    //删除反馈
     public String deleteLogFd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int logid=Integer.parseInt(req.getParameter("logid"));
         StuLog stuLog=stulogService.findLogByid(logid);
@@ -285,6 +288,7 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    //去更改反馈
     public String toUpdateLogFd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int logid=Integer.parseInt(req.getParameter("logid"));
 
@@ -328,6 +332,7 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    //更改反馈
     public String findProjectById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int projectid=Integer.parseInt(req.getParameter("projectid"));
 
@@ -355,6 +360,7 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    //查看课程详情
     public String findCourseById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int courseid=Integer.parseInt(req.getParameter("courseid"));
 
@@ -374,7 +380,50 @@ public class TeacherServlet extends BaseServlet {
             return "f:/encryptWeb/teacher/level1/stuCourseDetails.jsp";
     }
 
-    // 后台用
+
+    //获取log列表
+    public String findAllStudentsResumesByTea(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int teaid=Integer.parseInt(req.getParameter("teaid"));
+
+        PageBean<Student> studentPageBean=teacherService.findAllStudentsByTeaLevel(teaid,4);
+
+        //为了找到第一个学生
+        Student firstStu=studentPageBean.getBeanList().get(0);
+        int stuid=firstStu.getStu_id();
+
+        Resume resume=resumeService.findResumeByStuId(stuid);
+
+        req.setAttribute("studentPageBean",studentPageBean);
+        req.setAttribute("stu",firstStu);
+        req.setAttribute("resume",resume);
+
+
+        return "f:/encryptWeb/teacher/level4/stuList.jsp";
+
+    }
+
+    //获取log列表
+    public String findAllStudentLevelResumesInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+
+        Student student=studentService.findStudentById(stuid);
+        int teaid=student.getTea_id();
+        PageBean<Student> studentPageBean=teacherService.findAllStudentsByTeaLevel(teaid,4);
+
+        Resume resume=resumeService.findResumeByStuId(stuid);
+
+        req.setAttribute("studentPageBean",studentPageBean);
+        req.setAttribute("stu",student);
+        req.setAttribute("resume",resume);
+
+        return "f:/encryptWeb/teacher/level4/stuList.jsp";
+
+    }
+
+    /*
+    后台用
+     */
+    // 找到所有教师
     public String findAllTeachers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
         int currentPage=getCurrentPage(req);
@@ -387,6 +436,7 @@ public class TeacherServlet extends BaseServlet {
         return "f:/encryptWeb/admin/teachers.jsp";
     }
 
+    //删除教师
     public String deleteTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url=getUrl(req);
         int currentPage=getCurrentPage(req);
@@ -402,7 +452,7 @@ public class TeacherServlet extends BaseServlet {
         return "f:/encryptWeb/admin/teachers.jsp";
     }
 
-    //中间转折一下获取id并找到该teacher的全部信息并转到teacherProfile.jsp
+    //中间转折一下获取id并找到该teacher的全部信息并转到teacherProfile.jsp，去更新教师信息
     public String findTeacherById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int tea_id=Integer.parseInt(req.getParameter("teacherid"));
         Teacher tea=teacherService.findTeacherById(tea_id);
@@ -415,6 +465,7 @@ public class TeacherServlet extends BaseServlet {
         return "f:/encryptWeb/admin/teacherProfile.jsp";
     }
 
+    //更新教师信息
     public String updateTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Teacher newTeacher=new Teacher();
         String url=getUrl(req);
@@ -471,6 +522,7 @@ public class TeacherServlet extends BaseServlet {
         return "f:/encryptWeb/admin/teacherProfile.jsp";
     }
 
+    //增加教师
     public String addTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Teacher newTeacher=new Teacher();
         String url=getUrl(req);
@@ -522,7 +574,7 @@ public class TeacherServlet extends BaseServlet {
         return "f:/encryptWeb/admin/addTeacher.jsp";
     }
 
-//    为了得到院系列表
+    //为了得到院系列表
     public String toAddTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        获得院系列表
         PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
