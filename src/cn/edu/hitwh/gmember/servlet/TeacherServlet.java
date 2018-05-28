@@ -49,46 +49,80 @@ public class TeacherServlet extends BaseServlet {
     public String findAllStudentsByTea(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int teaid=Integer.parseInt(req.getParameter("teaid"));
         int stulevelid=Integer.parseInt(req.getParameter("stulevelid"));
+        String url=getUrl(req);
+        int currentPage=getCurrentPage(req);
 
         PageBean<Student> studentPageBean=teacherService.findAllStudentsByTeaLevel(teaid,stulevelid);
 
-        //为了找到第一个学生
-        Student firstStu=studentPageBean.getBeanList().get(0);
-        int stuid=firstStu.getStu_id();
-        int currentPage=getCurrentPage(req);
-        String url=getUrl(req);
-
-        PageBean<StuLog> stuLogPageBean=stulogService.findLogsOfStudentLevel(stuid,stulevelid,currentPage);
-        PageBean<Course> coursePageBean=courseService.findCoursesByStuId(stuid);
-        PageBean<Project> projectPageBean=projectService.findProjectsByStuLevel(stuid,stulevelid);
-
-
-        stuLogPageBean.setCurrentPage(currentPage);
-        stuLogPageBean.setUrl(url);
-
-        req.setAttribute("pb",stuLogPageBean);
-        req.setAttribute("coursePageBean",coursePageBean);
-        req.setAttribute("studentPageBean",studentPageBean);
-        req.setAttribute("stu",firstStu);
-        req.setAttribute("studentPageBean",studentPageBean);
 
         if (stulevelid==1){
-            req.setAttribute("projectPageBean",projectPageBean);
+            if(studentPageBean.getTotalRecords()==0){
+                req.setAttribute("studentPageBean",null);
+            }else {
+                //为了找到第一个学生
+                Student firstStu=studentPageBean.getBeanList().get(0);
+                int stuid=firstStu.getStu_id();
+
+                PageBean<StuLog> stuLogPageBean=stulogService.findLogsOfStudentLevel(stuid,stulevelid,currentPage);
+                PageBean<Course> coursePageBean=courseService.findCoursesByStuId(stuid);
+                PageBean<Project> projectPageBean=projectService.findProjectsByStuLevel(stuid,stulevelid);
+
+                stuLogPageBean.setCurrentPage(currentPage);
+                stuLogPageBean.setUrl(url);
+                req.setAttribute("pb",stuLogPageBean);
+                req.setAttribute("coursePageBean",coursePageBean);
+                req.setAttribute("studentPageBean",studentPageBean);
+                req.setAttribute("stu",firstStu);
+                req.setAttribute("projectPageBean", projectPageBean);
+            }
             return "f:/encryptWeb/teacher/level1/stuList.jsp";
         }else if (stulevelid==2){
-            req.setAttribute("projectPageBean",projectPageBean);
-            return "f:/encryptWeb/teacher/level2/stuList.jsp";
-        }else if(stulevelid==3){
-            if (projectPageBean.getTotalRecords()==0){
-                req.setAttribute("project",null);
+            if(studentPageBean.getTotalRecords()==0){
+                req.setAttribute("studentPageBean",null);
             }else {
-                Project project=projectPageBean.getBeanList().get(0);
+                //为了找到第一个学生
+                Student firstStu=studentPageBean.getBeanList().get(0);
+                int stuid=firstStu.getStu_id();
+
+                PageBean<StuLog> stuLogPageBean=stulogService.findLogsOfStudentLevel(stuid,stulevelid,currentPage);
+                PageBean<Course> coursePageBean=courseService.findCoursesByStuId(stuid);
+                PageBean<Project> projectPageBean=projectService.findProjectsByStuLevel(stuid,stulevelid);
+
+                stuLogPageBean.setCurrentPage(currentPage);
+                stuLogPageBean.setUrl(url);
+                req.setAttribute("pb",stuLogPageBean);
+                req.setAttribute("projectPageBean", projectPageBean);
+                req.setAttribute("coursePageBean",coursePageBean);
+                req.setAttribute("studentPageBean",studentPageBean);
+                req.setAttribute("stu",firstStu);
+            }
+            return "f:/encryptWeb/teacher/level2/stuList.jsp";
+        }else{
+            if (studentPageBean.getTotalRecords()==0){
+                req.setAttribute("studentPageBean",null);
+            }else {
+                //为了找到第一个学生
+                Student firstStu=studentPageBean.getBeanList().get(0);
+                int stuid=firstStu.getStu_id();
+
+                PageBean<StuLog> stuLogPageBean=stulogService.findLogsOfStudentLevel(stuid,stulevelid,currentPage);
+                PageBean<Project> projectPageBean=projectService.findProjectsByStuLevel(stuid,stulevelid);
+
+
+                stuLogPageBean.setCurrentPage(currentPage);
+                stuLogPageBean.setUrl(url);
+
+                req.setAttribute("stuLogPageBean",stuLogPageBean);
+
+                if (projectPageBean.getTotalRecords() == 0) {
+                    req.setAttribute("project", null);
+                } else {
+                    Project project = projectPageBean.getBeanList().get(0);
 //                System.out.println("获取到的毕设为："+project.toString());
-                req.setAttribute("project",project);
+                    req.setAttribute("project", project);
+                }
             }
             return "f:/encryptWeb/teacher/level3/stuList.jsp";
-        }else{
-            return "f:/encryptWeb/teacher/level4/stuList.jsp";
         }
     }
 
@@ -381,28 +415,31 @@ public class TeacherServlet extends BaseServlet {
     }
 
 
-    //获取log列表
+    //获取resume列表
     public String findAllStudentsResumesByTea(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int teaid=Integer.parseInt(req.getParameter("teaid"));
 
         PageBean<Student> studentPageBean=teacherService.findAllStudentsByTeaLevel(teaid,4);
 
-        //为了找到第一个学生
-        Student firstStu=studentPageBean.getBeanList().get(0);
-        int stuid=firstStu.getStu_id();
+        if (studentPageBean.getTotalRecords()==0){
+            req.setAttribute("studentPageBean", null);
+        }else {
+            //为了找到第一个学生
+            Student firstStu = studentPageBean.getBeanList().get(0);
+            int stuid = firstStu.getStu_id();
 
-        Resume resume=resumeService.findResumeByStuId(stuid);
+            Resume resume = resumeService.findResumeByStuId(stuid);
 
-        req.setAttribute("studentPageBean",studentPageBean);
-        req.setAttribute("stu",firstStu);
-        req.setAttribute("resume",resume);
-
+            req.setAttribute("studentPageBean", studentPageBean);
+            req.setAttribute("stu", firstStu);
+            req.setAttribute("resume", resume);
+        }
 
         return "f:/encryptWeb/teacher/level4/stuList.jsp";
 
     }
 
-    //获取log列表
+    //获取resume列表
     public String findAllStudentLevelResumesInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int stuid=Integer.parseInt(req.getParameter("stuid"));
 

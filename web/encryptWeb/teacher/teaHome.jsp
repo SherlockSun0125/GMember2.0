@@ -407,7 +407,7 @@
             <div class="row highlights">
                 <div class="span3">
                     <div class="hl-circle">
-                        <a class="hl-icon1" href="${pageContext.request.contextPath}teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=1">工程学习阶段管理</a>
+                        <a class="hl-icon1" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentsByTea&teaid=${Teacher.tea_id}&stulevelid=1">工程学习阶段管理</a>
                     </div>
 
                     <div class="highlights-content clearfix">

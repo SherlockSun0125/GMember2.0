@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>退出账户</title>
     <!--样式-->
-    <link rel="stylesheet" href="static/core_465566505fc16e2adc7188a490b841e4.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/employee/static/core_465566505fc16e2adc7188a490b841e4.css">
     <style type="text/css">
         .g-logout {
             height: 355px;
@@ -15,7 +15,7 @@
         }
 
         .m-logcnt .txt {
-            background: url(static/logoutBg.jpg) no-repeat;
+            background: url(/encryptWeb/employee/static/logoutBg.jpg) no-repeat;
             height: 55px;
             line-height: 55px;
             padding-left: 80px;
@@ -43,7 +43,7 @@
         }
 
         .m-logcnt .txt2 {
-            background: url(static/dialogicon.png) no-repeat;
+            background: url(/encryptWeb/employee/static/dialogicon.png) no-repeat;
             font-size: 18px;
         }
 
@@ -56,7 +56,7 @@
         }
 
         .m-logcnt .sug .feedicon {
-            background: url(static/ui_sprite.png) no-repeat -56px -1104px;
+            background: url(/encryptWeb/employee/static/ui_sprite.png) no-repeat -56px -1104px;
             margin-left: 3px;
             width: 12px;
             height: 12px;
@@ -121,8 +121,8 @@
         <div class="g-flow">
             <div class="f-pr f-cb">
                 <div style="position: absolute;top:2px;bottom:2px;">
-                    <a class="f-fl" hidefocus="true" href="../../home.jsp" target="_self" data-index="logo">
-                        <img class="f-fl img" src="static/hitwh_logo_white.png" title="学生主页" width="540px"
+                    <a class="f-fl" hidefocus="true" href="${pageContext.request.contextPath}/home.jsp" target="_self" data-index="logo">
+                        <img class="f-fl img" src="${pageContext.request.contextPath}/encryptWeb/employee/static/hitwh_logo_white.png" title="学生主页" width="540px"
                              style="margin-top: 2px;margin-bottom: 1px">
                     </a>
                 </div>
@@ -134,24 +134,24 @@
                                 <div class="f-pr">
                                     <div class="face">
                                         <img class="j-nav-myimg"
-                                             src="static/unLogin.jpg"
+                                             src="${pageContext.request.contextPath}/encryptWeb/employee/static/unLogin.jpg"
                                              width="30px" height="30px" alt="头像">
                                     </div>
                                 </div>
                             </div>
                             <a class="username self f-thide" target="_self" data-index="点击用户名"
-                               href="../../studentLogin.jsp">
+                               href="${pageContext.request.contextPath}/employeeLogin.jsp">
                                 <span class=" f-fs1 f-f0">登录</span>
                             </a>
                             <i class="line" style="padding-top: 3%"></i>
                             <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
-                               href="../../studentLogin.jsp" title="查看更多消息" target="_self">
+                               href="${pageContext.request.contextPath}/employeeLogin.jsp" title="查看更多消息" target="_self">
                                 <span>消息</span>
                                 <em class="num hidddenClass j-nav-msgnum">0</em>
                             </a>
                             <div class="u-mystudy f-pr f-cb f-fr">
                                 <a class="mystudy nitem f-f0" id="j-nav-my-class" data-index="我的学习" target="_self"
-                                   href="../../studentLogin.jsp" hidefocus="true">我的学习</a>
+                                   href="${pageContext.request.contextPath}/employeeLogin.jsp" hidefocus="true">我的学习</a>
                             </div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
             <b class="b-30"></b>
             <b class="b-30"></b>
             <div class="txt">已经成功退出登录</div>
-            <a class="reLogin btn" id="j-reLogin" style="" href="../../studentLogin.jsp">重新登录</a>
+            <a class="reLogin btn" id="j-reLogin" style="" href="${pageContext.request.contextPath}/employeeLogin.jsp">重新登录</a>
         </div>
         <div class="m-logbot">
             <span class="itm f-fs0" id="j-motto"></span>

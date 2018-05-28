@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>发帖</title>
+    <title>毕业设计阶段</title>
 
     <!--样式-->
     <link rel="stylesheet"  href="${pageContext.request.contextPath}/encryptWeb/student/static/c999847cabf4398b84d69b7ef2f1ef78.css">

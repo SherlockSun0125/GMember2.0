@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>工程学习阶段</title>
+    <title>校企合作阶段管理</title>
     <!--三个重要的CSS文件-->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/employee/static/core_62c0700cc15bd051f36fa48b7a5c1a26.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/employee/static/pt_newpages_course_learn.css">
@@ -121,45 +121,80 @@
     <div id="g-body">
         <div class="m-cbg"></div>
         <div class="g-wrap f-cb">
-            <!--左侧边栏-->
-            <div class="g-sd1">
-                <div class="m-learnleft">
-                    <div id="j-courseTabList">
-                        <ul class="tab u-tabul">
-                            <c:forEach items="${studentPageBean.beanList}" var="student">
-                                <c:choose>
-                                    <c:when test="${stu.stu_id eq student.stu_id}">
-                                        <li class="u-greentab j-tabitem f-f0 first u-curtab">
-                                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/employeeServlet?method=findAllStudentLevelInfo&stuid=${student.stu_id}&stulevelid=${student.stu_level_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="u-greentab j-tabitem f-f0">
-                                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/employeeServlet?method=findAllStudentLevelInfo&stuid=${student.stu_id}&stulevelid=${student.stu_level_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </ul>
+            <c:choose>
+                <c:when test="${studentPageBean eq null}">
+                    <!--左侧边栏-->
+                    <div class="g-sd1">
+                        <div class="m-learnleft">
+                            <div >
+                                <ul class="tab u-tabul">
+
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!--中间-->
-            <div class="g-mn1">
-                <div class="m-learnbox" style="margin-left: 300px;">
-                    <div style="width: 96%">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#stuLog" data-toggle="tab">日志</a></li>
-                            <li><a href="#stuProject" data-toggle="tab">项目</a></li>
-                        </ul>
+                    <!--中间-->
+                    <div class="g-mn1">
+                        <div class="m-learnbox" style="margin-left: 300px;">
+                            <div style="width: 96%">
+                                    <%--<ul class="nav nav-tabs">--%>
+                                    <%--<li class="active"><a href="#stuLog" data-toggle="tab">日志</a></li>--%>
+                                    <%--<li><a href="#stuProject" data-toggle="tab">项目</a></li>--%>
+                                    <%--</ul>--%>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <br>
-                                <div id="myTabContent" class="tab-content">
-                                        <div class="tab-pane active in" style="width: 100%;" id="stuLog">
-                                            <!--帖子展示-->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <br>
+                                        <div class="tab-content">
+                                            <h4>您还未分配该阶段的学生!</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <!--左侧边栏-->
+                    <div class="g-sd1">
+                        <div class="m-learnleft">
+                            <div id="j-courseTabList">
+                                <ul class="tab u-tabul">
+                                    <c:forEach items="${studentPageBean.beanList}" var="student">
+                                        <c:choose>
+                                            <c:when test="${stu.stu_id eq student.stu_id}">
+                                                <li class="u-greentab j-tabitem f-f0 first u-curtab">
+                                                    <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/employeeServlet?method=findAllStudentLevelInfo&stuid=${student.stu_id}&stulevelid=${student.stu_level_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="u-greentab j-tabitem f-f0">
+                                                    <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/employeeServlet?method=findAllStudentLevelInfo&stuid=${student.stu_id}&stulevelid=${student.stu_level_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--中间-->
+                    <div class="g-mn1">
+                        <div class="m-learnbox" style="margin-left: 300px;">
+                            <div style="width: 96%">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#stuLog" data-toggle="tab">日志</a></li>
+                                    <li><a href="#stuProject" data-toggle="tab">项目</a></li>
+                                </ul>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <br>
+                                        <div id="myTabContent" class="tab-content">
+                                            <div class="tab-pane active in" style="width: 100%;" id="stuLog">
+                                                <!--帖子展示-->
                                                 <c:choose>
                                                     <c:when test="${pb.totalRecords eq 0}">
                                                         <div class="ttitle">
@@ -190,7 +225,7 @@
                                                                                             <span class="lb10 f-fc9">于${stulogs.stu_log_time}发表</span>
                                                                                         </span>
                                                                                     </span>
-                                                                                        <p class="f-fc9 f-pa" style="width:110px; bottom: 20px; right:110px;">
+                                                                                    <p class="f-fc9 f-pa" style="width:110px; bottom: 20px; right:110px;">
                                                                                         <c:choose>
                                                                                             <c:when test="${stulogs.tea_status eq 3}">
                                                                                                 老师评价：<span><img style="width: 1.2em" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
@@ -234,51 +269,53 @@
                                                 </c:choose>
                                             </div>
 
-                                        <div class="tab-pane fade" id="stuProject">
-                                            <c:choose>
-                                                <c:when test="${projectPageBean.totalRecords eq 0}">
-                                                    <div class="ttitle">
-                                                        <h4 class="f-fl f-fc3">你还没有项目！</h4>
-                                                        <div class="f-fl u-coursecate j-lessonuit"></div>
-                                                    </div>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <div class="m-flwrap">
-                                                        <div style="height: 36px;font-weight: bold">
-                                                            <h4 class="f-fl f-fc3" style="font-weight: bold">项目列表</h4>
+                                            <div class="tab-pane fade" id="stuProject">
+                                                <c:choose>
+                                                    <c:when test="${projectPageBean.totalRecords eq 0}">
+                                                        <div class="ttitle">
+                                                            <h4 class="f-fl f-fc3">你还没有项目！</h4>
+                                                            <div class="f-fl u-coursecate j-lessonuit"></div>
                                                         </div>
-                                                        <div style="margin-top: 10px;padding-left: 0;">
-                                                            <table class="table table-hover" style="text-align: left">
-                                                                <tbody>
-                                                                <c:forEach items="${projectPageBean.beanList}" var="projects">
-                                                                    <c:choose>
-                                                                        <c:when test="${projects.isEnd eq 0}">
-                                                                            <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
-                                                                                <td width="100%"><a href="${pageContext.request.contextPath}/employeeServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a></td>
-                                                                            </tr>
-                                                                        </c:when>
-                                                                        <c:otherwise>
-                                                                            <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
-                                                                                <td width="100%"><a href="${pageContext.request.contextPath}/employeeServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a><span style="color: red">&nbsp(已结束)</span></td>
-                                                                            </tr>
-                                                                        </c:otherwise>
-                                                                    </c:choose>
-                                                                </c:forEach>
-                                                                </tbody>
-                                                            </table>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="m-flwrap">
+                                                            <div style="height: 36px;font-weight: bold">
+                                                                <h4 class="f-fl f-fc3" style="font-weight: bold">项目列表</h4>
+                                                            </div>
+                                                            <div style="margin-top: 10px;padding-left: 0;">
+                                                                <table class="table table-hover" style="text-align: left">
+                                                                    <tbody>
+                                                                    <c:forEach items="${projectPageBean.beanList}" var="projects">
+                                                                        <c:choose>
+                                                                            <c:when test="${projects.isEnd eq 0}">
+                                                                                <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
+                                                                                    <td width="100%"><a href="${pageContext.request.contextPath}/employeeServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a></td>
+                                                                                </tr>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <tr style="border-bottom: 1px solid #EEEEEE;border-top: none">
+                                                                                    <td width="100%"><a href="${pageContext.request.contextPath}/employeeServlet?method=findProjectById&projectid=${projects.project_id}">${projects.project_name}</a><span style="color: red">&nbsp(已结束)</span></td>
+                                                                                </tr>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                    </c:forEach>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </c:otherwise>
-                                            </c:choose>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
                                         </div>
+
                                     </div>
+                                </div>
 
                             </div>
                         </div>
-
                     </div>
-                </div>
-            </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </div>

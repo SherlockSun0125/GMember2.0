@@ -2,6 +2,7 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
+    <ttitle>毕业设计阶段</ttitle>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/core_e47b1ded06977727b0dc00ac5fae1259.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/pt_newpages_course_learn.css">
     <style type="text/css">

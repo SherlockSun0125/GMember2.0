@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>我的日志</title>
+    <title>校企合作阶段</title>
     <!--三个重要的CSS文件-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/student/static/core_62c0700cc15bd051f36fa48b7a5c1a26.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/student/static/pt_newpages_course_learn.css">

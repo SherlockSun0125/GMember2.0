@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>工程学习阶段</title>
+    <title>就业推荐阶段管理</title>
     <!--三个重要的CSS文件-->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/teacher/static/core_62c0700cc15bd051f36fa48b7a5c1a26.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/teacher/static/pt_newpages_course_learn.css">
@@ -138,130 +138,166 @@
     </div>
 
     <!--网页主体-->
-    <!--网页主体-->
     <div id="g-body">
         <div class="m-cbg"></div>
         <div class="g-wrap f-cb">
-            <!--左侧边栏-->
-            <div class="g-sd1">
-                <div class="m-learnleft">
-                    <div id="j-courseTabList">
-                        <ul class="tab u-tabul">
-                            <c:forEach items="${studentPageBean.beanList}" var="student">
-                                <c:choose>
-                                    <c:when test="${stu.stu_id eq student.stu_id}">
-                                        <li class="u-greentab j-tabitem f-f0 first u-curtab">
-                                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentLevelResumesInfo&stuid=${student.stu_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="u-greentab j-tabitem f-f0">
-                                            <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentLevelResumesInfo&stuid=${student.stu_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </ul>
+            <c:choose>
+                <c:when test="${studentPageBean eq null}">
+                    <!--左侧边栏-->
+                    <div class="g-sd1">
+                        <div class="m-learnleft">
+                            <div >
+                                <ul class="tab u-tabul">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--中间-->
+                    <div class="g-mn1">
+                        <div class="m-learnbox" style="margin-left: 300px;">
+                            <div style="width: 96%">
+                                    <%--<ul class="nav nav-tabs">--%>
+                                    <%--<li class="active"><a href="#stuLog" data-toggle="tab">日志</a></li>--%>
+                                    <%--<li><a href="#stuProject" data-toggle="tab">项目</a></li>--%>
+                                    <%--</ul>--%>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <br>
+                                        <div class="tab-content">
+                                            <h4>您还未分配该阶段的学生!</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                <!--左侧边栏-->
+                <div class="g-sd1">
+                    <div class="m-learnleft">
+                        <div id="j-courseTabList">
+                            <ul class="tab u-tabul">
+                                <c:forEach items="${studentPageBean.beanList}" var="student">
+                                    <c:choose>
+                                        <c:when test="${stu.stu_id eq student.stu_id}">
+                                            <li class="u-greentab j-tabitem f-f0 first u-curtab">
+                                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentLevelResumesInfo&stuid=${student.stu_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
+                                            </li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="u-greentab j-tabitem f-f0">
+                                                <a class="f-thide f-fc3" href="${pageContext.request.contextPath}/teacherServlet?method=findAllStudentLevelResumesInfo&stuid=${student.stu_id}">${student.stu_num}&nbsp;&nbsp;${student.stu_name}</a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!--中间-->
-            <div class="g-mn1">
+                <!--中间-->
+                <div class="g-mn1">
 
-                <div class="m-learnbox" style="margin-left: 300px;">
-                    <div style="width: 96%">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#stuLog" data-toggle="tab">简历</a></li>
-                            <%--<li><a href="#stuProject" data-toggle="tab">毕设详情</a></li>--%>
-                        </ul>
+                    <div class="m-learnbox" style="margin-left: 300px;">
+                        <div style="width: 96%">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#stuLog" data-toggle="tab">简历</a></li>
+                                <%--<li><a href="#stuProject" data-toggle="tab">毕设详情</a></li>--%>
+                            </ul>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <br>
-                                <div id="myTabContent" class="tab-content">
-                                    <div class="tab-pane active in" style="width: 100%;" id="stuLog">
-                                            <!--帖子展示-->
-                                                <c:choose>
-                                                    <c:when test="${resume eq null}">
-                                                        <div class="ttitle">
-                                                            <h4 class="f-fl f-fc3">该生还没有上传简历！</h4>
-                                                            <div class="f-fl u-coursecate j-lessonuit"></div>
-                                                        </div>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <div class="m-flwrap">
-                                                            <%--<div class="ttitle">--%>
-                                                                <%--&lt;%&ndash;<h4 class="f-fl f-fc3">全部日志</h4>&ndash;%&gt;--%>
-                                                                <%--<br/>--%>
-                                                                <%--<hr/>--%>
-                                                                <%--<div class="f-fl u-coursecate j-lessonuit"></div>--%>
-                                                            <%--</div>--%>
-                                                            <div class="f-cb auto-1523950289417-parent">
-                                                                <div class="m-basepool f-cb auto-1523950289417">
-                                                                    <div class="j-list" style="">
-                                                                        <div class="m-data-lists f-cb f-pr j-data-list">
-                                                                            <div>
-                                                                                <a  href="${pageContext.request.contextPath}/upload/${resume.resume_path}" target="pdfContainer" onclick="showPdf(true)" style="width: 120px;padding-right: 20px">
-                                                                                                <img src="${pageContext.request.contextPath}/encryptWeb/student/static/lookResume.png" style="width: 120px">
-                                                                                            </a>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <br>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div class="tab-pane active in" style="width: 100%;" id="stuLog">
+                                                <!--帖子展示-->
+                                                    <c:choose>
+                                                        <c:when test="${resume eq null}">
+                                                            <div class="ttitle">
+                                                                <h4 class="f-fl f-fc3">该生还没有上传简历！</h4>
+                                                                <div class="f-fl u-coursecate j-lessonuit"></div>
+                                                            </div>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div class="m-flwrap">
+                                                                <%--<div class="ttitle">--%>
+                                                                    <%--&lt;%&ndash;<h4 class="f-fl f-fc3">全部日志</h4>&ndash;%&gt;--%>
+                                                                    <%--<br/>--%>
+                                                                    <%--<hr/>--%>
+                                                                    <%--<div class="f-fl u-coursecate j-lessonuit"></div>--%>
+                                                                <%--</div>--%>
+                                                                <div class="f-cb auto-1523950289417-parent">
+                                                                    <div class="m-basepool f-cb auto-1523950289417">
+                                                                        <div class="j-list" style="">
+                                                                            <div class="m-data-lists f-cb f-pr j-data-list">
+                                                                                <div>
+                                                                                    <a  href="${pageContext.request.contextPath}/upload/${resume.resume_path}" target="pdfContainer" onclick="showPdf(true)" style="width: 120px;padding-right: 20px">
+                                                                                                    <img src="${pageContext.request.contextPath}/encryptWeb/student/static/lookResume.png" style="width: 120px">
+                                                                                                </a>
+                                                                                </div>
+
                                                                             </div>
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </div>
-                                        <%--<div class="tab-pane fade" id="stuProject">--%>
-                                            <%----%>
-                                        <%--</div>--%>
-                                </div>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                            <%--<div class="tab-pane fade" id="stuProject">--%>
+                                                <%----%>
+                                            <%--</div>--%>
+                                    </div>
 
-                                <small>${msgUpdateTeacher}</small>
+                                    <small>${msgUpdateTeacher}</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <script src="${pageContext.request.contextPath}/pdfjs/build/pdf.js"></script>
+                        <script src="${pageContext.request.contextPath}/pdfjs/build/pdf.worker.js"></script>
+                        <script type="text/javascript">
+                            function showPdf(isShow){
+                                var state = "";
+                                if(isShow){
+                                    state = "block";
+                                }else{
+                                    state = "none";
+                                }
+                                var pop = document.getElementById("pop");
+                                pop.style.display = state;
+                                var lightbox = document.getElementById("lightbox");
+                                lightbox.style.display = state;
+                            }
+                            function close(){
+                                showPdf(false);
+                            }
+                        </script>
+                        <div>
+                            <div class="lightbox" id="lightbox"></div>
+                            <div id="pop" class="pop" style="display: none;">
+                                <a href="javascript:close()" style="
+                                            position: absolute;
+                                            right: -90px;
+                                            display: inline-block;
+                                            width: 80px;
+                                            height: 30px;
+                                        " id="close"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/close.png" width="25px"></a>
+                                <iframe src="" frameborder="0" id="pdfContainer" name="pdfContainer"></iframe>
                             </div>
                         </div>
-
                     </div>
-                </div>
-                <div>
-                    <script src="${pageContext.request.contextPath}/pdfjs/build/pdf.js"></script>
-                    <script src="${pageContext.request.contextPath}/pdfjs/build/pdf.worker.js"></script>
-                    <script type="text/javascript">
-                        function showPdf(isShow){
-                            var state = "";
-                            if(isShow){
-                                state = "block";
-                            }else{
-                                state = "none";
-                            }
-                            var pop = document.getElementById("pop");
-                            pop.style.display = state;
-                            var lightbox = document.getElementById("lightbox");
-                            lightbox.style.display = state;
-                        }
-                        function close(){
-                            showPdf(false);
-                        }
-                    </script>
-                    <div>
-                        <div class="lightbox" id="lightbox"></div>
-                        <div id="pop" class="pop" style="display: none;">
-                            <a href="javascript:close()" style="
-                                        position: absolute;
-                                        right: -90px;
-                                        display: inline-block;
-                                        width: 80px;
-                                        height: 30px;
-                                    " id="close"><img src="${pageContext.request.contextPath}/encryptWeb/student/static/close.png" width="25px"></a>
-                            <iframe src="" frameborder="0" id="pdfContainer" name="pdfContainer"></iframe>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
+                </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </div>

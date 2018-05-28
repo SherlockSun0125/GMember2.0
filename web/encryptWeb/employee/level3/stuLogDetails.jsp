@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>校企合作阶段管理</title>
+    <title>毕业设计阶段管理</title>
     <!--三个重要的CSS文件-->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/employee/static/core_62c0700cc15bd051f36fa48b7a5c1a26.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/core_e47b1ded06977727b0dc00ac5fae1259.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/employee/static/core_e47b1ded06977727b0dc00ac5fae1259.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/employee/static/pt_newpages_course_learn.css">
     <style type="text/css">
         .ux-pager_itm > a, .ux-pager_itm > span, .ux-pager_btn > a, .ux-pager_btn > span, .ux-pager_sep > a, .ux-pager_sep > span {
@@ -454,7 +454,7 @@
             cursor: pointer;
             width: 15px;
             height: 15px;
-            background: url(/encryptWeb/student/static/forum_icon.png) no-repeat -4999px -4999px;
+            background: url(/encryptWeb/employee/static/forum_icon.png) no-repeat -4999px -4999px;
         }
 
         .auto-1524789536688 .num {
@@ -485,7 +485,7 @@
             vertical-align: middle;
             height: 14px;
             width: 14px;
-            background: url(/encryptWeb/student/static/forum_icon.png) no-repeat -55px -45px;
+            background: url(/encryptWeb/employee/static/forum_icon.png) no-repeat -55px -45px;
         }
 
         .auto-1524789536690 .manBtn:hover span {
@@ -543,7 +543,7 @@
             display: inline-block;
             width: 20px;
             height: 16px;
-            background: url(/encryptWeb/student/static/forum_icon.png) no-repeat -4999px -4999px;
+            background: url(/encryptWeb/employee/static/forum_icon.png) no-repeat -4999px -4999px;
         }
 
         .auto-1524789536693 .optbar .replyBtn i {
@@ -686,7 +686,7 @@
         }
 
         .auto-1524789536707 a span {
-            background: url(/encryptWeb/student/static/forum_icon.png) no-repeat -4999px -4999px;
+            background: url(/encryptWeb/employee/static/forum_icon.png) no-repeat -4999px -4999px;
             margin-left: 4px;
             display: inline-block;
             width: 12px;
@@ -782,16 +782,6 @@
             background-color: #f3f6f7
         }
     </style>
-    <style type="text/css">
-        thead th{
-            font-weight: bold;
-            background-color: #2d89ef;
-            text-align: center;
-        }
-        table{
-            text-align: center;
-        }
-    </style>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
@@ -858,7 +848,7 @@
             <div class="g-flow">
                 <div class="f-pr f-cb">
                     <div style="position: absolute;top:2px;bottom:2px;">
-                        <a class="f-fl" hidefocus="true" target="_self" data-index="logo" href="${pageContext.request.contextPath}/encryptWeb/employee/empHome.jsp">
+                        <a class="f-fl" hidefocus="true" target="_self" data-index="logo" href="${pageContext.request.contextPath}/encryptWeb/teacher/teaHome.jsp">
                             <img class="f-fl img" src="${pageContext.request.contextPath}/encryptWeb/employee/static/hitwh_logo_white.png" title="教师主页" width="540px"
                                  style="margin-top: 2px;margin-bottom: 1px">
                         </a>
@@ -917,6 +907,7 @@
                                 </c:choose>
                             </c:forEach>
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -927,9 +918,9 @@
                     <div class="u-learn-modulewidth" style="width: 96%">
                         <div class="j-breadNavBox">
                             <div class="u-forumbreadnav">
-                                <a href="${pageContext.request.contextPath}/employeeServlet?method=findAllStudentsByEmp&empid=${Employee.emp_id}&stulevelid=2">校企合作阶段管理</a>
+                                <a href="${pageContext.request.contextPath}/employeeServlet?method=findAllStudentsByEmp&empid=${Employee.emp_id}&stulevelid=2">毕业设计阶段管理</a>
                                 <span class="f-icon split"></span>
-                                <span>日志详情</span>
+                                <span>查看日志</span>
                             </div>
                         </div>
                         <div class="j-detailBox auto-1524789536709-parent">
@@ -993,11 +984,11 @@
                                                                     <div class="f-fl name j-name">
                                                                 <span>
                                                                     <span class="userInfo j-userInfo" title="">
-                                                                        教师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师1">${teacherName}</a>&nbsp;&nbsp
+                                                                        教师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师">${teacherName}</a>&nbsp;&nbsp
                                                                     </span>
                                                                 </span>
                                                                     </div>
-                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.emp_time}</div>
+                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.tea_time}</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1005,91 +996,113 @@
                                                 </c:choose>
 
                                                 <%--导师评价--%>
-                                                <div>
-                                                    <form action="${pageContext.request.contextPath}/employeeServlet?method=feedbackLog&logid=${stuLog.stu_log_id}" method="post" onsubmit="checkForm()">
-                                                        <h4 style="font-weight: bold"><em style="color: red">*&nbsp;</em>评论内容</h4>
-                                                        <div id="editor1" style="width: 100%;border: none;">
-                                                            <p>${stuLog.emp_feedback}</p>
-                                                        </div>
-                                                        <textarea id="empFeedback" name="empFeedback" style="width:100%; height:200px;display: none">${stuLog.emp_feedback}</textarea>
-                                                        <div>
-                                                            <p style="font-weight: bold;position: absolute;left:0"><em style="color: red">*&nbsp;</em>点评</p>
-                                                            <span style="margin-right: 4em;padding-left: 3em">
-                                                                <c:choose>
-                                                                    <c:when test="${stuLog.emp_status eq 1}">
-                                                                        <input type="radio" name="empStatus" id="empStatus3" value="3"><label for="empStatus3">点赞</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                        <input type="radio" name="empStatus" id="empStatus2" value="2"><label for="empStatus2">提醒</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                        <input type="radio" name="empStatus" id="empStatus1" value="1"  checked="checked"><label for="empStatus1">警告</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                    </c:when>
-                                                                    <c:when test="${stuLog.emp_status eq 2}">
-                                                                        <input type="radio" name="empStatus" id="empStatus3" value="3"><label for="empStatus3">点赞</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                        <input type="radio" name="empStatus" id="empStatus2" value="2" checked="checked"><label for="empStatus2">提醒</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                        <input type="radio" name="empStatus" id="empStatus1" value="1"><label for="empStatus1">警告</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        <input type="radio" name="empStatus" id="empStatus3" value="3"  checked="checked"><label for="empStatus3">点赞</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
-                                                                        <input type="radio" name="empStatus" id="empStatus2" value="2"><label for="empStatus2">提醒</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
-                                                                        <input type="radio" name="empStatus" id="empStatus1" value="1"><label for="empStatus1">警告</label>
-                                                                        <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                                            </span>
-                                                        </div>
-                                                        <button class="btn btn-success" style="float: right" type="submit">评价</button>
-                                                    </form>
-                                                    <script type="text/javascript">
-                                                        function checkForm() {
-                                                            if(!$("#empFeedback").val()){
-                                                                alert("评论不能为空!");
-                                                                return false;
+                                                <c:choose>
+                                                    <c:when test="${stuLog.emp_feedback eq null}">
+                                                        <form action="${pageContext.request.contextPath}/employeeServlet?method=feedbackLog&logid=${stuLog.stu_log_id}" method="post" onsubmit="checkForm()">
+                                                            <h4 style="font-weight: bold"><em style="color: red">*&nbsp;</em>评论内容</h4>
+                                                            <div id="editor1" style="width: 100%;border: none;"></div>
+                                                            <textarea id="empFeedback" name="empFeedback" style="width:100%; height:200px;display: none"></textarea>
+                                                            <div>
+                                                                <p style="font-weight: bold;position: absolute;left:0"><em style="color: red">*&nbsp;</em>点评</p>
+                                                                <span style="margin-right: 4em;padding-left: 3em">
+                                                                    <input type="radio" name="empStatus" id="empStatus3" value="3"><label for="empStatus3">点赞</label>
+                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+
+                                                                    <input type="radio" name="empStatus" id="empStatus2" value="2" checked="checked"><label for="empStatus2">提醒</label>
+                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+
+                                                                    <input type="radio" name="empStatus" id="empStatus1" value="1"><label for="empStatus1">警告</label>
+                                                                    <span><img style="width: 1em;height: 1em;" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                </span>
+                                                            </div>
+                                                            <button class="btn btn-success" style="float: right" type="submit">评价</button>
+                                                        </form>
+                                                        <script type="text/javascript">
+                                                            function checkForm() {
+                                                                if(!$("#empFeedback").val()){
+                                                                    alert("评论不能为空!");
+                                                                    return false;
+                                                                }
+                                                                return true;
                                                             }
-                                                            return true;
-                                                        }
-                                                    </script>
-                                                    <script type="text/javascript">
-                                                        var E = window.wangEditor;
-                                                        var editor1 = new E('#editor1');
+                                                        </script>
+                                                        <script type="text/javascript">
+                                                                var E = window.wangEditor;
+                                                                var editor1 = new E('#editor1');
 
-                                                        editor1.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
-                                                        editor1.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
-                                                        editor1.customConfig.menus = [
-                                                            'head',  // 标题
-                                                            'bold',  // 粗体
-                                                            'fontSize',  // 字号
-                                                            'fontName',  // 字体
-                                                            'italic',  // 斜体
-                                                            'underline',  // 下划线
-                                                            'strikeThrough',  // 删除线
-                                                            'foreColor',  // 文字颜色
-                                                            'backColor',  // 背景颜色
-                                                            'link',  // 插入链接
-                                                            'justify',  // 对齐方式
-                                                            'quote',  // 引用
-                                                            'image',  // 插入图片
-                                                            'table',  // 表格
-                                                            'code',  // 插入代码
-                                                            'undo',  // 撤销
-                                                            'redo'  // 重复
-                                                        ];
+                                                                editor1.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+                                                                editor1.customConfig.showLinkImg = false;    // 隐藏“网络图片”tab
+                                                                editor1.customConfig.menus = [
+                                                                    'head',  // 标题
+                                                                    'bold',  // 粗体
+                                                                    'fontSize',  // 字号
+                                                                    'fontName',  // 字体
+                                                                    'italic',  // 斜体
+                                                                    'underline',  // 下划线
+                                                                    'strikeThrough',  // 删除线
+                                                                    'foreColor',  // 文字颜色
+                                                                    'backColor',  // 背景颜色
+                                                                    'link',  // 插入链接
+                                                                    'justify',  // 对齐方式
+                                                                    'quote',  // 引用
+                                                                    'image',  // 插入图片
+                                                                    'table',  // 表格
+                                                                    'code',  // 插入代码
+                                                                    'undo',  // 撤销
+                                                                    'redo'  // 重复
+                                                                ];
 
-                                                        var teaFeedback=$("#empFeedback");
-                                                        editor1.customConfig.onchange=function (html) {
-                                                            empFeedback.val(html);
-                                                        };
+                                                                var empFeedback=$("#empFeedback");
+                                                                editor1.customConfig.onchange=function (html) {
+                                                                    empFeedback.val(html);
+                                                                };
 
-                                                        editor1.create();
-                                                        empFeedback.val(editor1.$txt.html);
+                                                                editor1.create();
+                                                                empFeedback.val(editor1.$txt.html);
 
-                                                    </script>
-                                                </div>
+                                                        </script>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="f-pr auto-1524789536705 first" style="z-index: 0;">
+                                                            <div class="rinfobox f-cb">
+                                                                <h4 class="j-reply-info f-fl" style="font-weight: bold">导师评价</h4>
+                                                                <p class="watch" style="margin-left:5em">
+                                                                    <c:choose>
+                                                                        <c:when test="${stuLog.emp_status eq 3}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/praise.png"></span>
+                                                                        </c:when>
+                                                                        <c:when test="${stuLog.emp_status eq 2}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/remind.png"></span>
+                                                                        </c:when>
+                                                                        <c:when test="${stuLog.emp_status eq 1}">
+                                                                            <span><img style="width: 1.5em;height: 1.5em;margin-top:10px" src="${pageContext.request.contextPath}/encryptWeb/student/static/warn.png"></span>
+                                                                        </c:when>
+                                                                    </c:choose>
+                                                                </p>
+                                                            </div>
+                                                            <div class="m-detailInfoItem f-pr auto-1524789536697" style="z-index: 100;">
+                                                                <div class="f-richEditorText j-content edueditor_styleclass_0">${stuLog.emp_feedback}<br></div>
+                                                                <div class="bar f-cb">
+                                                                    <div class="f-fl name j-name">
+                                                                <span>
+                                                                    <span class="userInfo j-userInfo">
+                                                                        导师&nbsp;&nbsp;<a class="f-fcgreen userName" href="#" title="教师1">${employeeName}</a>&nbsp;&nbsp
+                                                                    </span>
+                                                                </span>
+                                                                    </div>
+                                                                    <div class="f-fl f-fc9 time j-time">${stuLog.emp_time}</div>
+                                                                    <div class="f-cb f-fr optBox j-optBox">
+                                                                        <a hidefocus="true" class="f-fr f-fc9 opt delBtn j-delBtn" href="${pageContext.request.contextPath}/employeeServlet?method=deleteLogFd&logid=${stuLog.stu_log_id}">删除</a>
+                                                                        <div class="f-fr divider">|</div>
+                                                                        <a hidefocus="true" class="f-fl f-fc9 editBtn j-editBtn" href="${pageContext.request.contextPath}/employeeServlet?method=toUpdateLogFd&logid=${stuLog.stu_log_id}">编辑</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+
                                             </div>
 
                                         </div>

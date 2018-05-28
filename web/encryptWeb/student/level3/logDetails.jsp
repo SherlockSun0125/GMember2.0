@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <title>毕业设计阶段</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/core_e47b1ded06977727b0dc00ac5fae1259.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/pt_newpages_course_learn.css">
     <style type="text/css">
@@ -853,7 +854,7 @@
                     <div class="u-learn-modulewidth" style="width: 96%">
                         <div class="j-breadNavBox">
                             <div class="u-forumbreadnav">
-                                <a href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">工程学习阶段</a>
+                                <a href="${pageContext.request.contextPath}/studentServlet?method=findLogsOfStudentLevel&stuid=${Student.stu_id}&stulevelid=${Student.stu_level_id}">毕业设计阶段</a>
                                 <span class="f-icon split"></span>
                                 <span>日志详情</span>
                             </div>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>工程学习阶段</title>
+    <title>校企合作阶段管理</title>
     <!--三个重要的CSS文件-->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/employee/static/core_62c0700cc15bd051f36fa48b7a5c1a26.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/employee/static/core_e47b1ded06977727b0dc00ac5fae1259.css">
@@ -848,7 +848,7 @@
             <div class="g-flow">
                 <div class="f-pr f-cb">
                     <div style="position: absolute;top:2px;bottom:2px;">
-                        <a class="f-fl" hidefocus="true" target="_self" data-index="logo" href="${pageContext.request.contextPath}/encryptWeb/employee/teaHome.jsp">
+                        <a class="f-fl" hidefocus="true" target="_self" data-index="logo" href="${pageContext.request.contextPath}/encryptWeb/employee/empHome.jsp">
                             <img class="f-fl img" src="${pageContext.request.contextPath}/encryptWeb/employee/static/hitwh_logo_white.png" title="教师主页" width="540px"
                                  style="margin-top: 2px;margin-bottom: 1px">
                         </a>
@@ -917,7 +917,7 @@
                     <div class="u-learn-modulewidth" style="width: 90%">
                         <div class="j-breadNavBox">
                             <div class="u-forumbreadnav">
-                                <a href="${pageContext.request.contextPath}/employeeServlet?method=findAllStudentsByEmp&empid=${Employee.emp_id}&stulevelid=2">工程学习阶段管理</a>
+                                <a href="${pageContext.request.contextPath}/employeeServlet?method=findAllStudentsByEmp&empid=${Employee.emp_id}&stulevelid=2">校企合作阶段管理</a>
                                 <span class="f-icon split"></span>
                                 <span>项目查看</span>
                             </div>
