@@ -271,6 +271,12 @@
                         <td style="border: 3px solid #EEEEEE" colspan="2">${stu.stu_major}</td>
                     </tr>
                     <tr>
+                        <td class="tname" colspan="1" style="border: 3px solid #EEEEEE">手机号</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="3">${stu.stu_phone}</td>
+                        <td class="tname" colspan="1" style="border: 3px solid #EEEEEE">邮箱</td>
+                        <td style="border: 3px solid #EEEEEE" colspan="3">${stu.stu_mail}</td>
+                    </tr>
+                    <tr>
                         <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">备<br/>注
                         <td colspan="7" style="border: 3px solid #EEEEEE;text-align: left">${stu.stu_note}</td>
                     </tr>

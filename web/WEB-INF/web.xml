@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <!--<error-page>-->
+        <!--&lt;!&ndash;<location>/404.jsp</location>&ndash;&gt;-->
+    <!--</error-page>-->
+    
     <!-- 处理全站请求编码，默认是utf-8 -->
     <filter>
         <filter-name>EncodingFilter</filter-name>

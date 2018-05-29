@@ -111,8 +111,6 @@ public class NewsServlet extends BaseServlet {
         return "f:/newsDetail.jsp";
     }
 
-
-
     public String adminFindNewsBySection(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage=getCurrentPage(req);
         String url=getUrl(req);

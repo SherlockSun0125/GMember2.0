@@ -148,6 +148,101 @@ public class StudentServlet extends BaseServlet {
     /*
     学生区
      */
+    //学生修改资料用
+    public String toUpdateSetting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int studentid=Integer.parseInt(req.getParameter("stuid"));
+        Student student=studentService.findStudentById(studentid);
+
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
+
+        req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("stugradePageBean",stugradePageBean);
+
+        if (student.getStu_sex().equals("男")){
+            req.setAttribute("sex",1);
+        }else {
+            req.setAttribute("sex",0);
+        }
+
+        req.setAttribute("stu",student);
+
+        return "f:/encryptWeb/student/setting.jsp";
+    }
+
+    public String updateSetting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//      学生id
+        int stuid=Integer.parseInt(req.getParameter("stuid"));
+
+        Student newStudent=studentService.findStudentById(stuid);
+//        学号
+        String stunum=req.getParameter("stunum");
+        newStudent.setStu_num(stunum);
+//        姓名
+        String stuname=req.getParameter("stuname");
+        newStudent.setStu_name(stuname);
+//        性别
+        int stusex=Integer.parseInt(req.getParameter("stusex"));
+        if (stusex==1){
+            newStudent.setStu_sex("男");
+        }else{
+            newStudent.setStu_sex("女");
+        }
+//        年龄
+        int stuage=Integer.parseInt(req.getParameter("stuage"));
+        newStudent.setStu_age(stuage);
+//        院系
+        int depid=Integer.parseInt(req.getParameter("depid"));
+        newStudent.setDep_id(depid);
+
+        //专业
+        String stumajor=req.getParameter("stumajor");
+        newStudent.setStu_major(stumajor);
+
+        //获得英语成绩
+        String stuenglish=req.getParameter("stuenglish");
+        newStudent.setStu_english(stuenglish);
+
+        //获得成绩id
+        int stugradeid=Integer.parseInt(req.getParameter("stugrade"));
+        newStudent.setStu_grade_id(stugradeid);
+
+//        手机号
+        String stuphone=req.getParameter("stuphone");
+        newStudent.setStu_phone(stuphone);
+//        邮箱
+        String stumail=req.getParameter("stumail");
+        newStudent.setStu_mail(stumail);
+//        备注
+        String stunote=req.getParameter("stunote");
+        newStudent.setStu_note(stunote);
+//        密码
+        String stupwd=req.getParameter("stupwd");
+        newStudent.setStu_pwd(stupwd);
+
+//        更新数据库
+        studentService.updateStudent(newStudent);
+
+//        重新获取信息并返回详情页
+        Student student=studentService.findStudentById(stuid);
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+        PageBean<Stugrade> stugradePageBean=stugradeService.findAllStuGrades();
+
+        req.setAttribute("departmentPageBean",departmentPageBean);
+        req.setAttribute("stugradePageBean",stugradePageBean);
+
+        if (student.getStu_sex().equals("男")){
+            req.setAttribute("sex",1);
+        }else {
+            req.setAttribute("sex",0);
+        }
+
+        req.setAttribute("stu",student);
+        req.setAttribute("msgUpdateSetting","个人信息更新成功！");
+
+        return "f:/encryptWeb/student/setting.jsp";
+    }
+
     //学生写日志
     public String addLog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         StuLog newLog=new StuLog();

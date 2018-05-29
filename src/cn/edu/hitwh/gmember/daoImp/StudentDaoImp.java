@@ -176,6 +176,7 @@ public class StudentDaoImp implements IStudentDao{
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
         session=sqlSessionFactory.openSession();
         StudentMapper studentMapper=session.getMapper(StudentMapper.class);
+        System.out.println("来自dao层的问候："+student.toString());
         try{
             studentMapper.updateStudent(student);
             session.commit();

@@ -1,24 +1,25 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
     <title>账号设置</title>
     <!--样式-->
-    <link rel="stylesheet" href="static/core_465566505fc16e2adc7188a490b841e4.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/student/static/core_465566505fc16e2adc7188a490b841e4.css">
     <style type="text/css">
         .buttonsprite, .u-sugInput .add, .u-sugInput .add span, .m-infoEdit .editBox .accMail .add .btn, .m-infoEdit .editBox .accMail .add .btn span, .m-infoEdit .editBox .accMail .verify .btn1, .m-infoEdit .editBox .accMail .verify .btn1 span, .m-infoEdit .editBox .accMail .verify .btn2, .m-infoEdit .editBox .accMail .verify .btn2 span, .m-infoEdit .editBox .addEdu, .m-infoEdit .editBox .addEdu span, .m-infoEdit .footer .btn, .m-infoEdit .footer .btn span, .m-AccBox .m-accBaseInfo .urlEditBox .btn, .m-AccBox .m-accBaseInfo .urlEditBox .btn span, .epayAccount .add .btn, .epayAccount .add .btn span, .epayAccount .verify .btn1, .epayAccount .verify .btn1 span, .epayAccount .verify .btn2, .epayAccount .verify .btn2 span, .m-AccBox .u-bindItem .opr .btn, .m-AccBox .u-bindItem .opr .btn span, .m-epayBind .actEpayBtn, .m-epayBind .actEpayBtn span, .m-setBox .btn, .m-setBox .btn span, .m-setBox .m-settingsAddress .footer .btn, .m-setBox .m-settingsAddress .footer .btn span {
-            background: url(static/button.png) no-repeat 4449px 4449px;
+            background: url(/encryptWeb/student/static/button.png) no-repeat 4449px 4449px;
         }
 
         .uisprite, .w-tag .u-close {
-            background: url(static/ui_sprite.png) no-repeat 4449px 4449px;
+            background: url(/encryptWeb/student/static/ui_sprite.png) no-repeat 4449px 4449px;
         }
 
         .snssprite, .m-AccBox .u-bindItem .icn {
-            background: url(static/snsSprite.png) no-repeat 4449px 4449px;
+            background: url(/encryptWeb/student/static/snsSprite.png) no-repeat 4449px 4449px;
         }
 
         .settingsSprite, .m-epayBind .info {
-            background: url(static/settings.png) no-repeat 4449px 4449px;
+            background: url(/encryptWeb/student/static/settings.png) no-repeat 4449px 4449px;
         }
 
         .u-moocbtn {
@@ -70,7 +71,7 @@
         }
 
         .setingsicon, .m-infoEdit .header .authIcon {
-            background: url(static/settings.png) 4449px 4449px no-repeat;
+            background: url(/encryptWeb/student/static/settings.png) 4449px 4449px no-repeat;
         }
 
         .u-moocbtn {
@@ -378,19 +379,19 @@
         .m-telbindsetbox .wrap .u-logo-tel {
             width: 22px;
             height: 24px;
-            background: url(static/icon1.png) -9999px -9999px no-repeat;
+            background: url(/encryptWeb/student/static/icon1.png) -9999px -9999px no-repeat;
             background-position: 0 -78px;
         }
 
         .m-telbindsetbox .wrap .u-logo-code {
             width: 22px;
             height: 24px;
-            background: url(static/icon1.png) -9999px -9999px no-repeat;
+            background: url(/encryptWeb/student/static/icon1.png) -9999px -9999px no-repeat;
             background-position: 0 -108px;
         }
 
         .m-telbindsetbox .wrap .u-logo-pwd {
-            background: url(static/icon1.png) no-repeat 0 -45px;
+            background: url(/encryptWeb/student/static/icon1.png) no-repeat 0 -45px;
             height: 22px;
             width: 24px;
             margin-top: 2px;
@@ -398,7 +399,7 @@
 
         .m-telbindsetbox .wrap .next {
             display: inline-block;
-            background: url(static/icon1.png) no-repeat 0 -386px;
+            background: url(/encryptWeb/student/static/icon1.png) no-repeat 0 -386px;
             width: 35px;
             height: 35px;
             vertical-align: middle;
@@ -475,7 +476,7 @@
         }
 
         .m-telbindsetbox .wrap .m-error-box .ferrortail {
-            background: url(static/sprite.png) -9999px -9999px no-repeat;
+            background: url(/encryptWeb/student/static/sprite.png) -9999px -9999px no-repeat;
             height: 15px;
             width: 18px;
             background-position: -217px -34px;
@@ -1190,25 +1191,6 @@
             color: #444;
         }
 
-        .m-AccBox .m-accBaseInfo .urlEditBox .urlTip {
-            color: #ccc;
-            margin: 6px 0;
-            font-size: 13px;
-        }
-
-        .m-AccBox .m-accBaseInfo .urlEditBox .urlEditTip {
-            color: #c33;
-            font-size: 13px;
-        }
-
-        .m-AccBox .m-accBaseInfo .urlEditBox .urlEdit .uEinput {
-            background: #FAFAFA;
-            border: 1px solid #DFDFDF;
-            box-shadow: 1px 1px 2px #DFDFDF inset;
-            width: 137px;
-            height: 31px;
-            margin: 0 10px 0 0;
-        }
 
         .m-AccBox .m-accBaseInfo .urlEditBox .urlEdit .uEinput input {
             background: none repeat scroll 0 0 transparent;
@@ -1223,58 +1205,12 @@
             font-weight: bold;
         }
 
-        .m-AccBox .m-accBaseInfo .show {
-            display: block;
-            margin-top: 50px;
-        }
-
-        .u-unBind {
-            padding: 10px 30px;
-        }
-
-        .u-unBind.m-basewin div.zcnt {
-            border-top: 1px solid #ccc;
-            padding-top: 30px;
-            padding-bottom: 10px;
-        }
-
-        .u-unBind.m-basewin .zbar .zttl {
-            padding-left: 0;
-        }
-
-        .u-unBind .btn .slave.long {
-            width: 100px;
-            background-position: 90px -150px;
-        }
-
-        .u-unBind .btn .slave.long:hover {
-            background-position: 90px -200px;
-        }
-
         .u-unBind .btn .slave.long span {
             width: 80px;
         }
 
         .u-unBind .f-cr {
             color: #ce5251;
-        }
-
-        .m-epayAccount {
-            border-top: 1px solid #eaeaea;
-            padding: 40px 0 20px;
-        }
-
-        .m-epayAccount .j-epayAccount {
-            margin-top: 10px;
-        }
-
-        .epayAccount {
-            margin-bottom: 25px;
-        }
-
-        .epayAccount .f-sign {
-            padding: 0;
-            margin-left: -7px;
         }
 
         .epayAccount .title {
@@ -1289,14 +1225,6 @@
 
         .epayAccount .mailTxt .m-feedbackinfo {
             padding-left: 0;
-        }
-
-        .epayAccount .mailTxt .m-feedbackinfo .righttxt {
-            color: #999;
-        }
-
-        .epayAccount .mailTxt .sendAgain {
-            color: #21a557;
         }
 
         .epayAccount .add .m-baseinputui textarea {
@@ -1353,10 +1281,6 @@
 
         .epayAccount .verify {
             line-height: 34px;
-        }
-
-        .epayAccount .verify .mailN {
-            margin-right: 15px;
         }
 
         .epayAccount .verify .btn {
@@ -1446,90 +1370,14 @@
             color: #E84807;
         }
 
-        .m-AccBox .m-accBind, .m-AccBox .m-epayBind {
-            padding: 30px 20px;
-        }
-
-        .m-AccBox .m-accBind .binddes {
-            margin-bottom: 20px;
-            width: 540px;
-            font-size: 12px;
-            color: #999;
-        }
-
-        .m-AccBox .u-bindItem {
-            height: 45px;
-            width: 540px;
-            font-size: 12px;
-        }
-
-        .m-AccBox .u-bindItem .icn {
-            width: 32px;
-            height: 30px;
-            margin-right: 12px;
-        }
-
-        .m-AccBox .u-bindItem .icn1 {
-            background-position: -183px -220px;
-        }
-
-        .m-AccBox .u-bindItem .icn2 {
-            background-position: 0 -220px;
-        }
-
-        .m-AccBox .u-bindItem .icn3 {
-            background-position: -122px -220px;
-        }
-
-        .m-AccBox .u-bindItem .icn4 {
-            background-position: -61px -220px;
-        }
-
-        .m-AccBox .u-bindItem .name {
-            color: #666;
-            margin-right: 12px;
-        }
-
-        .m-AccBox .u-bindItem .site {
-            line-height: 30px;
-        }
-
-        .m-AccBox .u-bindItem .page {
-            color: #999;
-            max-width: 150px;
-        }
-
-        .m-AccBox .u-bindItem .page:hover {
-            color: #21a557;
-        }
-
         .m-AccBox .u-bindItem .tip .m-feedbackinfo {
             padding: 0;
             margin-top: -5px;
         }
 
-        .m-AccBox .u-bindItem .tip .m-feedbackinfo .normaltxt {
-            color: #a88300;
-        }
-
-        .m-AccBox .u-bindItem .invite {
-            color: #999;
-        }
-
         .m-AccBox .u-bindItem .invite a {
             margin-left: 25px;
             color: #21a557;
-        }
-
-        .m-AccBox .u-bindItem .opr {
-            width: 74px;
-            margin-left: 10px;
-        }
-
-        .m-AccBox .u-bindItem .opr .unbind {
-            width: 74px;
-            font-size: 14px;
-            text-align: center;
         }
 
         .m-AccBox .u-bindItem .opr .btn {
@@ -1569,38 +1417,6 @@
             background-position: -40px -100px;
         }
 
-        .singlebtn .btn .left {
-            float: none;
-        }
-
-        .singlebtn .m-dialog .right {
-            display: none;
-        }
-
-        .singlebtn .m-dialog .left {
-            margin: 0 auto;
-        }
-
-        .singlebtn .m-dialog .btn .left {
-            float: none;
-        }
-
-        .singlebtn .m-dialog .btn .slave.small {
-            display: none;
-        }
-
-        .m-epayBind {
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .m-epayBind .actEpayBtn {
-            display: block;
-            width: 126px;
-            width: 126px;
-            text-decoration: none;
-            background-position: 116px 0px;
-        }
-
         .m-epayBind .actEpayBtn span {
             display: block;
             text-align: center;
@@ -1613,16 +1429,8 @@
             background-position: -40px 0px;
         }
 
-        .m-epayBind .actEpayBtn:hover {
-            background-position: 116px -50px;
-        }
-
         .m-epayBind .actEpayBtn:hover span {
             background-position: -40px -50px;
-        }
-
-        .m-epayBind .actEpayBtn:active {
-            background-position: 116px -100px;
         }
 
         .m-epayBind .actEpayBtn:active span {
@@ -1637,18 +1445,6 @@
             font-size: 12px;
             color: #999;
             margin-top: 9px;
-        }
-
-        .m-epayBind {
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .m-epayBind .actEpayBtn {
-            display: block;
-            width: 126px;
-            width: 126px;
-            text-decoration: none;
-            background-position: 116px 0px;
         }
 
         .m-epayBind .actEpayBtn span {
@@ -1697,17 +1493,6 @@
             font-family: 'Microsoft YAHEI';
         }
 
-        .u-logSelectDialog {
-            padding: 30px;
-        }
-
-        .u-logSelectDialog div.zbar {
-            line-height: 30px;
-            height: 30px;
-            margin-bottom: 50px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
         .u-logSelectDialog div.zbar .zttl {
             font-size: 16px;
             color: #666666;
@@ -1728,7 +1513,7 @@
         }
 
         .u-logSelectDialog .mainType .m-logHeader .headIcon, .u-logSelectDialog .slaveType .m-logHeader .headIcon {
-            background: url(static/whiteDot.png) no-repeat center center;
+            background: url(/encryptWeb/student/static/whiteDot.png) no-repeat center center;
             width: 50px;
             height: 50px;
             top: -25px;
@@ -1894,7 +1679,7 @@
         }
 
         .u-logSelectDialog .btn {
-            background: url(static/button.png) no-repeat 4449px 4449px;
+            background: url(/encryptWeb/student/static/button.png) no-repeat 4449px 4449px;
             margin-top: 30px;
             display: block;
             width: 85px;
@@ -1927,76 +1712,14 @@
             margin-right: 10px;
         }
 
-        .u-logSelectDialog .u-btn-disabled {
-            background-position: -50px -150px;
-            cursor: default;
-        }
-
-        .u-logSelectDialog .u-btn-disabled:hover {
-            background-position: -50px -200px;
-        }
-
         .u-logSelectDialog .u-btn-disabled span {
             color: #444;
             background-position: -40px -150px;
         }
 
-        .u-logSelectDialog .u-btn-default {
-            background-position: -50px 0px;
-            cursor: pointer;
-        }
-
-        .u-logSelectDialog .u-btn-default:hover {
-            background-position: -50px -50px;
-        }
-
         .u-logSelectDialog .u-btn-default span {
             color: #fff;
             background-position: -40px 0px;
-        }
-
-        .m-hoverTips {
-            color: #21a557;
-            cursor: pointer;
-        }
-
-        .m-hoverTips .block {
-            display: none;
-            width: 350px;
-            left: -250px;
-            bottom: 31px;
-            letter-spacing: 0px;
-            text-align: left;
-            background: #ffffcc;
-            padding: 10px 10px;
-            border-radius: 4px;
-            box-shadow: 0px 1px 2px #777;
-            line-height: 20px;
-            font-size: 12px;
-            color: #000;
-        }
-
-        .m-hoverTips .block .arrow {
-            bottom: -16px;
-            left: 273px;
-            border-width: 8px 6px;
-            border-style: solid;
-            border-style: solid;
-            border-color: #ffffcc transparent transparent transparent;
-        }
-
-        .m-hoverTips:hover .block {
-            display: block;
-        }
-
-        .setting-hd {
-            margin: 14px 0;
-        }
-
-        .m-setBox .boxTab {
-            border-bottom: 1px solid #eaeaea;
-            height: 43px;
-            background-color: #fafafa;
         }
 
         .m-setBox .boxTab a {
@@ -2014,15 +1737,6 @@
 
         .m-setBox .boxTab a:hover {
             color: #E84807;
-        }
-
-        .m-setBox .boxTab .current {
-            color: #fff;
-            background-color: #E84807;
-        }
-
-        .m-setBox .boxTab .current:hover {
-            color: #fff;
         }
 
         .m-setBox .btn {
@@ -2229,51 +1943,6 @@
         }
     </style>
     <style type="text/css">
-        .auto-1523864610048 {
-            position: fixed;
-            _position: absolute;
-            z-index: 100;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url(data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==);
-        }
-
-        .auto-1523864610049 {
-            position: absolute;
-            z-index: 1000;
-            border: 1px solid #aaa;
-            background: #fff;
-        }
-
-        .auto-1523864610049 .zbar {
-            line-height: 30px;
-            background: #8098E7;
-            border-bottom: 1px solid #aaa;
-        }
-
-        .auto-1523864610049 .zcnt {
-            padding: 10px 5px;
-        }
-
-        .auto-1523864610049 .zttl {
-            margin-right: 20px;
-            text-align: left;
-        }
-
-        .auto-1523864610049 .zcls {
-            position: absolute;
-            top: 5px;
-            right: 0;
-            width: 20px;
-            height: 20px;
-            line-height: 20px;
-            cursor: pointer;
-        }
-
         .auto-1523864610052 {
             width: 100%;
             height: 100%;
@@ -2306,11 +1975,6 @@
             left: 10px;
         }
 
-        .auto-1523864610054 {
-            font-size: 12px;
-            line-height: 160%;
-        }
-
         .auto-1523864610054 a {
             margin: 0 2px;
             padding: 2px 8px;
@@ -2319,39 +1983,11 @@
             text-decoration: none;
         }
 
-        .auto-1523864610054 .js-disabled {
-            cursor: default;
-        }
-
-        .auto-1523864610054 .js-selected {
-            cursor: default;
-            background-color: #bbb;
-        }
-
-        .auto-1523864610055 .item-highlight {
-            background: #E0F2E2;
-        }
-
-        .auto-1523864610055 .m-data-lists {
-            position: relative;
-            z-index: 100;
-        }
-
-        .auto-1523864610055 .ui-pager {
-            position: relative;
-            z-index: 99;
-        }
-
-        .auto-1523864610056 {
-            width: 100%;
-            background: #ffffcc;
-        }
-
         .auto-1523864610056 .icon {
             margin: 7px 7px 0 15px;
             width: 18px;
             height: 18px;
-            background: url(static/ui_sprite.png) 0 -779px no-repeat;
+            background: url(/encryptWeb/student/static/ui_sprite.png) 0 -779px no-repeat;
         }
 
         .auto-1523864610056 .text {
@@ -2376,10 +2012,7 @@
             cursor: pointer;
             width: 12px;
             height: 12px;
-            background: url(static/ui_sprite.png) -9px -11px no-repeat;
-        }
-
-        .u-share {
+            background: url(/encryptWeb/student/static/ui_sprite.png) -9px -11px no-repeat;
         }
 
         .u-share a {
@@ -2409,28 +2042,28 @@
 
         .auto-1523864610060 .warningbox .wrong {
             float: left;
-            background: url(static/common.png) no-repeat -40px 0;
+            background: url(/encryptWeb/student/static/common.png) no-repeat -40px 0;
             height: 20px;
             width: 20px;
         }
 
         .auto-1523864610060 .warningbox .warn {
             float: left;
-            background: url(static/common.png) no-repeat 0 0;
+            background: url(/encryptWeb/student/static/common.png) no-repeat 0 0;
             height: 20px;
             width: 20px;
         }
 
         .auto-1523864610060 .warningbox .right {
             float: left;
-            background: url(static/common.png) no-repeat -20px 0;
+            background: url(/encryptWeb/student/static/common.png) no-repeat -20px 0;
             height: 20px;
             width: 20px;
         }
 
         .auto-1523864610060 .warningbox .normal {
             float: left;
-            background: url(static/common.png) no-repeat -60px 0;
+            background: url(/encryptWeb/student/static/common.png) no-repeat -60px 0;
             height: 20px;
             width: 20px;
         }
@@ -2450,14 +2083,9 @@
 
         .auto-1523864610060 .loadingbox .icon {
             float: left;
-            background: url(static/loading_circle.gif) no-repeat 0 0;
+            background: url(/encryptWeb/student/static/loading_circle.gif) no-repeat 0 0;
             height: 16px;
             width: 20px;
-        }
-
-        .u-usrAttStatis, .u-usrAttStatis .link {
-            font: 12px/22px '宋体';
-            color: #666;
         }
 
         .u-usrAttStatis .num {
@@ -2535,30 +2163,13 @@
         .auto-1523864610083 .testing {
             height: 27px;
             width: 32px;
-            background: url(static/audio_playing.gif) no-repeat 1px 1px;
+            background: url(/encryptWeb/student/static/audio_playing.gif) no-repeat 1px 1px;
         }
 
         .auto-1523864610083 .endtesting {
             height: 27px;
             width: 32px;
-            background: url(static/ui_sprite.png) no-repeat -51px -1594px;
-        }
-
-        .auto-1523864610083 .analysis {
-            height: 24px;
-        }
-
-        .auto-1523864610083 .txtinfo {
-            height: 24px;
-            line-height: 24px;
-            font-family: "微软雅黑";
-            font-size: 14px;
-            color: #999;
-            padding: 0 5px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
-            border-radius: 4px 0 0 4px;
-            border-right: none;
+            background: url(/encryptWeb/student/static/ui_sprite.png) no-repeat -51px -1594px;
         }
 
         .auto-1523864610083 .playbar {
@@ -2569,174 +2180,12 @@
             border-right: none;
         }
 
-        .auto-1523864610083 .allbar {
-            margin: 9px 5px;
-            height: 6px;
-            width: 0px;
-            background-color: #ccc
-        }
-
-        .auto-1523864610083 .normalborder {
-            border: 1px solid #ddd;
-            border-left: none;
-            border-right: none;
-        }
-
-        .auto-1523864610083 .duration {
-            height: 24px;
-            line-height: 24px;
-            width: 0px;
-            background-color: #f2f2f5;
-            color: #aaa;
-        }
-
-        .auto-1523864610083 .curbar {
-            height: 6px;
-            width: 0%;
-            background-color: #21a557;
-        }
-
-        .auto-1523864610083 .showloading {
-            height: 24px;
-            width: 24px;
-            border: 1px solid #ddd;
-            border-radius: 0 4px 4px 0;
-            background: url(static/audio_loading.gif) no-repeat 1px -1px;
-            background-color: #f2f2f5;
-            cursor: pointer;
-        }
-
-        .auto-1523864610083 .playbtnplaying {
-            height: 24px;
-            width: 25px;
-            border: 1px solid #ddd;
-            border-left: none;
-            border-radius: 0 4px 4px 0;
-            background: url(static/ui_sprite.png) no-repeat 7px -1613px;
-            background-color: #f2f2f5;
-            cursor: pointer;
-        }
-
-        .auto-1523864610083 .playbtnplaying:hover {
-            background-position: -19px -1613px;
-            background-color: #e5e5e9;
-        }
-
-        .auto-1523864610083 .playbtnstop:hover {
-            background-position: -19px -1594px;
-            background-color: #e5e5e9;
-        }
-
-        .auto-1523864610083 .playbtnstop {
-            height: 24px;
-            width: 25px;
-            border: 1px solid #ddd;
-            border-left: none;
-            border-radius: 0 4px 4px 0;
-            background: url(static/ui_sprite.png) no-repeat 7px -1593px;
-            background-color: #f2f2f5;
-            cursor: pointer;
-        }
-
-        .u-window-im {
-            position: fixed;
-            z-index: 99999 !important;
-        }
-
-        .u-window-im .zbar {
-            top: 30px;
-            right: 0px;
-            position: absolute;
-            cursor: move;
-            width: 15px;
-            height: 15px !important;
-            background: url("//nos.netease.com/test-edu-image/87E0380D962D5B2BD332691243A6FF02-1453801344006") !important;
-            background-position: -15px 0px;
-            margin: 7px;
-        }
-
-        .u-window-im .zbar:hover {
-            background-position: 0px 0px !important;
-        }
-
-        .u-window-im {
-            background: transparent !important;
-            box-shadow: none !important;
-            -webkit-box-shadow: none !important;
-            border: none !important;
-        }
-
-        .u-window-im .zttl {
-            display: none !important;
-        }
-
-        .u-window-im .zcls {
-            display: none !important;
-        }
-
-        .u-window-im .little-box {
-            display: none;
-        }
-
         .u-window-im .little-box span {
             display: none;
         }
 
-        .u-window-im .little-box-drag {
-            display: block;
-            position: absolute;
-            height: 480px;
-            width: 617px;
-        }
-
-        .u-window-im .im-box .im-cont {
-            background: #fff;
-        }
-
-        .u-window-im-before {
-            display: none;
-        }
-
-        .u-window-im-before .zbar {
-            display: none !important;
-        }
-
-        .u-window-im-before .zcls {
-            display: none !important;
-        }
-
-        .u-window-im-before {
-            width: 62px !important;
-            height: 62px !important;
-            position: fixed;
-            top: auto !important;
-            left: auto !important;
-            right: 30px !important;
-            bottom: 45px !important;
-            background-color: #ffd200;
-            box-shadow: none !important;
-            -webkit-box-shadow: none !important;
-            -moz-box-shadow: none !important;
-            border: none !important;
-            background: transparent !important;
-        }
-
-        .u-window-im-before .little-box {
-            display: block;
-            width: 62px !important;
-            height: 62px !important;
-            position: absolute;
-            z-index: 999;
-            cursor: pointer;
-        }
-
         .u-window-im-before .little-box span {
             display: none;
-        }
-
-        .u-window-im-before .little-box:hover {
-            background: #ffd200;
-            border-radius: 5px;
         }
 
         .u-window-im-before .little-box:hover span {
@@ -2749,91 +2198,6 @@
             text-align: center;
         }
 
-        .u-window-im-before .im-box .im-op {
-            display: none !important;
-        }
-
-        .u-window-im-before .im-box .im-relate-course {
-            display: none !important;
-        }
-
-        .u-window-im-before .im-box .im-cont {
-            width: 62px !important;
-            height: 62px !important;
-            border: none !important;
-            box-shadow: none !important;
-            -moz-box-shadow: none !important;
-        }
-
-        .u-window-im-before .im-box .im-cont .im {
-            width: 62px !important;
-            height: 62px !important;
-        }
-
-        .auto-1523864610090.im-box {
-            width: 647px;
-            height: 476px;
-        }
-
-        .auto-1523864610090.im-box .im-op {
-            width: 30px;
-            height: 60px;
-            background: #636363;
-        }
-
-        .auto-1523864610090.im-box .im-op .im-close {
-            cursor: pointer;
-            width: 15px;
-            height: 15px;
-            background: url("//nos.netease.com/test-edu-image/87E0380D962D5B2BD332691243A6FF02-1453801344006");
-            background-position: -15px -15px;
-            margin: 7px;
-        }
-
-        .auto-1523864610090.im-box .im-op .im-close:hover {
-            background-position: 0px -15px;
-        }
-
-        .auto-1523864610090.im-box .im-cont {
-            width: 613px;
-            height: 476px;
-            border: 2px solid #21a557;
-            box-shadow: 0px 2px 6px #333;
-            -webkit-box-shadow: 0px 2px 6px #333;
-            -moz-box-shadow: 0px 2px 6px #333;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im {
-            width: 448px;
-            height: 476px;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-100 {
-            width: 613px;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course {
-            width: 164px;
-            height: 476px;
-            position: relative;
-            background-color: white;
-            border-left: 1px solid #dddddd;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course-10 {
-            width: 0px;
-            position: absolute;
-            left: 644px;
-            height: 420px;
-            top: 57px;
-            border-left: none;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course-10 .course-close {
-            top: 160px !important;
-            margin-left: -10px;
-        }
-
         .auto-1523864610090.im-box .im-cont .im-relate-course .title {
             color: #666666;
             width: 155px;
@@ -2843,69 +2207,9 @@
             padding-left: 10px;
         }
 
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course {
-            height: 426px;
-            width: 145px;
-            padding: 0px 10px;
-            overflow-y: scroll;
-            overflow-x: hidden;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course .moreCourse {
-            text-align: center;
-            height: 30px;
-            font-size: 14px;
-            line-height: 30px;
-            color: #21a557;
-            cursor: pointer;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course .no-content {
-            width: 145px;
-            height: 426px;
-            line-height: 426px;
-            text-align: center;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course .card {
-            width: 145px;
-            height: 140px;
-            border-bottom: 1px solid #f0f0f0;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-        }
-
         .auto-1523864610090.im-box .im-cont .im-relate-course .course img {
             width: 145px;
             height: 85px;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course .name {
-            width: 145px;
-            font-size: 13px;
-            margin-top: 10px;
-            height: 18px;
-            line-height: 18px;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course .status {
-            width: 145px;
-            font-size: 14px;
-            margin-top: 10px;
-            height: 16px;
-            line-height: 16px;
-            color: #E84807;
-            margin-bottom: 10px;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course .status-no {
-            width: 145px;
-            font-size: 14px;
-            margin-top: 10px;
-            height: 16px;
-            line-height: 16px;
-            color: #ff8000;
-            margin-bottom: 10px;
         }
 
         .auto-1523864610090.im-box .im-cont .im-relate-course .course .name span {
@@ -2918,63 +2222,6 @@
             line-height: 18px;
             padding: 2px 3px;
             margin-right: 10px;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course-close {
-            cursor: pointer;
-            position: absolute;
-            top: 200px;
-            left: 0px;
-            width: 10px;
-            height: 60px;
-            background-color: #e8f6ee;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .to-open {
-            left: -30px !important;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course-close .arrow {
-            width: 15px;
-            height: 15px;
-            margin-top: 23px;
-            position: absolute;
-            margin-left: -4px;
-            background: url("//nos.netease.com/test-edu-image/87E0380D962D5B2BD332691243A6FF02-1453801344006");
-            background-position: 0 -30px;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course-close .arrow-open {
-            margin-left: -2px !important;
-            background-position: 0 -45px !important;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course-close .arrow-open:hover {
-            background-position: -15px -45px !important;
-        }
-
-        .auto-1523864610090.im-box .im-cont .im-relate-course .course-close .arrow:hover {
-            background-position: -15px -30px;
-        }
-
-        .auto-1523864610092-parent .j-cnt {
-            width: 100%;
-            color: #444;
-            visibility: hidden;
-        }
-
-        .auto-1523864610092-parent .zitm-top {
-            width: 100%;
-            text-indent: 6px;
-            line-height: 32px;
-            cursor: pointer;
-        }
-
-        .auto-1523864610092-parent .zitm, .auto-1523864610092-parent .zitm p {
-            width: 100%;
-            text-indent: 6px;
-            line-height: 32px;
-            cursor: pointer;
         }
 
         .auto-1523864610092-parent .zitm a {
@@ -3014,8 +2261,8 @@
 
         @font-face {
             font-family: "ux-icon";
-            src: url(static/nosdn.eot);
-            src: url(static/nosdn.eot) format("embedded-opentype"), url(static/nosdn.ttf) format("truetype"), url(static/nosdn.woff) format("woff"), url(static/nosdn.svg) format("svg");
+            src: url(/encryptWeb/student/static/nosdn.eot);
+            src: url(/encryptWeb/student/static/nosdn.eot) format("embedded-opentype"), url(/encryptWeb/student/static/nosdn.ttf) format("truetype"), url(static/nosdn.woff) format("woff"), url(/encryptWeb/student/static/nosdn.svg) format("svg");
             font-weight: normal;
             font-style: normal;
         }
@@ -3030,229 +2277,6 @@
             text-decoration: none;
             text-transform: none;
             line-height: 1;
-        }
-
-        .auto-1523864610101 .bread {
-            border-bottom: 1px solid #ddd;
-            height: 35px;
-            line-height: 25px;
-            margin: 0 0 15px;
-            font-weight: bolder;
-        }
-
-        .auto-1523864610101 .box {
-            overflow-y: auto;
-            height: 255px;
-            padding: 0 15px;
-        }
-
-        .auto-1523864610101 .option {
-            display: inline-block;
-            width: 134px;
-            font-size: 12px;
-            margin: 0 8px 8px 0;
-            color: #666;
-        }
-
-        .auto-1523864610101 .option:hover {
-            color: #E84807;
-        }
-
-        .m-side-operation .side-service-item {
-            width: 60px;
-            height: 60px;
-        }
-
-        .m-side-operation .side-service-item .item-link-block {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            display: inline-block;
-            text-align: center;
-            color: #666;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .f-icon {
-            font-size: 32px;
-            line-height: 60px;
-        }
-
-        .m-side-operation .side-service-item .feedback:hover {
-            background-color: #39a030;
-        }
-
-        .m-side-operation .side-service-item .item-link-block:hover .f-icon {
-            color: #fff;
-        }
-
-        .m-side-operation .side-service-item .item-link-block:hover .item-hover-text {
-            display: block;
-        }
-
-        .m-side-operation .side-service-item .item-link-block:hover .icon-hover-none {
-            display: none;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .feedback-icon {
-            background-position: 0 0;
-            top: 16px;
-            left: 16px;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .phone-icon {
-            background-position: 0 -57px;
-            top: 16px;
-            left: 20px;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .top-icon {
-            background-position: 0 -112px;
-            top: 13px;
-            left: 16px;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .item-hover-text {
-            display: none;
-            text-align: center;
-            padding: 10px 15px;
-            background-color: #39a030;
-            color: #fff;
-            height: 40px;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .feedback-text {
-            border-radius: 6px 6px 0 0;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .scrtop-text {
-        }
-
-        .m-side-operation .side-service-item .item-link-block .qrcode-bubble {
-            display: none;
-            z-index: 100000;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .qrcode-bubble .qrcode {
-            border: 1px solid #ccc;
-            position: absolute;
-            right: 60px;
-            top: -30px;
-            width: 200px;
-            padding: 10px 0 6px 12px;
-            background-color: #fff;
-            border-radius: 3px;
-            text-align: center;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .qrcode-bubble .qrcode .download, .m-side-operation .side-service-item .item-link-block .qrcode-bubble .qrcode .follow-weixin {
-            float: left;
-            width: 90px;
-            color: #666;
-            margin-right: 10px;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .qrcode-bubble .qrcode .download img, .m-side-operation .side-service-item .item-link-block .qrcode-bubble .qrcode .follow-weixin img {
-            width: 90px;
-            height: 90px;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .arrow .arrow-cnt, .m-side-operation .side-service-item .item-link-block .arrow .arrow-border {
-            display: block;
-            position: absolute;
-            top: 27px;
-            border-width: 7px 4px;
-            border-style: solid;
-            border-color: transparent transparent transparent #fff;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .arrow .arrow-cnt {
-            left: -1px;
-        }
-
-        .m-side-operation .side-service-item .item-link-block .arrow .arrow-border {
-            border-left-color: #ccc;
-        }
-
-        .m-side-operation .side-service-item .app-download:hover .qrcode-bubble {
-            display: block;
-        }
-
-        .m-side-operation .line-wrap {
-            width: 60px;
-            text-align: center;
-            font-size: 0;
-        }
-
-        .m-side-operation .line-wrap .line {
-            width: 50px;
-            border-top: 1px solid #ccc;
-            display: inline-block;
-        }
-
-        #YSF-BTN-HOLDER {
-            display: none !important;
-        }
-
-        .auto-1523864610124.u-appbanner {
-            width: 100%;
-            height: 52px;
-            background-color: #fff;
-        }
-
-        .auto-1523864610124.u-appbanner .wrap {
-            margin: 0px;
-            padding: 11px 10px;
-        }
-
-        .auto-1523864610124.u-appbanner .logo {
-            height: 30px;
-        }
-
-        .auto-1523864610124.u-appbanner .wrap .download {
-            background-color: #fff;
-            display: inline-block;
-            width: 92px;
-            height: 26px;
-            color: #13bc6e;
-            border: 1px solid #13bc6e;
-            text-align: center;
-            line-height: 26px;
-            font-size: 12px;
-            border-radius: 4px;
-        }
-
-        .auto-1523864610126 {
-            display: block;
-            width: 140px;
-            height: 260px;
-        }
-
-        .auto-1523864610126:hover .close {
-            display: block;
-        }
-
-        .auto-1523864610126 img {
-            color: #E84807;
-            width: 140px;
-            height: 260px;
-        }
-
-        .auto-1523864610126 .close {
-            right: 0px;
-            top: 0px;
-            cursor: pointer;
-            width: 20px;
-            height: 20px;
-            background: transparent;
-        }
-    </style>
-    <style type="text/css">
-        .auto-1523864610227 div {
-            text-align: left;
-        }
-
-        .auto-1523864610227 .input {
-            float: left;
         }
 
         .auto-1523864610227 .m-baseinputui .inputtxt {
@@ -3297,21 +2321,21 @@
         .auto-1523864610230 .infobox .opt .uploadbox {
             float: left;
         }
-
-        .auto-1523864610230 .infobox .opt .feedbox {
-            float: left;
-        }</style>
+    </style>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-<body style="padding-top: 60px;padding-bottom:80px;">
+<body style="padding-top: 60px;padding-bottom:80px;background-color: #EEEEEE">
 <!--网页头部-->
 <div class="f-pf g-headwrap" id="j-fixed-head">
     <div class="g-hd f-bg1 m-yktNav " id="j-topnav">
         <div class="g-flow">
             <div class="f-pr f-cb">
                 <div style="position: absolute;top:2px;bottom:2px;">
-                    <a class="f-fl" hidefocus="true" href="stuHome.jsp" target="_self" data-index="logo">
-                        <img class="f-fl img" src="static/hitwh_logo_white.png" title="学生主页" width="540px"
+                    <a class="f-fl" hidefocus="true" href="${pageContext.request.contextPath}/encryptWeb/student/stuHome.jsp" target="_self" data-index="logo">
+                        <img class="f-fl img" src="${pageContext.request.contextPath}/encryptWeb/student/static/hitwh_logo_white.png" title="学生主页" width="540px"
                              style="margin-top: 2px;margin-bottom: 1px">
                     </a>
                 </div>
@@ -3319,33 +2343,23 @@
                     <div class="userinfo f-fr f-cb f-pr">
                         <div class="login f-cb">
                             <div class="u-mystudy f-pr f-cb f-fr">
-                                <a class="mystudy nitem f-f0" data-index="用户退出" target="_blank"
-                                   href="exit.jsp" hidefocus="true">退出</a>
-                            </div>
-
-                            <div class="name j-userinfo" id="auto-id-1523840858750">
-                                <div class="f-pr">
-                                    <div class="face">
-                                        <img class="j-nav-myimg"
-                                             src="static/head1.jpg"
-                                             width="30px" height="30px" alt="头像">
-                                    </div>
-                                </div>
+                                <a class="mystudy nitem f-f0" data-index="用户退出" target="_self"
+                                   href="${pageContext.request.contextPath}/encryptWeb/student/exit.jsp" hidefocus="true">退出</a>
                             </div>
                             <a class="username self f-thide" target="_self" data-index="点击用户名"
-                               href="setting.jsp">
-                                <span class=" f-fs1 f-f0">PaulSuen</span>
+                               href="${pageContext.request.contextPath}/studentServlet?method=toUpdateSetting&stuid=${Student.stu_id}">
+                                <span class=" f-fs1 f-f0">${Student.stu_name}</span>
                             </a>
-                            <i class="line" style="padding-top: 2%"></i>
-                            <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
-                               href="messageT.jsp" title="查看更多消息" target="_blank">
-                                <span>消息</span>
-                                <em class="num hidddenClass j-nav-msgnum">0</em>
-                            </a>
-                            <div class="u-mystudy f-pr f-cb f-fr">
-                                <a class="mystudy nitem f-f0" id="j-nav-my-class" data-index="讨论区" target="_self"
-                                   href="forum.jsp" hidefocus="true">讨论区</a>
-                            </div>
+                            <%--<i class="line" style="padding-top: 2%"></i>--%>
+                            <%--<a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"--%>
+                               <%--href="${pageContext.request.contextPath}/encryptWeb/student/messageT.jsp" title="查看更多消息" target="_blank">--%>
+                                <%--<span>消息</span>--%>
+                                <%--<em class="num hidddenClass j-nav-msgnum">0</em>--%>
+                            <%--</a>--%>
+                            <%--<div class="u-mystudy f-pr f-cb f-fr">--%>
+                                <%--<a class="mystudy nitem f-f0" id="j-nav-my-class" data-index="讨论区" target="_self"--%>
+                                   <%--href="${pageContext.request.contextPath}/encryptWeb/student/forum.jsp" hidefocus="true">讨论区</a>--%>
+                            <%--</div>--%>
                         </div>
                     </div>
                 </div>
@@ -3356,16 +2370,64 @@
 
 <!--网页主体-->
 <div class="settings f-cb g-flow">
+    <script type="text/javascript">
+        function checkForm() {
+            if(!$("#stunum").val()){
+                alert("学号不能为空");
+                return false;
+            }
+            if(!$("#stuage").val()){
+                alert("年龄不能为空");
+                return false;
+            }
+            if(!$("#stusex").val()){
+                alert("性别不能为空");
+                return false;
+            }
+            if(!$("#stuname").val()){
+                alert("姓名不能为空");
+                return false;
+            }
+            if(!$("#depid").val()){
+                alert("院系不能为空");
+                return false;
+            }
+            if(!$("#stumajor").val()){
+                alert("专业不能为空");
+                return false;
+            }
+            if(!$("#stugrade").val()){
+                alert("成绩排名不能为空");
+                return false;
+            }
+            if(!$("#stuenglish").val()){
+                alert("英语水平不能为空");
+                return false;
+            }
+            if(!$("#stumail").val()){
+                alert("邮箱不能为空");
+                return false;
+            }
+            if(!$("#stuphone").val()){
+                alert("手机号不能为空");
+                return false;
+            }
+            if($("#stupwd").val()!=$("#stupwd2")){
+                alert("两次密码不同，请重新输入！");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
     <div>
         <div class="b-20"></div>
         <div id="settings-box" class="f-bg">
             <div class="m-setBox">
                 <div id="j-setBox" class="setBox">
-                    <div class="m-infoEdit">
-                        <div class="f-cb header">
-                            <div class="f-fl fk">请完善个人资料</div>
-                        </div>
-                        <div class="editBox">
+                    <form action="${pageContext.request.contextPath}/studentServlet?method=updateSetting&stuid=${Student.stu_id}" method="post" onsubmit="return checkForm()">
+                        <div class="m-infoEdit">
+                            <div class="editBox" style="padding-top: 0">
                             <table>
                                 <tbody>
                                 <tr>
@@ -3373,219 +2435,182 @@
                                 </tr>
                                 <tr class="b-10"></tr>
                                 <tr>
-                                    <td class="title"><em class="f-sign">*</em>工号</td>
-                                    <td>
-                                        <div class="j-nickName eBcon">
-                                            <div class="m-nicknameui u-insug f-cb">
-                                                <div class="area j-inputArea f-fl" style="width: 175px; height: 25px;">
-                                                    <input type="text" class="j-input"
-                                                           style="width: 175px; height: 25px;">
-                                                    <%--<label class="j-label" style="display: none;">请输入学号</label>--%>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stunum">学号</label></td>
+                                        <td>
+                                            <input type="text" id="stunum" name="stunum" class="form-control" value="${stu.stu_num}" style="width: 175px; height: 25px;">
                                             <div class="tip f-fs0 s-fc6">&nbsp;</div>
-                                        </div>
-
-                                    </td>
+                                        </td>
+                                    </div>
                                 </tr>
                                 <tr>
-                                    <td class="title"><em class="f-sign">*</em>密码</td>
-                                    <td>
-                                        <div class="j-nickName eBcon">
-                                            <div class="m-nicknameui u-insug f-cb">
-                                                <div class="area j-inputArea f-fl" style="width: 175px; height: 25px;">
-                                                    <input type="password" class="j-input"
-                                                           style="width: 175px; height: 25px;">
-                                                    <%--<label class="j-label" style="display: none;">请输入学号</label>--%>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stupwd">密码</label></td>
+                                        <td>
+                                            <input type="password" id="stupwd" name="stupwd" class="form-control" value="${stu.stu_pwd}" style="width: 175px; height: 25px;">
                                             <div class="tip f-fs0 s-fc6">&nbsp;</div>
-                                        </div>
-
-                                    </td>
+                                        </td>
+                                    </div>
                                 </tr>
                                 <tr>
-                                    <td class="title"><em class="f-sign">*</em>再次确认</td>
-                                    <td>
-                                        <div class="j-nickName eBcon">
-                                            <div class="m-nicknameui u-insug f-cb">
-                                                <div class="area j-inputArea f-fl" style="width: 175px; height: 25px;">
-                                                    <input type="password" class="j-input"
-                                                           style="width: 175px; height: 25px;">
-                                                    <%--<label class="j-label" style="display: none;">请输入学号</label>--%>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stupwd2">再次确认</label></td>
+                                        <td>
+                                            <input type="password" id="stupwd2" class="form-control" value="${stu.stu_pwd}" style="width: 175px; height: 25px;">
                                             <div class="tip f-fs0 s-fc6">&nbsp;</div>
-                                        </div>
-
-                                    </td>
+                                        </td>
+                                    </div>
                                 </tr>
                                 <tr>
-                                    <td class="title">头像</td>
-                                    <td>
-                                        <div class="j-pic eBcon">
-                                            <div class="f-cb auto-1523864610230">
-                                                <div class="imgbox"><img class="img j-img"
-                                                                         src="static/head1.jpg">
-                                                </div>
-                                                <div class="infobox">
-                                                    <div class="info">支持jpg、gif、png格式的图片，建议文件小于20M</div>
-                                                    <div class="opt f-cb">
-                                                        <div class="uploadbox j-uploadbox">
-                                                            <div class="u-upd-img-btn">
-                                                                <a class="upbtn j-upload" title="支持jpg、gif、png或bmp格式的图片，建议文件小于20M">修改头像</a>
-                                                                <div class="flashbox j-flashbox"
-                                                                     id="auto-id-1523864610255">
-                                                                    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-                                                                            codebase="swflash.cab"
-                                                                            width="100%" height="100%"
-                                                                            id="_1523864610254">
-                                                                        <param value="imageUpload.swf"
-                                                                               name="movie">
-                                                                        <param value="always" name="allowScriptAccess">
-                                                                        <param value="transparent" name="wmode">
-                                                                        <param value="cbNameSpace=edu.u.imgUpload15&amp;uploadExif=true&amp;uploadUrl=%2F%2Fupload.icourse163.org%2Fapi%2FphotoUpload2.do%3F_upload_mth_%3Dsync_parse%26userdefinesize%3D28x28x1%3B120x120x1%26saveorigin%3Dfalse%26responsetype%3Dxml%26rotatedegree%3D0%26stamptype%3D%26stampstring%3D%26sitefrom%3Dstudy&amp;id=_1523864610254"
-                                                                               name="flashvars">
-                                                                        <embed src="static/imageUpload.swf"
-                                                                               name="_1523864610254" width="100%"
-                                                                               height="100%"
-                                                                               pluginspage="http://www.adobe.com/go/getflashplayer"
-                                                                               type="application/x-shockwave-flash"
-                                                                               allowscriptaccess="always"
-                                                                               wmode="transparent"
-                                                                               flashvars="cbNameSpace=edu.u.imgUpload15&amp;uploadExif=true&amp;uploadUrl=%2F%2Fupload.icourse163.org%2Fapi%2FphotoUpload2.do%3F_upload_mth_%3Dsync_parse%26userdefinesize%3D28x28x1%3B120x120x1%26saveorigin%3Dfalse%26responsetype%3Dxml%26rotatedegree%3D0%26stamptype%3D%26stampstring%3D%26sitefrom%3Dstudy&amp;id=_1523864610254">
-                                                                    </object>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stuage">年龄</label></td>
+                                        <td>
+                                            <input type="text" id="stuage" name="stuage" class="form-control" value="${stu.stu_age}" style="width: 175px; height: 25px;">
+                                            <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                        </td>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="male">性别</label></td>
+                                        <td>
+                                            <div class="sex eBcon">
+                                                <c:choose>
+                                                    <c:when test="${sex eq 1}">
+                                                        <input id="male" type="radio" name="stusex" value="1" class="j-sex" checked="checked"><label for="male">男</label>
+                                                        <input id="female" type="radio" name="stusex" value="0" class="j-sex"><label for="female">女</label>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input id="male" type="radio" name="stusex" value="1" class="j-sex"><label for="male">男</label>
+                                                        <input id="female" type="radio" name="stusex" value="0" class="j-sex" checked="checked"><label for="female">女</label>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">性别</td>
-                                    <td>
-                                        <div class="sex eBcon">
-                                            <input id="male" type="radio" name="sex" class="j-sex"><label for="male">男</label>
-                                            <input id="female" type="radio" name="sex" class="j-sex">
-                                            <label for="female">女</label>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    </div>
                                 </tr>
 
                                 <tr>
-                                    <td class="title">详细介绍</td>
-                                    <td>
-                                        <div class="j-description eBcon">
-                                            <div class="m-inputcheckui f-cb">
-                                                <div class="inputbox">
-                                                    <div class="input j-input">
-                                                        <div class="m-baseinputui auto-1523864610052" style="width: 395px; height: 74px;">
-                                                            <textarea name="inputtxt" class="j-textarea inputtxt" style="width: 395px; height: 74px;"></textarea>
-                                                            <label class="j-hint inputhint" style="display: none;">用一段话介绍你自己，会在你的个人页面显示，最多输入80字</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tips j-tipsNode"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <div class="form-group">
+                                        <td class="title"><label for="stunote">详细介绍</label></td>
+                                        <td>
+                                            <textarea name="stunote" id="stunote" class="form-control" rows="1" style="min-height:8em;">${stu.stu_note}</textarea>
+                                            <div class="tips j-tipsNode"></div>
+                                        </td>
+                                    </div>
                                 </tr>
                                 <tr>
                                     <td><h2>联系信息</h2></td>
                                 </tr>
                                 <tr class="b-10"></tr>
                                 <tr>
-                                    <td class="title"><em class="f-sign">*</em>真实姓名</td>
-                                    <td>
-                                        <div class="f-fl rnIpt f-cb">
-                                            <div class="j-rnIpt ">
-                                                <div class="m-baseinputui auto-1523864610052" style="width: 285px; height: 23px;">
-                                                    <textarea name="inputtxt" class="j-textarea inputtxt" style="width: 285px; height: 23px;"></textarea>
-                                                    <label class="j-hint inputhint  " style="display: none;"></label>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stuname">真实姓名</label></td>
+                                        <td>
+                                            <input type="text" id="stuname" name="stuname" class="form-control" value="${stu.stu_name}" style="width: 175px; height: 25px;">
                                             <div class="tip f-fs0 s-fc6">&nbsp;</div>
-                                        </div>
-                                        <div class="f-fl feed j-rnFb"></div>
-                                    </td>
+                                        </td>
+                                    </div>
                                 </tr>
                                 <tr>
-                                    <td class="title"><em class="f-sign">*</em>院系</td>
-                                    <td>
-                                        <div class="f-fl rnIpt f-cb">
-                                            <div class="j-rnIpt ">
-                                                <div class="auto-1523864610052" style="width:atuo; height: 23px;">
-                                                    <select>
-                                                        <option>船舶与海洋工程学院</option>
-                                                        <option>海洋科学与技术学院</option>
-                                                        <option>计算机科学与技术</option>
-                                                        <option>汽车工程学院</option>
-                                                    </select>
-                                                </div>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="depid">院系</label></td>
+                                        <td>
+                                            <div class="f-fl rnIpt f-cb">
+                                                <select class="form-control" id="depid" name="depid">
+                                                    <c:forEach items="${departmentPageBean.beanList}" var="department">
+                                                        <c:choose>
+                                                            <c:when test="${stu.dep_id eq department.dep_id}">
+                                                                <option value="${department.dep_id}" selected="selected">${department.dep_name}</option>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <option value="${department.dep_id}">${department.dep_name}</option>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                </select>
+                                                <div class="tip f-fs0 s-fc6">&nbsp;</div>
                                             </div>
+                                            <div class="f-fl feed j-rnFb"></div>
+                                        </td>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stumajor">专业</label></td>
+                                        <td>
+                                            <input type="text" id="stumajor" name="stumajor" class="form-control" value="${stu.stu_major}" style="width: 175px; height: 25px;">
                                             <div class="tip f-fs0 s-fc6">&nbsp;</div>
-                                        </div>
-                                        <div class="f-fl feed j-rnFb"></div>
-                                    </td>
+                                        </td>
+                                    </div>
                                 </tr>
                                 <tr>
-                                    <td class="title"><em class="f-sign">*</em>常用邮箱</td>
-                                    <td>
-                                        <div class="j-mail eBcon">
-                                            <div class="accMail">
-                                                <div class="j-mailOpr mailOpr">
-                                                    <div class="j-add f-cb add" style="display: none;">
-                                                        <div class="f-fl"></div>
-                                                        <a class="btn f-fl" id="auto-id-1523864610280"><span>添加</span></a>
-                                                        <a class="cancel f-fl" id="auto-id-1523864610282">取消</a>
-                                                        <div class="j-addFb f-fl"></div>
-                                                    </div>
-                                                    <div class="j-verify verify f-cb">
-                                                        <div class="m-baseinputui auto-1523864610052" style="width: 285px; height: 23px;">
-                                                            <textarea name="inputtxt" class="j-textarea inputtxt" style="width: 285px; height: 23px;"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="j-mailTxt mailTxt auto-1523864610060-parent"
-                                                     style="margin-top: -5px;">
-                                                    <div class="m-feedbackinfo auto-1523864610060">
-                                                        <div class="warningbox j-warningbox f-cb">
-                                                            <%--<span class="j-warningicon right"></span>--%>
-                                                            <%--<span class="tip f-fs0 s-fc6">用于接收来自学校老师和企业导师的邮件通知，非常重要</span>--%>
-                                                        </div>
-                                                        <div class="loadingbox j-loadingbox f-cb"
-                                                             style="display: none;"><span class="icon"></span><span
-                                                                class="loading j-loading"></span></div>
-                                                    </div>
-                                                </div>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stugrade">成绩排名</label></td>
+                                        <td>
+                                            <div class="f-fl rnIpt f-cb">
+                                                <select class="form-control" name="stugrade" id="stugrade">
+                                                    <c:forEach items="${stugradePageBean.beanList}" var="grade">
+                                                          <c:choose>
+                                                              <c:when test="${stu.stu_grade_id eq grade.stu_grade_id}">
+                                                                  <option value="${grade.stu_grade_id}" selected="selected">${grade.stu_grade_name}</option>
+                                                              </c:when>
+                                                              <c:otherwise>
+                                                                  <option value="${grade.stu_grade_id}">${grade.stu_grade_name}</option>
+                                                              </c:otherwise>
+                                                          </c:choose>
+                                                    </c:forEach>
+                                                </select>
+                                                <div class="tip f-fs0 s-fc6">&nbsp;</div>
                                             </div>
-                                        </div>
-                                    </td>
+                                            <div class="f-fl feed j-rnFb"></div>
+                                        </td>
+                                    </div>
                                 </tr>
                                 <tr>
-                                    <td class="title"><em class="f-sign">*</em>手机号码</td>
-                                    <td>
-                                        <div class="f-fl phoneIpt f-cb">
-                                            <div class="j-qqIpt auto-1523864610052-parent">
-                                                <div class="m-baseinputui auto-1523864610052"
-                                                     style="width: 285px; height: 23px;"><textarea name="inputtxt" class="j-textarea inputtxt" style="width: 285px; height: 23px;"></textarea>
-                                                    <label class="j-hint inputhint" style="display: none;"></label>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stuenglish">英语水平</label></td>
+                                        <td>
+                                            <input type="text" id="stuenglish" name="stuenglish" class="form-control" value="${stu.stu_english}" style="width: 175px; height: 25px;">
+                                            <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                        </td>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="form-group">
+                                        <td class="title"><em class="f-sign">*</em><label for="stumail">常用邮箱</label></td>
+                                        <td>
+                                            <div class="j-mail eBcon">
+                                                <div class="accMail">
+                                                    <input class="form-control" id="stumail" name="stumail" value="${stu.stu_mail}" type="text" style="width: 175px; height: 25px;">
+                                                    <div class="f-fl feed j-rnFb"></div>
                                                 </div>
                                             </div>
-                                            <%--<div class="tip f-fs0 s-fc6">用于对学生进行提醒等服务</div>--%>
-                                        </div>
-                                        <div class="f-fl feed j-rnFb"></div>
-                                    </td>
+                                        </td>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div>
+                                        <td class="title"><em class="f-sign">*</em><label for="stuphone">手机号码</label></td>
+                                        <td>
+                                            <div class="f-fl phoneIpt f-cb">
+                                                <input class="form-control" id="stuphone" name="stuphone" type="text" value="${stu.stu_phone}" style="width: 175px; height: 25px;">
+                                            </div>
+                                            <div class="f-fl feed j-rnFb"></div>
+                                        </td>
+                                    </div>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="footer"><a class="btn f-cb j-save" id="auto-id-1523864610235"><span>保存</span></a>
+                            <div class="footer" style="vertical-align: middle">
+                                <button style="width: 5em;height: 2.5em;background-color: #e84807;border: none">
+                                    <span style="color:#FFFFFF">保存</span>
+                                </button>
+                                <small>${msgUpdateSetting}</small>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

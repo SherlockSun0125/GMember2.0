@@ -812,21 +812,10 @@
                                     <a class="mystudy nitem f-f0" data-index="用户退出" target="_self"
                                        href="${pageContext.request.contextPath}/encryptWeb/student/exit.jsp" hidefocus="true">退出</a>
                                 </div>
-
                                 <a class="username self f-thide" target="_self" data-index="点击用户名"
-                                   href="${pageContext.request.contextPath}/encryptWeb/student/setting.jsp">
+                                   href="${pageContext.request.contextPath}/studentServlet?method=toUpdateSetting&stuid=${Student.stu_id}">
                                     <span class=" f-fs1 f-f0">${Student.stu_name}</span>
                                 </a>
-                                <i class="line" style="padding-top: 2%"></i>
-                                <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
-                                   href="${pageContext.request.contextPath}/encryptWeb/student/messageT.jsp" title="查看更多消息" target="_blank">
-                                    <span>消息</span>
-                                    <em class="num hidddenClass j-nav-msgnum">0</em>
-                                </a>
-                                <div class="u-mystudy f-pr f-cb f-fr">
-                                    <a class="mystudy nitem f-f0" id="j-nav-my-class" data-index="我的学习" target="_self"
-                                       href="${pageContext.request.contextPath}/encryptWeb/student/forum.jsp" hidefocus="true">讨论区</a>
-                                </div>
                             </div>
                         </div>
                     </div>
