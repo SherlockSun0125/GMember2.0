@@ -61,7 +61,6 @@
     </script>
 
 </head>
-
 <body class="theme-blue">
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
@@ -138,7 +137,7 @@
             </a>
         </li>
         <li>
-            <ul class="legal-menu nav nav-list collapse">
+            <ul class="legal-menu nav nav-list collapse in">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
                     <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
@@ -153,7 +152,7 @@
             </a>
         </li>
         <li>
-            <ul class="accounts-menu nav nav-list collapse in">
+            <ul class="accounts-menu nav nav-list collapse">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
                     <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
@@ -172,22 +171,18 @@
         <div class="row">
             <script type="text/javascript">
                 function checkForm() {
-                    if(!$("#type").val()){
-                        alert("版块不能为空！");
+                    if(!$("#comtype").val()){
+                        alert("公司类型不能为空！");
                         return false;
                     }
 
-                    if(!$("#noticeTitle").val()){
-                        alert("公告标题不能为空！");
+                    if(!$("#comname").val()){
+                        alert("公司名称不能为空！");
                         return false;
                     }
 
-                    if(!$("#noticeSource").val()){
-                        alert("公告来源不能为空！");
-                        return false;
-                    }
-                    if(!$("#noticeAuthor").val()){
-                        alert("发布人不能为空！");
+                    if(!$("#comimg").val()){
+                        alert("展示图片不能为空！");
                         return false;
                     }
                     return true;
@@ -196,45 +191,50 @@
             <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
                 <div class="panel panel-default" style="background-color: #EEEEEE">
                     <div class="panel-heading no-collapse"
-                         style="text-align: center;font-size: 1.5em;font-weight: bold">发布公告
+                         style="text-align: center;font-size: 1.5em;font-weight: bold">增加公司
                     </div>
-                    <div style="margin: 10px" class="noticeform">
-                        <form action="${pageContext.request.contextPath}/noticeServlet" method="post" onsubmit="return checkForm()">
-                            <input  type="hidden" name="method" value="addNotice">
+                    <div style="margin: 10px" class="comform">
+                        <form action="${pageContext.request.contextPath}/companyServlet?method=addCompany" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">
                             <div class="form-group" style="width:10%;">
-                                <span style="color: red">*&nbsp;</span><label for="type">所属版块</label>
+                                <span style="color: red">*&nbsp;</span><label for="comtype">公司类型</label>
                                 <div style="width:20em;display: inline-block">
-                                    <select class="form-control" name="newsSction" id="type">
-                                        <c:forEach items="${noticeSectionPageBean.beanList}" var="noticesections">
-                                            <option value="${noticesections.notice_section_id}">${noticesections.notice_section_name}</option>
+                                    <select class="form-control" name="comtype" id="comtype">
+                                        <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
+                                            <option value="${comtypes.comtype_id}">${comtypes.comtype_name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group" style="width: 35%">
-                                <span style="color: red">*&nbsp;</span><label for="noticeTitle">通知标题</label>
-                                <input type="text" class="form-control" name="noticeTitle" id="noticeTitle" placeholder="通知标题">
+                                <span style="color: red">*&nbsp;</span><label for="comname">公司名称</label>
+                                <input type="text" class="form-control" name="comname" id="comname" placeholder="公司名称">
                             </div>
 
                             <div class="form-group" style="width: 35%">
-                                <span><span style="color: red">*&nbsp;</span><label for="noticeAuthor">发布人</label></span>
-                                <input type="text" class="form-control" name="noticeAuthor" id="noticeAuthor" placeholder="发布人姓名">
-                            </div>
-
-                            <div class="form-group" style="width: 35%">
-                                <span><span style="color: red">*&nbsp;</span><label for="noticeSource">来源</label></span>
-                                <input type="text" class="form-control" name="noticeSource" id="noticeSource" placeholder="公告来源">
+                                <%--<form action="${pageContext.request.contextPath}/companyServlet?method=uploadImg" method="post" enctype="multipart/form-data">--%>
+                                    <span style="color: red">*&nbsp;</span><label for="comimg">展示图片</label>
+                                    <input type="file" name="comimg" id="comimg"><br/>
+                                    <div>
+                                        <c:choose>
+                                            <c:when test="${com.com_img eq null}">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${pageContext.request.contextPath}/upload/company/img/${com.com_img}" style=" width: 166px;">
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                <%--</form>--%>
                             </div>
 
                             <div class="form-group">
                                 <!-- 加载编辑器的容器 -->
                                 <!--container里写你的初始化内容-->
-                                <span><span style="color: red">*&nbsp;</span><label for="container">通知内容</label></span>
+                                <span><span style="color: red">*&nbsp;</span><label for="container">公司简介</label></span>
                                 <script id="container" name="content" type="text/plain"></script>
                             </div>
                             <dic>
-                                <small style="float: left;margin-left: 30px;margin-top: 20px">${msgAddNotice}</small>
-                                <input type="submit" class="btn btn-success" style="float: right;margin-right: 30px;margin-top: 20px" value="上传公告">
+                                <small style="float: left;margin-left: 30px;margin-top: 20px">${msgAddCompany}</small>
+                                <input type="submit" class="btn btn-success" style="float: right;margin-right: 30px;margin-top: 20px" value="增加公司">
                             </dic>
                         </form>
                         <!-- 配置文件 -->

@@ -45,6 +45,85 @@ public class TeacherServlet extends BaseServlet {
         }
     }
 
+    public String toUpdateSetting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int teaid=Integer.parseInt(req.getParameter("teaid"));
+        Teacher teacher=teacherService.findTeacherById(teaid);
+
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+
+        req.setAttribute("departmentPageBean",departmentPageBean);
+
+        if (teacher.getTea_sex().equals("男")){
+            req.setAttribute("sex",1);
+        }else {
+            req.setAttribute("sex",0);
+        }
+
+        req.setAttribute("tea",teacher);
+
+        return "f:/encryptWeb/teacher/setting.jsp";
+    }
+
+    public String updateSetting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//      id
+        int teaid=Integer.parseInt(req.getParameter("teaid"));
+        Teacher newteacher=teacherService.findTeacherById(teaid);
+
+//        学号
+        String teanum=req.getParameter("teanum");
+        newteacher.setTea_num(teanum);
+//        姓名
+        String teaname=req.getParameter("teaname");
+        newteacher.setTea_name(teaname);
+//        性别
+        int teasex=Integer.parseInt(req.getParameter("teasex"));
+        if (teasex==1){
+            newteacher.setTea_sex("男");
+        }else{
+            newteacher.setTea_sex("女");
+        }
+//        年龄
+        int teaage=Integer.parseInt(req.getParameter("teaage"));
+        newteacher.setTea_age(teaage);
+//        院系
+        int depid=Integer.parseInt(req.getParameter("depid"));
+        newteacher.setDep_id(depid);
+
+
+
+//        手机号
+        String teaphone=req.getParameter("teaphone");
+        newteacher.setTea_phone(teaphone);
+//        邮箱
+        String teamail=req.getParameter("teamail");
+        newteacher.setTea_mail(teamail);
+
+//        密码
+        String teapwd=req.getParameter("teapwd");
+        newteacher.setTea_pwd(teapwd);
+
+//        更新数据库
+        teacherService.updateTeacher(newteacher);
+
+//        重新获取信息并返回详情页
+        Teacher teacher=teacherService.findTeacherById(teaid);
+        PageBean<Department> departmentPageBean=departmentService.findAllDepartments();
+
+
+        req.setAttribute("departmentPageBean",departmentPageBean);
+
+        if (teacher.getTea_sex().equals("男")){
+            req.setAttribute("sex",1);
+        }else {
+            req.setAttribute("sex",0);
+        }
+
+        req.setAttribute("tea",teacher);
+        req.setAttribute("msgUpdateSetting","个人信息更新成功！");
+
+        return "f:/encryptWeb/teacher/setting.jsp";
+    }
+
     //获取log列表
     public String findAllStudentsByTea(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int teaid=Integer.parseInt(req.getParameter("teaid"));

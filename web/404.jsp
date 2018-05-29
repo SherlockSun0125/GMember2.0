@@ -50,7 +50,7 @@
                         </li>
                         <li><a href="${pageContext.request.contextPath}/noticeServlet?method=findAllNotices"><span class="name">通知公告</span></a>
                         </li>
-                        <li><a href="${pageContext.request.contextPath}/enterprise.jsp"><span class="name">合作企业</span></a>
+                        <li><a href="${pageContext.request.contextPath}/companyServlet?method=findAllCompanys"><span class="name">合作企业</span></a>
                         </li>
                         <li><a><span class="name">用户中心</span></a>
                             <ul>
@@ -60,12 +60,12 @@
                             </ul>
                         </li>
                         <%--<li><a href="download.jsp"><span class="name">下载中心</span></a></li>--%>
-                        <li class="current"><a href="${pageContext.request.contextPath}/about1.jsp"><span class="name">计划介绍</span></a></li>
+                        <li><a href="${pageContext.request.contextPath}/about1.jsp"><span class="name">计划介绍</span></a></li>
                     </ul>
                 </nav>
                 <form class="top-search pull-right">
-                    <input type="text" placeholder="站内搜索..." class="span3">
-                    <button type="button" class="btn"><i class="icon-search-form"></i></button>
+                    <%--<input type="text" placeholder="站内搜索..." class="span3">--%>
+                    <%--<button type="button" class="btn"><i class="icon-search-form"></i></button>--%>
                 </form>
             </div>
         </div>

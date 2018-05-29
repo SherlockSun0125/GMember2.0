@@ -131,7 +131,8 @@
                 <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
                     <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
                 </c:forEach>
-                </li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span> 增加企业</a></li>
+
             </ul>
         </li>
 

@@ -2380,10 +2380,6 @@
                 alert("年龄不能为空");
                 return false;
             }
-            if(!$("#stusex").val()){
-                alert("性别不能为空");
-                return false;
-            }
             if(!$("#stuname").val()){
                 alert("姓名不能为空");
                 return false;
@@ -2412,7 +2408,7 @@
                 alert("手机号不能为空");
                 return false;
             }
-            if($("#stupwd").val()!=$("#stupwd2")){
+            if(($("#stupwd").val())!=($("#stupwd2").val())){
                 alert("两次密码不同，请重新输入！");
                 return false;
             }

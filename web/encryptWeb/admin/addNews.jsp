@@ -167,6 +167,28 @@
 <%--中间部分--%>
 <div class="content">
     <div class="main-content" style="margin-top: 10px;">
+        <script type="text/javascript">
+            function checkForm() {
+                if(!$("#type").val()){
+                    alert("版块不能为空！");
+                    return false;
+                }
+
+                if(!$("#newsTitle").val()){
+                    alert("新闻标题不能为空！");
+                    return false;
+                }
+
+                if(!$("#newsSource").val()){
+                    alert("新闻来源不能为空！");
+                    return false;
+                }
+                if(!$("#newsAuthor").val()){
+                    alert("发布人不能为空！");
+                    return false;
+                }
+            }
+        </script>
         <%--下左一--%>
         <div class="row">
             <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">

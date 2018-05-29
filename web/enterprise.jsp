@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 ${pageContext.request.contextPath}/<%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
@@ -36,7 +37,7 @@ ${pageContext.request.contextPath}/<%@page contentType="text/html; charset=utf-8
     <div class="container" style="margin-bottom: 2px">
         <div class="row header-top" style="margin-left:5px;margin-bottom:0;">
             <div class="span5 logo" style="width: 100%;margin-left:10px">
-                <a class="logo-img" href="home.jsp" title="responsive template" style="margin-bottom: 5px"><img
+                <a class="logo-img" href="${pageContext.request.contextPath}/home.jsp" title="responsive template" style="margin-bottom: 5px"><img
                         src="${pageContext.request.contextPath}/images/myimg/hitwh_logo_blue.png" alt="哈工大威海校徽"/></a>
             </div>
         </div>
@@ -50,7 +51,7 @@ ${pageContext.request.contextPath}/<%@page contentType="text/html; charset=utf-8
                         </li>
                         <li><a href="${pageContext.request.contextPath}/noticeServlet?method=findAllNotices"><span class="name">通知公告</span></a>
                         </li>
-                        <li class="current"><a href="${pageContext.request.contextPath}/enterprise.jsp"><span class="name">合作企业</span></a>
+                        <li class="current"><a href="${pageContext.request.contextPath}/companyServlet?method=findAllCompanys"><span class="name">合作企业</span></a>
                         </li>
                         <li><a><span class="name">用户中心</span></a>
                             <ul>
@@ -63,8 +64,8 @@ ${pageContext.request.contextPath}/<%@page contentType="text/html; charset=utf-8
                     </ul>
                 </nav>
                 <form class="top-search pull-right">
-                    <input type="text" placeholder="站内搜索..." class="span3">
-                    <button type="button" class="btn" href=""><i class="icon-search-form"></i></button>
+                    <%--<input type="text" placeholder="站内搜索..." class="span3">--%>
+                    <%--<button type="button" class="btn" href=""><i class="icon-search-form"></i></button>--%>
                 </form>
             </div>
         </div>
@@ -85,10 +86,10 @@ ${pageContext.request.contextPath}/<%@page contentType="text/html; charset=utf-8
             <li class="dg-co"><a href="#dg-co">数字游戏公司</a></li>
             <%--Embedded company--%>
             <li class="embedded-co"><a href="#embedded-co">嵌入式公司</a></li>
-            <%--e-commerce--%>
-            <li class="e-commerce"><a href="#e-commerce">电子商务公司</a></li>
             <%--Internet Co--%>
             <li class="internet-co"><a href="#internet-co">互联网公司</a></li>
+            <%--e-commerce--%>
+            <li class="e-commerce"><a href="#e-commerce">电子商务公司</a></li>
             <%--others--%>
             <li class="others"><a href="#others">其他行业</a></li>
         </ul>
@@ -96,180 +97,96 @@ ${pageContext.request.contextPath}/<%@page contentType="text/html; charset=utf-8
         <div class="clear"></div>
 
         <section class="row portfolio filtrable clearfix">
-            <article data-id="id-1" data-type="e-commerce ils-co internet0-co" class="span3" >
-                <div class="inner-image">
-                    <img src="images/enterprise/alibaba-0.jpg" alt="photo" style="height: 200px"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntroAli.jsp">阿里巴巴集团</a></h4>
-                    <p>阿里巴巴集团经营多项业务……</p>
-                </div>
-            </article>
-            <article data-id="id-2" data-type="e-commerce internet-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest2.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称2</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-3" data-type="others" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest3.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称3</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-4" data-type="e-commerce dg-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest4.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称4</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-5" data-type="embedded-co go-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest5.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称5</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-6" data-type="others" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest6.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称6</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-7" data-type="embedded-co dg-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest7.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称7</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-8" data-type="others " class="span3">
-                <div class="inner-image">
-                    <img src="example/latest8.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称8</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-9" data-type="internet-co go-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest4.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称9</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-10" data-type="e-commerce" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest3.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称10</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-11" data-type="ils-co go-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest2.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称11</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-12" data-type="internet-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest1.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称12</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-13" data-type="dg-co ils-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest1.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称13</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-14" data-type="go-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest1.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称14</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-15" data-type="ils-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest1.jpg" alt="photo"/>
-                    </a>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称15</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-            <article data-id="id-16" data-type="ils-co" class="span3">
-                <div class="inner-image">
-                    <img src="example/latest1.jpg" alt="photo"/>
-                    <span class="frame-overlay"></span>
-                </div>
-                <div class="inner-text">
-                    <h4 class="title"><a href="enterpriseIntrOthers.jsp">公司名称16</a></h4>
-                    <p>这里是公司介绍</p>
-                </div>
-            </article>
-        </section>
+            <c:forEach items="${companyPageBean.beanList}" var="company">
+                <c:choose>
+                    <c:when test="${company.comtype_id eq 1}">
+                        <article data-id="id-${company.com_id}" data-type="ils-co" class="span3" >
+                            <div class="inner-image">
+                                <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" alt="photo" style="height: 200px"/>
+                                <span class="frame-overlay"></span>
+                            </div>
+                            <div class="inner-text">
+                                <h4 class="title"><a href="${pageContext.request.contextPath}/companyServlet?method=findCompanyById&comid=${company.com_id}">${company.com_name}</a></h4>
+                                <p>${company.com_info}</p>
+                            </div>
+                        </article>
+                    </c:when>
+                    <c:when test="${company.comtype_id eq 2}">
+                        <article data-id="id-${company.com_id}" data-type="go-co" class="span3">
+                            <div class="inner-image">
+                                <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" alt="photo" style="height: 200px"/>
+                                <span class="frame-overlay"></span>
+                            </div>
+                            <div class="inner-text">
+                                <h4 class="title"><a href="${pageContext.request.contextPath}/companyServlet?method=findCompanyById&comid=${company.com_id}">${company.com_name}</a></h4>
+                                <p>${company.com_info}</p>
+                            </div>
+                        </article>
+                    </c:when>
+                    <c:when test="${company.comtype_id eq 3}">
+                        <article data-id="id-${company.com_id}" data-type="dg-co" class="span3">
+                            <div class="inner-image">
+                                <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" alt="photo" style="height: 200px"/>
+                                <span class="frame-overlay"></span>
+                            </div>
+                            <div class="inner-text">
+                                <h4 class="title"><a href="${pageContext.request.contextPath}/companyServlet?method=findCompanyById&comid=${company.com_id}">${company.com_name}</a></h4>
+                                <p>${company.com_info}</p>
+                            </div>
+                        </article>
+                    </c:when>
+                    <c:when test="${company.comtype_id eq 4}">
+                        <article data-id="id-${company.com_id}" data-type="embedded-co" class="span3">
+                            <div class="inner-image">
+                                <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" alt="photo" style="height: 200px"/>
+                                <span class="frame-overlay"></span>
+                            </div>
+                            <div class="inner-text">
+                                <h4 class="title"><a href="${pageContext.request.contextPath}/companyServlet?method=findCompanyById&comid=${company.com_id}">${company.com_name}</a></h4>
+                                <p>${company.com_info}</p>
+                            </div>
+                        </article>
+                    </c:when>
+                    <c:when test="${company.comtype_id eq 5}">
+                        <article data-id="id-${company.com_id}" data-type="internet-co" class="span3">
+                            <div class="inner-image">
+                                <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" alt="photo" style="height: 200px"/>
+                                <span class="frame-overlay"></span>
+                            </div>
+                            <div class="inner-text">
+                                <h4 class="title"><a href="${pageContext.request.contextPath}/companyServlet?method=findCompanyById&comid=${company.com_id}">${company.com_name}</a></h4>
+                                <p>${company.com_info}</p>
+                            </div>
+                        </article>
+                    </c:when>
 
-        <!--pagination-->
-        <div class="pagination pagination-centered">
-            <ul>
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
-        </div>
+                    <c:when test="${company.comtype_id eq 6}">
+                        <article data-id="id-${company.com_id}" data-type="e-commerce" class="span3">
+                            <div class="inner-image">
+                                <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" alt="photo" style="height: 200px"/>
+                                <span class="frame-overlay"></span>
+                            </div>
+                            <div class="inner-text">
+                                <h4 class="title"><a href="${pageContext.request.contextPath}/companyServlet?method=findCompanyById&comid=${company.com_id}">${company.com_name}</a></h4>
+                                <p>${company.com_info}</p>
+                            </div>
+                        </article>
+                    </c:when>
+                    <c:otherwise>
+                        <article data-id="id-${company.com_id}" data-type="others" class="span3">
+                            <div class="inner-image">
+                                <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" alt="photo" style="height: 200px"/>
+                                <span class="frame-overlay"></span>
+                            </div>
+                            <div class="inner-text">
+                                <h4 class="title"><a href="${pageContext.request.contextPath}/companyServlet?method=findCompanyById&comid=${company.com_id}">${company.com_name}</a></h4>
+                                <p>${company.com_info}</p>
+                            </div>
+                        </article>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </section>
     </div>
 </section>
 

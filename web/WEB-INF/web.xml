@@ -83,4 +83,12 @@
         <url-pattern>/testServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>companyServlet</servlet-name>
+        <servlet-class>cn.edu.hitwh.gmember.servlet.CompanyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>companyServlet</servlet-name>
+        <url-pattern>/companyServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

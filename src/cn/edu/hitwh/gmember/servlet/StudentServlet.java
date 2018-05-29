@@ -891,29 +891,33 @@ public class StudentServlet extends BaseServlet {
             //获取文件的后缀
             String str=name.substring(name.lastIndexOf("."), name.length()-1);
             System.out.println("测试获取文件的后缀："+str);
+            if (!str.equals(".pdf")){
+                req.setAttribute("msgAddResume", "上传简历失败!请上传PDF文件！");
+            }else {
 
-            //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
+                //生成一个新的文件名，不重复，数据库存储的就是这个文件名，不重复的
 //            String fname= UUID.randomUUID().toString()+str;
-            Date date=new Date();
-            DateTools dateTools=new DateTools();
-            String fname="";
+                Date date = new Date();
+                DateTools dateTools = new DateTools();
+                String fname = "";
 
-            fname= student.getStu_id() + "-" + student.getStu_name()+"-个人简历-"+ dateTools.date2Str2(date) + str;
-            //将路径存入数据库
-            resume.setResume_path(fname);
+                fname = student.getStu_id() + "-" + student.getStu_name() + "-个人简历-" + dateTools.date2Str2(date) + str;
+                //将路径存入数据库
+                resume.setResume_path(fname);
 
 
-            String filename=root+"\\"+fname;
-            System.out.println("测试产生新的文件名："+filename);
+                String filename = root + "\\" + fname;
+                System.out.println("测试产生新的文件名：" + filename);
 
-            //上传文件到指定目录，不想上传文件就不调用这个
-            part.write(filename);
+                //上传文件到指定目录，不想上传文件就不调用这个
+                part.write(filename);
 
-            resumeid=resumeService.addResume(resume);
-            if (resumeid==null){
-                req.setAttribute("msgAddResume", "上传文件失败");
-            }else{
-                req.setAttribute("msgAddResume", "上传文件成功");
+                resumeid = resumeService.addResume(resume);
+                if (resumeid == null) {
+                    req.setAttribute("msgAddResume", "上传文件失败");
+                } else {
+                    req.setAttribute("msgAddResume", "上传文件成功");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

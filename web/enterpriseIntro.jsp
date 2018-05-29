@@ -39,7 +39,7 @@
         <div class="row header-top" style="margin-left:5px;margin-bottom:0;">
             <div class="span5 logo" style="width: 100%;margin-left:10px">
                 <a class="logo-img" href="home.jsp" title="responsive template" style="margin-bottom: 5px"><img
-                        src="images/myimg/hitwh_logo_blue.png" alt="哈工大威海校徽"/></a>
+                        src="${pageContext.request.contextPath}/images/myimg/hitwh_logo_blue.png" alt="哈工大威海校徽"/></a>
             </div>
         </div>
         <div class="row header-nav">
@@ -52,8 +52,8 @@
                         </li>
                         <li><a href="${pageContext.request.contextPath}/noticeServlet?method=findAllNotices"><span class="name">通知公告</span></a>
                         </li>
-                        <%--<li class="current"><a href="${pageContext.request.contextPath}/enterprise.jsp"><span class="name">合作企业</span></a>--%>
-                        <%--</li>--%>
+                        <li class="current"><a href="${pageContext.request.contextPath}/companyServlet?method=findAllCompanys"><span class="name">合作企业</span></a>
+                        </li>
                         <li><a><span class="name">用户中心</span></a>
                             <ul>
                                 <li><a href="${pageContext.request.contextPath}/studentLogin.jsp" target="_blank">学生用户登录</a></li>
@@ -83,23 +83,14 @@
                 <article class="blog-post">
                     <div class="row">
                         <div class="span8">
-                            <h3 class="post-title">公司名称</h3>
-                            <div class="post-media"><img src="example/latest1.jpg" alt=""/></div>
-                            <div class="post-content">
-                                <p class="introP">
-                                    公司介绍.
-                                </p>
-                                <%--<blockquote>--%>
-                                <%----%>
-                                <%--</blockquote>--%>
-                                <p class="introP">
-                                    公司介绍
-                                </p>
-                                <p class="introP">公司介绍</p>
+                            <h3 class="post-title">${company.com_name}</h3>
+                            <%--<div class="post-media"><img src="${pageContext.request.contextPath}/images/enterprise/alibaba-1.jpg" alt=""/></div>--%>
+                            <div class="post-content" style="min-height: 30em">
+                                ${company.com_info}
                             </div>
-                            <ul class="post-meta">
-                                <li><i class="icon-calendar"></i> <a href="#">2018.04.11</a></li>
-                                <li><i class="icon-user"></i> <a href="#">发布人</a></li>
+                            <ul class="post-meta" >
+                                <li><i class="icon-calendar"></i>${company.com_time}</li>
+                                <%--<li><i class="icon-user"></i> <a href="#">发布人</a></li>--%>
                                 </li>
                             </ul>
                         </div>
@@ -112,14 +103,13 @@
             </section>
             <!--sidebar-->
             <aside id="sidebar" class="pull-right span4">
-
                 <section>
                     <h3 class="widget-title">工作环境</h3>
                     <div id="latestwork-sidebar" class="carousel slide">
                         <div class="carousel-inner">
-                            <div class="active item"><img src="example/latest1.jpg" alt="photo"/></div>
-                            <div class="item"><img src="example/latest1.jpg" alt="photo"/></div>
-                            <div class="item"><img src="example/latest1.jpg" alt="photo"/></div>
+                            <div class="active item"><img src="${pageContext.request.contextPath}/images/enterprise/alibaba-2.jpg" alt="photo"/></div>
+                            <div class="item"><img src="${pageContext.request.contextPath}/images/enterprise/alibaba-3.jpg" alt="photo"/></div>
+                            <div class="item"><img src="${pageContext.request.contextPath}/images/enterprise/alibaba-4.jpg" alt="photo"/></div>
                         </div>
                         <a class="carousel-control left" href="#latestwork-sidebar" data-slide="prev"></a>
                         <a class="carousel-control right" href="#latestwork-sidebar" data-slide="next"></a>

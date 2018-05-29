@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatisTest.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.hitwh.gmember.mapper.CompanyMapper">
+    <resultMap id="companyMap" type="cn.edu.hitwh.gmember.pojo.Company">
+        <id property="com_id" column="com_id"></id>
+        <result property="com_name" column="com_name"></result>
+        <result property="com_info" column="com_info"></result>
+        <result property="comtype_id" column="comtype_id"></result>
+        <result property="com_img" column="com_img"></result>
+        <result property="com_time" column="com_time"></result>
+    </resultMap>
+
+    <insert id="addCompany" useGeneratedKeys="true" keyColumn="com_id" parameterType="cn.edu.hitwh.gmember.pojo.Company">
+        INSERT INTO company(com_name, comtype_id, com_info, com_img, com_time)
+                VALUES (#{com_name},#{comtype_id},#{com_info},#{com_img},#{com_time})
+    </insert>
+
+    <select id="findAllCompanys" resultMap="companyMap">
+      SELECT * FROM company
+    </select>
+
+    <select id="findCompanyById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.Company">
+        SELECT * FROM company WHERE com_id=#{com_id}
+    </select>
+
+</mapper>

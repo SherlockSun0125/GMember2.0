@@ -36,5 +36,6 @@
         <mapper resource="mybatisMapper/courseMapper.xml"/>
         <mapper resource="mybatisMapper/projectMapper.xml"/>
         <mapper resource="mybatisMapper/resumeMapper.xml"/>
+        <mapper resource="mybatisMapper/companyMapper.xml"/>
     </mappers>
 </configuration>

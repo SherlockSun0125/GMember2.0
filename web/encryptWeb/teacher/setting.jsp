@@ -1,138 +1,12 @@
 <%@page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>账号设置</title>
     <!--样式-->
-    <link rel="stylesheet" href="static/core_465566505fc16e2adc7188a490b841e4.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/teacher/static/core_465566505fc16e2adc7188a490b841e4.css">
     <style type="text/css">
-        .buttonsprite, .u-sugInput .add, .u-sugInput .add span, .m-infoEdit .editBox .accMail .add .btn, .m-infoEdit .editBox .accMail .add .btn span, .m-infoEdit .editBox .accMail .verify .btn1, .m-infoEdit .editBox .accMail .verify .btn1 span, .m-infoEdit .editBox .accMail .verify .btn2, .m-infoEdit .editBox .accMail .verify .btn2 span, .m-infoEdit .editBox .addEdu, .m-infoEdit .editBox .addEdu span, .m-infoEdit .footer .btn, .m-infoEdit .footer .btn span, .m-AccBox .m-accBaseInfo .urlEditBox .btn, .m-AccBox .m-accBaseInfo .urlEditBox .btn span, .epayAccount .add .btn, .epayAccount .add .btn span, .epayAccount .verify .btn1, .epayAccount .verify .btn1 span, .epayAccount .verify .btn2, .epayAccount .verify .btn2 span, .m-AccBox .u-bindItem .opr .btn, .m-AccBox .u-bindItem .opr .btn span, .m-epayBind .actEpayBtn, .m-epayBind .actEpayBtn span, .m-setBox .btn, .m-setBox .btn span, .m-setBox .m-settingsAddress .footer .btn, .m-setBox .m-settingsAddress .footer .btn span {
-            background: url(static/button.png) no-repeat 4449px 4449px;
-        }
-
-        .uisprite, .w-tag .u-close {
-            background: url(static/ui_sprite.png) no-repeat 4449px 4449px;
-        }
-
-        .snssprite, .m-AccBox .u-bindItem .icn {
-            background: url(static/snsSprite.png) no-repeat 4449px 4449px;
-        }
-
-        .settingsSprite, .m-epayBind .info {
-            background: url(static/settings.png) no-repeat 4449px 4449px;
-        }
-
-        .u-moocbtn {
-            display: inline-block;
-            padding: 4px 9px;
-            font-size: 14px;
-            line-height: 28px;
-            color: #666;
-            text-align: center;
-            vertical-align: middle;
-            cursor: pointer;
-            min-width: 80px;
-            font-family: "Arial", "Hiragino Sans GB", "Microsoft YaHei", \5fae\8f6f\96c5\9ed1, "Helvetica", "sans-serif";
-            border: 1px solid #999;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            -ms-border-radius: 4px;
-            -o-border-radius: 4px;
-            border-radius: 4px;
-            background-color: #E1E1E1;
-            background-repeat: repeat-x;
-            background-image: -moz-linear-gradient(#EBEBEB, #E1E1E1);
-            background-image: -ms-linear-gradient(#EBEBEB, #E1E1E1);
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EBEBEB), color-stop(100%, #E1E1E1));
-            background-image: -webkit-linear-gradient(#EBEBEB, #E1E1E1);
-            background-image: -o-linear-gradient(#EBEBEB, #E1E1E1);
-            background-image: linear-gradient(#EBEBEB, #E1E1E1);
-            -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-            -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-        }
-
-        .u-moocbtn:hover, .u-moocbtn.hvr {
-            background-color: #EDEDED;
-            background-repeat: repeat-x;
-            background-image: -moz-linear-gradient(#F6F6F6, #EDEDED);
-            background-image: -ms-linear-gradient(#F6F6F6, #EDEDED);
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F6F6F6), color-stop(100%, #EDEDED));
-            background-image: -webkit-linear-gradient(#F6F6F6, #EDEDED);
-            background-image: -o-linear-gradient(#F6F6F6, #EDEDED);
-            background-image: linear-gradient(#F6F6F6, #EDEDED);
-        }
-
-        .u-moocbtn-sm {
-            padding: 5px 6px;
-            font-size: 12px;
-            line-height: 14px;
-            min-width: 50px;
-        }
-
-        .setingsicon, .m-infoEdit .header .authIcon {
-            background: url(static/settings.png) 4449px 4449px no-repeat;
-        }
-
-        .u-moocbtn {
-            display: inline-block;
-            padding: 4px 9px;
-            font-size: 14px;
-            line-height: 28px;
-            color: #666;
-            text-align: center;
-            vertical-align: middle;
-            cursor: pointer;
-            min-width: 80px;
-            font-family: "Arial", "Hiragino Sans GB", "Microsoft YaHei", \5fae\8f6f\96c5\9ed1, "Helvetica", "sans-serif";
-            border: 1px solid #999;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            -ms-border-radius: 4px;
-            -o-border-radius: 4px;
-            border-radius: 4px;
-            background-color: #E1E1E1;
-            background-repeat: repeat-x;
-            background-image: -moz-linear-gradient(#EBEBEB, #E1E1E1);
-            background-image: -ms-linear-gradient(#EBEBEB, #E1E1E1);
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EBEBEB), color-stop(100%, #E1E1E1));
-            background-image: -webkit-linear-gradient(#EBEBEB, #E1E1E1);
-            background-image: -o-linear-gradient(#EBEBEB, #E1E1E1);
-            background-image: linear-gradient(#EBEBEB, #E1E1E1);
-            -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-            -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-        }
-
-        .u-moocbtn:hover, .u-moocbtn.hvr {
-            background-color: #EDEDED;
-            background-repeat: repeat-x;
-            background-image: -moz-linear-gradient(#F6F6F6, #EDEDED);
-            background-image: -ms-linear-gradient(#F6F6F6, #EDEDED);
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F6F6F6), color-stop(100%, #EDEDED));
-            background-image: -webkit-linear-gradient(#F6F6F6, #EDEDED);
-            background-image: -o-linear-gradient(#F6F6F6, #EDEDED);
-            background-image: linear-gradient(#F6F6F6, #EDEDED);
-        }
-
-        .u-moocbtn-sm {
-            padding: 5px 6px;
-            font-size: 12px;
-            line-height: 14px;
-            min-width: 50px;
-        }
-
-        .u-insug .area {
-            padding: 5px;
-            position: relative;
-            zoom: 1;
-            height: 21px;
-            background: #FAFAFA;
-            border: 1px solid #DFDFDF;
-            -webkit-box-shadow: inset 1px 1px 2px #DFDFDF;
-            -moz-box-shadow: inset 1px 1px 2px #DFDFDF;
-            box-shadow: inset 1px 1px 2px #DFDFDF;
-        }
-
         .u-insug .area .sug {
             top: 30px;
         }
@@ -168,32 +42,6 @@
             font-size: 12px;
             color: #ccc;
             line-height: 22px;
-        }
-
-        .u-sugInput .ipt {
-            float: left;
-            width: 295px;
-        }
-
-        .u-sugInput .iptcom {
-            width: 150px;
-            float: left;
-            margin: 0 8px 0 0;
-        }
-
-        .u-sugInput .iptpos {
-            width: 138px;
-            float: left;
-        }
-
-        .u-sugInput .add {
-            float: left;
-            margin-left: 10px;
-            display: block;
-            width: 70px;
-            width: 70px;
-            text-decoration: none;
-            background-position: 60px -150px;
         }
 
         .u-sugInput .add span {
@@ -252,14 +100,6 @@
             color: #fff;
         }
 
-        .w-tag {
-            height: 22px;
-            line-height: 22px;
-            margin: 5px;
-            overflow: hidden;
-            cursor: default;
-        }
-
         .w-tag p {
             height: 20px;
             line-height: 20px;
@@ -286,11 +126,6 @@
             margin-right: 5px;
         }
 
-        .w-tag-big {
-            height: 32px;
-            line-height: 32px;
-        }
-
         .w-tag-big p {
             height: 30px;
             line-height: 30px;
@@ -298,10 +133,6 @@
 
         .w-tag-big p span {
             font-size: 14px;
-        }
-
-        .w-tag-hover {
-            background-position: -57px 0px;
         }
 
         .w-tag-hover p {
@@ -378,19 +209,19 @@
         .m-telbindsetbox .wrap .u-logo-tel {
             width: 22px;
             height: 24px;
-            background: url(static/icon1.png) -9999px -9999px no-repeat;
+            background: url(/encryptWeb/student/static/icon1.png) -9999px -9999px no-repeat;
             background-position: 0 -78px;
         }
 
         .m-telbindsetbox .wrap .u-logo-code {
             width: 22px;
             height: 24px;
-            background: url(static/icon1.png) -9999px -9999px no-repeat;
+            background: url(/encryptWeb/student/static/icon1.png) -9999px -9999px no-repeat;
             background-position: 0 -108px;
         }
 
         .m-telbindsetbox .wrap .u-logo-pwd {
-            background: url(static/icon1.png) no-repeat 0 -45px;
+            background: url(/encryptWeb/student/static/icon1.png) no-repeat 0 -45px;
             height: 22px;
             width: 24px;
             margin-top: 2px;
@@ -398,48 +229,16 @@
 
         .m-telbindsetbox .wrap .next {
             display: inline-block;
-            background: url(static/icon1.png) no-repeat 0 -386px;
+            background: url(/encryptWeb/student/static/icon1.png) no-repeat 0 -386px;
             width: 35px;
             height: 35px;
             vertical-align: middle;
             cursor: pointer;
         }
 
-        .m-telbindsetbox .wrap .next.ok {
-            cursor: default;
-            background-position: 0 -348px;
-        }
-
-        .m-telbindsetbox .wrap .u-input {
-            width: 278px;
-            color: #333;
-            border: 0;
-            font-size: 16px;
-            height: 42px;
-            line-height: 42px;
-            padding-left: 8px;
-        }
-
         .m-telbindsetbox .wrap .u-input > input {
             font-size: 16px;
             color: #333;
-        }
-
-        .m-telbindsetbox .wrap .prefix {
-            top: 2px;
-            padding-right: 4px;
-            color: #ccc;
-        }
-
-        .m-telbindsetbox .wrap .code-input-box {
-            width: 360px;
-            margin-bottom: 20px;
-        }
-
-        .m-telbindsetbox .wrap .code-input-box .inputbox {
-            width: 198px;
-            float: left;
-            margin-right: 0;
         }
 
         .m-telbindsetbox .wrap .code-input-box .inputbox .u-input {
@@ -475,7 +274,7 @@
         }
 
         .m-telbindsetbox .wrap .m-error-box .ferrortail {
-            background: url(static/sprite.png) -9999px -9999px no-repeat;
+            background: url(/encryptWeb/student/static/sprite.png) -9999px -9999px no-repeat;
             height: 15px;
             width: 18px;
             background-position: -217px -34px;
@@ -508,22 +307,6 @@
 
         .m-telbindsetbox .m-tel-reg-and-bind {
             height: 250px;
-        }
-
-        .g-mn2 {
-            float: left;
-            width: 100%;
-            margin-right: -270px;
-        }
-
-        .g-mn2c {
-            margin-right: 280px;
-        }
-
-        .g-sd2 {
-            position: relative;
-            float: right;
-            width: 270px;
         }
 
         .m-infoEdit .header {
@@ -1728,7 +1511,7 @@
         }
 
         .u-logSelectDialog .mainType .m-logHeader .headIcon, .u-logSelectDialog .slaveType .m-logHeader .headIcon {
-            background: url(static/whiteDot.png) no-repeat center center;
+            background: url(/encryptWeb/student/static/whiteDot.png) no-repeat center center;
             width: 50px;
             height: 50px;
             top: -25px;
@@ -1894,7 +1677,7 @@
         }
 
         .u-logSelectDialog .btn {
-            background: url(static/button.png) no-repeat 4449px 4449px;
+            background: url(/encryptWeb/student/static/button.png) no-repeat 4449px 4449px;
             margin-top: 30px;
             display: block;
             width: 85px;
@@ -3301,10 +3084,14 @@
         .auto-1523864610230 .infobox .opt .feedbox {
             float: left;
         }</style>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+
 </head>
 
 
-<body style="padding-top: 60px;padding-bottom:80px;">
+<body style="padding-top: 60px;padding-bottom:80px;background: #EEEEEE;">
 <!--网页头部-->
 <div class="f-pf g-headwrap" id="j-fixed-head">
     <div class="g-hd f-bg1 m-yktNav " id="j-topnav">
@@ -3312,41 +3099,22 @@
             <div class="f-pr f-cb">
                 <div style="position: absolute;top:2px;bottom:2px;">
                     <a class="f-fl" hidefocus="true" href="teaHome.jsp" target="_self" data-index="logo">
-                        <img class="f-fl img" src="static/hitwh_logo_white.png" title="学生主页" width="540px"
-                             style="margin-top: 2px;margin-bottom: 1px">
+                        <img class="f-fl img" src="${pageContext.request.contextPath}/encryptWeb/student/static/hitwh_logo_white.png" title="学生主页" width="540px" style="margin-top: 2px;margin-bottom: 1px">
                     </a>
                 </div>
                 <div class="m-navrgt f-fr f-cb f-pr j-navright">
                     <div class="userinfo f-fr f-cb f-pr">
                         <div class="login f-cb">
                             <div class="u-mystudy f-pr f-cb f-fr">
-                                <a class="mystudy nitem f-f0" data-index="用户退出" target="_blank"
-                                   href="exit.jsp" hidefocus="true">退出</a>
+                                <a class="mystudy nitem f-f0" data-index="用户退出" target="_self"
+                                   href="${pageContext.request.contextPath}/encryptWeb/teacher/exit.jsp" hidefocus="true">退出</a>
                             </div>
 
-                            <div class="name j-userinfo" id="auto-id-1523840858750">
-                                <div class="f-pr">
-                                    <div class="face">
-                                        <img class="j-nav-myimg"
-                                             src="static/head1.jpg"
-                                             width="30px" height="30px" alt="头像">
-                                    </div>
-                                </div>
-                            </div>
                             <a class="username self f-thide" target="_self" data-index="点击用户名"
-                               href="setting.jsp">
-                                <span class=" f-fs1 f-f0">PaulSuen</span>
+                               href="${pageContext.request.contextPath}/teacherServlet?method=toUpdateSetting&teaid=${Teacher.tea_id}">
+                                <span class=" f-fs1 f-f0">${Teacher.tea_name}</span>
                             </a>
-                            <i class="line" style="padding-top: 2%"></i>
-                            <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
-                               href="messageT.jsp" title="查看更多消息" target="_blank">
-                                <span>消息</span>
-                                <em class="num hidddenClass j-nav-msgnum">0</em>
-                            </a>
-                            <div class="u-mystudy f-pr f-cb f-fr">
-                                <a class="mystudy nitem f-f0" id="j-nav-my-class" data-index="讨论区" target="_self"
-                                   href="forum.jsp" hidefocus="true">讨论区</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -3357,236 +3125,181 @@
 
 <!--网页主体-->
 <div class="settings f-cb g-flow">
+    <script type="text/javascript">
+        function checkForm() {
+            if(!$("#teanum").val()){
+                alert("学号不能为空");
+                return false;
+            }
+            if(!$("#teaage").val()){
+                alert("年龄不能为空");
+                return false;
+            }
+            if(!$("#teaname").val()){
+                alert("姓名不能为空");
+                return false;
+            }
+            if(!$("#depid").val()){
+                alert("院系不能为空");
+                return false;
+            }
+            if(!$("#teamail").val()){
+                alert("邮箱不能为空");
+                return false;
+            }
+            if(!$("#teaphone").val()){
+                alert("手机号不能为空");
+                return false;
+            }
+            if($("#teapwd").val()!=$("#teapwd2").val()){
+                alert("两次密码不同，请重新输入！");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
     <div>
         <div class="b-20"></div>
         <div id="settings-box" class="f-bg">
             <div class="m-setBox">
                 <div id="j-setBox" class="setBox">
-                    <div class="m-infoEdit">
-                        <div class="f-cb header">
-                            <div class="f-fl fk">请完善个人资料</div>
-                        </div>
-                        <div class="editBox">
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td><h2>基本信息</h2></td>
-                                </tr>
-                                <tr class="b-10"></tr>
-                                <tr>
-                                    <td class="title"><em class="f-sign">*</em>工号</td>
-                                    <td>
-                                        <div class="j-nickName eBcon">
-                                            <div class="m-nicknameui u-insug f-cb">
-                                                <div class="area j-inputArea f-fl" style="width: 175px; height: 25px;">
-                                                    <input type="text" class="j-input"
-                                                           style="width: 175px; height: 25px;">
-                                                    <%--<label class="j-label" style="display: none;">请输入学号</label>--%>
-                                                </div>
-                                            </div>
-                                            <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                    <form action="${pageContext.request.contextPath}/teacherServlet?method=updateSetting&teaid=${Teacher.tea_id}" method="post" onsubmit="return checkForm()">
+                        <div class="m-infoEdit">
+                            <div class="editBox" style="padding-top: 0">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><h2>基本信息</h2></td>
+                                    </tr>
+                                    <tr class="b-10"></tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td class="title"><em class="f-sign">*</em><label for="teanum">工号</label></td>
+                                            <td>
+                                                <input type="text" id="teanum" name="teanum" class="form-control" value="${tea.tea_num}" style="width: 175px; height: 25px;">
+                                                <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                            </td>
                                         </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td class="title"><em class="f-sign">*</em><label for="teapwd">密码</label></td>
+                                            <td>
+                                                <input type="password" id="teapwd" name="teapwd" class="form-control" value="${tea.tea_pwd}" style="width: 175px; height: 25px;">
+                                                <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td class="title"><em class="f-sign">*</em><label for="teapwd2">再次确认</label></td>
+                                            <td>
+                                                <input type="password" id="teapwd2" class="form-control" value="${tea.tea_pwd}" style="width: 175px; height: 25px;">
+                                                <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td class="title"><em class="f-sign">*</em><label for="teaage">年龄</label></td>
+                                            <td>
+                                                <input type="text" id="teaage" name="teaage" class="form-control" value="${tea.tea_age}" style="width: 175px; height: 25px;">
+                                                <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td class="title"><em class="f-sign">*</em><label for="male">性别</label></td>
+                                            <td>
+                                                <div class="sex eBcon">
+                                                    <c:choose>
+                                                        <c:when test="${sex eq 1}">
+                                                            <input id="male" type="radio" name="teasex" value="1" class="j-sex" checked="checked"><label for="male">男</label>
+                                                            <input id="female" type="radio" name="teasex" value="0" class="j-sex"><label for="female">女</label>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <input id="male" type="radio" name="teasex" value="1" class="j-sex"><label for="male">男</label>
+                                                            <input id="female" type="radio" name="teasex" value="0" class="j-sex" checked="checked"><label for="female">女</label>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                            </td>
+                                        </div>
+                                    </tr>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title"><em class="f-sign">*</em>密码</td>
-                                    <td>
-                                        <div class="j-nickName eBcon">
-                                            <div class="m-nicknameui u-insug f-cb">
-                                                <div class="area j-inputArea f-fl" style="width: 175px; height: 25px;">
-                                                    <input type="password" class="j-input"
-                                                           style="width: 175px; height: 25px;">
-                                                    <%--<label class="j-label" style="display: none;">请输入学号</label>--%>
-                                                </div>
-                                            </div>
-                                            <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                    <tr>
+                                        <td><h2>联系信息</h2></td>
+                                    </tr>
+                                    <tr class="b-10"></tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td class="title"><em class="f-sign">*</em><label for="teaname">真实姓名</label></td>
+                                            <td>
+                                                <input type="text" id="teaname" name="teaname" class="form-control" value="${tea.tea_name}" style="width: 175px; height: 25px;">
+                                                <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                            </td>
                                         </div>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title"><em class="f-sign">*</em>再次确认</td>
-                                    <td>
-                                        <div class="j-nickName eBcon">
-                                            <div class="m-nicknameui u-insug f-cb">
-                                                <div class="area j-inputArea f-fl" style="width: 175px; height: 25px;">
-                                                    <input type="password" class="j-input"
-                                                           style="width: 175px; height: 25px;">
-                                                    <%--<label class="j-label" style="display: none;">请输入学号</label>--%>
-                                                </div>
-                                            </div>
-                                            <div class="tip f-fs0 s-fc6">&nbsp;</div>
-                                        </div>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">头像</td>
-                                    <td>
-                                        <div class="j-pic eBcon">
-                                            <div class="f-cb auto-1523864610230">
-                                                <div class="imgbox"><img class="img j-img"
-                                                                         src="static/head1.jpg">
-                                                </div>
-                                                <div class="infobox">
-                                                    <div class="info">支持jpg、gif、png格式的图片，建议文件小于20M</div>
-                                                    <div class="opt f-cb">
-                                                        <div class="uploadbox j-uploadbox">
-                                                            <div class="u-upd-img-btn">
-                                                                <a class="upbtn j-upload" title="支持jpg、gif、png或bmp格式的图片，建议文件小于20M">修改头像</a>
-                                                                <div class="flashbox j-flashbox"
-                                                                     id="auto-id-1523864610255">
-                                                                    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-                                                                            codebase="swflash.cab"
-                                                                            width="100%" height="100%"
-                                                                            id="_1523864610254">
-                                                                        <param value="imageUpload.swf"
-                                                                               name="movie">
-                                                                        <param value="always" name="allowScriptAccess">
-                                                                        <param value="transparent" name="wmode">
-                                                                        <param value="cbNameSpace=edu.u.imgUpload15&amp;uploadExif=true&amp;uploadUrl=%2F%2Fupload.icourse163.org%2Fapi%2FphotoUpload2.do%3F_upload_mth_%3Dsync_parse%26userdefinesize%3D28x28x1%3B120x120x1%26saveorigin%3Dfalse%26responsetype%3Dxml%26rotatedegree%3D0%26stamptype%3D%26stampstring%3D%26sitefrom%3Dstudy&amp;id=_1523864610254"
-                                                                               name="flashvars">
-                                                                        <embed src="static/imageUpload.swf"
-                                                                               name="_1523864610254" width="100%"
-                                                                               height="100%"
-                                                                               pluginspage="http://www.adobe.com/go/getflashplayer"
-                                                                               type="application/x-shockwave-flash"
-                                                                               allowscriptaccess="always"
-                                                                               wmode="transparent"
-                                                                               flashvars="cbNameSpace=edu.u.imgUpload15&amp;uploadExif=true&amp;uploadUrl=%2F%2Fupload.icourse163.org%2Fapi%2FphotoUpload2.do%3F_upload_mth_%3Dsync_parse%26userdefinesize%3D28x28x1%3B120x120x1%26saveorigin%3Dfalse%26responsetype%3Dxml%26rotatedegree%3D0%26stamptype%3D%26stampstring%3D%26sitefrom%3Dstudy&amp;id=_1523864610254">
-                                                                    </object>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">性别</td>
-                                    <td>
-                                        <div class="sex eBcon">
-                                            <input id="male" type="radio" name="sex" class="j-sex"><label for="male">男</label>
-                                            <input id="female" type="radio" name="sex" class="j-sex">
-                                            <label for="female">女</label>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="title">详细介绍</td>
-                                    <td>
-                                        <div class="j-description eBcon">
-                                            <div class="m-inputcheckui f-cb">
-                                                <div class="inputbox">
-                                                    <div class="input j-input">
-                                                        <div class="m-baseinputui auto-1523864610052" style="width: 395px; height: 74px;">
-                                                            <textarea name="inputtxt" class="j-textarea inputtxt" style="width: 395px; height: 74px;"></textarea>
-                                                            <label class="j-hint inputhint" style="display: none;">用一段话介绍你自己，会在你的个人页面显示，最多输入80字</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tips j-tipsNode"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><h2>联系信息</h2></td>
-                                </tr>
-                                <tr class="b-10"></tr>
-                                <tr>
-                                    <td class="title"><em class="f-sign">*</em>真实姓名</td>
-                                    <td>
-                                        <div class="f-fl rnIpt f-cb">
-                                            <div class="j-rnIpt ">
-                                                <div class="m-baseinputui auto-1523864610052" style="width: 285px; height: 23px;">
-                                                    <textarea name="inputtxt" class="j-textarea inputtxt" style="width: 285px; height: 23px;"></textarea>
-                                                    <label class="j-hint inputhint  " style="display: none;"></label>
-                                                </div>
-                                            </div>
-                                            <div class="tip f-fs0 s-fc6">&nbsp;</div>
-                                        </div>
-                                        <div class="f-fl feed j-rnFb"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title"><em class="f-sign">*</em>院系</td>
-                                    <td>
-                                        <div class="f-fl rnIpt f-cb">
-                                            <div class="j-rnIpt ">
-                                                <div class="auto-1523864610052" style="width:atuo; height: 23px;">
-                                                    <select>
-                                                        <option>船舶与海洋工程学院</option>
-                                                        <option>海洋科学与技术学院</option>
-                                                        <option>计算机科学与技术</option>
-                                                        <option>汽车工程学院</option>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td class="title"><em class="f-sign">*</em><label for="depid">院系</label></td>
+                                            <td>
+                                                <div class="f-fl rnIpt f-cb">
+                                                    <select class="form-control" id="depid" name="depid">
+                                                        <c:forEach items="${departmentPageBean.beanList}" var="department">
+                                                            <c:choose>
+                                                                <c:when test="${tea.dep_id eq department.dep_id}">
+                                                                    <option value="${department.dep_id}" selected="selected">${department.dep_name}</option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <option value="${department.dep_id}">${department.dep_name}</option>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:forEach>
                                                     </select>
+                                                    <div class="tip f-fs0 s-fc6">&nbsp;</div>
                                                 </div>
-                                            </div>
-                                            <div class="tip f-fs0 s-fc6">&nbsp;</div>
+                                                <div class="f-fl feed j-rnFb"></div>
+                                            </td>
                                         </div>
-                                        <div class="f-fl feed j-rnFb"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title"><em class="f-sign">*</em>常用邮箱</td>
-                                    <td>
-                                        <div class="j-mail eBcon">
-                                            <div class="accMail">
-                                                <div class="j-mailOpr mailOpr">
-                                                    <div class="j-add f-cb add" style="display: none;">
-                                                        <div class="f-fl"></div>
-                                                        <a class="btn f-fl" id="auto-id-1523864610280"><span>添加</span></a>
-                                                        <a class="cancel f-fl" id="auto-id-1523864610282">取消</a>
-                                                        <div class="j-addFb f-fl"></div>
-                                                    </div>
-                                                    <div class="j-verify verify f-cb">
-                                                        <div class="m-baseinputui auto-1523864610052" style="width: 285px; height: 23px;">
-                                                            <textarea name="inputtxt" class="j-textarea inputtxt" style="width: 285px; height: 23px;"></textarea>
-                                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <td class="title"><em class="f-sign">*</em><label for="teamail">常用邮箱</label></td>
+                                            <td>
+                                                <div class="j-mail eBcon">
+                                                    <div class="accMail">
+                                                        <input class="form-control" id="teamail" name="teamail" value="${tea.tea_mail}" type="text" style="width: 175px; height: 25px;">
+                                                        <div class="f-fl feed j-rnFb"></div>
                                                     </div>
                                                 </div>
-                                                <div class="j-mailTxt mailTxt auto-1523864610060-parent"
-                                                     style="margin-top: -5px;">
-                                                    <div class="m-feedbackinfo auto-1523864610060">
-                                                        <div class="warningbox j-warningbox f-cb">
-                                                            <%--<span class="j-warningicon right"></span>--%>
-                                                            <%--<span class="tip f-fs0 s-fc6">用于接收来自学校老师和企业导师的邮件通知，非常重要</span>--%>
-                                                        </div>
-                                                        <div class="loadingbox j-loadingbox f-cb"
-                                                             style="display: none;"><span class="icon"></span><span
-                                                                class="loading j-loading"></span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </td>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title"><em class="f-sign">*</em>手机号码</td>
-                                    <td>
-                                        <div class="f-fl phoneIpt f-cb">
-                                            <div class="j-qqIpt auto-1523864610052-parent">
-                                                <div class="m-baseinputui auto-1523864610052"
-                                                     style="width: 285px; height: 23px;"><textarea name="inputtxt" class="j-textarea inputtxt" style="width: 285px; height: 23px;"></textarea>
-                                                    <label class="j-hint inputhint" style="display: none;"></label>
+                                    </tr>
+                                    <tr>
+                                        <div>
+                                            <td class="title"><em class="f-sign">*</em><label for="teaphone">手机号码</label></td>
+                                            <td>
+                                                <div class="f-fl phoneIpt f-cb">
+                                                    <input class="form-control" id="teaphone" name="teaphone" type="text" value="${tea.tea_phone}" style="width: 175px; height: 25px;">
                                                 </div>
-                                            </div>
-                                            <%--<div class="tip f-fs0 s-fc6">用于对学生进行提醒等服务</div>--%>
+                                                <div class="f-fl feed j-rnFb"></div>
+                                            </td>
                                         </div>
-                                        <div class="f-fl feed j-rnFb"></div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="footer" style="vertical-align: middle">
+                                <button style="width: 5em;height: 2.5em;background-color: #e84807;border: none">
+                                    <span style="color:#FFFFFF">保存</span>
+                                </button>
+                                <small>${msgUpdateSetting}</small>
+                            </div>
                         </div>
-                        <div class="footer"><a class="btn f-cb j-save" id="auto-id-1523864610235"><span>保存</span></a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,19 +1,25 @@
-<%@ page contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html; charset=utf-8" %>
+
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>文件上传实例 - 菜鸟教程</title>
+
 </head>
 <body>
-<h1>文件上传实例 - 菜鸟教程</h1>
-<form method="post" action="${pageContext.request.contextPath}/testServlet" enctype="multipart/form-data">
-    选择一个文件:
-    <input type="file" name="uploadFile" />
-    <br/><br/>
-    <input type="submit" value="上传" />
-</form>
+    <form action="${pageContext.request.contextPath}/testServlet?method=uploadImg" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button>上传图片</button>
+    </form>
+
+    <div>
+        <c:choose>
+            <c:when test="${fname eq null}">
+                未上传图片
+            </c:when>
+            <c:otherwise>
+                <img src="${pageContext.request.contextPath}/upload/company/img/${fname}" style=" width: 166px;">
+            </c:otherwise>
+        </c:choose>
+    </div>
 </body>
 </html>
