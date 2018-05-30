@@ -24,4 +24,27 @@
     <select id="findAllEmployeeById" resultType="cn.edu.hitwh.gmember.pojo.Employee">
         SELECT * FROM employee WHERE emp_id=#{emp_id}
     </select>
+
+    <select id="adminFindAllEmployees" resultMap="employeeMap">
+        SELECT * FROM employee ORDER BY emp_id DESC LIMIT #{from},#{pageSize}
+    </select>
+
+    <insert id="addEmployee" parameterType="cn.edu.hitwh.gmember.pojo.Employee" useGeneratedKeys="true" keyColumn="emp_id">
+        INSERT INTO employee(emp_name, emp_pwd, emp_sex, emp_age, emp_phone, emp_mail, com_id, emp_note)
+        VALUES(#{emp_name},#{emp_pwd},#{emp_sex},#{emp_age},#{emp_phone},#{emp_mail},#{com_id},#{emp_note})
+    </insert>
+
+    <delete id="deleteEmployee" parameterType="int">
+        DELETE FROM employee WHERE emp_id=#{emp_id}
+    </delete>
+
+    <update id="updateEmployee" parameterType="cn.edu.hitwh.gmember.pojo.Employee">
+        UPDATE employee SET emp_name=#{emp_name},emp_pwd=#{emp_pwd},emp_sex=#{emp_sex},emp_age=#{emp_age},
+                emp_phone=#{emp_phone},emp_mail=#{emp_mail},com_id=#{com_id},emp_note=#{emp_note}
+        WHERE emp_id=#{emp_id}
+    </update>
+
+    <select id="countAllEmployee" resultType="int">
+        SELECT count(*) FROM employee
+    </select>
 </mapper>

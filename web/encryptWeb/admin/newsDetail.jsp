@@ -5,10 +5,14 @@
     <meta charset="utf-8">
     <title>管理员</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js"
+            type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js"
+            type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $(".knob").knob();
@@ -62,7 +66,7 @@
     <link href="${pageContext.request.contextPath}/pager/adminPager.css" rel="stylesheet" type="text/css">
 
     <style type="text/css">
-        .tname{
+        .tname {
             width: 7em;
             font-weight: bold;
         }
@@ -107,64 +111,83 @@
 <div class="sidebar-nav">
     <ul>
         <%--网站数据--%>
-        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header" target="_self"><i
+        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header"
+               target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
         <li><a href="${pageContext.request.contextPath}/teacherServlet?method=findAllTeachers" class="nav-header"><i
                 class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
 
         <%--学生管理--%>
-        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents"
+               data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
             <%--<li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">--%>
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
                 <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
-                    <li><a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span
+                                class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
                 </c:forEach>
             </ul>
         </li>
-        <li data-popover="true" data-placement="right">
-            <a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
+        <%--企业管理--%>
+        <li>
+            <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindAllComanies"
+               data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="premium-menu nav nav-list collapse">
                 <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
-                    <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindCompaniesByType&comtypeid=${comtypes.comtype_id}">
+                            <span class="fa fa-caret-right"></span>${comtypes.comtype_name}
+                        </a>
+                    </li>
                 </c:forEach>
-                </li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span
+                        class="fa fa-caret-right"></span> 增加企业</a></li>
             </ul>
         </li>
 
         <%--新闻中心--%>
         <li>
-            <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu"
+               class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-legal"></i>&nbsp;&nbsp;新闻中心<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="legal-menu nav nav-list collapse in">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
-                    <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span
+                                class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span
+                        class="fa fa-caret-right"></span> 上传新闻</a></li>
             </ul>
         </li>
 
         <%--通知公告--%>
         <li>
-            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices"
+               data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-comment"></i>&nbsp;&nbsp;通知公告<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="accounts-menu nav nav-list collapse">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
-                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span
+                                class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span
+                        class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 
@@ -176,7 +199,8 @@
 <div class="content">
     <div class="main-content">
         <div class="btn-toolbar list-toolbar">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}">
+            <a class="btn btn-primary"
+               href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}">
                 <i class="fa fa-pencil"></i>&nbsp;修改新闻</a>
             <button class="btn btn-default">导出新闻</button>
             <div class="btn-group"></div>
@@ -184,69 +208,70 @@
         <div>
             <table class="table table-bordered">
                 <tbody>
-                    <tr>
-                        <td class="tname" style="border: 3px solid #EEEEEE">新闻标题</td>
-                        <td colspan="5" style="border: 3px solid #EEEEEE">${news.news_title}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname" style="border: 3px solid #EEEEEE">发布者</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.publisher}</td>
-                        <td  class="tname" style="border: 3px solid #EEEEEE">管理员姓名</td>
-                        <td  style="border: 3px solid #EEEEEE">
-                            ${news.author_id}
-                        </td>
-                        <td class="tname"  style="border: 3px solid #EEEEEE">新闻来源</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.news_source}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname"  style="border: 3px solid #EEEEEE">时间</td>
-                        <td  style="border: 3px solid #EEEEEE">${news.news_time}</td>
-                        <td class="tname" style="border: 3px solid #EEEEEE">版块</td>
-                        <td style="border: 3px solid #EEEEEE">
-                            <c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">
-                                <c:choose>
-                                    <c:when test="${news.news_section_id eq newsSection.news_section_id}">
+                <tr>
+                    <td class="tname" style="border: 3px solid #EEEEEE">新闻标题</td>
+                    <td colspan="5" style="border: 3px solid #EEEEEE">${news.news_title}</td>
+                </tr>
+                <tr>
+                    <td class="tname" style="border: 3px solid #EEEEEE">发布者</td>
+                    <td style="border: 3px solid #EEEEEE">${news.publisher}</td>
+                    <td class="tname" style="border: 3px solid #EEEEEE">管理员姓名</td>
+                    <td style="border: 3px solid #EEEEEE">
+                        ${news.author_id}
+                    </td>
+                    <td class="tname" style="border: 3px solid #EEEEEE">新闻来源</td>
+                    <td style="border: 3px solid #EEEEEE">${news.news_source}</td>
+                </tr>
+                <tr>
+                    <td class="tname" style="border: 3px solid #EEEEEE">时间</td>
+                    <td style="border: 3px solid #EEEEEE">${news.news_time}</td>
+                    <td class="tname" style="border: 3px solid #EEEEEE">版块</td>
+                    <td style="border: 3px solid #EEEEEE">
+                        <c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">
+                            <c:choose>
+                                <c:when test="${news.news_section_id eq newsSection.news_section_id}">
                                     ${newsSection.news_section_name}
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
-                        </td>
-                        <td class="tname" style="border: 3px solid #EEEEEE">阅读次数</td>
-                        <td style="border: 3px solid #EEEEEE">${news.news_readtimes}</td>
-                    </tr>
-                    <tr>
-                        <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">新<br/>闻<br/>内<br/>容</td>
-                        <td colspan="5"  style="border: 3px solid #EEEEEE">${news.news_content}</td>
-                    </tr>
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </td>
+                    <td class="tname" style="border: 3px solid #EEEEEE">阅读次数</td>
+                    <td style="border: 3px solid #EEEEEE">${news.news_readtimes}</td>
+                </tr>
+                <tr>
+                    <td class="tname" style="vertical-align: middle;text-align: center;border: 3px solid #EEEEEE">新<br/>闻<br/>内<br/>容
+                    </td>
+                    <td colspan="5" style="border: 3px solid #EEEEEE">${news.news_content}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
 
         <%--<c:forEach items="${pb.beanList}" var="news">--%>
-            <%--<tr>--%>
-                <%--<td>${news.news_id}</td>--%>
-                <%--<td><a href="${pageContext.request.contextPath}/newsServlet">${news.news_title}</a></td>--%>
-                <%--<td>--%>
-                    <%--<c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">--%>
-                        <%--<c:choose>--%>
-                            <%--<c:when test="${news.news_section_id eq newsSection.news_section_id}">--%>
-                                <%--${newsSection.news_section_name}--%>
-                            <%--</c:when>--%>
-                        <%--</c:choose>--%>
-                    <%--</c:forEach>--%>
-                <%--</td>--%>
-                <%--<td>${news.news_readtimes}</td>--%>
-                <%--<td>${news.news_time}</td>--%>
+        <%--<tr>--%>
+        <%--<td>${news.news_id}</td>--%>
+        <%--<td><a href="${pageContext.request.contextPath}/newsServlet">${news.news_title}</a></td>--%>
+        <%--<td>--%>
+        <%--<c:forEach items="${newsSectionPageBean.beanList}" var="newsSection">--%>
+        <%--<c:choose>--%>
+        <%--<c:when test="${news.news_section_id eq newsSection.news_section_id}">--%>
+        <%--${newsSection.news_section_name}--%>
+        <%--</c:when>--%>
+        <%--</c:choose>--%>
+        <%--</c:forEach>--%>
+        <%--</td>--%>
+        <%--<td>${news.news_readtimes}</td>--%>
+        <%--<td>${news.news_time}</td>--%>
 
-                <%--<td style="text-align: center">--%>
-                    <%--<a href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}"><i--%>
-                            <%--class="fa fa-pencil"></i></a>--%>
-                    <%--&nbsp;&nbsp;--%>
-                    <%--<a href="${pageContext.request.contextPath}/newsServlet?method=deleteNews&newsid=${news.news_id}&newstitle=${news.news_title}"--%>
-                       <%--role="button"><i class="fa fa-trash-o"></i></a>--%>
-                        <%--&lt;%&ndash;<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>&ndash;%&gt;--%>
-                <%--</td>--%>
-            <%--</tr>--%>
+        <%--<td style="text-align: center">--%>
+        <%--<a href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}"><i--%>
+        <%--class="fa fa-pencil"></i></a>--%>
+        <%--&nbsp;&nbsp;--%>
+        <%--<a href="${pageContext.request.contextPath}/newsServlet?method=deleteNews&newsid=${news.news_id}&newstitle=${news.news_title}"--%>
+        <%--role="button"><i class="fa fa-trash-o"></i></a>--%>
+        <%--&lt;%&ndash;<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>&ndash;%&gt;--%>
+        <%--</td>--%>
+        <%--</tr>--%>
         <%--</c:forEach>--%>
 
 

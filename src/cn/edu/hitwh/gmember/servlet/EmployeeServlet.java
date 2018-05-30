@@ -23,6 +23,7 @@ public class EmployeeServlet extends BaseServlet {
     private IProjectService projectService=new ProjectServiceImp();
     private DateTools dateTools=new DateTools();
     private IResumeService resumeService=new ResumeServiceImp();
+    private ICompanyService companyService=new CompanyServiceImp();
 
     public String employeeLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String empphone = req.getParameter("empphone");
@@ -386,6 +387,155 @@ public class EmployeeServlet extends BaseServlet {
             return "f:/encryptWeb/employee/level3/stuProjectDetails.jsp";
         }
     }
+
+    /*
+    管理员用
+     */
+    public String adminFindAllEmployees(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int currentPage=getCurrentPage(req);
+        String url=getUrl(req);
+
+        PageBean<Employee> employeePageBean=employeeService.adminFindAllEmployees(currentPage);
+        employeePageBean.setTotalPages(employeePageBean.getTotalPages());
+        employeePageBean.setCurrentPage(currentPage);
+        employeePageBean.setUrl(url);
+
+        req.setAttribute("pb",employeePageBean);
+
+        PageBean<Company> companyPageBean=companyService.findAllCompanies();
+
+        req.setAttribute("companyPageBean",companyPageBean);
+
+        return "f:/encryptWeb/admin/employees.jsp";
+    }
+
+    public String toUpdateEmployee(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int empid=Integer.parseInt(req.getParameter("empid"));
+
+        Employee employee=employeeService.findAllEmployeeById(empid);
+
+        req.setAttribute("emp",employee);
+
+        PageBean<Company> companyPageBean=companyService.findAllCompanies();
+
+        req.setAttribute("companyPageBean",companyPageBean);
+
+        return "f:/encryptWeb/admin/employeeProfile.jsp";
+    }
+
+    public String updateEmployee(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int empid=Integer.parseInt(req.getParameter("empid"));
+
+        String empname=req.getParameter("empname");
+        String empsex=req.getParameter("empsex");
+        int empage=Integer.parseInt(req.getParameter("empage"));
+        String empphone=req.getParameter("empphone");
+        String empmail=req.getParameter("empmail");
+        int comid=Integer.parseInt(req.getParameter("comid"));
+        String empnote=req.getParameter("empnote");
+
+        Employee employee=employeeService.findAllEmployeeById(empid);
+        employee.setEmp_name(empname);
+        employee.setEmp_sex(empsex);
+        employee.setEmp_age(empage);
+        employee.setEmp_phone(empphone);
+        employee.setEmp_mail(empmail);
+        employee.setCom_id(comid);
+        employee.setEmp_note(empnote);
+
+
+        employeeService.updateEmployee(employee);
+        req.setAttribute("msgUpadateEmployee","用户信息更新成功!");
+
+        int currentPage=getCurrentPage(req);
+        String url=getUrl(req);
+
+        PageBean<Employee> employeePageBean=employeeService.adminFindAllEmployees(currentPage);
+        employeePageBean.setTotalPages(employeePageBean.getTotalPages());
+        employeePageBean.setCurrentPage(currentPage);
+        employeePageBean.setUrl(url);
+
+        req.setAttribute("pb",employeePageBean);
+
+        PageBean<Company> companyPageBean=companyService.findAllCompanies();
+
+        req.setAttribute("companyPageBean",companyPageBean);
+
+        return "f:/encryptWeb/admin/employees.jsp";
+    }
+
+    public String deleteEmployee(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        int empid=Integer.parseInt(req.getParameter("empid"));
+        String empname=req.getParameter("empname");
+
+        employeeService.deleteEmployee(empid);
+
+        req.setAttribute("msgDeleteEmployee","企业用户\""+empname+"\"已从系统删除！");
+
+        int currentPage=getCurrentPage(req);
+        String url=getUrl(req);
+
+        PageBean<Employee> employeePageBean=employeeService.adminFindAllEmployees(currentPage);
+        employeePageBean.setTotalPages(employeePageBean.getTotalPages());
+        employeePageBean.setCurrentPage(currentPage);
+        employeePageBean.setUrl(url);
+
+        req.setAttribute("pb",employeePageBean);
+
+        return "f:/encryptWeb/admin/employees.jsp";
+    }
+
+    public String toAddEmployee(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PageBean<Company> companyPageBean=companyService.findAllCompanies();
+
+        req.setAttribute("companyPageBean",companyPageBean);
+        return "f:/encryptWeb/admin/addEmployee.jsp";
+    }
+
+    public String addEmployee(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        String empname=req.getParameter("empname");
+        String empsex=req.getParameter("empsex");
+        int empage=Integer.parseInt(req.getParameter("empage"));
+        String empphone=req.getParameter("empphone");
+        String empmail=req.getParameter("empmail");
+        int comid=Integer.parseInt(req.getParameter("comid"));
+        String empnote=req.getParameter("empnote");
+
+        Employee employee=new Employee();
+        employee.setEmp_name(empname);
+        employee.setEmp_sex(empsex);
+        employee.setEmp_age(empage);
+        employee.setEmp_phone(empphone);
+        employee.setEmp_mail(empmail);
+        employee.setCom_id(comid);
+        employee.setEmp_note(empnote);
+        //密码默认手机号
+        employee.setEmp_pwd(empphone);
+
+
+        Integer empid=null;
+
+        empid=employeeService.addEmployee(employee);
+
+        if (empid==null){
+            req.setAttribute("msgAddEmployee","企业用户增加失败！");
+        }else{
+            req.setAttribute("msgAddEmployee","企业用户增加成功！");
+        }
+
+        int currentPage=getCurrentPage(req);
+        String url=getUrl(req);
+
+        PageBean<Employee> employeePageBean=employeeService.adminFindAllEmployees(currentPage);
+        employeePageBean.setTotalPages(employeePageBean.getTotalPages());
+        employeePageBean.setCurrentPage(currentPage);
+        employeePageBean.setUrl(url);
+
+        req.setAttribute("pb",employeePageBean);
+
+        return "f:/encryptWeb/admin/employees.jsp";
+    }
+
 
     //得到当前页
     private int getCurrentPage(HttpServletRequest req){

@@ -5,10 +5,14 @@
     <meta charset="utf-8">
     <title>管理员</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js"
+            type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js"
+            type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $(".knob").knob();
@@ -101,64 +105,85 @@
 <div class="sidebar-nav">
     <ul>
         <%--网站数据--%>
-        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header" target="_self"><i
+        <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/adminHome.jsp" class="nav-header"
+               target="_self"><i
                 class="fa fa-fw fa-heart"></i>&nbsp;&nbsp;网站数据</a></li>
         <%--教师管理--%>
         <li><a href="${pageContext.request.contextPath}/teacherServlet?method=findAllTeachers" class="nav-header"><i
                 class="fa fa-fw fa-question-circle"></i>&nbsp;&nbsp;教师管理</a></li>
 
         <%--学生管理--%>
-        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+        <li><a href="${pageContext.request.contextPath}/studentServlet?method=findAllStudents"
+               data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
             <%--<li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">--%>
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;&nbsp;学生管理<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="dashboard-menu nav nav-list collapse"><!--"class=in"的时候展开-->
                 <c:forEach items="${stuLevelPageBean.beanList}" var="stulevel">
-                    <li><a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/studentServlet?method=findStudentsByLevel&levelid=${stulevel.stu_level_id}"><span
+                                class="fa fa-caret-right"></span>${stulevel.stu_level_name}</a></li>
                 </c:forEach>
             </ul>
         </li>
-        <li data-popover="true" data-placement="right">
-            <a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
+        <%--企业管理--%>
+        <li>
+            <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindAllComanies"
+               data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="premium-menu nav nav-list collapse in">
                 <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
-                    <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindCompaniesByType&comtypeid=${comtypes.comtype_id}">
+                            <span class="fa fa-caret-right"></span>${comtypes.comtype_name}
+                        </a>
+                    </li>
                 </c:forEach>
-                </li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span
+                        class="fa fa-caret-right"></span>增加企业</a></li>
+                <li><a href="${pageContext.request.contextPath}/employeeServlet?method=adminFindAllEmployees"><span
+                        class="fa fa-caret-right"></span>企业导师</a></li>
             </ul>
         </li>
 
         <%--新闻中心--%>
         <li>
-            <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu"
+               class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-legal"></i>&nbsp;&nbsp;新闻中心<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
-            <ul class="legal-menu nav nav-list collapse>
+            <ul class="legal-menu nav nav-list collapse">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
-                    <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span
+                                class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span
+                        class="fa fa-caret-right"></span>上传新闻</a></li>
             </ul>
         </li>
 
         <%--通知公告--%>
         <li>
-            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindAllNotices"
+               data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-comment"></i>&nbsp;&nbsp;通知公告<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="accounts-menu nav nav-list collapse">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
-                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span
+                                class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span
+                        class="fa fa-caret-right"></span>上传公告</a></li>
             </ul>
         </li>
 
@@ -216,10 +241,11 @@
             </c:forEach>
             </tbody>
         </table>
-        <div style="float:left; width: 100%; text-align: center;" >
-            <%@include file="/pager/pager.jsp"%>
+        <div style="float:left; width: 100%; text-align: center;">
+            <%@include file="/pager/pager.jsp" %>
         </div>
         <small>${msgDeleteCompany}</small>
+        <small>${msgAddCompany}</small>
 
         <%--<footer style="position: absolute;bottom: 0;width: 100%">--%>
         <footer>

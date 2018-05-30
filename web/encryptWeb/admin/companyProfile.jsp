@@ -116,20 +116,24 @@
                 </c:forEach>
             </ul>
         </li>
-        <li data-popover="true" data-placement="right">
-            <a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
-                <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
-            </a>
-        </li>
-        <li>
-            <ul class="premium-menu nav nav-list collapse in">
-                <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
-                    <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
-                </c:forEach>
-                </li>
-            </ul>
-        </li>
-
+            <%--企业管理--%>
+            <li>
+                <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindAllComanies" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
+                    <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
+                </a>
+            </li>
+            <li>
+                <ul class="premium-menu nav nav-list collapse in">
+                    <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindCompaniesByType&comtypeid=${comtypes.comtype_id}">
+                                <span class="fa fa-caret-right"></span>${comtypes.comtype_name}
+                            </a>
+                        </li>
+                    </c:forEach>
+                    <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span>增加企业</a></li>
+                </ul>
+            </li>
         <%--新闻中心--%>
         <li>
             <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
@@ -141,7 +145,7 @@
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
                     <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span class="fa fa-caret-right"></span> 上传新闻</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNews.jsp"><span class="fa fa-caret-right"></span>上传新闻</a></li>
             </ul>
         </li>
 
@@ -156,7 +160,7 @@
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
                     <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span>上传公告</a></li>
             </ul>
         </li>
 
@@ -180,11 +184,11 @@
                         alert("公司名称不能为空！");
                         return false;
                     }
-
-                    if(!$("#comimg").val()){
-                        alert("展示图片不能为空！");
-                        return false;
-                    }
+                    //
+                    // if(!($("#comimg").val() && $("#comimg2").val)){
+                    //     alert("展示图片不能为空！");
+                    //     return false;
+                    // }
                     return true;
                 }
             </script>
@@ -219,10 +223,10 @@
 
                             <div class="form-group" style="width: 35%">
                                 <%--<form action="${pageContext.request.contextPath}/companyServlet?method=uploadImg" method="post" enctype="multipart/form-data">--%>
-                                <span style="color: red">*&nbsp;</span><label for="comimg">展示图片</label>
+                                <span style="color: red">*&nbsp;</span><label for="comimg">展示图片<small>（请重新上传jpg或png图片）</small></label>
                                 <input type="file" name="comimg" id="comimg"><br/>
                                 <div>
-                                    <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" style=" width: 270px;height: 200px">
+                                    <img src="${pageContext.request.contextPath}/upload/company/img/${company.com_img}" id="comimg2" style=" width: 270px;height: 200px">
                                 </div>
                                 <%--</form>--%>
                             </div>

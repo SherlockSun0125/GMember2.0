@@ -1,19 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>管理员</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".knob").knob();
-        });
-    </script>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js"
+            type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/theme.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/premium.css">
     <script type="text/javascript">
@@ -60,8 +56,37 @@
         });
     </script>
 
+    <script type="text/javascript">
+        function checkForm() {
+            if(!$("#empname").val()){
+                alert("姓名不能为空!");
+                return false;
+            }
+            if(!$("#empsex").val()){
+                alert("性别不能为空!");
+                return false;
+            }
+            if(!$("#empage").val()){
+                alert("年龄不能为空!");
+                return false;
+            }
+            if(!$("#empphone").val()){
+                alert("手机号不能为空!");
+                return false;
+            }
+            if(!$("#empmail").val()){
+                alert("邮箱不能为空!");
+                return false;
+            }
+            if(!$("#emppwd").val()){
+                alert("密码不能为空!");
+                return false;
+            }
+        }
+    </script>
+
 </head>
-<body class="theme-blue">
+<body class=" theme-blue">
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
@@ -132,6 +157,7 @@
                         </li>
                     </c:forEach>
                     <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span> 增加企业</a></li>
+                    <li><a href="${pageContext.request.contextPath}/employeeServlet?method=adminFindAllEmployees"><span class="fa fa-caret-right"></span>企业导师</a></li>
                 </ul>
             </li>
 
@@ -142,7 +168,7 @@
             </a>
         </li>
         <li>
-            <ul class="legal-menu nav nav-list collapse in">
+            <ul class="legal-menu nav nav-list collapse">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
                     <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
@@ -169,80 +195,98 @@
     </ul>
 </div>
 
-<%--中间部分--%>
 <div class="content">
-    <div class="main-content" style="margin-top: 10px;">
-        <%--下左一--%>
+    <div class="main-content">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">基本资料</a></li>
+            <li><a href="#profile" data-toggle="tab">更改密码</a></li>
+        </ul>
+
         <div class="row">
-            <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
-                <div class="panel panel-default" style="background-color: #EEEEEE">
-                    <div class="panel-heading no-collapse"
-                         style="text-align: center;font-size: 1.5em;font-weight: bold">发布新闻
-                    </div>
-                    <div style="margin: 10px" class="newsform">
-                        <form action="${pageContext.request.contextPath}/newsServlet?method=updateNews&newsid=${news.news_id}" method="post" onsubmit="return checkForm()">
-                            <div class="form-group" style="width:10%;">
-                                <span style="color: red">*&nbsp;</span><label for="type">所属版块</label>
-                                <div style="width:20em;display: inline-block">
-                                    <select class="form-control" name="secctionid" id="type">
-                                        <c:forEach items="${newsSectionPageBean.beanList}" var="newssection">
-                                            <c:choose>
-                                                <c:when test="${newssection.news_section_id eq news.news_section_id}">
-                                                    <option value="${newssection.news_section_id}" selected="selected">${newssection.news_section_name}</option>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <option value="${newssection.news_section_id}">${newssection.news_section_name}</option>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
+            <div class="col-md-4">
+                <br>
+                <form action="${pageContext.request.contextPath}/employeeServlet?method=updateEmployee&empid=${emp.emp_id}" method="post" onsubmit="return checkForm()">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane active in" id="home">
+                            <div id="tab">
+                                <div class="form-group">
+                                    <label for="empname">姓名</label>
+                                    <input type="text" name="empname" id="empname" value="${emp.emp_name}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="empsex">性别</label>
+                                    <input type="text" name="empsex" id="empsex" value="${emp.emp_sex}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="empage">年龄</label>
+                                    <input type="text" name="empage" id="empage" value="${emp.emp_age}" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="comid">院系</label>
+                                    <select name="comid" id="comid" class="form-control">
+                                            <c:forEach items="${companyPageBean.beanList}" var="company">
+                                                <c:choose>
+                                                    <c:when test="${company.com_id eq emp.com_id}">
+                                                        <option value="${company.com_id}" selected="selected">${company.com_name}</option>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <option value="${company.com_id}">${company.com_name} </option>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group" style="width: 35%">
-                                <span style="color: red">*&nbsp;</span><label for="newstitle">新闻标题</label>
-                                <input type="text" class="form-control" name="newstitle" id="newstitle" value="${news.news_title}">
-                            </div>
 
-                            <div class="form-group" style="width: 35%">
-                                <span><span style="color: red">*&nbsp;</span><label for="publisher">发布人</label></span>
-                                <input type="text" class="form-control" name="publisher" id="publisher" value="${news.publisher}">
-                            </div>
+                                <div class="form-group">
+                                    <label for="empphone">手机号</label>
+                                    <input type="text" id="empphone" name="empphone" value="${emp.emp_phone}" class="form-control">
+                                </div>
 
-                            <div class="form-group" style="width: 35%">
-                                <span><span style="color: red">*&nbsp;</span><label for="newssource">来源</label></span>
-                                <input type="text" class="form-control" name="newssource" id="newssource" value="${news.news_source}">
-                            </div>
+                                <div class="form-group">
+                                    <label for="empmail">邮箱</label>
+                                    <input type="text" id="empmail" name="empmail" value="${emp.emp_mail}" class="form-control">
+                                </div>
 
-                            <div class="form-group">
-                                <!-- 加载编辑器的容器 -->
-                                <!--container里写你的初始化内容-->
-                                <span><span style="color: red">*&nbsp;</span><label for="container">新闻内容</label></span>
-                                <script id="container" name="content" type="text/plain">${news.news_content}</script>
+                                <div class="form-group">
+                                    <label for="empnote">备注</label>
+                                    <textarea name="empnote" id="empnote" rows="3" class="form-control" style="text-align: left">${emp.emp_note}</textarea>
+                                </div>
+
                             </div>
-                            <dic>
-                                <small style="float: left;margin-left: 30px;margin-top: 20px">${msgUpdateNews}</small>
-                                <input type="submit" class="btn btn-success" style="float: right;margin-right: 30px;margin-top: 20px" value="更新新闻">
-                            </dic>
-                        </form>
-                        <!-- 配置文件 -->
-                        <script type="text/javascript" src="${pageContext.request.contextPath}/encryptWeb/admin/ueditor/ueditor.config.js"></script>
-                        <!-- 编辑器源码文件 -->
-                        <script type="text/javascript" src="${pageContext.request.contextPath}/encryptWeb/admin/ueditor/ueditor.all.js"></script>
-                        <!-- 实例化编辑器 -->
-                        <script type="text/javascript">
-                            var ue = UE.getEditor('container');
-                        </script>
+                        </div>
+
+                        <div class="tab-pane fade" id="profile">
+
+                            <div id="tab2">
+                                <div class="form-group">
+                                    <label for="emppwd">输入新密码</label>
+                                    <input type="password" class="form-control" id="emppwd" name="emppwd" value="${emp.emp_pwd}">
+                                </div>
+                                <%--<div>--%>
+                                    <%--<button class="btn btn-primary">更新密码</button>--%>
+                                <%--</div>--%>
+                            </div>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="btn-toolbar list-toolbar">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 更新</button>
+                        <%--<a href="#myModal" data-toggle="modal" class="btn btn-danger">Delete</a>--%>
+                    </div>
+                </form>
+
+                <small>${msgUpdateEmployee}</small>
             </div>
         </div>
 
         <footer>
             <hr>
-            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
+            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
+            </p>
         </footer>
     </div>
 </div>
-
 </body>
 </html>

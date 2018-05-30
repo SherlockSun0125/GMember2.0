@@ -1,21 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
-<html>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=utf-8" %>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>管理员</title>
+
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".knob").knob();
-        });
-    </script>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/encryptWeb/admin/lib/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/theme.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/premium.css">
+    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/jquery-1.11.1.min.js"
+            type="text/javascript"></script>
+
     <script type="text/javascript">
         $(function () {
             var match = document.cookie.match(new RegExp('color=([^;]+)'));
@@ -50,7 +49,9 @@
             $('#main-menu').append(uls.clone());
         });
     </script>
-    <script src="${pageContext.request.contextPath}/encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
+
+
+    <script src="${pageContext.request.contentType}/encryptWeb/admin/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
         $(function () {
@@ -59,9 +60,10 @@
             });
         });
     </script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pager/adminPager.css">
 
 </head>
-<body class="theme-blue">
+<body class=" theme-blue">
 <!--头部-->
 <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
@@ -123,7 +125,7 @@
                 </a>
             </li>
             <li>
-                <ul class="premium-menu nav nav-list collapse">
+                <ul class="premium-menu nav nav-list collapse in">
                     <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
                         <li>
                             <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindCompaniesByType&comtypeid=${comtypes.comtype_id}">
@@ -132,9 +134,9 @@
                         </li>
                     </c:forEach>
                     <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span> 增加企业</a></li>
+                    <li><a href="${pageContext.request.contextPath}/employeeServlet?method=adminFindAllEmployees"><span class="fa fa-caret-right"></span>企业导师</a></li>
                 </ul>
             </li>
-
         <%--新闻中心--%>
         <li>
             <a href="${pageContext.request.contextPath}/newsServlet?method=adminFindAllNews" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse">
@@ -142,7 +144,7 @@
             </a>
         </li>
         <li>
-            <ul class="legal-menu nav nav-list collapse in">
+            <ul class="legal-menu nav nav-list collapse">
                 <c:forEach items="${newsSectionPageBean.beanList}" var="newsSections">
                     <li><a href="${pageContext.request.contextPath}/newsServlet?method=adminFindNewsBySection&sectionid=${newsSections.news_section_id}"><span class="fa fa-caret-right"></span>${newsSections.news_section_name}</a></li>
                 </c:forEach>
@@ -159,9 +161,9 @@
         <li>
             <ul class="accounts-menu nav nav-list collapse">
                 <c:forEach items="${noticeSectionPageBean.beanList}" var="noticeSections">
-                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticesBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/noticeServlet?method=adminFindNoticeBySection&sectionid=${noticeSections.notice_section_id}"><span class="fa fa-caret-right"></span>${noticeSections.notice_section_name}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
+                <li><a href="addNotice.jsp"><span class="fa fa-caret-right"></span> 上传公告</a></li>
             </ul>
         </li>
 
@@ -169,80 +171,113 @@
     </ul>
 </div>
 
-<%--中间部分--%>
 <div class="content">
-    <div class="main-content" style="margin-top: 10px;">
-        <%--下左一--%>
-        <div class="row">
-            <div class="col-sm-12 col-md-12" style="margin-bottom: 10px ">
-                <div class="panel panel-default" style="background-color: #EEEEEE">
-                    <div class="panel-heading no-collapse"
-                         style="text-align: center;font-size: 1.5em;font-weight: bold">发布新闻
-                    </div>
-                    <div style="margin: 10px" class="newsform">
-                        <form action="${pageContext.request.contextPath}/newsServlet?method=updateNews&newsid=${news.news_id}" method="post" onsubmit="return checkForm()">
-                            <div class="form-group" style="width:10%;">
-                                <span style="color: red">*&nbsp;</span><label for="type">所属版块</label>
-                                <div style="width:20em;display: inline-block">
-                                    <select class="form-control" name="secctionid" id="type">
-                                        <c:forEach items="${newsSectionPageBean.beanList}" var="newssection">
-                                            <c:choose>
-                                                <c:when test="${newssection.news_section_id eq news.news_section_id}">
-                                                    <option value="${newssection.news_section_id}" selected="selected">${newssection.news_section_name}</option>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <option value="${newssection.news_section_id}">${newssection.news_section_name}</option>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group" style="width: 35%">
-                                <span style="color: red">*&nbsp;</span><label for="newstitle">新闻标题</label>
-                                <input type="text" class="form-control" name="newstitle" id="newstitle" value="${news.news_title}">
-                            </div>
-
-                            <div class="form-group" style="width: 35%">
-                                <span><span style="color: red">*&nbsp;</span><label for="publisher">发布人</label></span>
-                                <input type="text" class="form-control" name="publisher" id="publisher" value="${news.publisher}">
-                            </div>
-
-                            <div class="form-group" style="width: 35%">
-                                <span><span style="color: red">*&nbsp;</span><label for="newssource">来源</label></span>
-                                <input type="text" class="form-control" name="newssource" id="newssource" value="${news.news_source}">
-                            </div>
-
-                            <div class="form-group">
-                                <!-- 加载编辑器的容器 -->
-                                <!--container里写你的初始化内容-->
-                                <span><span style="color: red">*&nbsp;</span><label for="container">新闻内容</label></span>
-                                <script id="container" name="content" type="text/plain">${news.news_content}</script>
-                            </div>
-                            <dic>
-                                <small style="float: left;margin-left: 30px;margin-top: 20px">${msgUpdateNews}</small>
-                                <input type="submit" class="btn btn-success" style="float: right;margin-right: 30px;margin-top: 20px" value="更新新闻">
-                            </dic>
-                        </form>
-                        <!-- 配置文件 -->
-                        <script type="text/javascript" src="${pageContext.request.contextPath}/encryptWeb/admin/ueditor/ueditor.config.js"></script>
-                        <!-- 编辑器源码文件 -->
-                        <script type="text/javascript" src="${pageContext.request.contextPath}/encryptWeb/admin/ueditor/ueditor.all.js"></script>
-                        <!-- 实例化编辑器 -->
-                        <script type="text/javascript">
-                            var ue = UE.getEditor('container');
-                        </script>
-                    </div>
-                </div>
-            </div>
+    <div class="main-content">
+        <div class="btn-toolbar list-toolbar">
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/employeeServlet?method=toAddEmployee">
+                <i class="fa fa-plus"></i>增加企业员工
+            </a>
+            <%--<button class="btn btn-default">导入</button>--%>
+            <%--<button class="btn btn-default">导出</button>--%>
+            <div class="btn-group"></div>
         </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>公司</th>
+                <th>手机号</th>
+                <th>邮箱</th>
+                <th>密码</th>
+                <th>谨慎操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%--<c:set var="num" value="0"></c:set>--%>
+            <c:forEach items="${pb.beanList}" var="emp">
+                <tr>
+                    <td>${emp.emp_id}</td>
+                    <td>${emp.emp_name}</td>
+                    <td>${emp.emp_sex}</td>
+                    <td>${emp.emp_age}</td>
+                    <td>
+                        <c:forEach items="${companyPageBean.beanList}" var="company">
+                            <c:choose>
+                                <c:when test="${emp.com_id eq company.com_id}">
+                                    ${company.com_name}
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </td>
+                    <td>${emp.emp_phone}</td>
+                    <td>${emp.emp_mail}</td>
+                    <td>${emp.emp_pwd}</td>
+                    <td style="text-align: center">
+                        <a href="${pageContext.request.contextPath}/employeeServlet?method=toUpdateEmployee&empid=${emp.emp_id}"><i
+                                class="fa fa-pencil"></i></a>
+                        &nbsp;&nbsp;
+                        <a href="${pageContext.request.contextPath}/employeeServlet?method=deleteEmployee&empid=${emp.emp_id}&empname=${emp.emp_name}"
+                           role="button"><i class="fa fa-trash-o"></i></a>
+                            <%--<a href="#myModal" role="button" data-toggle="modal" data-target="myModal"><i class="fa fa-trash-o"></i></a>--%>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+        <div style="float:left; width: 100%; text-align: center;" >
+            <%@include file="/pager/pager.jsp"%>
+        </div>
+        <small>${msgDeleteEmployee}</small>
+        <small>${msgAddEmployee}</small>
+
+        <%--<ul class="pagination">--%>
+        <%--<li><a href="#">&laquo;</a></li>--%>
+        <%--<li><a href="#">1</a></li>--%>
+        <%--<li><a href="#">2</a></li>--%>
+        <%--<li><a href="#">3</a></li>--%>
+        <%--<li><a href="#">4</a></li>--%>
+        <%--<li><a href="#">5</a></li>--%>
+        <%--<li><a href="#">&raquo;</a></li>--%>
+        <%--</ul>--%>
+
+        <%--modal 为模态框--%>
+        <div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="${pageContext.request.contextPath}/teacherServlet?method=deleteTeacher&teacherid=${tea.tea_id}">
+                    <div class="modal-content">
+                        <%--模态框头部--%>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="myModalLabel">删除提醒</h3>
+                        </div>
+                        <%--模态框身体部分--%>
+                        <div class="modal-body">
+                            <p class="error-text"><i class="fa fa-warning modal-icon"></i>你确定删除该用户吗？
+                                <br>该操作不可逆。</p>
+                        </div>
+                        <%--模态框底部--%>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">取消</button>
+                            <button class="btn btn-danger" type="submit">删除</button>
+                            <%--<button class="btn btn-danger" href="${pageContext.request.contextPath}/encryptWeb/admin/index.jsp">删除2</button>--%>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
 
         <footer>
             <hr>
-            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a></p>
+            <p align="right">© 2018 <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">哈工大（威海）工程领军人与卓越工程师计划&nbsp;&nbsp;</a>
+            </p>
         </footer>
     </div>
 </div>
-
 </body>
 </html>

@@ -127,19 +127,24 @@
                 </c:forEach>
             </ul>
         </li>
-        <li data-popover="true" data-placement="right">
-            <a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
-                <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
-            </a>
-        </li>
-        <li>
-            <ul class="premium-menu nav nav-list collapse">
-                <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
-                    <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
-                </c:forEach>
-                </li>
-            </ul>
-        </li>
+            <%--企业管理--%>
+            <li>
+                <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindAllComanies" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
+                    <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
+                </a>
+            </li>
+            <li>
+                <ul class="premium-menu nav nav-list collapse">
+                    <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindCompaniesByType&comtypeid=${comtypes.comtype_id}">
+                                <span class="fa fa-caret-right"></span>${comtypes.comtype_name}
+                            </a>
+                        </li>
+                    </c:forEach>
+                    <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span> 增加企业</a></li>
+                </ul>
+            </li>
 
         <%--新闻中心--%>
         <li>

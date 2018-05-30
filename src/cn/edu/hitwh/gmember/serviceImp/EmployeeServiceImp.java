@@ -44,4 +44,40 @@ public class EmployeeServiceImp implements IEmployeeService {
             throw  new RuntimeException(e);
         }
     }
+
+    @Override
+    public PageBean<Employee> adminFindAllEmployees(int currentPage) {
+        try{
+            return employeeDao.adminFindAllEmployees(currentPage);
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Integer addEmployee(Employee employee) {
+        try{
+            return employeeDao.addEmployee(employee);
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteEmployee(int emp_id) {
+        try{
+            employeeDao.deleteEmployee(emp_id);
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateEmployee(Employee employee) {
+        try{
+            employeeDao.updateEmployee(employee);
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
 }
