@@ -122,14 +122,18 @@
             </ul>
         </li>
         <li data-popover="true" data-placement="right">
-            <a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
+            <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindAllComanies" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse">
                 <i class="fa fa-fw fa-briefcase"></i>&nbsp;&nbsp;企业管理<i class="fa fa-collapse"></i>
             </a>
         </li>
         <li>
             <ul class="premium-menu nav nav-list collapse">
                 <c:forEach items="${comtypePageBean.beanList}" var="comtypes">
-                    <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/companyServlet?method=adminFindCompaniesByType&comtypeid=${comtypes.comtype_id}">
+                            <span class="fa fa-caret-right"></span>${comtypes.comtype_name}
+                        </a>
+                    </li>
                 </c:forEach>
                 <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span> 增加企业</a></li>
 
@@ -180,7 +184,7 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="knob-container">
                             <input class="knob" data-width="200" data-min="0" data-max="300"
-                                   data-displayPrevious="true" value="150" data-fgColor="#92A3C2" data-readOnly=true;>
+                                   data-displayPrevious="true" value="${companyNum}" data-fgColor="#92A3C2" data-readOnly=true;>
                             <h3 class="text-muted text-center">企业数量</h3>
                         </div>
                     </div>
@@ -194,15 +198,15 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="knob-container">
                             <input class="knob" data-width="200" data-min="0" data-max="2500"
-                                   data-displayPrevious="true" value="${newsNoticeNum}" data-fgColor="#92A3C2" data-readOnly=true;>
-                            <h3 class="text-muted text-center">通知新闻数量</h3>
+                                   data-displayPrevious="true" value="${newsNum}" data-fgColor="#92A3C2" data-readOnly=true;>
+                            <h3 class="text-muted text-center">新闻数量</h3>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="knob-container">
                             <input class="knob" data-width="200" data-min="0" data-max="15000"
-                                   data-displayPrevious="true" value="10067" data-fgColor="#92A3C2" data-readOnly=true;>
-                            <h3 class="text-muted text-center">帖子数</h3>
+                                   data-displayPrevious="true" value="${noticeNum}" data-fgColor="#92A3C2" data-readOnly=true;>
+                            <h3 class="text-muted text-center">通知数量</h3>
                         </div>
                     </div>
                 </div>
@@ -210,74 +214,74 @@
         </div>
 
         <%--下一--%>
-        <div class="row">
-            <%--下左一--%>
-            <div class="col-sm-6 col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading no-collapse">最近登录用户<span class="label label-warning">6</span>
-                    </div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>姓名</th>
-                            <th>学号</th>
-                            <th>时间</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>刘一</td>
-                            <td>140410401</td>
-                            <td>2018/4/22&nbsp;&nbsp;9:44:51</td>
-                        </tr>
-                        <tr>
-                            <td>刘一</td>
-                            <td>140410401</td>
-                            <td>2018/4/22&nbsp;&nbsp;9:44:51</td>
-                        </tr>
-                        <tr>
-                            <td>刘一</td>
-                            <td>140410401</td>
-                            <td>2018/4/22&nbsp;&nbsp;9:44:51</td>
-                        </tr>
-                        <tr>
-                            <td>刘一</td>
-                            <td>140410401</td>
-                            <td>2018/4/22&nbsp;&nbsp;9:44:51</td>
-                        </tr>
-                        <tr>
-                            <td>刘一</td>
-                            <td>140410401</td>
-                            <td>2018/4/22&nbsp;&nbsp;9:44:51</td>
-                        </tr>
-                        <tr>
-                            <td>刘一</td>
-                            <td>140410401</td>
-                            <td>2018/4/22&nbsp;&nbsp;9:44:51</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <%--下右一--%>
+        <%--<div class="row">--%>
+            <%--&lt;%&ndash;下左一&ndash;%&gt;--%>
             <%--<div class="col-sm-6 col-md-6">--%>
-            <%--<div class="panel panel-default">--%>
-            <%--<a href="#widget1container" class="panel-heading" data-toggle="collapse">其他信息 </a>--%>
-            <%--<div id="widget1container" class="panel-body collapse in">--%>
-            <%--<h2>Here's a Tip</h2>--%>
-            <%--<p>This template was developed with <a href="http://middlemanapp.com/"--%>
-            <%--target="_blank">Middleman</a> and includes .erb layouts--%>
-            <%--and views.</p>--%>
-            <%--<p>All of the views you see here (sign in, sign up, users, etc) are already split up so you--%>
-            <%--don't have to waste your time doing it yourself!</p>--%>
-            <%--<p>The layout.erb file includes the header, footer, and side navigation and all of the views are--%>
-            <%--broken out into their own files.</p>--%>
-            <%--<p>If you aren't using Ruby, there is also a set of plain HTML files for each page, just like--%>
-            <%--you would expect.</p>--%>
+                <%--<div class="panel panel-default">--%>
+                    <%--<div class="panel-heading no-collapse">最近登录用户<span class="label label-warning">6</span>--%>
+                    <%--</div>--%>
+                    <%--<table class="table table-bordered table-striped">--%>
+                        <%--<thead>--%>
+                        <%--<tr>--%>
+                            <%--<th>姓名</th>--%>
+                            <%--<th>学号</th>--%>
+                            <%--<th>时间</th>--%>
+                        <%--</tr>--%>
+                        <%--</thead>--%>
+                        <%--<tbody>--%>
+                        <%--<tr>--%>
+                            <%--<td>刘一</td>--%>
+                            <%--<td>140410401</td>--%>
+                            <%--<td>2018/4/22&nbsp;&nbsp;9:44:51</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td>刘一</td>--%>
+                            <%--<td>140410401</td>--%>
+                            <%--<td>2018/4/22&nbsp;&nbsp;9:44:51</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td>刘一</td>--%>
+                            <%--<td>140410401</td>--%>
+                            <%--<td>2018/4/22&nbsp;&nbsp;9:44:51</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td>刘一</td>--%>
+                            <%--<td>140410401</td>--%>
+                            <%--<td>2018/4/22&nbsp;&nbsp;9:44:51</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td>刘一</td>--%>
+                            <%--<td>140410401</td>--%>
+                            <%--<td>2018/4/22&nbsp;&nbsp;9:44:51</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td>刘一</td>--%>
+                            <%--<td>140410401</td>--%>
+                            <%--<td>2018/4/22&nbsp;&nbsp;9:44:51</td>--%>
+                        <%--</tr>--%>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
+                <%--</div>--%>
             <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-        </div>
+            <%--&lt;%&ndash;下右一&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="col-sm-6 col-md-6">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="panel panel-default">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<a href="#widget1container" class="panel-heading" data-toggle="collapse">其他信息 </a>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div id="widget1container" class="panel-body collapse in">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<h2>Here's a Tip</h2>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<p>This template was developed with <a href="http://middlemanapp.com/"&ndash;%&gt;--%>
+            <%--&lt;%&ndash;target="_blank">Middleman</a> and includes .erb layouts&ndash;%&gt;--%>
+            <%--&lt;%&ndash;and views.</p>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<p>All of the views you see here (sign in, sign up, users, etc) are already split up so you&ndash;%&gt;--%>
+            <%--&lt;%&ndash;don't have to waste your time doing it yourself!</p>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<p>The layout.erb file includes the header, footer, and side navigation and all of the views are&ndash;%&gt;--%>
+            <%--&lt;%&ndash;broken out into their own files.</p>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<p>If you aren't using Ruby, there is also a set of plain HTML files for each page, just like&ndash;%&gt;--%>
+            <%--&lt;%&ndash;you would expect.</p>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--</div>--%>
 
         <%--<div class="row">--%>
         <%--<div class="col-sm-6 col-md-6">--%>

@@ -17,12 +17,38 @@
                 VALUES (#{com_name},#{comtype_id},#{com_info},#{com_img},#{com_time})
     </insert>
 
-    <select id="findAllCompanys" resultMap="companyMap">
+    <select id="findAllCompanies" resultMap="companyMap">
       SELECT * FROM company
+    </select>
+
+    <select id="adminFindAllCompanies" resultMap="companyMap">
+        SELECT * FROM company ORDER BY com_id DESC LIMIT #{from},#{pageSize}
     </select>
 
     <select id="findCompanyById" parameterType="int" resultType="cn.edu.hitwh.gmember.pojo.Company">
         SELECT * FROM company WHERE com_id=#{com_id}
     </select>
+
+    <select id="countAllCompanies" resultType="int">
+        SELECT count(*) FROM company
+    </select>
+
+    <select id="countAllCompaniesByType" parameterType="int" resultType="int">
+        SELECT count(*) FROM company WHERE comtype_id=#{comtype_id}
+    </select>
+
+    <select id="adminFindCompaniesByType" resultMap="companyMap">
+        SELECT * FROM company WHERE comtype_id=#{comtype_id} ORDER BY com_id DESC LIMIT #{from},#{pageSize}
+    </select>
+
+    <delete id="deleteCompany" parameterType="int">
+        DELETE FROM company WHERE com_id=#{com_id}
+    </delete>
+
+    <update id="updateCompany" parameterType="cn.edu.hitwh.gmember.pojo.Company">
+        UPDATE company SET com_name=#{com_name},comtype_id=#{comtype_id},com_img=#{com_img},
+            com_info=#{com_info},com_time=#{com_time}
+        WHERE com_id=#{com_id}
+    </update>
 
 </mapper>

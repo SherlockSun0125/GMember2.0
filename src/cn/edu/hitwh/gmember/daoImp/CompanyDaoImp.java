@@ -15,9 +15,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.Reader;
 import java.util.List;
 
+import static cn.edu.hitwh.gmember.tools.PageConstants.COMPANY_PAGE_SIZE;
+
 public class CompanyDaoImp implements ICompanyDao{
-
-
     public Integer addCompany(Company company) {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
@@ -49,7 +49,7 @@ public class CompanyDaoImp implements ICompanyDao{
     }
 
     @Override
-    public PageBean<Company> findAllCompanys() {
+    public PageBean<Company> findAllCompanies() {
         String resource="MyBatisConfig.xml";
         Reader reader=null;
         SqlSession session;
@@ -64,7 +64,7 @@ public class CompanyDaoImp implements ICompanyDao{
 
         CompanyMapper companyMapper=session.getMapper(CompanyMapper.class);
 
-        List<Company> companyList=companyMapper.findAllCompanys();
+        List<Company> companyList=companyMapper.findAllCompanies();
 
         companyPageBean.setBeanList(companyList);
 
@@ -91,5 +91,162 @@ public class CompanyDaoImp implements ICompanyDao{
 
         session.close();
         return company;
+    }
+
+    @Override
+    public int countAllCompanies() {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        CompanyMapper companyMapper=session.getMapper(CompanyMapper.class);
+
+        int totalRecords=companyMapper.countAllCompanies();
+
+        session.close();
+        return totalRecords;
+    }
+
+    @Override
+    public int countAllCompaniesByType(int comtype_id) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        CompanyMapper companyMapper=session.getMapper(CompanyMapper.class);
+
+        int typeRecords=companyMapper.countAllCompaniesByType(comtype_id);
+
+        session.close();
+        return typeRecords;
+    }
+
+    @Override
+    public PageBean<Company> adminFindCompaniesByType(int comtype_id,int currentPage) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        PageBean<Company> companyPageBean=new PageBean<Company>();
+        int pageSize=COMPANY_PAGE_SIZE;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        CompanyMapper companyMapper=session.getMapper(CompanyMapper.class);
+
+        int totalRecords=companyMapper.countAllCompaniesByType(comtype_id);
+        int from=(currentPage-1)*pageSize;
+
+        List<Company> companyList=companyMapper.adminFindCompaniesByType(comtype_id,from,pageSize);
+
+        companyPageBean.setTotalRecords(totalRecords);
+        companyPageBean.setCurrentPage(currentPage);
+        companyPageBean.setPageSize(pageSize);
+        companyPageBean.setTotalPages(companyPageBean.getTotalPages());
+        companyPageBean.setBeanList(companyList);
+
+        session.close();
+        return companyPageBean;
+    }
+
+    public PageBean<Company> adminFindAllCompanies(int currentPage) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        PageBean<Company> companyPageBean=new PageBean<Company>();
+        int pageSize=COMPANY_PAGE_SIZE;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        CompanyMapper companyMapper=session.getMapper(CompanyMapper.class);
+
+        int totalRecords=companyMapper.countAllCompanies();
+        int from=(currentPage-1)*pageSize;
+
+        List<Company> companyList=companyMapper.adminFindAllCompanies(from,pageSize);
+
+        companyPageBean.setTotalRecords(totalRecords);
+        companyPageBean.setCurrentPage(currentPage);
+        companyPageBean.setPageSize(pageSize);
+        companyPageBean.setTotalPages(companyPageBean.getTotalPages());
+        companyPageBean.setBeanList(companyList);
+
+        session.close();
+        return companyPageBean;
+    }
+
+    @Override
+    public void deleteCompany(int com_id) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        CompanyMapper companyMapper=session.getMapper(CompanyMapper.class);
+
+        try{
+            companyMapper.deleteCompany(com_id);
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void updateCompany(Company company) {
+        String resource="MyBatisConfig.xml";
+        Reader reader=null;
+        SqlSession session;
+        try{
+            reader=Resources.getResourceAsReader(resource);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        session=sqlSessionFactory.openSession();
+
+        CompanyMapper companyMapper=session.getMapper(CompanyMapper.class);
+
+        try{
+            companyMapper.updateCompany(company);
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
     }
 }
