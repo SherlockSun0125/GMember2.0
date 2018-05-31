@@ -44,6 +44,85 @@ public class EmployeeServlet extends BaseServlet {
         }
     }
 
+    public String toUpdateSetting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int empid=Integer.parseInt(req.getParameter("empid"));
+        Employee employee=employeeService.findAllEmployeeById(empid);
+
+        PageBean<Company> companyPageBean=companyService.findAllCompanies();
+
+        req.setAttribute("companyPageBean",companyPageBean);
+
+        if (employee.getEmp_sex().equals("男")){
+            req.setAttribute("sex",1);
+        }else {
+            req.setAttribute("sex",0);
+        }
+
+        req.setAttribute("emp",employee);
+
+        return "f:/encryptWeb/employee/setting.jsp";
+    }
+
+    public String updateSetting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//      id
+        int empid=Integer.parseInt(req.getParameter("empid"));
+        Employee newEmployee=employeeService.findAllEmployeeById(empid);
+
+//        姓名
+        String empname=req.getParameter("empname");
+        newEmployee.setEmp_name(empname);
+//        性别
+        int empsex=Integer.parseInt(req.getParameter("empsex"));
+        if (empsex==1){
+            newEmployee.setEmp_sex("男");
+        }else{
+            newEmployee.setEmp_sex("女");
+        }
+//        年龄
+        int empage=Integer.parseInt(req.getParameter("empage"));
+        newEmployee.setEmp_age(empage);
+
+//        备注
+        String empnote=req.getParameter("empnote");
+        newEmployee.setEmp_note(empnote);
+
+//        院系
+        int comid=Integer.parseInt(req.getParameter("comid"));
+        newEmployee.setCom_id(comid);
+
+//        手机号
+        String empphone=req.getParameter("empphone");
+        newEmployee.setEmp_phone(empphone);
+//        邮箱
+        String empmail=req.getParameter("empmail");
+        newEmployee.setEmp_mail(empmail);
+
+//        密码
+        String emppwd=req.getParameter("emppwd");
+        newEmployee.setEmp_pwd(emppwd);
+
+//        更新数据库
+        employeeService.updateEmployee(newEmployee);
+
+//        重新获取信息并返回详情页
+        Employee employee=employeeService.findAllEmployeeById(empid);
+
+        PageBean<Company> companyPageBean=companyService.findAllCompanies();
+
+        req.setAttribute("companyPageBean",companyPageBean);
+
+        if (employee.getEmp_sex().equals("男")){
+            req.setAttribute("sex",1);
+        }else {
+            req.setAttribute("sex",0);
+        }
+
+        req.setAttribute("emp",employee);
+
+        return "f:/encryptWeb/employee/setting.jsp";
+    }
+
+
     //管理员首页
     public String findAllStudentsByEmp(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int empid=Integer.parseInt(req.getParameter("empid"));

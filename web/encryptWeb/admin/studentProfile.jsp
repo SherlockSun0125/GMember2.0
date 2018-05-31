@@ -156,6 +156,8 @@
                     <li><a href=""><span class="fa fa-caret-right"></span>${comtypes.comtype_name}</a></li>
                 </c:forEach>
                 </li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span>增加企业</a></li>
+                <li><a href="${pageContext.request.contextPath}/employeeServlet?method=adminFindAllEmployees"><span class="fa fa-caret-right"></span>企业导师</a></li>
             </ul>
         </li>
 

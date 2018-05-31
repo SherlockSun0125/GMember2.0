@@ -365,19 +365,9 @@
                                    href="${pageContext.request.contextPath}/encryptWeb/employee/exit.jsp" hidefocus="true">退出</a>
                             </div>
                             <a class="username self f-thide" target="_self" data-index="点击用户名"
-                               href="setting.jsp">
+                               href="${pageContext.request.contextPath}/employeeServlet?method=toUpdateSetting&empid=${Employee.emp_id}">
                                 <span class=" f-fs1 f-f0">${Employee.emp_name}</span>
                             </a>
-                            <i class="line" style="padding-top: 2%"></i>
-                            <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
-                               href="${pageContext.request.contextPath}/encryptWeb/employee/forumMessage.jsp" title="查看更多消息" target="_blank">
-                                <span>消息</span>
-                                <em class="num hidddenClass j-nav-msgnum">0</em>
-                            </a>
-                            <div class="u-mystudy f-pr f-cb f-fr">
-                                <a class="mystudy nitem f-f0" id="j-nav-my-class" data-index="讨论区" target="_self"
-                                   href="${pageContext.request.contextPath}/encryptWeb/employee/forum.jsp" hidefocus="true">讨论区</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -397,7 +387,7 @@
         <div class="ux-user-info-bottom">
             <div class="ux-user-info-bottom_name">${Employee.emp_name}</div>
             <div class="ux-user-info-bottom_description f-pr">
-                <span>${Employee.com_id}</span>
+                <span>${Employee.emp_note}</span>
             </div>
         </div>
     </div>

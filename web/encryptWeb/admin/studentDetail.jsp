@@ -143,7 +143,8 @@
                             </a>
                         </li>
                     </c:forEach>
-                    <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span> 增加企业</a></li>
+                    <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span>增加企业</a></li>
+                    <li><a href="${pageContext.request.contextPath}/employeeServlet?method=adminFindAllEmployees"><span class="fa fa-caret-right"></span>企业导师</a></li>
                 </ul>
             </li>
 
@@ -187,7 +188,7 @@
         <div class="btn-toolbar list-toolbar">
             <a class="btn btn-primary" href="${pageContext.request.contextPath}/studentServlet?method=toUpdateStudent&studentid=${stu.stu_id}">
                 <i class="fa fa-pencil"></i>&nbsp;修改信息</a>
-            <button class="btn btn-default">导出信息</button>
+            <%--<button class="btn btn-default">导出信息</button>--%>
             <div class="btn-group"></div>
         </div>
         <div>

@@ -864,16 +864,6 @@
                                    href="${pageContext.request.contextPath}/encryptWeb/employee/setting.jsp">
                                     <span class=" f-fs1 f-f0">${Employee.emp_name}</span>
                                 </a>
-                                <i class="line" style="padding-top: 2%"></i>
-                                <a data-index="消息" class="mes f-pr f-cb j-nav-mescenter"
-                                   href="${pageContext.request.contextPath}/encryptWeb/employee/forumMessage.jsp" title="查看更多消息" target="_blank">
-                                    <span>消息</span>
-                                    <em class="num hidddenClass j-nav-msgnum">0</em>
-                                </a>
-                                <div class="u-mystudy f-pr f-cb f-fr">
-                                    <a class="mystudy nitem f-f0" id="j-nav-my-class" data-index="讨论区" target="_self"
-                                       href="${pageContext.request.contextPath}/encryptWeb/employee/forum.jsp" hidefocus="true">讨论区</a>
-                                </div>
                             </div>
                         </div>
                     </div>

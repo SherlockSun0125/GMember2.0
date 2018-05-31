@@ -1185,7 +1185,7 @@
     </column>
     <column id="286" parent="234" name="emp_sex">
       <Position>4</Position>
-      <DataType>int(2)|0</DataType>
+      <DataType>char(2)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>

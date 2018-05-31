@@ -148,8 +148,8 @@
                         </a>
                     </li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span
-                        class="fa fa-caret-right"></span> 增加企业</a></li>
+                <li><a href="${pageContext.request.contextPath}/encryptWeb/admin/addCompany.jsp"><span class="fa fa-caret-right"></span>增加企业</a></li>
+                <li><a href="${pageContext.request.contextPath}/employeeServlet?method=adminFindAllEmployees"><span class="fa fa-caret-right"></span>企业导师</a></li>
             </ul>
         </li>
 
@@ -202,7 +202,7 @@
             <a class="btn btn-primary"
                href="${pageContext.request.contextPath}/newsServlet?method=toUpdateNews&newsid=${news.news_id}">
                 <i class="fa fa-pencil"></i>&nbsp;修改新闻</a>
-            <button class="btn btn-default">导出新闻</button>
+            <%--<button class="btn btn-default">导出新闻</button>--%>
             <div class="btn-group"></div>
         </div>
         <div>
